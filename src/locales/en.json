@@ -1109,5 +1109,39 @@
       "action": "{blank}{arrow} Action: **{value}**\n"
     },
     "noContent": "No content"
+  },
+  "nop": {
+    "hasUntil": "**{e} {user} has No Prefix Access, Expiring <t:{ts}:R>.**",
+    "hasPermanent": "**{e} {user} has Permanent No Prefix Access.**",
+    "granted": "**{e} Granted {user} No Prefix Access for permanent.**",
+    "updatedPerm": "**{e} Updated {user}'s No Prefix Access To Permanent.**",
+    "removed": "**{e} Successfully removed {user} from No Prefix Access.**",
+    "removedMany": "**{e} Successfully removed {count} user(s) from No Prefix Access.**",
+    "notHas": "**{e} {user} does not have No Prefix Access.**",
+    "expired": "**{e} {user}'s No Prefix Access has expired.**",
+    "none": "**{e} There are no users with No Prefix Access.**",
+    "thisNotHas": "**{e} This user doesn't have No Prefix Access.**",
+    "badDuration": "**{e} Invalid duration format.**\n",
+    "listTitle": "**No Prefix Users [{count}]**",
+    "unknownUser": "Unknown User"
+  },
+  "own": {
+    "needUser": "**Provide me a valid user**",
+    "needUserOrAll": "**Provide me a valid user or use 'all' to remove everyone**",
+    "pageFooter": "-# Page {page}/{total} | Requested by {user}",
+    "usageLabel": "**Usage:**\n",
+    "examplesLabel": "**Examples:**\n",
+    "durationLabel": "**Duration:**",
+    "aliasesLabel": "**Aliases:**",
+    "argHint": "<> = Required Argument\nDo NOT type these when using commands!"
+  },
+  "bl": {
+    "added": "**{e} Added {user} to blacklist.**",
+    "title": "**{e} Blacklisted Users**",
+    "removed": "**{e} Successfully removed {user} from my blacklist.**",
+    "removedAll": "**{e} Successfully removed all {count} users from the blacklist.**",
+    "empty": "**{e} No users are currently blacklisted.**",
+    "already": "**{e} This user is already blacklisted.**",
+    "notIn": "**{e} This user is not blacklisted.**"
   }
 }

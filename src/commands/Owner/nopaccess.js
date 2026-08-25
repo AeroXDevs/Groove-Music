@@ -87,7 +87,7 @@ module.exports = {
     if (subcommand === "add") {
       if (!user) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} Provide me a valid user.**`);
+          .setContent(client.t(interaction.guildId, "own.needUser", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -134,7 +134,7 @@ module.exports = {
           } else {
             const errorDisplay = new TextDisplayBuilder()
               .setContent(
-                `**${client.emoji.warn} Invalid duration format.**\n` +
+                client.t(interaction.guildId, "nop.badDuration", { e: client.emoji.warn }) +
                 `**Examples:**\n` +
                 `\`24h\` or \`24hrs\` - 24 hours\n` +
                 `\`10d\` or \`10day\` - 10 days\n` +
@@ -185,7 +185,7 @@ module.exports = {
 
         const successMessage = newExpiresAt
           ? `**${client.emoji.check} Extended ${user}'s No Prefix Access, Expiring**\n**<t:${Math.floor(newExpiresAt.getTime() / 1000)}:R>.**`
-          : `**${client.emoji.check} Updated ${user}'s No Prefix Access To Permanent.**`;
+          : client.t(interaction.guildId, "nop.updatedPerm", { e: client.emoji.check, user });
 
         const successDisplay = new TextDisplayBuilder()
           .setContent(successMessage);
@@ -208,7 +208,7 @@ module.exports = {
 
       const successMessage = expiresAt
         ? `**${client.emoji.check} Granted ${user} No Prefix Access, Expiring**\n**<t:${Math.floor(expiresAt.getTime() / 1000)}:R>.**`
-        : `**${client.emoji.check} Granted ${user} No Prefix Access To Permanent.**`;
+        : client.t(interaction.guildId, "nop.granted", { e: client.emoji.check, user });
 
       const successDisplay = new TextDisplayBuilder()
         .setContent(successMessage);
@@ -225,7 +225,7 @@ module.exports = {
     if (subcommand === "remove") {
       if (!user) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} Provide me a valid user.**`);
+          .setContent(client.t(interaction.guildId, "own.needUser", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -244,7 +244,7 @@ module.exports = {
 
       if (!npData) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} This user doesn't have No Prefix Access.**`);
+          .setContent(client.t(interaction.guildId, "nop.thisNotHas", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -262,7 +262,7 @@ module.exports = {
       });
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Successfully removed ${user} from No Prefix Access.**`);
+        .setContent(client.t(interaction.guildId, "nop.removed", { e: client.emoji.check, user }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);
@@ -296,7 +296,7 @@ module.exports = {
     if (subcommand === "status") {
       if (!user) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} Provide me a valid user.**`);
+          .setContent(client.t(interaction.guildId, "own.needUser", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -315,7 +315,7 @@ module.exports = {
 
       if (!npData) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} ${user} does not have No Prefix Access.**`);
+          .setContent(client.t(interaction.guildId, "nop.notHas", { e: client.emoji.info, user }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -333,12 +333,12 @@ module.exports = {
         const expiryTime = new Date(npData.expiresAt).getTime();
 
         if (expiryTime <= now) {
-          statusMessage = `**${client.emoji.info} ${user}'s No Prefix Access has expired.**`;
+          statusMessage = client.t(interaction.guildId, "nop.expired", { e: client.emoji.info, user });
         } else {
-          statusMessage = `**${client.emoji.check} ${user} has No Prefix Access, Expiring <t:${expiryTimestamp}:R>.**`;
+          statusMessage = client.t(interaction.guildId, "nop.hasUntil", { e: client.emoji.check, user, ts: expiryTimestamp });
         }
       } else {
-        statusMessage = `**${client.emoji.check} ${user} has Permanent No Prefix Access.**`;
+        statusMessage = client.t(interaction.guildId, "nop.hasPermanent", { e: client.emoji.check, user });
       }
 
       const statusDisplay = new TextDisplayBuilder()
@@ -361,7 +361,7 @@ module.exports = {
 
       if (!data.length) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} There are no users with No Prefix Access.**`);
+          .setContent(client.t(interaction.guildId, "nop.none", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -399,7 +399,7 @@ module.exports = {
         );
 
         const headerDisplay = new TextDisplayBuilder()
-          .setContent(`**No Prefix Users [${data.length}]**`);
+          .setContent(client.t(interaction.guildId, "nop.listTitle", { count: data.length }));
 
         const separator = new SeparatorBuilder();
 
@@ -409,7 +409,7 @@ module.exports = {
         const separator2 = new SeparatorBuilder();
 
         const footerDisplay = new TextDisplayBuilder()
-          .setContent(`-# Page ${page + 1}/${pages} | Requested by ${interaction.user.displayName}`);
+          .setContent(client.t(interaction.guildId, "own.pageFooter", { page: page + 1, total: pages, user: interaction.user.displayName }));
 
         return new ContainerBuilder()
           .addTextDisplayComponents(headerDisplay)
@@ -522,7 +522,7 @@ module.exports = {
 
       if (!user) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} Provide me a valid user.**`);
+          .setContent(client.t(message.guild.id, "own.needUser", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -570,7 +570,7 @@ module.exports = {
           } else {
             const errorDisplay = new TextDisplayBuilder()
               .setContent(
-                `**${client.emoji.warn} Invalid duration format.**\n` +
+                client.t(message.guild.id, "nop.badDuration", { e: client.emoji.warn }) +
                 `**Examples:**\n` +
                 `\`24h\` or \`24hrs\` - 24 hours\n` +
                 `\`10d\` or \`10day\` - 10 days\n` +
@@ -621,7 +621,7 @@ module.exports = {
 
         const successMessage = newExpiresAt
           ? `**${client.emoji.check} Extended ${user}'s No Prefix Access, Now Expiring **\n**<t:${Math.floor(newExpiresAt.getTime() / 1000)}:R>**`
-          : `**${client.emoji.check} Updated ${user}'s No Prefix Access To Permanent.**`;
+          : client.t(message.guild.id, "nop.updatedPerm", { e: client.emoji.check, user });
 
         const successDisplay = new TextDisplayBuilder()
           .setContent(successMessage);
@@ -644,7 +644,7 @@ module.exports = {
 
       const successMessage = expiresAt
         ? `**${client.emoji.check} Granted ${user} No Prefix Access, Expiring **\n**<t:${Math.floor(expiresAt.getTime() / 1000)}:R>.**`
-        : `**${client.emoji.check} Granted ${user} No Prefix Access for permanent.**`;
+        : client.t(message.guild.id, "nop.granted", { e: client.emoji.check, user });
 
       const successDisplay = new TextDisplayBuilder()
         .setContent(successMessage);
@@ -684,7 +684,7 @@ module.exports = {
 
       if (!user) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} Provide me a valid user or use 'all' to remove everyone.**`);
+          .setContent(client.t(message.guild.id, "own.needUserOrAll", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -703,7 +703,7 @@ module.exports = {
 
       if (!npData) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} This user doesn't have No Prefix Access.**`);
+          .setContent(client.t(message.guild.id, "nop.thisNotHas", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -721,7 +721,7 @@ module.exports = {
       });
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Successfully removed ${user} from No Prefix Access.**`);
+        .setContent(client.t(message.guild.id, "nop.removed", { e: client.emoji.check, user }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);
@@ -740,7 +740,7 @@ module.exports = {
 
       if (!data.length) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} There are no users with No Prefix Access.**`);
+          .setContent(client.t(message.guild.id, "nop.none", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -778,7 +778,7 @@ module.exports = {
         );
 
         const headerDisplay = new TextDisplayBuilder()
-          .setContent(`**No Prefix Users [${data.length}]**`);
+          .setContent(client.t(message.guild.id, "nop.listTitle", { count: data.length }));
 
         const separator = new SeparatorBuilder();
 
@@ -788,7 +788,7 @@ module.exports = {
         const separator2 = new SeparatorBuilder();
 
         const footerDisplay = new TextDisplayBuilder()
-          .setContent(`-# Page ${page + 1}/${pages} | Requested by ${message.author.displayName}`);
+          .setContent(client.t(message.guild.id, "own.pageFooter", { page: page + 1, total: pages, user: message.author.displayName }));
 
         return new ContainerBuilder()
           .addTextDisplayComponents(headerDisplay)
@@ -870,7 +870,7 @@ module.exports = {
 
       if (!user) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} Provide me a valid user.**`);
+          .setContent(client.t(message.guild.id, "own.needUser", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -889,7 +889,7 @@ module.exports = {
 
       if (!npData) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} ${user} does not have No Prefix Access.**`);
+          .setContent(client.t(message.guild.id, "nop.notHas", { e: client.emoji.info, user }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -907,12 +907,12 @@ module.exports = {
         const expiryTime = new Date(npData.expiresAt).getTime();
 
         if (expiryTime <= now) {
-          statusMessage = `**${client.emoji.info} ${user}'s No Prefix Access has expired.**`;
+          statusMessage = client.t(message.guild.id, "nop.expired", { e: client.emoji.info, user });
         } else {
-          statusMessage = `**${client.emoji.check} ${user} has No Prefix Access, Expiring <t:${expiryTimestamp}:R>**.`;
+          statusMessage = client.t(message.guild.id, "nop.hasUntil", { e: client.emoji.check, user, ts: expiryTimestamp });
         }
       } else {
-        statusMessage = `**${client.emoji.check} ${user} has Permanent No Prefix Access**`;
+        statusMessage = client.t(message.guild.id, "nop.hasPermanent", { e: client.emoji.check, user });
       }
 
       const statusDisplay = new TextDisplayBuilder()

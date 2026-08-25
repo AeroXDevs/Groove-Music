@@ -1109,5 +1109,39 @@
       "action": "{blank}{arrow} İşlem: **{value}**\n"
     },
     "noContent": "İçerik yok"
+  },
+  "nop": {
+    "hasUntil": "**{e} {user} prefixsiz kullanıma sahip, bitiş <t:{ts}:R>.**",
+    "hasPermanent": "**{e} {user} kalıcı prefixsiz kullanıma sahip.**",
+    "granted": "**{e} {user} kullanıcısına kalıcı prefixsiz kullanım verildi.**",
+    "updatedPerm": "**{e} {user} kullanıcısının prefixsiz kullanımı kalıcıya çevrildi.**",
+    "removed": "**{e} {user} prefixsiz kullanımdan çıkarıldı.**",
+    "removedMany": "**{e} {count} kullanıcı prefixsiz kullanımdan çıkarıldı.**",
+    "notHas": "**{e} {user} prefixsiz kullanıma sahip değil.**",
+    "expired": "**{e} {user} kullanıcısının prefixsiz kullanımı sona ermiş.**",
+    "none": "**{e} Prefixsiz kullanıma sahip kimse yok.**",
+    "thisNotHas": "**{e} Bu kullanıcının prefixsiz kullanımı yok.**",
+    "badDuration": "**{e} Süre biçimi geçersiz.**\n",
+    "listTitle": "**Prefixsiz kullanıcılar [{count}]**",
+    "unknownUser": "Bilinmeyen kullanıcı"
+  },
+  "own": {
+    "needUser": "**Geçerli bir kullanıcı belirt.**",
+    "needUserOrAll": "**Geçerli bir kullanıcı belirt ya da herkesi kaldırmak için 'all' yaz.**",
+    "pageFooter": "-# Sayfa {page}/{total} | İsteyen: {user}",
+    "usageLabel": "**Kullanımı:**\n",
+    "examplesLabel": "**Örnekler:**\n",
+    "durationLabel": "**Süre:**",
+    "aliasesLabel": "**Takma adlar:**",
+    "argHint": "<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!"
+  },
+  "bl": {
+    "added": "**{e} {user} kara listeye eklendi.**",
+    "title": "**{e} Kara listedeki kullanıcılar**",
+    "removed": "**{e} {user} kara listeden çıkarıldı.**",
+    "removedAll": "**{e} Kara listedeki {count} kullanıcının hepsi çıkarıldı.**",
+    "empty": "**{e} Kara listede kimse yok.**",
+    "already": "**{e} Bu kullanıcı zaten kara listede.**",
+    "notIn": "**{e} Bu kullanıcı kara listede değil.**"
   }
 }
