@@ -10,7 +10,7 @@ const {
 
 module.exports = {
   name: "support",
-  aliases: [""],
+  aliases: [],
   category: "Information",
   description: "Get the support server invite link",
   args: false,

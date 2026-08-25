@@ -17,7 +17,7 @@ module.exports = {
     name: "audit",
     category: "Utility",
     description: "View recent server audit logs",
-    aliases: [""],
+    aliases: [],
     usage: "audit",
     userPerms: [PermissionFlagsBits.ViewAuditLog],
     slashOptions: [],
