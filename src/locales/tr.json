@@ -1159,7 +1159,13 @@
     "badDuration": "{e} Geçersiz süre eki. s, m, h veya d kullan.",
     "minWinners": "{e} Kazanan sayısı en az 1 olmalı.",
     "formHint": "Çekiliş formunu açmak için aşağıdaki butona bas.",
-    "reactHint": "-# Katılmak için {e} ile tepki ver."
+    "reactHint": "-# Katılmak için {e} ile tepki ver.",
+    "noEntries": "Çekilişe kimse katılmadı.",
+    "noEntriesBang": "Çekilişe kimse katılmadı.",
+    "notEnded": "Çekiliş henüz bitmedi.",
+    "congrats": "{e} Tebrikler {winners}, {host} tarafından düzenlenen **`{prize}`** çekilişini kazandın!",
+    "congratsReroll": "{e} Tebrikler <@{winner}>, **`{prize}`** ödülünün yeni kazananı sensin!",
+    "endedNoJoin": "**`{prize}`** çekilişi bitti ama katılan olmadı."
   },
   "cfg": {
     "needVoice": "Bu komutu kullanmak için bir ses kanalında olman gerek.",
@@ -1246,11 +1252,13 @@
     "selectFilters": "Filtreleri seç",
     "selectModules": "Açılıp kapatılacak modülleri seç...",
     "whitelistRemoved": "**{value}** beyaz listeden çıkarıldı.",
-    "whitelistAdded2": "**{value}** beyaz listeye eklendi."
+    "whitelistAdded2": "**{value}** beyaz listeye eklendi.",
+    "selectPunish": "Bir ceza seç"
   },
   "evt": {
     "removedFrom": "{bot}, `{guild}` sunucusundan çıkarıldı.\n\nYaşadığın olumsuz deneyimler için kusura bakma. Görüşlerini veya karşılaştığın sorunları **[Destek Sunucusu]({support})** üzerinden iletirsen en kısa sürede ilgilenilir.",
-    "noPrefixExpired": "**{e} Genel prefixsiz kullanım iznin sona erdi.**\n\nArtık komutları prefixsiz kullanamazsın.\nErişimin devam etmesini istiyorsan bot sahibiyle iletişime geç."
+    "noPrefixExpired": "**{e} Genel prefixsiz kullanım iznin sona erdi.**\n\nArtık komutları prefixsiz kullanamazsın.\nErişimin devam etmesini istiyorsan bot sahibiyle iletişime geç.",
+    "goodbyeHeader": "### {e} Görüşürüz! {bot} sunucudan çıkarıldı."
   },
   "vc": {
     "deafened": "{target} kullanıcısının sesi {channel} kanalında kapatıldı.",
@@ -1292,7 +1300,8 @@
     "alreadyMuted": "{target} zaten susturulmuş.",
     "notMuted": "{target} susturulmuş değil.",
     "alreadyDeaf": "{target} kullanıcısının sesi zaten kapalı.",
-    "notDeaf": "{target} kullanıcısının sesi kapalı değil."
+    "notDeaf": "{target} kullanıcısının sesi kapalı değil.",
+    "needBotPerm": "Bu işlem için `{permission}` yetkisine ihtiyacım var."
   },
   "desc": {
     "configureEnableAutomodModules": "AutoMod modüllerini ayarlar ve açar.",
@@ -1629,5 +1638,8 @@
     "notYours": "**{e} Bu senin oturumun değil. Kendi menün için `{prefix}filter` yaz.**",
     "placeholder": "Uygulanacak filtreyi seç",
     "currentAlt": "**{e} Aktif filtre `:`** `{value}`"
+  },
+  "vcx": {
+    "need247Channel": "Bot 7/24 modunda. Botun bulunduğu ses kanalına katılman gerek."
   }
 }

@@ -220,7 +220,7 @@ module.exports = {
             const punishMenu = new ActionRowBuilder().addComponents(
                 new StringSelectMenuBuilder()
                     .setCustomId("am_punish_action_select")
-                    .setPlaceholder("Select a punishment")
+                    .setPlaceholder(client.t(context.guild.id, "am.selectPunish"))
                     .addOptions([
                         { label: "Escalating", description: "Warn -> Mute -> Kick -> Ban (Dynamic Enforcement)", value: "delete" },
                         { label: "Mute", description: "Timeout a user for a specific duration.", value: "mute" },

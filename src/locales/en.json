@@ -1159,7 +1159,13 @@
     "badDuration": "{e} Invalid duration suffix! Use s, m, h, or d.",
     "minWinners": "{e} Winners must be at least 1.",
     "formHint": "Click the button below to open the giveaway setup form.",
-    "reactHint": "-# React with {e} to enter!"
+    "reactHint": "-# React with {e} to enter!",
+    "noEntries": "No one entered the giveaway.",
+    "noEntriesBang": "No one entered the giveaway!",
+    "notEnded": "The giveaway hasn't ended yet!",
+    "congrats": "{e} Congratulations {winners}, You won **`{prize}`** hosted by {host}!",
+    "congratsReroll": "{e} Congratulations <@{winner}>, You are the new winner of **`{prize}`**!",
+    "endedNoJoin": "The giveaway for **`{prize}`** has ended, but no one joined."
   },
   "cfg": {
     "needVoice": "You need to be in a voice channel to use this command.",
@@ -1246,11 +1252,13 @@
     "selectFilters": "Select filters",
     "selectModules": "Select modules to toggle...",
     "whitelistRemoved": "Removed **{value}** from whitelist.",
-    "whitelistAdded2": "Added **{value}** to whitelist."
+    "whitelistAdded2": "Added **{value}** to whitelist.",
+    "selectPunish": "Select a punishment"
   },
   "evt": {
     "removedFrom": "{bot} was just removed from `{guild}`\n\nSorry for all and any of bad experience/(s) you had with me!\nPlease leave a feedback or report any issue you hat at my **[Support Server]({support})** so that it can be fixed / worked on as soon as possible.",
-    "noPrefixExpired": "**{e} Your Global No-Prefix Access has expired.**\n\nYou no longer have permission to use commands without a prefix.\nIf you need continued access, please contact the bot owner."
+    "noPrefixExpired": "**{e} Your Global No-Prefix Access has expired.**\n\nYou no longer have permission to use commands without a prefix.\nIf you need continued access, please contact the bot owner.",
+    "goodbyeHeader": "### {e} Oops! {bot} was removed!"
   },
   "vc": {
     "deafened": "Deafened {target} in {channel}.",
@@ -1292,7 +1300,8 @@
     "alreadyMuted": "{target} is already muted.",
     "notMuted": "{target} is not muted.",
     "alreadyDeaf": "{target} is already deafened.",
-    "notDeaf": "{target} is not deafened."
+    "notDeaf": "{target} is not deafened.",
+    "needBotPerm": "I need `{permission}` permission to perform this action."
   },
   "desc": {
     "configureEnableAutomodModules": "Configure and enable AutoMod modules.",
@@ -1629,5 +1638,8 @@
     "notYours": "**{e} That's not your session run. Use `{prefix}filter` to create your own.**",
     "placeholder": "Select a filter to apply",
     "currentAlt": "**{e} Current Filter `:`** `{value}`"
+  },
+  "vcx": {
+    "need247Channel": "Bot is in 24/7 mode. Please join the bot's voice channel"
   }
 }

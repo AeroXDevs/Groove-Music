@@ -27,7 +27,7 @@ async function endGiveaway(client, giveaway) {
 
         let winnerText = winners.length > 0
             ? `${winners.map(w => `<@${w}>`).join(', ')}`
-            : 'No one entered the giveaway.';
+            : client.t(channel.guild.id, "gw.noEntries");
 
         const endHeader = new TextDisplayBuilder()
             .setContent(`### ${client.emoji.gwy} Giveaway Ended`);
@@ -61,11 +61,11 @@ async function endGiveaway(client, giveaway) {
 
         if (winners.length > 0) {
             channel.send({
-                content: `${client.emoji.gwy} Congratulations ${winners.map(w => `<@${w}>`).join(', ')}, You won **\`${giveaway.prize}\`** hosted by ${hostUser}!`,
+                content: client.t(channel.guild.id, "gw.congrats", { e: client.emoji.gwy, winners: winners.map(w => `<@${w}>`).join(", "), prize: giveaway.prize, host: hostUser }),
             });
         } else {
             channel.send({
-                content: `The giveaway for **\`${giveaway.prize}\`** has ended, but no one joined.`,
+                content: client.t(channel.guild.id, "gw.endedNoJoin", { prize: giveaway.prize }),
             });
         }
     } catch (err) {
@@ -74,8 +74,8 @@ async function endGiveaway(client, giveaway) {
 }
 
 async function rerollGiveaway(client, giveaway, channel) {
-    if (!giveaway.ended) return "The giveaway hasn't ended yet!";
-    if (giveaway.participants.length === 0) return "No one entered the giveaway!";
+    if (!giveaway.ended) return client.t(channel.guild.id, "gw.notEnded");
+    if (giveaway.participants.length === 0) return client.t(channel.guild.id, "gw.noEntriesBang");
 
     const validParticipants = giveaway.participants.filter(id => id !== giveaway.hostId);
     const participantsToUse = validParticipants.length > 0 ? validParticipants : giveaway.participants;
@@ -83,7 +83,7 @@ async function rerollGiveaway(client, giveaway, channel) {
     const winner = participantsToUse[Math.floor(Math.random() * participantsToUse.length)];
 
     channel.send({
-        content: `${client.emoji.gwy} Congratulations <@${winner}>, You are the new winner of **\`${giveaway.prize}\`**!`,
+        content: client.t(channel.guild.id, "gw.congratsReroll", { e: client.emoji.gwy, winner, prize: giveaway.prize }),
     });
 
     return true;

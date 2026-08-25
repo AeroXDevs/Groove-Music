@@ -88,7 +88,7 @@ module.exports = {
         const recipient = own.user;
 
         const goodbyeHeader = new TextDisplayBuilder()
-          .setContent(`### ${client.emoji.cross} Oops! ${client.user.username} was removed!`);
+          .setContent(t(lang, "evt.goodbyeHeader", { e: client.emoji.cross, bot: client.user.username }));
 
         const separator1 = new SeparatorBuilder();
 

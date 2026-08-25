@@ -135,7 +135,7 @@ module.exports = {
 
         const requiredPerm = botPerms[realSub];
         if (requiredPerm && !guild.members.me.permissions.has(requiredPerm)) {
-            return error(`I need \`${realSub.includes('mute') ? 'Mute Members' : realSub.includes('deafen') ? 'Deafen Members' : realSub.includes('kick') || realSub.includes('move') || realSub.includes('pull') ? 'Move Members' : 'Manage Channels'}\` permission to perform this action.`);
+            return error(client.t(context.guild.id, "vc.needBotPerm", { permission: realSub.includes('mute') ? 'Mute Members' : realSub.includes('deafen') ? 'Deafen Members' : realSub.includes('kick') || realSub.includes('move') || realSub.includes('pull') ? 'Move Members' : 'Manage Channels' }));
         }
 
         try {
