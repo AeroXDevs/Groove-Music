@@ -51,8 +51,7 @@ module.exports = {
         container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} Bio Command [2]`));
         container.addSeparatorComponents(new SeparatorBuilder());
 
-        const helpContent = `> ** \`${prefix}bio set <text>\` **\n╰ Sets your profile bio.\n\n` +
-            `> ** \`${prefix}bio clear\` **\n╰ Clears your profile bio.`;
+        const helpContent = client.t(message.guild.id, "info.bio.help", { prefix });
 
         container.addTextDisplayComponents(new TextDisplayBuilder().setContent(helpContent));
         container.addSeparatorComponents(new SeparatorBuilder());

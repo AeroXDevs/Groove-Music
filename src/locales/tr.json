@@ -341,6 +341,210 @@
     },
     "play": {
       "description": "Şarkı veya çalma listesi çalar."
+    },
+    "247": {
+      "description": "Botu ses kanalında tutan 7/24 modunu açar veya kapatır."
+    },
+    "audit": {
+      "description": "Sunucunun son denetim kayıtlarını gösterir."
+    },
+    "automod": {
+      "description": "AutoMod ayarları ve yönetimi."
+    },
+    "avatar": {
+      "description": "Bir kullanıcının profil fotoğrafını indirme bağlantılarıyla gösterir."
+    },
+    "ban": {
+      "description": "Bir üyeyi sunucudan yasaklar."
+    },
+    "banner": {
+      "description": "Bir kullanıcının banner'ını indirme bağlantısıyla gösterir."
+    },
+    "blacklist": {
+      "description": "Kullanıcıları kara listeye alır."
+    },
+    "branding": {
+      "description": "Botun sunucudaki profilini düzenler (avatar, banner, biyografi, takma ad)."
+    },
+    "channelinfo": {
+      "description": "Bir kanal hakkında ayrıntılı bilgi verir."
+    },
+    "checkvanity": {
+      "description": "Bir özel URL'nin boş olup olmadığını kontrol eder."
+    },
+    "clearinvites": {
+      "description": "Sunucunun veya bir üyenin davet kayıtlarını siler."
+    },
+    "filter": {
+      "description": "Botun ses filtresini ayarlar."
+    },
+    "firstmsg": {
+      "description": "Kanaldaki ilk mesajı gösterir."
+    },
+    "gend": {
+      "description": "Bir çekilişi elle bitirir."
+    },
+    "getinv": {
+      "description": "Botun bulunduğu bir sunucu için davet bağlantısı alır."
+    },
+    "greroll": {
+      "description": "Biten bir çekilişin kazananını yeniden çeker."
+    },
+    "gstart": {
+      "description": "Çekiliş başlatır."
+    },
+    "help": {
+      "description": "Bütün komutları kategorilere göre gösterir."
+    },
+    "hide": {
+      "description": "Belirtilen kanalı gizler."
+    },
+    "hideall": {
+      "description": "Sunucudaki bütün yazı kanallarını gizler."
+    },
+    "ignore": {
+      "description": "Komutların yok sayılacağı kanalları ayarlar."
+    },
+    "invite": {
+      "description": "Botun davet bağlantısını verir."
+    },
+    "invitecodes": {
+      "description": "Bir kullanıcının oluşturduğu davet kodlarını kullanım sayılarıyla gösterir."
+    },
+    "invited": {
+      "description": "Sunucuya davet ettiğin kişileri gösterir."
+    },
+    "inviter": {
+      "description": "Seni veya başka birini sunucuya kimin davet ettiğini gösterir."
+    },
+    "invites": {
+      "description": "Bir üyenin davet istatistiklerini gösterir (toplam, katılan, ayrılan, sahte, tekrar katılan)."
+    },
+    "invitetracking": {
+      "description": "Sunucuda davet takibini açar veya kapatır."
+    },
+    "kick": {
+      "description": "Bir üyeyi sunucudan atar."
+    },
+    "language": {
+      "description": "Botun bu sunucuda kullanacağı dili değiştirir."
+    },
+    "lbinvites": {
+      "description": "Sunucunun davet sıralamasını gösterir."
+    },
+    "leaveserver": {
+      "description": "Bulunduğu sunucudan ayrılır."
+    },
+    "like": {
+      "description": "Çalan şarkıyı favorilerine ekler."
+    },
+    "likeall": {
+      "description": "Sıradaki bütün şarkıları favorilerine ekler."
+    },
+    "list": {
+      "description": "Sunucudaki üyeleri veya kayıtları listeler."
+    },
+    "lock": {
+      "description": "Belirtilen kanalı kilitler."
+    },
+    "lockall": {
+      "description": "Sunucudaki bütün yazı kanallarını kilitler."
+    },
+    "membercount": {
+      "description": "Sunucunun ayrıntılı üye istatistiklerini gösterir."
+    },
+    "mute": {
+      "description": "Bir üyeyi susturur."
+    },
+    "mutual": {
+      "description": "Botla bir kullanıcının ortak sunucularını gösterir."
+    },
+    "node": {
+      "description": "Lavalink sunucu bilgisini gösterir."
+    },
+    "nopaccess": {
+      "description": "Genel prefixsiz kullanım iznini verir veya kaldırır."
+    },
+    "nuke": {
+      "description": "Kanalı klonlayıp siler."
+    },
+    "ping": {
+      "description": "Botun gecikme değerlerini gösterir."
+    },
+    "playliked": {
+      "description": "Favori şarkılarını çalar."
+    },
+    "profile": {
+      "description": "Kendi bot profil görselini gösterir."
+    },
+    "purge": {
+      "description": "Kanaldaki mesajları çeşitli filtrelerle siler."
+    },
+    "reload": {
+      "description": "Komutu yeniden yükler."
+    },
+    "rename": {
+      "description": "Belirtilen kanalın adını değiştirir."
+    },
+    "resetmyinvites": {
+      "description": "Bu sunucudaki kendi davet istatistiklerini sıfırlar."
+    },
+    "restart": {
+      "description": "Botu yeniden başlatır."
+    },
+    "roleinfo": {
+      "description": "Bir rol hakkında ayrıntılı bilgi verir."
+    },
+    "serverbanner": {
+      "description": "Sunucunun banner'ını indirme bağlantısıyla gösterir."
+    },
+    "servericon": {
+      "description": "Sunucunun ikonunu indirme bağlantısıyla gösterir."
+    },
+    "serverinfo": {
+      "description": "Sunucu hakkında ayrıntılı bilgi verir."
+    },
+    "serverlist": {
+      "description": "Botun bulunduğu sunucuları listeler."
+    },
+    "setprefix": {
+      "description": "Özel bir prefix ayarlar."
+    },
+    "showliked": {
+      "description": "Favori şarkılarını gösterir."
+    },
+    "source": {
+      "description": "Aramalar için tercih ettiğin müzik kaynağını ayarlar."
+    },
+    "stats": {
+      "description": "Ayrıntılı bot istatistiklerini gösterir."
+    },
+    "support": {
+      "description": "Destek sunucusunun davet bağlantısını verir."
+    },
+    "unban": {
+      "description": "Bir kullanıcının yasağını kaldırır."
+    },
+    "unhide": {
+      "description": "Belirtilen kanalı tekrar görünür yapar."
+    },
+    "unhideall": {
+      "description": "Bütün yazı kanallarını tekrar görünür yapar."
+    },
+    "unlike": {
+      "description": "Şarkıları favorilerinden çıkarır."
+    },
+    "unlock": {
+      "description": "Belirtilen kanalın kilidini açar."
+    },
+    "unlockall": {
+      "description": "Bütün yazı kanallarının kilidini açar."
+    },
+    "unmute": {
+      "description": "Bir üyenin susturmasını kaldırır."
+    },
+    "userinfo": {
+      "description": "Bir kullanıcı hakkında ayrıntılı bilgi verir."
     }
   },
   "buttons": {
@@ -513,7 +717,9 @@
       "permPlaceholder": "Yetkileri seç...",
       "massDone": "{role} rolünün toplu ataması **{time}** içinde tamamlandı.",
       "hoisted": "Ayrı gösterilsin mi? (Evet/Hayır)",
-      "mentionable": "Etiketlenebilir mi? (Evet/Hayır)"
+      "mentionable": "Etiketlenebilir mi? (Evet/Hayır)",
+      "massTitle": "### Toplu rol işlemi tamamlandı.",
+      "massBody": "> {role} rolünün toplu ataması **` {time}sn `** içinde tamamlandı.\n\n> ~ {check} **Başarılı :** ` {ok} `\n> ~ {cross} **Başarısız :** ` {fail} `"
     },
     "failed": {
       "ban": "{e} Yasaklama başarısız: {message}",
@@ -755,7 +961,8 @@
     "aliases": "{arrow} **Takma adlar :** {value}\n",
     "bio": {
       "setLine": "**\n╰ Profil biyografini ayarlar.\n\n",
-      "clearLine": "**\n╰ Profil biyografini temizler."
+      "clearLine": "**\n╰ Profil biyografini temizler.",
+      "help": "> ** `{prefix}bio set <metin>` **\n╰ Profil biyografini ayarlar.\n\n> ** `{prefix}bio clear` **\n╰ Profil biyografini temizler."
     }
   },
   "am": {

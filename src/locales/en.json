@@ -341,6 +341,210 @@
     },
     "play": {
       "description": "Plays a song or playlist."
+    },
+    "247": {
+      "description": "Enable or disable 24/7 mode to keep the bot in voice channel"
+    },
+    "audit": {
+      "description": "View recent server audit logs"
+    },
+    "automod": {
+      "description": "AutoMod configuration and management"
+    },
+    "avatar": {
+      "description": "Displays a user's avatar with download links."
+    },
+    "ban": {
+      "description": "Ban a member from the server"
+    },
+    "banner": {
+      "description": "Displays a user's banner with download link."
+    },
+    "blacklist": {
+      "description": "Blacklist users"
+    },
+    "branding": {
+      "description": "Customize the bot's server profile (avatar, banner, bio, nickname)."
+    },
+    "channelinfo": {
+      "description": "Get detailed information about a channel"
+    },
+    "checkvanity": {
+      "description": "Check if a vanity URL is available or taken"
+    },
+    "clearinvites": {
+      "description": "Clear invite tracking data for this server or a specific member"
+    },
+    "filter": {
+      "description": "Sets the bot's sound filter."
+    },
+    "firstmsg": {
+      "description": "Get the first message sent in the channel"
+    },
+    "gend": {
+      "description": "End a giveaway manually."
+    },
+    "getinv": {
+      "description": "Get an invite link for a server where the bot is present"
+    },
+    "greroll": {
+      "description": "Reroll a winner for an ended giveaway."
+    },
+    "gstart": {
+      "description": "Start a giveaway."
+    },
+    "help": {
+      "description": "Shows all commands with categories"
+    },
+    "hide": {
+      "description": "Hides the specified channel"
+    },
+    "hideall": {
+      "description": "Hides all text channels in the server"
+    },
+    "ignore": {
+      "description": "Ignorechannel"
+    },
+    "invite": {
+      "description": "Get the bot's invite link"
+    },
+    "invitecodes": {
+      "description": "Show all invite codes created by a user with their usage counts"
+    },
+    "invited": {
+      "description": "Shows all the people you invited to the server"
+    },
+    "inviter": {
+      "description": "Shows who invited you or another user to the server"
+    },
+    "invites": {
+      "description": "Displays the invite statistics of a member including total invites, joins, left, fake, and rejoins."
+    },
+    "invitetracking": {
+      "description": "Enable or disable invite tracking for this server"
+    },
+    "kick": {
+      "description": "Kick a member from the server"
+    },
+    "language": {
+      "description": "Change the bot's language for this server."
+    },
+    "lbinvites": {
+      "description": "Shows the invite leaderboard for this server"
+    },
+    "leaveserver": {
+      "description": "Leave server"
+    },
+    "like": {
+      "description": "Add current song to your favorites"
+    },
+    "likeall": {
+      "description": "Add all songs from the current queue to your favorites"
+    },
+    "list": {
+      "description": "Lists various members or items in the server"
+    },
+    "lock": {
+      "description": "Locks the specified channel"
+    },
+    "lockall": {
+      "description": "Locks all text channels in the server"
+    },
+    "membercount": {
+      "description": "Displays detailed server member statistics."
+    },
+    "mute": {
+      "description": "Timeout a member in the server"
+    },
+    "mutual": {
+      "description": "Show mutual servers between the bot and a user|bot"
+    },
+    "node": {
+      "description": "Shows Node information."
+    },
+    "nopaccess": {
+      "description": "Add/remove global no-prefix access"
+    },
+    "nuke": {
+      "description": "Clones and deletes the channel"
+    },
+    "ping": {
+      "description": "Displays the bot's various latencies."
+    },
+    "playliked": {
+      "description": "Play your favorite songs"
+    },
+    "profile": {
+      "description": "Displays your custom bot profile image."
+    },
+    "purge": {
+      "description": "Purge messages from the channel with various filters"
+    },
+    "reload": {
+      "description": "Reloads command"
+    },
+    "rename": {
+      "description": "Renames a specified channel"
+    },
+    "resetmyinvites": {
+      "description": "Reset your own invite statistics in this server"
+    },
+    "restart": {
+      "description": "Restart the bot"
+    },
+    "roleinfo": {
+      "description": "Get detailed information about a role"
+    },
+    "serverbanner": {
+      "description": "Displays the server's banner with download link."
+    },
+    "servericon": {
+      "description": "Displays the server's icon with download link."
+    },
+    "serverinfo": {
+      "description": "Get detailed information about the server"
+    },
+    "serverlist": {
+      "description": "Listing Of Servers"
+    },
+    "setprefix": {
+      "description": "Sets a custom prefix."
+    },
+    "showliked": {
+      "description": "Show your favorite songs"
+    },
+    "source": {
+      "description": "Set your preferred music source for searches"
+    },
+    "stats": {
+      "description": "Show detailed bot statistics"
+    },
+    "support": {
+      "description": "Get the support server invite link"
+    },
+    "unban": {
+      "description": "Unban a user from the server"
+    },
+    "unhide": {
+      "description": "Unhides the specified channel"
+    },
+    "unhideall": {
+      "description": "Unhides all text channels in the server"
+    },
+    "unlike": {
+      "description": "Remove songs from your favorites"
+    },
+    "unlock": {
+      "description": "Unlocks the specified channel"
+    },
+    "unlockall": {
+      "description": "Unlocks all text channels in the server"
+    },
+    "unmute": {
+      "description": "Remove timeout from a member"
+    },
+    "userinfo": {
+      "description": "Get detailed information about a user"
     }
   },
   "buttons": {
@@ -513,7 +717,9 @@
       "permPlaceholder": "Select Permissions...",
       "massDone": "{role}'s mass assignment has been successfully completed in **{time}**",
       "hoisted": "Hoisted? (Yes/No)",
-      "mentionable": "Mentionable? (Yes/No)"
+      "mentionable": "Mentionable? (Yes/No)",
+      "massTitle": "### Mass Role task completed!",
+      "massBody": "> Role {role}'s mass assignment has been successfully completed in **` {time}s `**!\n\n> ~ {check} **Successful Users :** ` {ok} `\n> ~ {cross} **Unsuccessful Users :** ` {fail} `"
     },
     "failed": {
       "ban": "{e} Failed to ban: {message}",
@@ -755,7 +961,8 @@
     "aliases": "{arrow} **Aliases :** {value}\n",
     "bio": {
       "setLine": "**\n╰ Sets your profile bio.\n\n",
-      "clearLine": "**\n╰ Clears your profile bio."
+      "clearLine": "**\n╰ Clears your profile bio.",
+      "help": "> ** `{prefix}bio set <text>` **\n╰ Sets your profile bio.\n\n> ** `{prefix}bio clear` **\n╰ Clears your profile bio."
     }
   },
   "am": {

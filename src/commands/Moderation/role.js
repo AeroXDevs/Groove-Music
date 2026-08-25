@@ -205,11 +205,9 @@ module.exports = {
                             const timeTaken = ((endTime - startTime) / 1000).toFixed(2);
 
                             const endContainer = new ContainerBuilder();
-                            endContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### Mass Role task completed!`));
+                            endContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.massTitle")));
                             endContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                                `> Role ${role}'s mass assignment has been successfully completed in **\` ${timeTaken}s \`**!\n\n` +
-                                `> ~ ${emoji.check} **Successful Users :** \` ${successCount} \`\n` +
-                                `> ~ ${emoji.cross} **Unsuccessful Users :** \` ${failCount} \``
+                                client.t(message.guild.id, "mod.role.massBody", { role, time: timeTaken, check: emoji.check, cross: emoji.cross, ok: successCount, fail: failCount })
                             ));
 
                             return int.editReply({
@@ -240,7 +238,7 @@ module.exports = {
             case 'taskcancel': {
                 if (!activeTasks.has(guild.id)) return error('No active role task found.');
                 activeTasks.delete(guild.id);
-                return success('Successfully cancelled the active role task.');
+                return success(client.t(message.guild.id, "mod.role.cancelled"));
             }
             case 'create': {
                 let name = subArgs.join(' ') || 'New Role';

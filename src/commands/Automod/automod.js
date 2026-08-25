@@ -155,7 +155,7 @@ module.exports = {
                         whitelistUsers: [], logChannel: null, action: 'delete',
                         punishments: {}, heatSettings: {}
                     });
-                    return this.success(context, 'AutoMod configuration has been reset.');
+                    return this.success(context, client.t(context.guild.id, "am.reset"));
                 default:
                     return this.sendHelpMenu(context, client, prefix);
             }

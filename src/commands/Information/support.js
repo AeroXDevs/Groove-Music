@@ -69,7 +69,7 @@ module.exports = {
 
       const supportRow = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
-          .setLabel("Support Server")
+          .setLabel(client.t(message.guild.id, "info.supportServer"))
           .setStyle(ButtonStyle.Link)
           .setURL(supportURL.trim()),
       );
