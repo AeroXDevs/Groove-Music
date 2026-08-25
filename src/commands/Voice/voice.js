@@ -161,7 +161,7 @@ module.exports = {
                     if (!options[0]) return usage('mute', '<user>', 'Mutes a user in their voice channel.', 'm');
                     const target = await getTarget(options[0]);
                     if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
-                    if (target.voice.mute) return error(`${target} is already muted.`);
+                    if (target.voice.mute) return error(client.t(context.guild.id, "vc.alreadyMuted", { target }));
                     await target.voice.setMute(true);
                     return success(client.t(context.guild.id, "vc.muted", { target }));
                 }
@@ -170,7 +170,7 @@ module.exports = {
                     if (!options[0]) return usage('unmute', '<user>', 'Unmutes a user in their voice channel.', 'um');
                     const target = await getTarget(options[0]);
                     if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
-                    if (!target.voice.mute) return error(`${target} is not muted.`);
+                    if (!target.voice.mute) return error(client.t(context.guild.id, "vc.notMuted", { target }));
                     await target.voice.setMute(false);
                     return success(client.t(context.guild.id, "vc.unmuted", { target }));
                 }
@@ -195,7 +195,7 @@ module.exports = {
                     if (!options[0]) return usage('deafen', '<user>', 'Deafens a user in their voice channel.', 'd');
                     const target = await getTarget(options[0]);
                     if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
-                    if (target.voice.deaf) return error(`${target} is already deafened.`);
+                    if (target.voice.deaf) return error(client.t(context.guild.id, "vc.alreadyDeaf", { target }));
                     const targetChannel = target.voice.channel;
                     await target.voice.setDeaf(true);
                     return success(client.t(context.guild.id, "vc.deafened", { target, channel: targetChannel }));
@@ -205,7 +205,7 @@ module.exports = {
                     if (!options[0]) return usage('undeafen', '<user>', 'Undeafens a user in their voice channel.', 'ud');
                     const target = await getTarget(options[0]);
                     if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
-                    if (!target.voice.deaf) return error(`${target} is not deafened.`);
+                    if (!target.voice.deaf) return error(client.t(context.guild.id, "vc.notDeaf", { target }));
                     const targetChannel = target.voice.channel;
                     await target.voice.setDeaf(false);
                     return success(client.t(context.guild.id, "vc.undeafened", { target, channel: targetChannel }));

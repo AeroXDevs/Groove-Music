@@ -278,7 +278,7 @@ module.exports = {
       blacklistedUsers.forEach(u => client.db.blacklist.delete(u.userId));
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Successfully removed all \`${count}\` users from the blacklist.**`);
+        .setContent(client.t(interaction.guildId, "bl.removedAllLine", { e: client.emoji.check, count }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);
@@ -494,7 +494,7 @@ module.exports = {
         blacklistedUsers.forEach(u => client.db.blacklist.delete(u.userId));
 
         const successDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.check} Successfully removed all \`${count}\` users from the blacklist.**`);
+          .setContent(client.t(message.guild.id, "bl.removedAllLine", { e: client.emoji.check, count }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(successDisplay);

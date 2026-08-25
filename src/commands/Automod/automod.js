@@ -105,7 +105,7 @@ module.exports = {
         try {
             if (!client.automod) {
                 console.error("[AutoMod Error] client.automod is undefined!");
-                return this.error(context, "AutoMod system is not initialized. Please restart the bot or contact the developer.");
+                return this.error(context, client.t(context.guild.id, "am.notInitialized"));
             }
 
             const settings = client.automod.getSettings(guild.id);
@@ -121,22 +121,22 @@ module.exports = {
                     return this.disableMenu(context, client);
                 case 'whitelist':
                 case 'wl':
-                    if (!isEnabled) return this.error(context, 'Please enable AutoMod first using `automod enable`.');
+                    if (!isEnabled) return this.error(context, client.t(context.guild.id, "am.enableFirst"));
                     return this.whitelistMenu(context, options, client, prefix);
                 case 'punishment':
                 case 'punish':
                 case 'punishments':
-                    if (!isEnabled) return this.error(context, 'Please enable AutoMod first using `automod enable`.');
+                    if (!isEnabled) return this.error(context, client.t(context.guild.id, "am.enableFirst"));
                     return this.punishmentMenu(context, client);
                 case 'logging':
                 case 'logs':
                 case 'log':
-                    if (!isEnabled) return this.error(context, 'Please enable AutoMod first using `automod enable`.');
+                    if (!isEnabled) return this.error(context, client.t(context.guild.id, "am.enableFirst"));
                     return this.loggingMenu(context, options, client);
                 case 'heat':
                 case 'heatsettings':
                 case 'sensitivity':
-                    if (!isEnabled) return this.error(context, 'Please enable AutoMod first using `automod enable`.');
+                    if (!isEnabled) return this.error(context, client.t(context.guild.id, "am.enableFirst"));
                     return this.heatMenu(context, client);
                 case 'config':
                 case 'show':
@@ -145,7 +145,7 @@ module.exports = {
                 case 'limit':
                 case 'setting':
                 case 'settings':
-                    if (!isEnabled) return this.error(context, 'Please enable AutoMod first using `automod enable`.');
+                    if (!isEnabled) return this.error(context, client.t(context.guild.id, "am.enableFirst"));
                     return this.limitsMenu(context, options, client);
                 case 'reset':
                     client.automod.updateSettings(guild.id, {

@@ -144,7 +144,8 @@
       "doneEmpty": "**{e} {count} şarkı silindi, sıra artık boş.**",
       "done": "**{e} {count} şarkı silindi.**",
       "cleared": "**{e} Sıradan {count} şarkı temizlendi.**",
-      "timedOut": "**{e} Süre doldu. Gerekirse komutu tekrar kullan.**"
+      "timedOut": "**{e} Süre doldu. Gerekirse komutu tekrar kullan.**",
+      "invalidPos": "**{e} Geçersiz sıra numarası** `:` `{value}`\n**{e} Sıradaki toplam şarkı** `:` `{total}`"
     },
     "seek": {
       "invalidTime": "**{e} Zaman biçimi geçersiz. Örnek: `40`, `1:30`, `10s`, `1m`**",
@@ -1263,7 +1264,9 @@
     "alreadyDisabled": "AutoMod zaten kapalı.",
     "notInitialized": "AutoMod sistemi başlatılmamış. Botu yeniden başlat veya geliştiriciye yaz.",
     "error": "Bir hata oluştu: {message}",
-    "maxSet": "En fazla **{type}** sayısı **{value}** olarak ayarlandı."
+    "maxSet": "En fazla **{type}** sayısı **{value}** olarak ayarlandı.",
+    "enableFirst": "Önce `automod enable` ile AutoMod'u açman gerek.",
+    "whitelistUsage": "Beyaz listeden çıkarmak için bir rol, kanal veya kullanıcı etiketle. Kullanımı: `{prefix}automod whitelist remove <@rol/@kullanıcı/#kanal>`"
   },
   "evt": {
     "noPrefixRevoked": "Artık prefixsiz komut kullanma iznin yok.\n",
@@ -1308,7 +1311,11 @@
     "vYouNeedManageChannels": "`Manage Channels` yetkisine sahip olman gerek.",
     "vYouNeedMoveMembers": "`Move Members` yetkisine sahip olman gerek.",
     "vYouNeedMuteMembers": "`Mute Members` yetkisine sahip olman gerek.",
-    "vPullsAllUsersFrom": "Belirtilen kanaldaki herkesi kendi kanalına çeker."
+    "vPullsAllUsersFrom": "Belirtilen kanaldaki herkesi kendi kanalına çeker.",
+    "alreadyMuted": "{target} zaten susturulmuş.",
+    "notMuted": "{target} susturulmuş değil.",
+    "alreadyDeaf": "{target} kullanıcısının sesi zaten kapalı.",
+    "notDeaf": "{target} kullanıcısının sesi kapalı değil."
   },
   "desc": {
     "configureEnableAutomodModules": "AutoMod modüllerini ayarlar ve açar.",
@@ -1418,7 +1425,9 @@
     "argHint": "<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!",
     "noRanksBadges": "Bu kullanıcının rütbesi veya rozeti yok.",
     "totalBadges": "-# Toplam rozet: {count} | İsteyen: {user}",
-    "requestedBy": "-# İsteyen: {user}"
+    "requestedBy": "-# İsteyen: {user}",
+    "restartIdle": "**{e} Bot hiçbir yerde çalmıyor.**\n**{i} Yeniden başlatmak istediğine emin misin?**",
+    "restartActive": "**{e} Bot şu an `{count}` sunucuda aktif.**\n**{i} Yeniden başlatmak istediğine emin misin?**"
   },
   "bl": {
     "added": "**{e} {user} kara listeye eklendi.**",
@@ -1427,7 +1436,8 @@
     "removedAll": "**{e} Kara listedeki {count} kullanıcının hepsi çıkarıldı.**",
     "empty": "**{e} Kara listede kimse yok.**",
     "already": "**{e} Bu kullanıcı zaten kara listede.**",
-    "notIn": "**{e} Bu kullanıcı kara listede değil.**"
+    "notIn": "**{e} Bu kullanıcı kara listede değil.**",
+    "removedAllLine": "**{e} Kara listedeki `{count}` kullanıcının hepsi çıkarıldı.**"
   },
   "fav": {
     "added": "**{e} Favorilerine eklendi: [{title}]({uri})**",

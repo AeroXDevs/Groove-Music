@@ -144,7 +144,8 @@
       "doneEmpty": "**{e} Removed {count} track(s). The queue is now empty!**",
       "done": "**{e} Removed {count} track(s)**",
       "cleared": "**{e} Cleared {count} tracks from the queue**",
-      "timedOut": "**{e} Session timed out. Use the command again if needed.**"
+      "timedOut": "**{e} Session timed out. Use the command again if needed.**",
+      "invalidPos": "**{e} Invalid position** `:` `{value}`\n**{e} Total songs in queue** `:` `{total}`"
     },
     "seek": {
       "invalidTime": "**{e} Invalid time format. Examples: `40`, `1:30`, `10s`, `1m`**",
@@ -1263,7 +1264,9 @@
     "alreadyDisabled": "AutoMod is already disabled.",
     "notInitialized": "AutoMod system is not initialized. Please restart the bot or contact the developer.",
     "error": "An error occurred: {message}",
-    "maxSet": "Successfully set max **{type}s** to **{value}**."
+    "maxSet": "Successfully set max **{type}s** to **{value}**.",
+    "enableFirst": "Please enable AutoMod first using `automod enable`.",
+    "whitelistUsage": "Please mention a role, channel, or user to remove from whitelist. Usage: `{prefix}automod whitelist remove <@role/@user/#channel>`"
   },
   "evt": {
     "noPrefixRevoked": "You no longer have permission to use commands without a prefix.\n",
@@ -1308,7 +1311,11 @@
     "vYouNeedManageChannels": "You need `Manage Channels` permission.",
     "vYouNeedMoveMembers": "You need `Move Members` permission.",
     "vYouNeedMuteMembers": "You need `Mute Members` permission.",
-    "vPullsAllUsersFrom": "Pulls all users from a specified voice channel into yours."
+    "vPullsAllUsersFrom": "Pulls all users from a specified voice channel into yours.",
+    "alreadyMuted": "{target} is already muted.",
+    "notMuted": "{target} is not muted.",
+    "alreadyDeaf": "{target} is already deafened.",
+    "notDeaf": "{target} is not deafened."
   },
   "desc": {
     "configureEnableAutomodModules": "Configure and enable AutoMod modules.",
@@ -1418,7 +1425,9 @@
     "argHint": "<> = Required Argument\nDo NOT type these when using commands!",
     "noRanksBadges": "This user has no ranks or badges.",
     "totalBadges": "-# Total Badges: {count} | Requested by {user}",
-    "requestedBy": "-# Requested by {user}"
+    "requestedBy": "-# Requested by {user}",
+    "restartIdle": "**{e} The bot is not playing anywhere.**\n**{i} Are you sure you want to restart?**",
+    "restartActive": "**{e} The bot is currently active in `{count}` servers.**\n**{i} Are you sure you want to restart?**"
   },
   "bl": {
     "added": "**{e} Added {user} to blacklist.**",
@@ -1427,7 +1436,8 @@
     "removedAll": "**{e} Successfully removed all {count} users from the blacklist.**",
     "empty": "**{e} No users are currently blacklisted.**",
     "already": "**{e} This user is already blacklisted.**",
-    "notIn": "**{e} This user is not blacklisted.**"
+    "notIn": "**{e} This user is not blacklisted.**",
+    "removedAllLine": "**{e} Successfully removed all `{count}` users from the blacklist.**"
   },
   "fav": {
     "added": "**{e} Added [{title}]({uri}) to your favorites!**",

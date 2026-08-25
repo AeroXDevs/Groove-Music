@@ -81,8 +81,7 @@ module.exports = {
       if (isNaN(position) || position < 0 || position >= player.queue.length) {
         const errorDisplay = new TextDisplayBuilder()
           .setContent(
-            `**${client.emoji.info} Invalid position** \`:\` \`${args[0]}\`\n` +
-            `**${client.emoji.info} Total songs in queue** \`:\` \`${player.queue.length}\``
+client.t(message.guild.id, "music.remove.invalidPos", { e: client.emoji.info, value: args[0], total: player.queue.length })
           );
 
         const container = new ContainerBuilder()

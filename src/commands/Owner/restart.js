@@ -23,8 +23,8 @@ module.exports = {
 
     const playingGuildsCount = [...client.manager.players.values()].filter(p => p.playing).length;
     const confirmMessage = playingGuildsCount === 0
-      ? `**${client.emoji.warn} The bot is not playing anywhere.**\n**${client.emoji.info} Are you sure you want to restart?**`
-      : `**${client.emoji.warn} The bot is currently active in \`${playingGuildsCount}\` servers.**\n**${client.emoji.info} Are you sure you want to restart?**`;
+      ? client.t(interaction.guildId, "own.restartIdle", { e: client.emoji.warn, i: client.emoji.info })
+      : client.t(interaction.guildId, "own.restartActive", { e: client.emoji.warn, i: client.emoji.info, count: playingGuildsCount });
 
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
@@ -88,8 +88,8 @@ module.exports = {
 
     const playingGuildsCount = [...client.manager.players.values()].filter(p => p.playing).length;
     const confirmMessage = playingGuildsCount === 0
-      ? `**${client.emoji.warn} The bot is not playing anywhere.**\n**${client.emoji.info} Are you sure you want to restart?**`
-      : `**${client.emoji.warn} The bot is currently active in \`${playingGuildsCount}\` servers.**\n**${client.emoji.info} Are you sure you want to restart?**`;
+      ? client.t(message.guild.id, "own.restartIdle", { e: client.emoji.warn, i: client.emoji.info })
+      : client.t(message.guild.id, "own.restartActive", { e: client.emoji.warn, i: client.emoji.info, count: playingGuildsCount });
 
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
