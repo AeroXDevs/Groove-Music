@@ -301,142 +301,271 @@
       "description": "Get songs similar to currently playing track"
     },
     "forward": {
-      "description": "Fast forward the current song by specified seconds"
+      "description": "Fast forward the current song by specified seconds",
+      "options": {
+        "seconds": "Seconds to fast-forward"
+      }
     },
     "skipto": {
-      "description": "Skip to a specific song in the queue"
+      "description": "Skip to a specific song in the queue",
+      "options": {
+        "position": "Position in queue to skip to"
+      }
     },
     "loop": {
-      "description": "Toggle music loop"
+      "description": "Toggle music loop",
+      "options": {
+        "enable": "Enable music loop",
+        "disable": "Disable music loop"
+      }
     },
     "rewind": {
-      "description": "Rewind the current song by specified seconds"
+      "description": "Rewind the current song by specified seconds",
+      "options": {
+        "seconds": "Number of seconds to rewind (default: 10)"
+      }
     },
     "remove": {
       "description": "Remove tracks from the queue"
     },
     "seek": {
-      "description": "Seek the currently playing song"
+      "description": "Seek the currently playing song",
+      "options": {
+        "time": "Time to seek to (e.g. 40, 1:30, 10s, 1m)"
+      }
     },
     "volume": {
-      "description": "Change volume of currently playing music"
+      "description": "Change volume of currently playing music",
+      "options": {
+        "amount": "Volume amount (0-100)"
+      }
     },
     "artistradio": {
-      "description": "Starts a radio based on similar artists from Last.fm"
+      "description": "Starts a radio based on similar artists from Last.fm",
+      "options": {
+        "artist": "The artist to base the radio on"
+      }
     },
     "forcefix": {
       "description": "Force fix music bot issues (not playing/not joining VC)"
     },
     "speed": {
-      "description": "Change the playback speed of the current song"
+      "description": "Change the playback speed of the current song",
+      "options": {
+        "speed": "Playback speed (0.25 - 3.0)"
+      }
     },
     "search": {
-      "description": "Search for songs and artists and add them to queue"
+      "description": "Search for songs and artists and add them to queue",
+      "options": {
+        "song": "The song you want to search for"
+      }
     },
     "mood": {
       "description": "Play music based on your mood or genre"
     },
     "sleep": {
-      "description": "Set a sleep timer to stop the music"
+      "description": "Set a sleep timer to stop the music",
+      "options": {
+        "duration": "Duration for the sleep timer (e.g. 30m, 1h) or 'cancel' to stop it"
+      }
     },
     "lyrics": {
       "description": "Display lyrics for the currently playing song"
     },
     "play": {
-      "description": "Plays a song or playlist."
+      "description": "Plays a song or playlist.",
+      "options": {
+        "song": "Song name or URL to play"
+      }
     },
     "247": {
-      "description": "Enable or disable 24/7 mode to keep the bot in voice channel"
+      "description": "Enable or disable 24/7 mode to keep the bot in voice channel",
+      "options": {
+        "action": "Enable or disable 24/7 mode"
+      }
     },
     "audit": {
       "description": "View recent server audit logs"
     },
     "automod": {
-      "description": "AutoMod configuration and management"
+      "description": "AutoMod configuration and management",
+      "options": {
+        "enable": "Enable and configure specific AutoMod modules",
+        "disable": "Disable all AutoMod protections",
+        "whitelist": "Manage whitelisted users, roles, and channels",
+        "config": "View current AutoMod configuration settings",
+        "punishment": "Configure punishment actions for different filters",
+        "logging": "Set or disable the AutoMod logging channel",
+        "heat": "Adjust anti-spam/heat sensitivity settings",
+        "limits": "Configure mention and emoji limits",
+        "reset": "Reset all AutoMod settings to default"
+      }
     },
     "avatar": {
-      "description": "Displays a user's avatar with download links."
+      "description": "Displays a user's avatar with download links.",
+      "options": {
+        "user": "The user whose avatar you want to see"
+      }
     },
     "ban": {
-      "description": "Ban a member from the server"
+      "description": "Ban a member from the server",
+      "options": {
+        "user": "The user to ban",
+        "reason": "Reason for banning"
+      }
     },
     "banner": {
-      "description": "Displays a user's banner with download link."
+      "description": "Displays a user's banner with download link.",
+      "options": {
+        "user": "The user whose banner you want to see"
+      }
     },
     "blacklist": {
-      "description": "Blacklist users"
+      "description": "Blacklist users",
+      "options": {
+        "add": "Add a user to the blacklist",
+        "remove": "Remove a user from the blacklist",
+        "clear": "Remove all users from the blacklist",
+        "list": "List all blacklisted users"
+      }
     },
     "branding": {
       "description": "Customize the bot's server profile (avatar, banner, bio, nickname)."
     },
     "channelinfo": {
-      "description": "Get detailed information about a channel"
+      "description": "Get detailed information about a channel",
+      "options": {
+        "channel": "The channel to get information about"
+      }
     },
     "checkvanity": {
-      "description": "Check if a vanity URL is available or taken"
+      "description": "Check if a vanity URL is available or taken",
+      "options": {
+        "code": "The vanity code to check (e.g. \"groove\")"
+      }
     },
     "clearinvites": {
-      "description": "Clear invite tracking data for this server or a specific member"
+      "description": "Clear invite tracking data for this server or a specific member",
+      "options": {
+        "target": "Clear all invites or for a specific member",
+        "member": "The member to clear invite data for"
+      }
     },
     "filter": {
       "description": "Sets the bot's sound filter."
     },
     "firstmsg": {
-      "description": "Get the first message sent in the channel"
+      "description": "Get the first message sent in the channel",
+      "options": {
+        "channel": "The channel to get the first message from"
+      }
     },
     "gend": {
-      "description": "End a giveaway manually."
+      "description": "End a giveaway manually.",
+      "options": {
+        "giveaway": "Select the giveaway to end"
+      }
     },
     "getinv": {
-      "description": "Get an invite link for a server where the bot is present"
+      "description": "Get an invite link for a server where the bot is present",
+      "options": {
+        "server_id": "The ID of the server to get an invite for"
+      }
     },
     "greroll": {
-      "description": "Reroll a winner for an ended giveaway."
+      "description": "Reroll a winner for an ended giveaway.",
+      "options": {
+        "giveaway": "Select the giveaway to reroll"
+      }
     },
     "gstart": {
-      "description": "Start a giveaway."
+      "description": "Start a giveaway.",
+      "options": {
+        "prize": "The prize for the giveaway",
+        "duration": "The duration (e.g. 10m, 2h, 3d)",
+        "winners": "The number of winners"
+      }
     },
     "help": {
-      "description": "Shows all commands with categories"
+      "description": "Shows all commands with categories",
+      "options": {
+        "command": "Shows about a specific command"
+      }
     },
     "hide": {
-      "description": "Hides the specified channel"
+      "description": "Hides the specified channel",
+      "options": {
+        "channel": "The channel to hide"
+      }
     },
     "hideall": {
       "description": "Hides all text channels in the server"
     },
     "ignore": {
-      "description": "Ignorechannel"
+      "description": "Ignorechannel",
+      "options": {
+        "action": "Action to perform (add/remove/list/reset)",
+        "channel": "Channel to add or remove from ignore list"
+      }
     },
     "invite": {
       "description": "Get the bot's invite link"
     },
     "invitecodes": {
-      "description": "Show all invite codes created by a user with their usage counts"
+      "description": "Show all invite codes created by a user with their usage counts",
+      "options": {
+        "user": "The user to check invite codes for"
+      }
     },
     "invited": {
-      "description": "Shows all the people you invited to the server"
+      "description": "Shows all the people you invited to the server",
+      "options": {
+        "user": "The user to check invited members for"
+      }
     },
     "inviter": {
-      "description": "Shows who invited you or another user to the server"
+      "description": "Shows who invited you or another user to the server",
+      "options": {
+        "user": "The user to check the inviter for"
+      }
     },
     "invites": {
-      "description": "Displays the invite statistics of a member including total invites, joins, left, fake, and rejoins."
+      "description": "Displays the invite statistics of a member including total invites, joins, left, fake, and rejoins.",
+      "options": {
+        "user": "The user to check invite stats for"
+      }
     },
     "invitetracking": {
-      "description": "Enable or disable invite tracking for this server"
+      "description": "Enable or disable invite tracking for this server",
+      "options": {
+        "action": "Enable or disable invite tracking"
+      }
     },
     "kick": {
-      "description": "Kick a member from the server"
+      "description": "Kick a member from the server",
+      "options": {
+        "user": "The user to kick",
+        "reason": "Reason for kicking"
+      }
     },
     "language": {
-      "description": "Change the bot's language for this server."
+      "description": "Change the bot's language for this server.",
+      "options": {
+        "language": "The language to use"
+      }
     },
     "lbinvites": {
-      "description": "Shows the invite leaderboard for this server"
+      "description": "Shows the invite leaderboard for this server",
+      "options": {
+        "type": "Type of leaderboard"
+      }
     },
     "leaveserver": {
-      "description": "Leave server"
+      "description": "Leave server",
+      "options": {
+        "guild_id": "The ID of the guild to leave"
+      }
     },
     "like": {
       "description": "Add current song to your favorites"
@@ -445,10 +574,29 @@
       "description": "Add all songs from the current queue to your favorites"
     },
     "list": {
-      "description": "Lists various members or items in the server"
+      "description": "Lists various members or items in the server",
+      "options": {
+        "activedeveloper": "Lists members with the active developer badge",
+        "admins": "Lists administrators in the server",
+        "bans": "Lists banned users in the server",
+        "boosters": "Lists server boosters",
+        "bots": "Lists bots in the server",
+        "createdat": "Lists members by their account creation date",
+        "early": "Lists members with the early supporter badge",
+        "emojis": "Lists server emojis",
+        "inrole": "Lists members with a specific role",
+        "invoice": "Lists members in a voice channel",
+        "joinedat": "Lists members by their join date",
+        "mods": "Lists moderators",
+        "roles": "Lists all roles in the server",
+        "users": "Lists all users in the server"
+      }
     },
     "lock": {
-      "description": "Locks the specified channel"
+      "description": "Locks the specified channel",
+      "options": {
+        "channel": "The channel to lock"
+      }
     },
     "lockall": {
       "description": "Locks all text channels in the server"
@@ -457,19 +605,37 @@
       "description": "Displays detailed server member statistics."
     },
     "mute": {
-      "description": "Timeout a member in the server"
+      "description": "Timeout a member in the server",
+      "options": {
+        "user": "The user to mute",
+        "duration": "Duration (e.g. 10m, 2h, 3d) - Default: 10m",
+        "reason": "Reason for muting"
+      }
     },
     "mutual": {
-      "description": "Show mutual servers between the bot and a user|bot"
+      "description": "Show mutual servers between the bot and a user|bot",
+      "options": {
+        "user": "User to check mutual servers with"
+      }
     },
     "node": {
       "description": "Shows Node information."
     },
     "nopaccess": {
-      "description": "Add/remove global no-prefix access"
+      "description": "Add/remove global no-prefix access",
+      "options": {
+        "add": "Add a user to global no-prefix access",
+        "remove": "Remove a user from global no-prefix access",
+        "clear": "Remove all users from global no-prefix access",
+        "list": "List all users with global no-prefix access",
+        "status": "Check a user's global no-prefix access status"
+      }
     },
     "nuke": {
-      "description": "Clones and deletes the channel"
+      "description": "Clones and deletes the channel",
+      "options": {
+        "channel": "The channel to clone and delete (defaults to current)"
+      }
     },
     "ping": {
       "description": "Displays the bot's various latencies."
@@ -478,16 +644,38 @@
       "description": "Play your favorite songs"
     },
     "profile": {
-      "description": "Displays your custom bot profile image."
+      "description": "Displays your custom bot profile image.",
+      "options": {
+        "user": "The user whose profile you want to see"
+      }
     },
     "purge": {
-      "description": "Purge messages from the channel with various filters"
+      "description": "Purge messages from the channel with various filters",
+      "options": {
+        "all": "Purge all messages",
+        "bots": "Purge messages sent by bots",
+        "contain": "Purge messages containing specific text",
+        "embed": "Purge messages containing embeds",
+        "emoji": "Purge messages containing only emojis",
+        "files": "Purge messages containing attachments",
+        "image": "Purge messages containing images",
+        "mentions": "Purge messages containing mentions",
+        "reactions": "Clear reactions from messages",
+        "user": "Purge messages from a specific user"
+      }
     },
     "reload": {
-      "description": "Reloads command"
+      "description": "Reloads command",
+      "options": {
+        "target": "What to reload: command name, 'all' (commands), or 'everything' (commands & events)"
+      }
     },
     "rename": {
-      "description": "Renames a specified channel"
+      "description": "Renames a specified channel",
+      "options": {
+        "name": "The new name for the channel",
+        "channel": "The channel to rename"
+      }
     },
     "resetmyinvites": {
       "description": "Reset your own invite statistics in this server"
@@ -496,13 +684,22 @@
       "description": "Restart the bot"
     },
     "roleinfo": {
-      "description": "Get detailed information about a role"
+      "description": "Get detailed information about a role",
+      "options": {
+        "role": "The role to get information about"
+      }
     },
     "serverbanner": {
-      "description": "Displays the server's banner with download link."
+      "description": "Displays the server's banner with download link.",
+      "options": {
+        "guildid": "The guild ID to view banner from"
+      }
     },
     "servericon": {
-      "description": "Displays the server's icon with download link."
+      "description": "Displays the server's icon with download link.",
+      "options": {
+        "guildid": "The guild ID to view icon from"
+      }
     },
     "serverinfo": {
       "description": "Get detailed information about the server"
@@ -511,13 +708,19 @@
       "description": "Listing Of Servers"
     },
     "setprefix": {
-      "description": "Sets a custom prefix."
+      "description": "Sets a custom prefix.",
+      "options": {
+        "setprefix": "Set new prefix [max 3 characters]"
+      }
     },
     "showliked": {
       "description": "Show your favorite songs"
     },
     "source": {
-      "description": "Set your preferred music source for searches"
+      "description": "Set your preferred music source for searches",
+      "options": {
+        "source": "Choose your preferred music source"
+      }
     },
     "stats": {
       "description": "Show detailed bot statistics"
@@ -526,10 +729,17 @@
       "description": "Get the support server invite link"
     },
     "unban": {
-      "description": "Unban a user from the server"
+      "description": "Unban a user from the server",
+      "options": {
+        "user": "The user ID or tag to unban (or \"all\")",
+        "reason": "Reason for unbanning"
+      }
     },
     "unhide": {
-      "description": "Unhides the specified channel"
+      "description": "Unhides the specified channel",
+      "options": {
+        "channel": "The channel to unhide"
+      }
     },
     "unhideall": {
       "description": "Unhides all text channels in the server"
@@ -538,16 +748,26 @@
       "description": "Remove songs from your favorites"
     },
     "unlock": {
-      "description": "Unlocks the specified channel"
+      "description": "Unlocks the specified channel",
+      "options": {
+        "channel": "The channel to unlock"
+      }
     },
     "unlockall": {
       "description": "Unlocks all text channels in the server"
     },
     "unmute": {
-      "description": "Remove timeout from a member"
+      "description": "Remove timeout from a member",
+      "options": {
+        "user": "The user to unmute",
+        "reason": "Reason for unmuting"
+      }
     },
     "userinfo": {
-      "description": "Get detailed information about a user"
+      "description": "Get detailed information about a user",
+      "options": {
+        "user": "The user to get information about"
+      }
     }
   },
   "buttons": {

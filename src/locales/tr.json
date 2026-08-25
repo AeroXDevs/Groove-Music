@@ -301,142 +301,271 @@
       "description": "Çalan şarkıya benzer şarkılar bulur."
     },
     "forward": {
-      "description": "Çalan şarkıyı belirtilen saniye kadar ileri sarar."
+      "description": "Çalan şarkıyı belirtilen saniye kadar ileri sarar.",
+      "options": {
+        "seconds": "İleri sarılacak saniye"
+      }
     },
     "skipto": {
-      "description": "Sıradaki belirli bir şarkıya atlar."
+      "description": "Sıradaki belirli bir şarkıya atlar.",
+      "options": {
+        "position": "Atlanacak sıra numarası"
+      }
     },
     "loop": {
-      "description": "Tekrar modunu açar veya kapatır."
+      "description": "Tekrar modunu açar veya kapatır.",
+      "options": {
+        "enable": "Tekrarı açar",
+        "disable": "Tekrarı kapatır"
+      }
     },
     "rewind": {
-      "description": "Çalan şarkıyı belirtilen saniye kadar geri sarar."
+      "description": "Çalan şarkıyı belirtilen saniye kadar geri sarar.",
+      "options": {
+        "seconds": "Geri sarılacak saniye (varsayılan: 10)"
+      }
     },
     "remove": {
       "description": "Sıradan şarkı siler."
     },
     "seek": {
-      "description": "Çalan şarkıda istenen ana atlar."
+      "description": "Çalan şarkıda istenen ana atlar.",
+      "options": {
+        "time": "Atlanacak an (örn. 40, 1:30, 10s, 1m)"
+      }
     },
     "volume": {
-      "description": "Ses seviyesini değiştirir."
+      "description": "Ses seviyesini değiştirir.",
+      "options": {
+        "amount": "Ses seviyesi (0-100)"
+      }
     },
     "artistradio": {
-      "description": "Benzer sanatçılardan bir radyo başlatır."
+      "description": "Benzer sanatçılardan bir radyo başlatır.",
+      "options": {
+        "artist": "Radyonun kurulacağı sanatçı"
+      }
     },
     "forcefix": {
       "description": "Müzik sorunlarını zorla onarır."
     },
     "speed": {
-      "description": "Çalma hızını değiştirir."
+      "description": "Çalma hızını değiştirir.",
+      "options": {
+        "speed": "Çalma hızı (0.25 - 3.0)"
+      }
     },
     "search": {
-      "description": "Şarkı ve sanatçı arar, sıraya ekler."
+      "description": "Şarkı ve sanatçı arar, sıraya ekler.",
+      "options": {
+        "song": "Aramak istediğin şarkı"
+      }
     },
     "mood": {
       "description": "Havana göre bir radyo başlatır."
     },
     "sleep": {
-      "description": "Uyku zamanlayıcısı kurar."
+      "description": "Uyku zamanlayıcısı kurar.",
+      "options": {
+        "duration": "Uyku zamanlayıcı süresi (örn. 30m, 1h) veya durdurmak için 'cancel'"
+      }
     },
     "lyrics": {
       "description": "Çalan şarkının sözlerini gösterir."
     },
     "play": {
-      "description": "Şarkı veya çalma listesi çalar."
+      "description": "Şarkı veya çalma listesi çalar.",
+      "options": {
+        "song": "Çalınacak şarkı adı veya bağlantısı"
+      }
     },
     "247": {
-      "description": "Botu ses kanalında tutan 7/24 modunu açar veya kapatır."
+      "description": "Botu ses kanalında tutan 7/24 modunu açar veya kapatır.",
+      "options": {
+        "action": "7/24 modunu açar veya kapatır"
+      }
     },
     "audit": {
       "description": "Sunucunun son denetim kayıtlarını gösterir."
     },
     "automod": {
-      "description": "AutoMod ayarları ve yönetimi."
+      "description": "AutoMod ayarları ve yönetimi.",
+      "options": {
+        "enable": "AutoMod modüllerini açar ve ayarlar",
+        "disable": "Bütün AutoMod korumalarını kapatır",
+        "whitelist": "Beyaz listedeki kullanıcı, rol ve kanalları yönetir",
+        "config": "Mevcut AutoMod ayarlarını gösterir",
+        "punishment": "Filtreler için ceza işlemlerini ayarlar",
+        "logging": "AutoMod kayıt kanalını ayarlar veya kapatır",
+        "heat": "Spam/hassasiyet ayarlarını düzenler",
+        "limits": "Etiket ve emoji sınırlarını ayarlar",
+        "reset": "Bütün AutoMod ayarlarını sıfırlar"
+      }
     },
     "avatar": {
-      "description": "Bir kullanıcının profil fotoğrafını indirme bağlantılarıyla gösterir."
+      "description": "Bir kullanıcının profil fotoğrafını indirme bağlantılarıyla gösterir.",
+      "options": {
+        "user": "Profil fotoğrafını görmek istediğin kullanıcı"
+      }
     },
     "ban": {
-      "description": "Bir üyeyi sunucudan yasaklar."
+      "description": "Bir üyeyi sunucudan yasaklar.",
+      "options": {
+        "user": "Yasaklanacak kullanıcı",
+        "reason": "Yasaklama sebebi"
+      }
     },
     "banner": {
-      "description": "Bir kullanıcının banner'ını indirme bağlantısıyla gösterir."
+      "description": "Bir kullanıcının banner'ını indirme bağlantısıyla gösterir.",
+      "options": {
+        "user": "Banner'ını görmek istediğin kullanıcı"
+      }
     },
     "blacklist": {
-      "description": "Kullanıcıları kara listeye alır."
+      "description": "Kullanıcıları kara listeye alır.",
+      "options": {
+        "add": "Bir kullanıcıyı kara listeye ekler",
+        "remove": "Bir kullanıcıyı kara listeden çıkarır",
+        "clear": "Kara listedeki herkesi çıkarır",
+        "list": "Kara listedekileri listeler"
+      }
     },
     "branding": {
       "description": "Botun sunucudaki profilini düzenler (avatar, banner, biyografi, takma ad)."
     },
     "channelinfo": {
-      "description": "Bir kanal hakkında ayrıntılı bilgi verir."
+      "description": "Bir kanal hakkında ayrıntılı bilgi verir.",
+      "options": {
+        "channel": "Bilgisi alınacak kanal"
+      }
     },
     "checkvanity": {
-      "description": "Bir özel URL'nin boş olup olmadığını kontrol eder."
+      "description": "Bir özel URL'nin boş olup olmadığını kontrol eder.",
+      "options": {
+        "code": "Kontrol edilecek özel URL kodu (örn. \"groove\")"
+      }
     },
     "clearinvites": {
-      "description": "Sunucunun veya bir üyenin davet kayıtlarını siler."
+      "description": "Sunucunun veya bir üyenin davet kayıtlarını siler.",
+      "options": {
+        "target": "Bütün davetleri veya belirli bir üyeninkini temizler",
+        "member": "Davet kaydı temizlenecek üye"
+      }
     },
     "filter": {
       "description": "Botun ses filtresini ayarlar."
     },
     "firstmsg": {
-      "description": "Kanaldaki ilk mesajı gösterir."
+      "description": "Kanaldaki ilk mesajı gösterir.",
+      "options": {
+        "channel": "İlk mesajı alınacak kanal"
+      }
     },
     "gend": {
-      "description": "Bir çekilişi elle bitirir."
+      "description": "Bir çekilişi elle bitirir.",
+      "options": {
+        "giveaway": "Bitirilecek çekilişi seç"
+      }
     },
     "getinv": {
-      "description": "Botun bulunduğu bir sunucu için davet bağlantısı alır."
+      "description": "Botun bulunduğu bir sunucu için davet bağlantısı alır.",
+      "options": {
+        "server_id": "Davet alınacak sunucunun ID'si"
+      }
     },
     "greroll": {
-      "description": "Biten bir çekilişin kazananını yeniden çeker."
+      "description": "Biten bir çekilişin kazananını yeniden çeker.",
+      "options": {
+        "giveaway": "Yeniden çekim yapılacak çekilişi seç"
+      }
     },
     "gstart": {
-      "description": "Çekiliş başlatır."
+      "description": "Çekiliş başlatır.",
+      "options": {
+        "prize": "Çekilişin ödülü",
+        "duration": "Süre (örn. 10m, 2h, 3d)",
+        "winners": "Kazanan sayısı"
+      }
     },
     "help": {
-      "description": "Bütün komutları kategorilere göre gösterir."
+      "description": "Bütün komutları kategorilere göre gösterir.",
+      "options": {
+        "command": "Belirli bir komut hakkında bilgi verir"
+      }
     },
     "hide": {
-      "description": "Belirtilen kanalı gizler."
+      "description": "Belirtilen kanalı gizler.",
+      "options": {
+        "channel": "Gizlenecek kanal"
+      }
     },
     "hideall": {
       "description": "Sunucudaki bütün yazı kanallarını gizler."
     },
     "ignore": {
-      "description": "Komutların yok sayılacağı kanalları ayarlar."
+      "description": "Komutların yok sayılacağı kanalları ayarlar.",
+      "options": {
+        "action": "Yapılacak işlem (add/remove/list/reset)",
+        "channel": "Listeye eklenecek veya çıkarılacak kanal"
+      }
     },
     "invite": {
       "description": "Botun davet bağlantısını verir."
     },
     "invitecodes": {
-      "description": "Bir kullanıcının oluşturduğu davet kodlarını kullanım sayılarıyla gösterir."
+      "description": "Bir kullanıcının oluşturduğu davet kodlarını kullanım sayılarıyla gösterir.",
+      "options": {
+        "user": "Davet kodları görülecek kullanıcı"
+      }
     },
     "invited": {
-      "description": "Sunucuya davet ettiğin kişileri gösterir."
+      "description": "Sunucuya davet ettiğin kişileri gösterir.",
+      "options": {
+        "user": "Davet ettikleri görülecek kullanıcı"
+      }
     },
     "inviter": {
-      "description": "Seni veya başka birini sunucuya kimin davet ettiğini gösterir."
+      "description": "Seni veya başka birini sunucuya kimin davet ettiğini gösterir.",
+      "options": {
+        "user": "Davet edeni görülecek kullanıcı"
+      }
     },
     "invites": {
-      "description": "Bir üyenin davet istatistiklerini gösterir (toplam, katılan, ayrılan, sahte, tekrar katılan)."
+      "description": "Bir üyenin davet istatistiklerini gösterir (toplam, katılan, ayrılan, sahte, tekrar katılan).",
+      "options": {
+        "user": "Davet istatistikleri görülecek kullanıcı"
+      }
     },
     "invitetracking": {
-      "description": "Sunucuda davet takibini açar veya kapatır."
+      "description": "Sunucuda davet takibini açar veya kapatır.",
+      "options": {
+        "action": "Davet takibini açar veya kapatır"
+      }
     },
     "kick": {
-      "description": "Bir üyeyi sunucudan atar."
+      "description": "Bir üyeyi sunucudan atar.",
+      "options": {
+        "user": "Atılacak kullanıcı",
+        "reason": "Atma sebebi"
+      }
     },
     "language": {
-      "description": "Botun bu sunucuda kullanacağı dili değiştirir."
+      "description": "Botun bu sunucuda kullanacağı dili değiştirir.",
+      "options": {
+        "language": "Kullanılacak dil"
+      }
     },
     "lbinvites": {
-      "description": "Sunucunun davet sıralamasını gösterir."
+      "description": "Sunucunun davet sıralamasını gösterir.",
+      "options": {
+        "type": "Sıralama türü"
+      }
     },
     "leaveserver": {
-      "description": "Bulunduğu sunucudan ayrılır."
+      "description": "Bulunduğu sunucudan ayrılır.",
+      "options": {
+        "guild_id": "Ayrılınacak sunucunun ID'si"
+      }
     },
     "like": {
       "description": "Çalan şarkıyı favorilerine ekler."
@@ -445,10 +574,29 @@
       "description": "Sıradaki bütün şarkıları favorilerine ekler."
     },
     "list": {
-      "description": "Sunucudaki üyeleri veya kayıtları listeler."
+      "description": "Sunucudaki üyeleri veya kayıtları listeler.",
+      "options": {
+        "activedeveloper": "Aktif geliştirici rozeti olanları listeler",
+        "admins": "Sunucudaki yöneticileri listeler",
+        "bans": "Yasaklı kullanıcıları listeler",
+        "boosters": "Sunucu takviyecilerini listeler",
+        "bots": "Sunucudaki botları listeler",
+        "createdat": "Üyeleri hesap açılış tarihine göre listeler",
+        "early": "Erken destekçi rozeti olanları listeler",
+        "emojis": "Sunucu emojilerini listeler",
+        "inrole": "Belirli role sahip üyeleri listeler",
+        "invoice": "Bir ses kanalındaki üyeleri listeler",
+        "joinedat": "Üyeleri katılma tarihine göre listeler",
+        "mods": "Yetkilileri listeler",
+        "roles": "Sunucudaki bütün rolleri listeler",
+        "users": "Sunucudaki bütün kullanıcıları listeler"
+      }
     },
     "lock": {
-      "description": "Belirtilen kanalı kilitler."
+      "description": "Belirtilen kanalı kilitler.",
+      "options": {
+        "channel": "Kilitlenecek kanal"
+      }
     },
     "lockall": {
       "description": "Sunucudaki bütün yazı kanallarını kilitler."
@@ -457,19 +605,37 @@
       "description": "Sunucunun ayrıntılı üye istatistiklerini gösterir."
     },
     "mute": {
-      "description": "Bir üyeyi susturur."
+      "description": "Bir üyeyi susturur.",
+      "options": {
+        "user": "Susturulacak kullanıcı",
+        "duration": "Süre (örn. 10m, 2h, 3d) — varsayılan: 10m",
+        "reason": "Susturma sebebi"
+      }
     },
     "mutual": {
-      "description": "Botla bir kullanıcının ortak sunucularını gösterir."
+      "description": "Botla bir kullanıcının ortak sunucularını gösterir.",
+      "options": {
+        "user": "Ortak sunucuları kontrol edilecek kullanıcı"
+      }
     },
     "node": {
       "description": "Lavalink sunucu bilgisini gösterir."
     },
     "nopaccess": {
-      "description": "Genel prefixsiz kullanım iznini verir veya kaldırır."
+      "description": "Genel prefixsiz kullanım iznini verir veya kaldırır.",
+      "options": {
+        "add": "Prefixsiz kullanım izni verir",
+        "remove": "Prefixsiz kullanım iznini kaldırır",
+        "clear": "Herkesin prefixsiz kullanım iznini kaldırır",
+        "list": "Prefixsiz kullanıma sahip olanları listeler",
+        "status": "Bir kullanıcının prefixsiz kullanım durumunu gösterir"
+      }
     },
     "nuke": {
-      "description": "Kanalı klonlayıp siler."
+      "description": "Kanalı klonlayıp siler.",
+      "options": {
+        "channel": "Klonlanıp silinecek kanal (boş bırakılırsa bulunduğun kanal)"
+      }
     },
     "ping": {
       "description": "Botun gecikme değerlerini gösterir."
@@ -478,16 +644,38 @@
       "description": "Favori şarkılarını çalar."
     },
     "profile": {
-      "description": "Kendi bot profil görselini gösterir."
+      "description": "Kendi bot profil görselini gösterir.",
+      "options": {
+        "user": "Profilini görmek istediğin kullanıcı"
+      }
     },
     "purge": {
-      "description": "Kanaldaki mesajları çeşitli filtrelerle siler."
+      "description": "Kanaldaki mesajları çeşitli filtrelerle siler.",
+      "options": {
+        "all": "Bütün mesajları siler",
+        "bots": "Botların mesajlarını siler",
+        "contain": "Belirli metni içeren mesajları siler",
+        "embed": "Gömülü mesaj içerenleri siler",
+        "emoji": "Yalnızca emoji içerenleri siler",
+        "files": "Dosya ekli mesajları siler",
+        "image": "Görsel içerenleri siler",
+        "mentions": "Etiket içerenleri siler",
+        "reactions": "Mesajlardaki tepkileri temizler",
+        "user": "Belirli bir kullanıcının mesajlarını siler"
+      }
     },
     "reload": {
-      "description": "Komutu yeniden yükler."
+      "description": "Komutu yeniden yükler.",
+      "options": {
+        "target": "Yeniden yüklenecek: komut adı, 'all' (komutlar) veya 'everything' (komutlar ve olaylar)"
+      }
     },
     "rename": {
-      "description": "Belirtilen kanalın adını değiştirir."
+      "description": "Belirtilen kanalın adını değiştirir.",
+      "options": {
+        "name": "Kanalın yeni adı",
+        "channel": "Adı değişecek kanal"
+      }
     },
     "resetmyinvites": {
       "description": "Bu sunucudaki kendi davet istatistiklerini sıfırlar."
@@ -496,13 +684,22 @@
       "description": "Botu yeniden başlatır."
     },
     "roleinfo": {
-      "description": "Bir rol hakkında ayrıntılı bilgi verir."
+      "description": "Bir rol hakkında ayrıntılı bilgi verir.",
+      "options": {
+        "role": "Bilgisi alınacak rol"
+      }
     },
     "serverbanner": {
-      "description": "Sunucunun banner'ını indirme bağlantısıyla gösterir."
+      "description": "Sunucunun banner'ını indirme bağlantısıyla gösterir.",
+      "options": {
+        "guildid": "Banner'ı görülecek sunucu ID'si"
+      }
     },
     "servericon": {
-      "description": "Sunucunun ikonunu indirme bağlantısıyla gösterir."
+      "description": "Sunucunun ikonunu indirme bağlantısıyla gösterir.",
+      "options": {
+        "guildid": "İkonu görülecek sunucu ID'si"
+      }
     },
     "serverinfo": {
       "description": "Sunucu hakkında ayrıntılı bilgi verir."
@@ -511,13 +708,19 @@
       "description": "Botun bulunduğu sunucuları listeler."
     },
     "setprefix": {
-      "description": "Özel bir prefix ayarlar."
+      "description": "Özel bir prefix ayarlar.",
+      "options": {
+        "setprefix": "Yeni prefix [en fazla 3 karakter]"
+      }
     },
     "showliked": {
       "description": "Favori şarkılarını gösterir."
     },
     "source": {
-      "description": "Aramalar için tercih ettiğin müzik kaynağını ayarlar."
+      "description": "Aramalar için tercih ettiğin müzik kaynağını ayarlar.",
+      "options": {
+        "source": "Tercih ettiğin müzik kaynağı"
+      }
     },
     "stats": {
       "description": "Ayrıntılı bot istatistiklerini gösterir."
@@ -526,10 +729,17 @@
       "description": "Destek sunucusunun davet bağlantısını verir."
     },
     "unban": {
-      "description": "Bir kullanıcının yasağını kaldırır."
+      "description": "Bir kullanıcının yasağını kaldırır.",
+      "options": {
+        "user": "Yasağı kaldırılacak kullanıcı ID'si veya etiketi (ya da \"all\")",
+        "reason": "Yasak kaldırma sebebi"
+      }
     },
     "unhide": {
-      "description": "Belirtilen kanalı tekrar görünür yapar."
+      "description": "Belirtilen kanalı tekrar görünür yapar.",
+      "options": {
+        "channel": "Tekrar görünür yapılacak kanal"
+      }
     },
     "unhideall": {
       "description": "Bütün yazı kanallarını tekrar görünür yapar."
@@ -538,16 +748,26 @@
       "description": "Şarkıları favorilerinden çıkarır."
     },
     "unlock": {
-      "description": "Belirtilen kanalın kilidini açar."
+      "description": "Belirtilen kanalın kilidini açar.",
+      "options": {
+        "channel": "Kilidi açılacak kanal"
+      }
     },
     "unlockall": {
       "description": "Bütün yazı kanallarının kilidini açar."
     },
     "unmute": {
-      "description": "Bir üyenin susturmasını kaldırır."
+      "description": "Bir üyenin susturmasını kaldırır.",
+      "options": {
+        "user": "Susturması kaldırılacak kullanıcı",
+        "reason": "Susturma kaldırma sebebi"
+      }
     },
     "userinfo": {
-      "description": "Bir kullanıcı hakkında ayrıntılı bilgi verir."
+      "description": "Bir kullanıcı hakkında ayrıntılı bilgi verir.",
+      "options": {
+        "user": "Bilgisi alınacak kullanıcı"
+      }
     }
   },
   "buttons": {
