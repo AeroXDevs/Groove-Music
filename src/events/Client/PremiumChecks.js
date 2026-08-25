@@ -3,6 +3,7 @@ const {
   TextDisplayBuilder,
   MessageFlags
 } = require("discord.js");
+const { t, DEFAULT_LANG } = require("../../utils/i18n");
 
 const cleanExpiredPermissions = async (client) => {
   try {
@@ -32,9 +33,7 @@ const cleanExpiredPermissions = async (client) => {
         if (user) {
           const expiredDisplay = new TextDisplayBuilder()
             .setContent(
-              `**${client.emoji.info} Your Global No-Prefix Access has expired.**\n\n` +
-              `You no longer have permission to use commands without a prefix.\n` +
-              `If you need continued access, please contact the bot owner.`
+t(DEFAULT_LANG, "evt.noPrefixExpired", { e: client.emoji.info })
             );
 
           const container = new ContainerBuilder()
@@ -81,5 +80,6 @@ const initializeCleanup = (client) => {
   setInterval(() => cleanExpiredPermissions(client), 60 * 1000);
   console.log("[Handler] NoPrefix cleanup handler initialized.");
 };
+
 
 module.exports = initializeCleanup;

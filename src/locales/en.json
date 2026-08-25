@@ -213,7 +213,9 @@
       "invalid": "**{e} Invalid duration**\n\nUse: `30m`, `1h`, `45m` (1-180 min)",
       "set": "**{e} Timer Set**",
       "details": "**{d} Duration** `:` `{duration}m`\n**{d} Ends** `:` <t:{ends}:t>\n**{d} Action** `:` Disconnect from VC",
-      "ended": "**{e} Timer ended - {user} disconnected.**"
+      "ended": "**{e} Timer ended - {user} disconnected.**",
+      "active": "**{e} Timer already active**\n\n**{d} Time left** `:` `{left}m`\n**{d} Cancel** `:` `{prefix}sleep cancel`",
+      "details2": "**{d} Duration** `:` `{duration}m`\n**{d} Ends** `:` <t:{ends}:t>\n**{d} Action** `:` Disconnect from VC\n\nCancel: `{prefix}sleep cancel`"
     },
     "lyrics": {
       "noSong": "**{e} No song is currently playing.**",
@@ -1247,7 +1249,8 @@
     "whitelistAdded2": "Added **{value}** to whitelist."
   },
   "evt": {
-    "removedFrom": "{bot} was just removed from `{guild}`\n\nSorry for all and any of bad experience/(s) you had with me!\nPlease leave a feedback or report any issue you hat at my **[Support Server]({support})** so that it can be fixed / worked on as soon as possible."
+    "removedFrom": "{bot} was just removed from `{guild}`\n\nSorry for all and any of bad experience/(s) you had with me!\nPlease leave a feedback or report any issue you hat at my **[Support Server]({support})** so that it can be fixed / worked on as soon as possible.",
+    "noPrefixExpired": "**{e} Your Global No-Prefix Access has expired.**\n\nYou no longer have permission to use commands without a prefix.\nIf you need continued access, please contact the bot owner."
   },
   "vc": {
     "deafened": "Deafened {target} in {channel}.",
@@ -1391,7 +1394,16 @@
     "restartIdle": "**{e} The bot is not playing anywhere.**\n**{i} Are you sure you want to restart?**",
     "restartActive": "**{e} The bot is currently active in `{count}` servers.**\n**{i} Are you sure you want to restart?**",
     "argHintBlock": "```<> = Required Argument\nDo NOT type these when using commands!```",
-    "argHintBlock2": "```[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!)```"
+    "argHintBlock2": "```[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!)```",
+    "team": {
+      "help": "> ** `{prefix}team show` **\n╰ Shows all current team members and their ranks.\n\n> ** `{prefix}team add <user> <rank>` **\n╰ Sets a user's primary rank.\n\n> ** `{prefix}team remove <user> [rank]` **\n╰ Removes a user from the team or a specific rank.\n\n> ** `{prefix}team deny <user/rank> <command/badge>` **\n╰ Denies a command or removes a rank badge.\n\n> ** `{prefix}team allow <user/rank> <command/badge>` **\n╰ Allows a command or adds a rank badge.\n\n> ** `{prefix}team clear [all]` **\n╰ Resets team data [all: wipes profiles too]."
+    },
+    "badge": {
+      "help": "> ** `{prefix}badge add <user> <name>` **\n╰ Adds a badge or sets a primary rank.\n\n> ** `{prefix}badge remove <user> <name>` **\n╰ Removes a badge or resets a primary rank.\n\n> ** `{prefix}badge show <user>` **\n╰ Displays all badges and ranks for a user.\n\n> ** `{prefix}badge list` **\n╰ Lists all users with any special status."
+    },
+    "node": {
+      "status": "**{bot} is {status}**\n"
+    }
   },
   "bl": {
     "added": "**{e} Added {user} to blacklist.**",
@@ -1600,7 +1612,8 @@
     "apiError": "{e} Error: {message}\n",
     "canSet": "**You can set:**\n",
     "applyFail": "Failed to apply changes: {message}",
-    "resetFail2": "Failed to reset: {message}"
+    "resetFail2": "Failed to reset: {message}",
+    "openFormLine": "Click the button below to customize the bot's server profile.\n\n"
   },
   "mut": {
     "usage": "**Usage:**\n`{prefix}mutual <user ID or @mention>`\n\n**Example:**\n`{prefix}mutual @user`\n`{prefix}mutual 123456789012345678`"

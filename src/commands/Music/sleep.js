@@ -117,9 +117,7 @@ module.exports = {
 
             const infoDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**${client.emoji.info} Timer already active**\n\n` +
-                    `**${client.emoji.dot} Time left** \`:\` \`${timeLeft}m\`\n` +
-                    `**${client.emoji.dot} Cancel** \`:\` \`${prefix}sleep cancel\``
+client.t(message.guild.id, "music.sleep.active", { e: client.emoji.info, d: client.emoji.dot, left: timeLeft, prefix })
                 );
 
             const container = new ContainerBuilder()
@@ -188,8 +186,7 @@ module.exports = {
         if (!duration || duration < 1 || duration > 180) {
             const errorDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**${client.emoji.cross} Invalid duration**\n\n` +
-                    `Use: \`30m\`, \`1h\`, \`45m\` (1-180 min)`
+client.t(message.guild.id, "music.sleep.invalid", { e: client.emoji.cross })
                 );
 
             const container = new ContainerBuilder()
@@ -210,10 +207,7 @@ module.exports = {
 
         const infoDisplay = new TextDisplayBuilder()
             .setContent(
-                `**${client.emoji.dot} Duration** \`:\` \`${duration}m\`\n` +
-                `**${client.emoji.dot} Ends** \`:\` <t:${Math.floor(endTime / 1000)}:t>\n` +
-                `**${client.emoji.dot} Action** \`:\` Disconnect from VC\n\n` +
-                `Cancel: \`${prefix}sleep cancel\``
+client.t(message.guild.id, "music.sleep.details2", { d: client.emoji.dot, duration, ends: Math.floor(endTime / 1000), prefix })
             );
 
         const container = new ContainerBuilder()

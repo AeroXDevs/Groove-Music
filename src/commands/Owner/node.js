@@ -45,7 +45,7 @@ module.exports = {
 
     const connectionDisplay = new TextDisplayBuilder()
       .setContent(
-        `**Groove is ${status}**\n` +
+        client.t(interaction.guildId, "own.node.status", { bot: client.user.username, status }) +
         `> Players \`:\` **\`${node.stats.players}\`**\n` +
         `> Playing \`:\` **\`${node.stats.playingPlayers}\`**\n` +
         `> Uptime \`:\` **\`${uptime}\`**`
@@ -113,7 +113,7 @@ module.exports = {
 
     const connectionDisplay = new TextDisplayBuilder()
       .setContent(
-        `**Groove is ${status}**\n` +
+        client.t(message.guild.id, "own.node.status", { bot: client.user.username, status }) +
         `> Players \`:\` **\`${node.stats.players}\`**\n` +
         `> Playing \`:\` **\`${node.stats.playingPlayers}\`**\n` +
         `> Uptime \`:\` **\`${uptime}\`**`

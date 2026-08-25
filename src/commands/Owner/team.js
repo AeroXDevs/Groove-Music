@@ -34,12 +34,7 @@ module.exports = {
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} Team Command [7]`));
             container.addSeparatorComponents(new SeparatorBuilder());
 
-            const helpContent = `> ** \`${prefix}team show\` **\n╰ Shows all current team members and their ranks.\n\n` +
-                `> ** \`${prefix}team add <user> <rank>\` **\n╰ Sets a user's primary rank.\n\n` +
-                `> ** \`${prefix}team remove <user> [rank]\` **\n╰ Removes a user from the team or a specific rank.\n\n` +
-                `> ** \`${prefix}team deny <user/rank> <command/badge>\` **\n╰ Denies a command or removes a rank badge.\n\n` +
-                `> ** \`${prefix}team allow <user/rank> <command/badge>\` **\n╰ Allows a command or adds a rank badge.\n\n` +
-                `> ** \`${prefix}team clear [all]\` **\n╰ Resets team data [all: wipes profiles too].`;
+            const helpContent = client.t(message.guild.id, "own.team.help", { prefix });
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(helpContent));
             container.addSeparatorComponents(new SeparatorBuilder());

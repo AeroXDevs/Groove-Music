@@ -72,8 +72,10 @@ for (const file of files) {
   walk.full(ast, (node) => {
     if (/Function(Declaration|Expression)|ArrowFunctionExpression/.test(node.type))
       addScope(node, paramNames(node.params));
-    if (node.type === "VariableDeclarator" && node.id.type === "Identifier")
-      addScope(ast, [node.id.name]);          // approximate: treat as file-wide
+    // Bindings are treated as file-wide; destructuring patterns count too, so
+    // `const { t, DEFAULT_LANG } = require(...)` is seen as declaring both.
+    if (node.type === "VariableDeclarator")
+      addScope(ast, paramNames([node.id]));
     if (node.type === "FunctionDeclaration" && node.id)
       addScope(ast, [node.id.name]);
   });

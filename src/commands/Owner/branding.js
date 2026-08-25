@@ -66,7 +66,7 @@ module.exports = {
 
         const info = new TextDisplayBuilder()
             .setContent(
-                `Click the button below to customize the bot's server profile.\n\n` +
+                client.t(message.guild.id, "brand.openFormLine") +
                 client.t(message.guild.id, "brand.canSet") +
                 `• Avatar\n` +
                 `• Banner\n` +

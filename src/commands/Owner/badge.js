@@ -24,10 +24,7 @@ module.exports = {
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} Badge Command`));
             container.addSeparatorComponents(new SeparatorBuilder());
 
-            const helpContent = `> ** \`${prefix}badge add <user> <name>\` **\n╰ Adds a badge or sets a primary rank.\n\n` +
-                `> ** \`${prefix}badge remove <user> <name>\` **\n╰ Removes a badge or resets a primary rank.\n\n` +
-                `> ** \`${prefix}badge show <user>\` **\n╰ Displays all badges and ranks for a user.\n\n` +
-                `> ** \`${prefix}badge list\` **\n╰ Lists all users with any special status.`;
+            const helpContent = client.t(message.guild.id, "own.badge.help", { prefix });
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(helpContent));
             container.addSeparatorComponents(new SeparatorBuilder());

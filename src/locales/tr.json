@@ -213,7 +213,9 @@
       "invalid": "**{e} Geçersiz süre.**\n\nKullan: `30m`, `1h`, `45m` (1-180 dk)",
       "set": "**{e} Zamanlayıcı Kuruldu**",
       "details": "**{d} Süre** `:` `{duration}dk`\n**{d} Bitiş** `:` <t:{ends}:t>\n**{d} İşlem** `:` Ses kanalından ayrıl",
-      "ended": "**{e} Süre doldu — {user} ses kanalından çıkarıldı.**"
+      "ended": "**{e} Süre doldu — {user} ses kanalından çıkarıldı.**",
+      "active": "**{e} Zamanlayıcı zaten çalışıyor**\n\n**{d} Kalan süre** `:` `{left}dk`\n**{d} İptal** `:` `{prefix}sleep cancel`",
+      "details2": "**{d} Süre** `:` `{duration}dk`\n**{d} Bitiş** `:` <t:{ends}:t>\n**{d} İşlem** `:` Ses kanalından ayrıl\n\nİptal: `{prefix}sleep cancel`"
     },
     "lyrics": {
       "noSong": "**{e} Şu an çalan bir şarkı yok.**",
@@ -1247,7 +1249,8 @@
     "whitelistAdded2": "**{value}** beyaz listeye eklendi."
   },
   "evt": {
-    "removedFrom": "{bot}, `{guild}` sunucusundan çıkarıldı.\n\nYaşadığın olumsuz deneyimler için kusura bakma. Görüşlerini veya karşılaştığın sorunları **[Destek Sunucusu]({support})** üzerinden iletirsen en kısa sürede ilgilenilir."
+    "removedFrom": "{bot}, `{guild}` sunucusundan çıkarıldı.\n\nYaşadığın olumsuz deneyimler için kusura bakma. Görüşlerini veya karşılaştığın sorunları **[Destek Sunucusu]({support})** üzerinden iletirsen en kısa sürede ilgilenilir.",
+    "noPrefixExpired": "**{e} Genel prefixsiz kullanım iznin sona erdi.**\n\nArtık komutları prefixsiz kullanamazsın.\nErişimin devam etmesini istiyorsan bot sahibiyle iletişime geç."
   },
   "vc": {
     "deafened": "{target} kullanıcısının sesi {channel} kanalında kapatıldı.",
@@ -1391,7 +1394,16 @@
     "restartIdle": "**{e} Bot hiçbir yerde çalmıyor.**\n**{i} Yeniden başlatmak istediğine emin misin?**",
     "restartActive": "**{e} Bot şu an `{count}` sunucuda aktif.**\n**{i} Yeniden başlatmak istediğine emin misin?**",
     "argHintBlock": "```<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```",
-    "argHintBlock2": "```[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```"
+    "argHintBlock2": "```[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```",
+    "team": {
+      "help": "> ** `{prefix}team show` **\n╰ Ekip üyelerini ve rütbelerini gösterir.\n\n> ** `{prefix}team add <kullanıcı> <rütbe>` **\n╰ Kullanıcının ana rütbesini ayarlar.\n\n> ** `{prefix}team remove <kullanıcı> [rütbe]` **\n╰ Kullanıcıyı ekipten veya bir rütbeden çıkarır.\n\n> ** `{prefix}team deny <kullanıcı/rütbe> <komut/rozet>` **\n╰ Bir komutu engeller veya rozeti kaldırır.\n\n> ** `{prefix}team allow <kullanıcı/rütbe> <komut/rozet>` **\n╰ Bir komuta izin verir veya rozet ekler.\n\n> ** `{prefix}team clear [all]` **\n╰ Ekip verisini sıfırlar [all: profilleri de siler]."
+    },
+    "badge": {
+      "help": "> ** `{prefix}badge add <kullanıcı> <ad>` **\n╰ Rozet ekler veya ana rütbe ayarlar.\n\n> ** `{prefix}badge remove <kullanıcı> <ad>` **\n╰ Rozeti kaldırır veya ana rütbeyi sıfırlar.\n\n> ** `{prefix}badge show <kullanıcı>` **\n╰ Kullanıcının bütün rozet ve rütbelerini gösterir.\n\n> ** `{prefix}badge list` **\n╰ Özel durumu olan bütün kullanıcıları listeler."
+    },
+    "node": {
+      "status": "**{bot} {status}**\n"
+    }
   },
   "bl": {
     "added": "**{e} {user} kara listeye eklendi.**",
@@ -1600,7 +1612,8 @@
     "apiError": "{e} Hata: {message}\n",
     "canSet": "**Ayarlayabileceklerin:**\n",
     "applyFail": "Değişiklikler uygulanamadı: {message}",
-    "resetFail2": "Sıfırlama başarısız: {message}"
+    "resetFail2": "Sıfırlama başarısız: {message}",
+    "openFormLine": "Botun sunucu profilini düzenlemek için aşağıdaki butona bas.\n\n"
   },
   "mut": {
     "usage": "**Kullanımı:**\n`{prefix}mutual <kullanıcı ID veya @etiket>`\n\n**Örnek:**\n`{prefix}mutual @kullanıcı`\n`{prefix}mutual 123456789012345678`"
