@@ -161,7 +161,10 @@
       "error": "**{e} Ses seviyesi ayarlanırken bir hata oluştu.**",
       "current": "{blank}{arrow} **Ses seviyesi : `{value}%`**",
       "currentPlain": "{blank}{arrow} **Ses seviyesi :** `{value}%`",
-      "usage": "**{e} Kullanımı** `:` `{prefix}volume [0-100]`\n{arrow} **__Ses seviyesi__ :** `{value}%`"
+      "usage": "**{e} Kullanımı** `:` `{prefix}volume [0-100]`\n{arrow} **__Ses seviyesi__ :** `{value}%`",
+      "header": "**Ses seviyesi**\n",
+      "updated": "{blank}{arrow} **Ses seviyesi güncellendi : `{value}%`**",
+      "updated2": "{blank}{arrow} **Ses seviyesi güncellendi :** `{value}%`"
     },
     "artistradio": {
       "needArtist": "**{e} Bir sanatçı adı yazmalısın.**\nÖrnek: `{prefix}artistradio Sezen Aksu`",
@@ -239,7 +242,8 @@
       "unreachable": "Müzik sunucusuna ulaşılamıyor. Tekrar dene veya destek sunucusuna yaz.",
       "genericError": "Bir hata oluştu: {message}",
       "playError": "Çalarken bir hata oluştu: {message}",
-      "trackInfoQuoted": "> [**{title}**]({uri}) — ` {author} `\n> Sıra ` #{position} ` • Süre ` {duration} ` • Ekleyen ` {user} `"
+      "trackInfoQuoted": "> [**{title}**]({uri}) — ` {author} `\n> Sıra ` #{position} ` • Süre ` {duration} ` • Ekleyen ` {user} `",
+      "usage": "**{d} Kullanımı** `:` `{prefix}play [şarkı adı/bağlantı]`\n**{d} Örnek** `:` `{prefix}play tarkan kuzu kuzu`"
     }
   },
   "commands": {
@@ -816,7 +820,9 @@
     "ytRestricted": "**{e} YouTube kısıtladı → alternatif kaynağa geçiyorum.**",
     "ytBlocked": "**{e} Bu şarkı çalınamadı [YouTube engelledi].**\n**{i} Geçiyorum...**",
     "playbackError": "**{e} Oynatma hatası oluştu.**\n**{i} Şarkıyı geçiyorum...**",
-    "nowPlayingTitle": "**{e} Şu An Çalıyor**"
+    "nowPlayingTitle": "**{e} Şu An Çalıyor**",
+    "movedChannel": "**{bot} !**\n{blank}{arrow} Başka bir kanala **taşındım**",
+    "songPaused": "{e} Şarkı duraklatıldı"
   },
   "mod": {
     "needPerm": "{e} Bu komutu kullanmak için `{permission}` yetkisine sahip olman gerek.",
@@ -1349,7 +1355,11 @@
     "row": {
       "user": "{blank}{arrow} Kullanıcı: {value}\n",
       "reason": "{blank}{arrow} Sebep: **{value}**",
-      "action": "{blank}{arrow} İşlem: **{value}**\n"
+      "action": "{blank}{arrow} İşlem: **{value}**\n",
+      "channel": "{blank}{arrow} Kanal: {channel} (`{id}`)",
+      "userTag": "{blank}{arrow} Kullanıcı: **{tag}** (`{id}`)",
+      "dmed": "{blank}{arrow} DM gönderildi: **{value}**\n\n",
+      "reasonCode": "{blank}{arrow} Sebep: **`{value}`**\n\n"
     },
     "noContent": "İçerik yok"
   },
@@ -1572,5 +1582,10 @@
   "mut": {
     "notFound": "**{e} `{id}` ID'li kullanıcı bulunamadı.**",
     "none": "**{e} {user} ile ortak sunucu yok.**"
+  },
+  "help": {
+    "notFound": "**{e} `{command}` diye bir komut yok.**",
+    "notYours": "**{e} Bu menüyü kullanamazsın.**",
+    "intro": "**{bot}**, sunucun için çok yönlü bir yardımcı: **YT Music**, **Spotify**, **Apple Music** ve daha fazlasından yüksek kaliteli müzik çalar. Gelişmiş **moderasyon**, **yardımcı araçlar**, **davet takibi** ve fazlasıyla sunucunu bir adım öteye taşır."
   }
 }

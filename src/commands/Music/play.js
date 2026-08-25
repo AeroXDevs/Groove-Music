@@ -620,8 +620,7 @@ client.t(interaction.guildId, "music.play.trackInfo", { title: truncateTitle(tra
     if (!query) {
       const usageDisplay = new TextDisplayBuilder()
         .setContent(
-          `**${client.emoji.dot} Usage** \`:\` \`${prefix}play [Song Name/URL]\`\n` +
-          `**${client.emoji.dot} Example** \`:\` \`${prefix}play imagine dragons believer\``
+client.t(message.guild.id, "music.play.usage", { d: client.emoji.dot, prefix })
         );
 
       const container = new ContainerBuilder()

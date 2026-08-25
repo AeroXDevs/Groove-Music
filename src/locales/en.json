@@ -161,7 +161,10 @@
       "error": "**{e} An error occurred while adjusting volume.**",
       "current": "{blank}{arrow} **Current Volume : `{value}%`**",
       "currentPlain": "{blank}{arrow} **Current Volume :** `{value}%`",
-      "usage": "**{e} Usage** `:` `{prefix}volume [0-100]`\n{arrow} **__Current Volume__ :** `{value}%`"
+      "usage": "**{e} Usage** `:` `{prefix}volume [0-100]`\n{arrow} **__Current Volume__ :** `{value}%`",
+      "header": "**Volume !**\n",
+      "updated": "{blank}{arrow} **Volume Updated : `{value}%`**",
+      "updated2": "{blank}{arrow} **Volume Updated :** `{value}%`"
     },
     "artistradio": {
       "needArtist": "**{e} Please provide an artist name.**\nExample: `{prefix}artistradio Imagine Dragons`",
@@ -239,7 +242,8 @@
       "unreachable": "The music server is currently unreachable. Please try again or contact support.",
       "genericError": "An error occurred: {message}",
       "playError": "An error occurred while playing: {message}",
-      "trackInfoQuoted": "> [**{title}**]({uri}) by ` {author} `\n> Position ` #{position} ` • Duration ` {duration} ` • By ` {user} `"
+      "trackInfoQuoted": "> [**{title}**]({uri}) by ` {author} `\n> Position ` #{position} ` • Duration ` {duration} ` • By ` {user} `",
+      "usage": "**{d} Usage** `:` `{prefix}play [Song Name/URL]`\n**{d} Example** `:` `{prefix}play imagine dragons believer`"
     }
   },
   "commands": {
@@ -816,7 +820,9 @@
     "ytRestricted": "**{e} YouTube restricted → using alternative source!**",
     "ytBlocked": "**{e} Couldn't play this track [YouTube blocked].**\n**{i} Skipping...**",
     "playbackError": "**{e} Playback error occurred.**\n**{i} Skipping track...**",
-    "nowPlayingTitle": "**{e} Now Playing**"
+    "nowPlayingTitle": "**{e} Now Playing**",
+    "movedChannel": "**{bot} !**\n{blank}{arrow} **M__oved__** to another channel",
+    "songPaused": "{e} Song Paused"
   },
   "mod": {
     "needPerm": "{e} You need `{permission}` permissions to use this command.",
@@ -1349,7 +1355,11 @@
     "row": {
       "user": "{blank}{arrow} User: {value}\n",
       "reason": "{blank}{arrow} Reason: **{value}**",
-      "action": "{blank}{arrow} Action: **{value}**\n"
+      "action": "{blank}{arrow} Action: **{value}**\n",
+      "channel": "{blank}{arrow} Channel: {channel} (`{id}`)",
+      "userTag": "{blank}{arrow} User: **{tag}** (`{id}`)",
+      "dmed": "{blank}{arrow} DMed: **{value}**\n\n",
+      "reasonCode": "{blank}{arrow} Reason: **`{value}`**\n\n"
     },
     "noContent": "No content"
   },
@@ -1572,5 +1582,10 @@
   "mut": {
     "notFound": "**{e} Could not find user with ID: `{id}`**",
     "none": "**{e} No mutual servers found with {user}**"
+  },
+  "help": {
+    "notFound": "**{e} Command `{command}` not found.**",
+    "notYours": "**{e} You can't use this menu.**",
+    "intro": "**{bot}** is your ultimate multi-purpose companion, offering high-fidelity music from **YT Music**,**Spotify**,**Apple Music** and more. Featuring advanced **Moderation**, **Utility**, **Invites**, and more—all designed to elevate your server experience to the next level."
   }
 }

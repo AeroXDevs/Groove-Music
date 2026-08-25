@@ -153,7 +153,7 @@ module.exports = {
 
             if (!foundCommand) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${emoji.cross} Command \`${commandName}\` not found.**`);
+                    .setContent(client.t(interaction.guildId, "help.notFound", { e: emoji.cross, command: commandName }));
 
                 const errorContainer = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -288,7 +288,7 @@ module.exports = {
 
         const separator = new SeparatorBuilder();
 
-        const descriptionText = `**${botName}** is your ultimate multi-purpose companion, offering high-fidelity music from **YT Music**,**Spotify**,**Apple Music** and more. Featuring advanced **Moderation**, **Utility**, **Invites**, and more—all designed to elevate your server experience to the next level.`;
+        const descriptionText = client.t(interaction.guildId, "help.intro", { bot: botName });
 
         const descriptionDisplay = new TextDisplayBuilder()
             .setContent(descriptionText);
@@ -348,7 +348,7 @@ module.exports = {
         collector.on('collect', async i => {
             if (i.user.id !== interaction.user.id) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${emoji.cross} You can't use this menu.**`);
+                    .setContent(client.t(interaction.guildId, "help.notYours", { e: emoji.cross }));
 
                 const errorContainer = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -458,7 +458,7 @@ module.exports = {
 
             if (!foundCommand) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${emoji.cross} Command \`${commandName}\` not found.**`);
+                    .setContent(client.t(message.guild.id, "help.notFound", { e: emoji.cross, command: commandName }));
 
                 const errorContainer = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -600,7 +600,7 @@ module.exports = {
 
         const separator = new SeparatorBuilder();
 
-        const descriptionText = `**${botName}** is your ultimate multi-purpose companion, offering high-fidelity music from **YT Music**,**Spotify**,**Apple Music** and more. Featuring advanced **Moderation**, **Utility**, **Invites**, and more—all designed to elevate your server experience to the next level.`;
+        const descriptionText = client.t(message.guild.id, "help.intro", { bot: botName });
 
         const descriptionDisplay = new TextDisplayBuilder()
             .setContent(descriptionText);
@@ -660,7 +660,7 @@ module.exports = {
         collector.on('collect', async interaction => {
             if (interaction.user.id !== message.author.id) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${emoji.cross} You can't use this menu.**`);
+                    .setContent(client.t(message.guild.id, "help.notYours", { e: emoji.cross }));
 
                 const errorContainer = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);

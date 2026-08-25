@@ -325,7 +325,7 @@ class AutomodManager {
                 client.t(message.guild.id, "amm.notifyTitle") +
                 `${emoji.blank}${emoji.wickarrow} Guild: **\`${message.guild.name}\`**\n` +
                 `${emoji.blank}${emoji.wickarrow} Action: **\`${actionLabel}\`** ${escType === 'mute' ? `(**__${label}__**)` : ''}\n` +
-                `${emoji.blank}${emoji.wickarrow} Reason: **\`${reason}\`**\n\n` +
+                client.t(message.guild.id, "amm.row.reasonCode", { blank: emoji.blank, arrow: emoji.wickarrow, value: reason }) +
                 client.t(message.guild.id, "amm.yourMessage") +
                 `\`\`\`\n${message.content ? (message.content.length > 500 ? message.content.slice(0, 500) + '...' : message.content) : client.t(message.guild.id, "amm.noContent")}\n\`\`\``
             );
@@ -354,11 +354,11 @@ class AutomodManager {
 
         const info = new TextDisplayBuilder().setContent(
             client.t(message.guild.id, "amm.violationTitle") +
-            `${emoji.blank}${emoji.wickarrow} User: **${message.author.tag}** (\`${message.author.id}\`)\n` +
-            `${emoji.blank}${emoji.wickarrow} Channel: ${message.channel} (\`${message.channel.id}\`)\n` +
-            `${emoji.blank}${emoji.wickarrow} Reason: **${reason}**\n` +
-            `${emoji.blank}${emoji.wickarrow} Action: **${action.toUpperCase()}**\n` +
-            `${emoji.blank}${emoji.wickarrow} DMed: **${dmed ? emoji.check : emoji.cross}**\n\n` +
+            client.t(message.guild.id, "amm.row.userTag", { blank: emoji.blank, arrow: emoji.wickarrow, tag: message.author.tag, id: message.author.id }) +
+            client.t(message.guild.id, "amm.row.channel", { blank: emoji.blank, arrow: emoji.wickarrow, channel: message.channel, id: message.channel.id }) +
+            client.t(message.guild.id, "amm.row.reason", { blank: emoji.blank, arrow: emoji.wickarrow, value: reason }) + "\n" +
+            client.t(message.guild.id, "amm.row.action", { blank: emoji.blank, arrow: emoji.wickarrow, value: action.toUpperCase() }) +
+            client.t(message.guild.id, "amm.row.dmed", { blank: emoji.blank, arrow: emoji.wickarrow, value: dmed ? emoji.check : emoji.cross }) +
             client.t(message.guild.id, "amm.content") +
             `\`\`\`\n${message.content ? message.content.slice(0, 1000) : client.t(message.guild.id, "amm.noContent")}\n\`\`\``
         );

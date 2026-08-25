@@ -46,7 +46,7 @@ module.exports = {
     if (volume === null) {
       const volumeDisplay = new TextDisplayBuilder()
         .setContent(
-          `**Volume !**\n` +
+          client.t(interaction.guildId, "music.volume.header") +
           client.t(interaction.guildId, "music.volume.current", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: player.volume })
         );
 
@@ -66,8 +66,8 @@ module.exports = {
 
     const successDisplay = new TextDisplayBuilder()
       .setContent(
-        `**Volume !**\n` +
-        `${client.emoji.blank}${client.emoji.wickarrow} **Volume Updated : \`${volume}%\`**`
+        client.t(interaction.guildId, "music.volume.header") +
+        client.t(interaction.guildId, "music.volume.updated", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: volume })
       );
 
     const container = new ContainerBuilder()
@@ -115,8 +115,8 @@ client.t(message.guild.id, "music.volume.usage", { e: client.emoji.cross, arrow:
 
       const successDisplay = new TextDisplayBuilder()
         .setContent(
-          `**Volume !**\n` +
-          `${client.emoji.blank}${client.emoji.wickarrow} **Volume Updated :** \`${volume}%\``
+          client.t(message.guild.id, "music.volume.header") +
+          client.t(message.guild.id, "music.volume.updated2", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: volume })
         );
 
       const container = new ContainerBuilder()
@@ -131,7 +131,7 @@ client.t(message.guild.id, "music.volume.usage", { e: client.emoji.cross, arrow:
     const createVolumeContainer = (currentVol) => {
       const volumeDisplay = new TextDisplayBuilder()
         .setContent(
-          `**Volume !**\n` +
+          client.t(message.guild.id, "music.volume.header") +
           client.t(message.guild.id, "music.volume.currentPlain", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: currentVol })
         );
 
@@ -222,7 +222,7 @@ client.t(message.guild.id, "music.volume.usage", { e: client.emoji.cross, arrow:
 
         const volumeDisplay = new TextDisplayBuilder()
           .setContent(
-            `**Volume !**\n` +
+            client.t(message.guild.id, "music.volume.header") +
             client.t(message.guild.id, "music.volume.current", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: finalVolume })
           );
 
