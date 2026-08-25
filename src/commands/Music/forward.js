@@ -52,7 +52,7 @@ module.exports = {
 
         if (!player.queue.current) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.warn} Play a song first.**`);
+                .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.warn }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
@@ -74,8 +74,7 @@ module.exports = {
             if (isNaN(seconds) || seconds <= 0) {
                 const errorDisplay = new TextDisplayBuilder()
                     .setContent(
-                        `**${client.emoji.cross} Usage:** \`${prefix}forward [seconds]\`\n` +
-                        `**Example:** \`${prefix}forward 30\` - Fastforward 30 seconds`
+                        client.t(message.guild.id, "music.forward.usage", { e: client.emoji.cross, prefix })
                     );
 
                 const container = new ContainerBuilder()
@@ -99,8 +98,7 @@ module.exports = {
         if (newPosition >= duration) {
             const warnDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**${client.emoji.warn} Cannot fast forward beyond the song duration.**\n` +
-                    `**${client.emoji.info} Skipping to next song instead...**`
+                    client.t(message.guild.id, "music.forward.beyond", { e: client.emoji.warn, i: client.emoji.info })
                 );
 
             const container = new ContainerBuilder()
@@ -131,7 +129,7 @@ module.exports = {
 
             const successDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**${client.emoji.check} Fast forwarded \`${seconds}s\` to \`${formatTime(newPosition)}\`**`
+                    client.t(message.guild.id, "music.forward.done", { e: client.emoji.check, seconds, position: formatTime(newPosition) })
                 );
 
             const container = new ContainerBuilder()
@@ -150,7 +148,7 @@ module.exports = {
             console.error("Error fast forwarding:", error);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} Failed to fast forward the track.**`);
+                .setContent(client.t(message.guild.id, "music.forward.failed", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);

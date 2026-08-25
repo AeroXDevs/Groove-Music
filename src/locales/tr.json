@@ -95,7 +95,45 @@
     "noPrevious": "**{e} Geçmişte önceki bir şarkı yok.**",
     "previousNotFound": "**{e} Önceki şarkı bulunamadı.**",
     "playingPrevious": "**{e} Önceki şarkı çalınıyor: [{title}]({uri})**",
-    "previousFailed": "**{e} Önceki şarkı çalınamadı.**"
+    "previousFailed": "**{e} Önceki şarkı çalınamadı.**",
+    "nowPlayingShort": "**{e} Şu an çalıyor - {title}**",
+    "queue": {
+      "title": "### {e} Çalma Sırası",
+      "onlyUser": "**{e} Bu butonları yalnızca {user} kullanabilir.**"
+    },
+    "similar": {
+      "none": "**{e} `{engine}` üzerinde benzer şarkı bulunamadı.**",
+      "added": "**{e} Sıraya eklendi: [{title}]({uri})**",
+      "addedAll": "**{e} {count} benzer şarkının hepsi sıraya eklendi.**"
+    },
+    "forward": {
+      "usage": "**{e} Kullanımı:** `{prefix}forward [saniye]`\n**Örnek:** `{prefix}forward 30` — 30 saniye ileri sarar.",
+      "beyond": "**{e} Şarkı süresinin ötesine saramam.**\n**{i} Onun yerine sıradakine geçiyorum.**",
+      "done": "**{e} `{seconds}sn` ileri sarıldı — `{position}`**",
+      "failed": "**{e} İleri sarma başarısız oldu.**"
+    },
+    "rewind": {
+      "usage": "**{e} Kullanımı** `:` `{prefix}rewind [saniye]`\n**{d} Örnek** `:` `{prefix}rewind 30` — 30 saniye geri sarar.",
+      "done": "**{e} `{seconds}sn` geri sarıldı — `{position}`**",
+      "failed": "**{e} Geri sarma başarısız oldu.**"
+    },
+    "skipto": {
+      "invalid": "**{e} Geçerli bir sıra numarası gir.**\n**Geçerli aralık** `:` `1-{max}`",
+      "notFound": "**{e} `{position}` numaralı sırada şarkı bulunamadı.**",
+      "done": "**{e} Şuraya geçildi: `{title}`**"
+    },
+    "loop": {
+      "settings": "**{e} Tekrar Ayarları**",
+      "current": "**Şu anki mod** `:` `{mode}`",
+      "selectTitle": "**{e} Tekrar Modunu Seç**",
+      "selectBody": "**Sadece çalan şarkıyı mı yoksa tüm sırayı mı tekrarlamak istediğini seç.**",
+      "updated": "**{e} Tekrar Ayarı Güncellendi**",
+      "setTo": "**Tekrar modu şu şekilde ayarlandı** `:` `{mode}`",
+      "modeNone": "Kapalı",
+      "modeTrack": "Şarkı Tekrarı",
+      "modeQueue": "Sıra Tekrarı",
+      "onlyUser": "**{e} Bu butonları yalnızca {user} kullanabilir.**"
+    }
   },
   "commands": {
     "skip": {
@@ -145,12 +183,39 @@
     },
     "join": {
       "description": "Ses kanalına katılır."
+    },
+    "nowplaying": {
+      "description": "Çalan şarkıyı gösterir."
+    },
+    "queue": {
+      "description": "Çalma sırasını gösterir."
+    },
+    "similar": {
+      "description": "Çalan şarkıya benzer şarkılar bulur."
+    },
+    "forward": {
+      "description": "Çalan şarkıyı belirtilen saniye kadar ileri sarar."
+    },
+    "skipto": {
+      "description": "Sıradaki belirli bir şarkıya atlar."
+    },
+    "loop": {
+      "description": "Tekrar modunu açar veya kapatır."
+    },
+    "rewind": {
+      "description": "Çalan şarkıyı belirtilen saniye kadar geri sarar."
     }
   },
   "buttons": {
     "home": "Başa Dön",
     "previous": "Önceki",
     "next": "Sonraki",
-    "close": "Kapat"
+    "close": "Kapat",
+    "queueAll": "Hepsini Sıraya Ekle",
+    "enable": "Aç",
+    "disable": "Kapat",
+    "track": "Şarkı",
+    "queue": "Sıra",
+    "back": "Geri"
   }
 }

@@ -33,7 +33,7 @@ module.exports = {
         const player = client.manager.players.get(interaction.guild.id);
         if (!player.queue.current) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.warn} Play a song first.**`);
+                .setContent(client.t(interaction.guildId, "music.playFirst", { e: client.emoji.warn }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -51,12 +51,12 @@ module.exports = {
                 return `${minutes}:${secs.toString().padStart(2, '0')}`;
             };
             const successDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.check} Rewound \`${seconds}s\` to \`${formatTime(newPosition)}\`**`);
+                .setContent(client.t(interaction.guildId, "music.rewind.done", { e: client.emoji.check, seconds, position: formatTime(newPosition) }));
             const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         } catch (error) {
             console.error("Error rewinding:", error);
-            const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} Failed to rewind the track.**`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.rewind.failed", { e: client.emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -67,7 +67,7 @@ module.exports = {
 
         if (!player.queue.current) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.warn} Play a song first.**`);
+                .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.warn }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
@@ -86,8 +86,7 @@ module.exports = {
             if (isNaN(seconds) || seconds <= 0) {
                 const usageDisplay = new TextDisplayBuilder()
                     .setContent(
-                        `**${client.emoji.cross} Usage** \`:\` \`${prefix}rewind [seconds]\`\n` +
-                        `**${client.emoji.dot} Example** \`:\` \`${prefix}rewind 30\` - Rewind 30 seconds`
+                        client.t(message.guild.id, "music.rewind.usage", { e: client.emoji.cross, d: client.emoji.dot, prefix })
                     );
 
                 const container = new ContainerBuilder()
@@ -119,7 +118,7 @@ module.exports = {
             };
 
             const successDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.check} Rewound \`${seconds}s\` to \`${formatTime(newPosition)}\`**`);
+                .setContent(client.t(message.guild.id, "music.rewind.done", { e: client.emoji.check, seconds, position: formatTime(newPosition) }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(successDisplay);
@@ -137,7 +136,7 @@ module.exports = {
             console.error("Error rewinding:", error);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} Failed to rewind the track.**`);
+                .setContent(client.t(message.guild.id, "music.rewind.failed", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);

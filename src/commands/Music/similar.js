@@ -43,7 +43,7 @@ module.exports = {
 
         let player = client.manager.players.get(guildId);
         if (!player || !player.queue.current) {
-            const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} No music currently playing**`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "music.nothingPlaying", { e: client.emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             const options = { components: [container], flags: MessageFlags.IsComponentsV2 };
             return isSlash ? context.editReply(options) : context.reply(options);
@@ -72,7 +72,7 @@ module.exports = {
         const multiple = 5;
 
         if (tracks.length === 0) {
-            const noResultsDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} No similar songs found using \`${searchEngine}\`**`);
+            const noResultsDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "music.similar.none", { e: client.emoji.cross, engine: searchEngine }));
             const noResultsContainer = new ContainerBuilder().addTextDisplayComponents(noResultsDisplay);
             const options = { components: [noResultsContainer], flags: MessageFlags.IsComponentsV2 };
             return isSlash ? (context.deferred ? context.editReply(options) : context.reply(options)) : context.reply(options);
@@ -85,7 +85,7 @@ module.exports = {
             const headerRow = new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
                     .setCustomId('sim_close')
-                    .setLabel("Close")
+                    .setLabel(client.t(message.guild.id, "buttons.close"))
                     .setStyle(ButtonStyle.Secondary)
             );
             container.addActionRowComponents(headerRow);
@@ -128,17 +128,17 @@ module.exports = {
             return new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
                     .setCustomId('sim_prev')
-                    .setLabel('Previous')
+                    .setLabel(client.t(message.guild.id, "buttons.previous"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(p === 0),
                 new ButtonBuilder()
                     .setCustomId('sim_next')
-                    .setLabel('Next')
+                    .setLabel(client.t(message.guild.id, "buttons.next"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(p === totalPages - 1 || totalPages === 0),
                 new ButtonBuilder()
                     .setCustomId('sim_all')
-                    .setLabel('Queue All')
+                    .setLabel(client.t(message.guild.id, "buttons.queueAll"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(tracks.length === 0)
             );
@@ -180,7 +180,7 @@ module.exports = {
                 if (!player.playing && !player.paused) await player.play();
 
                 const successDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.check} Added [${track.title}](${track.uri}) to queue.**`);
+                    .setContent(client.t(message.guild.id, "music.similar.added", { e: client.emoji.check, title: track.title, uri: track.uri }));
                 const successContainer = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                 return i.channel.send({ components: [successContainer], flags: MessageFlags.IsComponentsV2 });
@@ -190,7 +190,7 @@ module.exports = {
                 if (!player.playing && !player.paused) await player.play();
 
                 const successDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.check} Added all ${tracks.length} similar tracks to queue.**`);
+                    .setContent(client.t(message.guild.id, "music.similar.addedAll", { e: client.emoji.check, count: tracks.length }));
                 const successContainer = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                 return i.channel.send({ components: [successContainer], flags: MessageFlags.IsComponentsV2 });

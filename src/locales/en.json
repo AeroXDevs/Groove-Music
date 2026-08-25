@@ -95,7 +95,45 @@
     "noPrevious": "**{e} No previous songs in history.**",
     "previousNotFound": "**{e} Could not find the previous track.**",
     "playingPrevious": "**{e} Playing previous song: [{title}]({uri})**",
-    "previousFailed": "**{e} Failed to play previous track.**"
+    "previousFailed": "**{e} Failed to play previous track.**",
+    "nowPlayingShort": "**{e} Now playing - {title}**",
+    "queue": {
+      "title": "### {e} Music Queue",
+      "onlyUser": "**{e} Only {user} can use these buttons!**"
+    },
+    "similar": {
+      "none": "**{e} No similar songs found using `{engine}`**",
+      "added": "**{e} Added [{title}]({uri}) to queue.**",
+      "addedAll": "**{e} Added all {count} similar tracks to queue.**"
+    },
+    "forward": {
+      "usage": "**{e} Usage:** `{prefix}forward [seconds]`\n**Example:** `{prefix}forward 30` - Fastforward 30 seconds",
+      "beyond": "**{e} Cannot fast forward beyond the song duration.**\n**{i} Skipping to next song instead...**",
+      "done": "**{e} Fast forwarded `{seconds}s` to `{position}`**",
+      "failed": "**{e} Failed to fast forward the track.**"
+    },
+    "rewind": {
+      "usage": "**{e} Usage** `:` `{prefix}rewind [seconds]`\n**{d} Example** `:` `{prefix}rewind 30` - Rewind 30 seconds",
+      "done": "**{e} Rewound `{seconds}s` to `{position}`**",
+      "failed": "**{e} Failed to rewind the track.**"
+    },
+    "skipto": {
+      "invalid": "**{e} Please provide a valid position**\n**Valid range** `:` `1-{max}`",
+      "notFound": "**{e} Could not find song at position `{position}`**",
+      "done": "**{e} Skipped to `{title}`**"
+    },
+    "loop": {
+      "settings": "**{e} Loop Settings**",
+      "current": "**Current Mode** `:` `{mode}`",
+      "selectTitle": "**{e} Select Loop Mode**",
+      "selectBody": "**Please choose whether you want to loop the current track or the entire queue.**",
+      "updated": "**{e} Loop Updated**",
+      "setTo": "**Loop mode has been set to** `:` `{mode}`",
+      "modeNone": "Disabled",
+      "modeTrack": "Track Loop",
+      "modeQueue": "Queue Loop",
+      "onlyUser": "**{e} Only {user} can use these buttons.**"
+    }
   },
   "commands": {
     "skip": {
@@ -145,12 +183,39 @@
     },
     "join": {
       "description": "Join voice channel"
+    },
+    "nowplaying": {
+      "description": "Show the current playing song"
+    },
+    "queue": {
+      "description": "Show the server queue"
+    },
+    "similar": {
+      "description": "Get songs similar to currently playing track"
+    },
+    "forward": {
+      "description": "Fast forward the current song by specified seconds"
+    },
+    "skipto": {
+      "description": "Skip to a specific song in the queue"
+    },
+    "loop": {
+      "description": "Toggle music loop"
+    },
+    "rewind": {
+      "description": "Rewind the current song by specified seconds"
     }
   },
   "buttons": {
     "home": "Home",
     "previous": "Previous",
     "next": "Next",
-    "close": "Close"
+    "close": "Close",
+    "queueAll": "Queue All",
+    "enable": "Enable",
+    "disable": "Disable",
+    "track": "Track",
+    "queue": "Queue",
+    "back": "Back"
   }
 }
