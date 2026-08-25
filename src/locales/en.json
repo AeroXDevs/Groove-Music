@@ -973,7 +973,36 @@
     "channelHint": "*Mention a channel to set it, or use the button below to disable.*",
     "idHint": "*You can also send the ID directly.*",
     "enabled": "**AutoMod is currently Enabled !**\n",
-    "title": "AutoMod configuration and management"
+    "title": "AutoMod configuration and management",
+    "helpTitle": "### {e} AutoMod Help Menu [{page}/{total}]",
+    "label": {
+      "logChannel": "Log Channel",
+      "channel": "Channel",
+      "globalAction": "Global Action",
+      "maxEmojis": "Max Emojis",
+      "maxMentions": "Max Mentions",
+      "capsEmoji": "Caps/Emoji",
+      "invites": "Invites",
+      "links": "Links",
+      "mentions": "Mentions",
+      "messages": "Messages",
+      "nsfw": "NSFW"
+    },
+    "none": "None",
+    "confirmDisableAll": "{blank}{arrow} Are you sure you want to disable all protections?",
+    "allDisabled": "{e} All AutoMod modules have been disabled.",
+    "logDisabled": "{e} AutoMod logging disabled.",
+    "logSetTo": "{e} AutoMod logging has been set to {channel}.",
+    "punishUpdated": "{e} Updated punishment for selected filters to **{value}**.",
+    "whitelistAdded": "{e} Added **{value}** to whitelist.",
+    "whitelistEmpty": "{e} No users, roles, or channels are currently whitelisted.",
+    "whitelistHint": "{blank}{arrow} Mention a **Role**, **Channel**, or **User** to add to the whitelist.\n\n",
+    "selectFilterFirst": "{e} Please select at least one filter first!",
+    "needTextChannel": "{e} Please provide a valid text-based channel (Text, Announcement, or Thread).",
+    "alreadyDisabled": "AutoMod is already disabled.",
+    "notInitialized": "AutoMod system is not initialized. Please restart the bot or contact the developer.",
+    "error": "An error occurred: {message}",
+    "maxSet": "Successfully set max **{type}s** to **{value}**."
   },
   "evt": {
     "noPrefixRevoked": "You no longer have permission to use commands without a prefix.\n",
@@ -1066,5 +1095,19 @@
     "unmutesUserVoiceChannel": "Unmutes a user in their voice channel.",
     "unmutesUsersCurrentVoice": "Unmutes all users in your current voice channel.",
     "makesCurrentVoiceChannelX": "Makes the current voice channel public."
+  },
+  "amm": {
+    "actionTitle": "**AutoMod Action !**\n",
+    "notifyTitle": "**AutoMod Notification !**\n",
+    "violationTitle": "**AutoMod Violation Details !**\n",
+    "yourMessage": "**Your Message:**\n",
+    "content": "**Content:**\n",
+    "blocked": "This message was blocked by {bot}",
+    "row": {
+      "user": "{blank}{arrow} User: {value}\n",
+      "reason": "{blank}{arrow} Reason: **{value}**",
+      "action": "{blank}{arrow} Action: **{value}**\n"
+    },
+    "noContent": "No content"
   }
 }

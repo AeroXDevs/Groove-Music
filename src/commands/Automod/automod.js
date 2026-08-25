@@ -117,7 +117,7 @@ module.exports = {
                 case 'enable':
                     return this.enableMenu(context, client);
                 case 'disable':
-                    if (!isEnabled) return this.error(context, 'AutoMod is already disabled.');
+                    if (!isEnabled) return this.error(context, client.t(context.guild.id, "am.alreadyDisabled"));
                     return this.disableMenu(context, client);
                 case 'whitelist':
                 case 'wl':
@@ -161,7 +161,7 @@ module.exports = {
             }
         } catch (err) {
             console.error(err);
-            return this.error(context, `An error occurred: ${err.message}`);
+            return this.error(context, client.t(context.guild.id, "am.error", { message: err.message }));
         }
     },
 
@@ -271,7 +271,7 @@ module.exports = {
 
             if (i.customId === "am_punish_action_select") {
                 if (!selectedFilters.length) {
-                    return i.reply({ content: `${emoji.warn} Please select at least one filter first!`, flags: MessageFlags.Ephemeral });
+                    return i.reply({ content: client.t(context.guild.id, "am.selectFilterFirst", { e: emoji.warn }), flags: MessageFlags.Ephemeral });
                 }
 
                 const action = i.values[0];
@@ -282,7 +282,7 @@ module.exports = {
                 client.automod.updateSettings(guildId, { punishments: currentPunStore });
 
                 const displayLabel = action === 'delete' ? 'ESCALATING' : action.toUpperCase();
-                const successMsg = `${emoji.check} Updated punishment for selected filters to **${displayLabel}**.`;
+                const successMsg = client.t(context.guild.id, "am.punishUpdated", { e: emoji.check, value: displayLabel });
 
                 await i.update({
                     components: [new ContainerBuilder().addTextDisplayComponents(createMainEmbed(selectedFilters, successMsg)), ...createComponents(selectedFilters)],
@@ -316,14 +316,14 @@ module.exports = {
                 return this.error(context, "Please provide a valid text-based channel (Text, Announcement, or Thread).");
             }
             client.automod.updateSettings(guildId, { logChannel: channel.id });
-            return this.success(context, `AutoMod logging has been set to ${channel}.`);
+            return this.success(context, client.t(context.guild.id, "am.logSetTo", { e: emoji.check, channel }));
         }
 
         const settings = client.automod.getSettings(guildId);
         const display = new TextDisplayBuilder()
             .setContent(
                 `**AutoMod Logging !**\n` +
-                `${emoji.blank}${emoji.wickarrow} Channel: **__${settings.logChannel ? `<#${settings.logChannel}>` : "None"}__**\n\n` +
+                `${emoji.blank}${emoji.wickarrow} Channel: **__${settings.logChannel ? `<#${settings.logChannel}>` : client.t(context.guild.id, "am.none")}__**\n\n` +
                 client.t(context.guild.id, "am.channelHint")
             );
 
@@ -346,7 +346,7 @@ module.exports = {
             const target = m.mentions.channels.first() || context.guild.channels.cache.get(m.content.trim().replace(/[<#>]/g, ''));
             if (target) {
                 if (![ChannelType.GuildText, ChannelType.GuildAnnouncement, ChannelType.PublicThread, ChannelType.PrivateThread].includes(target.type)) {
-                    const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a valid text-based channel (Text, Announcement, or Thread).`);
+                    const errorDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "am.needTextChannel", { e: emoji.warn }));
                     msg.edit({ components: [new ContainerBuilder().addTextDisplayComponents(errorDisplay)], flags: MessageFlags.IsComponentsV2 }).catch(() => null);
                     return;
                 }
@@ -355,7 +355,7 @@ module.exports = {
                 collector.stop();
                 msgCollector.stop();
 
-                const successDisplay = new TextDisplayBuilder().setContent(`${emoji.check} AutoMod logging has been set to ${target}.`);
+                const successDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "am.logSetTo", { e: emoji.check, channel: target }));
                 const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                 if (msg.editable) {
@@ -370,7 +370,7 @@ module.exports = {
             if (i.customId === "am_log_disable") {
                 msgCollector.stop();
                 client.automod.updateSettings(guildId, { logChannel: null });
-                await i.update({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} AutoMod logging disabled.`))], flags: MessageFlags.IsComponentsV2 });
+                await i.update({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(context.guild.id, "am.logDisabled", { e: emoji.check })))], flags: MessageFlags.IsComponentsV2 });
                 collector.stop();
             } else if (i.customId === "am_log_close") {
                 msgCollector.stop();
@@ -537,7 +537,7 @@ module.exports = {
         const display = new TextDisplayBuilder()
             .setContent(
                 `**Disable AutoMod !**\n` +
-                `${emoji.blank}${emoji.wickarrow} Are you sure you want to disable all protections?`
+                client.t(context.guild.id, "am.confirmDisableAll", { blank: emoji.blank, arrow: emoji.wickarrow })
             );
 
         const row = new ActionRowBuilder().addComponents(
@@ -554,7 +554,7 @@ module.exports = {
                     antiLink: false, antiInvite: false, antiSpam: false,
                     antiMention: false, antiCaps: false, antiEmoji: false, antiNsfw: false
                 });
-                await i.update({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} All AutoMod modules have been disabled.`))], flags: MessageFlags.IsComponentsV2 });
+                await i.update({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(context.guild.id, "am.allDisabled", { e: emoji.check })))], flags: MessageFlags.IsComponentsV2 });
                 collector.stop();
             } else if (i.customId === "am_disable_cancel") {
                 await i.update({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} AutoMod remains active.`))], flags: MessageFlags.IsComponentsV2 });
@@ -588,7 +588,7 @@ module.exports = {
             }
 
             if (sections.length === 0) {
-                const display = new TextDisplayBuilder().setContent(`${emoji.warn} No users, roles, or channels are currently whitelisted.`);
+                const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "am.whitelistEmpty", { e: emoji.warn }));
                 return context.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
                     flags: MessageFlags.IsComponentsV2
@@ -648,7 +648,7 @@ module.exports = {
         const display = new TextDisplayBuilder()
             .setContent(
                 `**AutoMod Whitelist !**\n` +
-                `${emoji.blank}${emoji.wickarrow} Mention a **Role**, **Channel**, or **User** to add to the whitelist.\n\n` +
+                client.t(context.guild.id, "am.whitelistHint", { blank: emoji.blank, arrow: emoji.wickarrow }) +
                 client.t(context.guild.id, "am.idHint")
             );
 
@@ -690,7 +690,7 @@ module.exports = {
 
                 client.automod.updateSettings(guildId, s);
 
-                const successDisplay = new TextDisplayBuilder().setContent(`${emoji.check} Added **${resolved.name || resolved.user?.tag || resolved.tag || resolved.id}** to whitelist.`);
+                const successDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "am.whitelistAdded", { e: emoji.check, value: resolved.name || resolved.user?.tag || resolved.tag || resolved.id }));
                 await msg.edit({ components: [new ContainerBuilder().addTextDisplayComponents(successDisplay)], flags: MessageFlags.IsComponentsV2 }).catch(() => null);
             }
         });
@@ -721,8 +721,8 @@ module.exports = {
                 `${emoji.blank}${emoji.wickarrow} Anti-Caps: ${status(s.antiCaps)}\n` +
                 `${emoji.blank}${emoji.wickarrow} Anti-Emoji: ${status(s.antiEmoji)} (Max: **__${s.maxEmoji || 10}__**)\n` +
                 `${emoji.blank}${emoji.wickarrow} Anti-NSFW: ${status(s.antiNsfw)}\n` +
-                `${emoji.blank}${emoji.wickarrow} Log Channel: **__${s.logChannel ? `<#${s.logChannel}>` : "None"}__**\n` +
-                `${emoji.blank}${emoji.wickarrow} Global Action: **__${s.action?.toUpperCase() || "DELETE"}__**`
+                `${emoji.blank}${emoji.wickarrow} ${client.t(context.guild.id, "am.label.logChannel")}: **__${s.logChannel ? `<#${s.logChannel}>` : client.t(context.guild.id, "am.none")}__**\n` +
+                `${emoji.blank}${emoji.wickarrow} ${client.t(context.guild.id, "am.label.globalAction")}: **__${s.action?.toUpperCase() || "DELETE"}__**`
             );
         return context.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
     },
@@ -754,7 +754,7 @@ module.exports = {
             const items = allItems.slice(start, end);
 
             const container = new ContainerBuilder();
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} AutoMod Help Menu [${pageIdx + 1}/${pageCount}]`));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "am.helpTitle", { e: emoji.info, page: pageIdx + 1, total: pageCount })));
             container.addSeparatorComponents(new SeparatorBuilder());
 
             const content = items.map(item => `> ** \`${usedPrefix}${item.cmd}\` **\n╰ ${item.desc}`).join('\n\n');
@@ -839,12 +839,12 @@ module.exports = {
             return new TextDisplayBuilder()
                 .setContent(
                     `**Heat & Sensitivity !**\n` +
-                    `${emoji.blank}${emoji.wickarrow} Messages: **__${hs.msg || 15}%__**\n` +
-                    `${emoji.blank}${emoji.wickarrow} Links: **__${hs.link || 60}%__**\n` +
-                    `${emoji.blank}${emoji.wickarrow} Invites: **__${hs.invite || 70}%__**\n` +
-                    `${emoji.blank}${emoji.wickarrow} Mentions: **__${hs.mention || 25}%__**\n` +
+                    `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.messages")}: **__${hs.msg || 15}%__**\n` +
+                    `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.links")}: **__${hs.link || 60}%__**\n` +
+                    `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.invites")}: **__${hs.invite || 70}%__**\n` +
+                    `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.mentions")}: **__${hs.mention || 25}%__**\n` +
                     `${emoji.blank}${emoji.wickarrow} NSFW: **__${hs.nsfw || 100}%__**\n` +
-                    `${emoji.blank}${emoji.wickarrow} Caps/Emoji: **__${hs.caps || 35}%__**`
+                    `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.capsEmoji")}: **__${hs.caps || 35}%__**`
                 );
         };
 
@@ -929,14 +929,14 @@ module.exports = {
             else update.maxMentions = val;
 
             client.automod.updateSettings(guildId, update);
-            return this.success(context, `Successfully set max **${type}s** to **${val}**.`);
+            return this.success(context, client.t(message.guild.id, "am.maxSet", { type, value: val }));
         }
 
         const display = new TextDisplayBuilder()
             .setContent(
                 `**AutoMod Limits !**\n` +
-                `${emoji.blank}${emoji.wickarrow} Max Mentions: **__${s.maxMentions}__**\n` +
-                `${emoji.blank}${emoji.wickarrow} Max Emojis: **__${s.maxEmoji || 10}__**`
+                `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.maxMentions")}: **__${s.maxMentions}__**\n` +
+                `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.maxEmojis")}: **__${s.maxEmoji || 10}__**`
             );
 
         return context.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });

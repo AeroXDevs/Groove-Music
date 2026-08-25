@@ -307,10 +307,10 @@ class AutomodManager {
 
         const display = new TextDisplayBuilder()
             .setContent(
-                `**AutoMod Action !**\n` +
-                `${emoji.blank}${emoji.wickarrow} User: ${message.author}\n` +
+                client.t(message.guild.id, "amm.actionTitle") +
+                client.t(message.guild.id, "amm.row.user", { blank: emoji.blank, arrow: emoji.wickarrow, value: message.author }) +
                 `${emoji.blank}${emoji.wickarrow} Action: **${actionLabel}** ${escType === 'mute' ? `(**__${label}__**)` : ''}\n` +
-                `${emoji.blank}${emoji.wickarrow} Reason: **${reason}**`
+                client.t(message.guild.id, "amm.row.reason", { blank: emoji.blank, arrow: emoji.wickarrow, value: reason })
             );
 
         const container = new ContainerBuilder().addTextDisplayComponents(display);
@@ -322,12 +322,12 @@ class AutomodManager {
 
         const dmDisplay = new TextDisplayBuilder()
             .setContent(
-                `**AutoMod Notification !**\n` +
+                client.t(message.guild.id, "amm.notifyTitle") +
                 `${emoji.blank}${emoji.wickarrow} Guild: **\`${message.guild.name}\`**\n` +
                 `${emoji.blank}${emoji.wickarrow} Action: **\`${actionLabel}\`** ${escType === 'mute' ? `(**__${label}__**)` : ''}\n` +
                 `${emoji.blank}${emoji.wickarrow} Reason: **\`${reason}\`**\n\n` +
-                `**Your Message:**\n` +
-                `\`\`\`\n${message.content ? (message.content.length > 500 ? message.content.slice(0, 500) + '...' : message.content) : 'No content'}\n\`\`\``
+                client.t(message.guild.id, "amm.yourMessage") +
+                `\`\`\`\n${message.content ? (message.content.length > 500 ? message.content.slice(0, 500) + '...' : message.content) : client.t(message.guild.id, "amm.noContent")}\n\`\`\``
             );
 
         const dmContainer = new ContainerBuilder().addTextDisplayComponents(dmDisplay);
@@ -353,14 +353,14 @@ class AutomodManager {
         const emoji = this.client.emoji;
 
         const info = new TextDisplayBuilder().setContent(
-            `**AutoMod Violation Details !**\n` +
+            client.t(message.guild.id, "amm.violationTitle") +
             `${emoji.blank}${emoji.wickarrow} User: **${message.author.tag}** (\`${message.author.id}\`)\n` +
             `${emoji.blank}${emoji.wickarrow} Channel: ${message.channel} (\`${message.channel.id}\`)\n` +
             `${emoji.blank}${emoji.wickarrow} Reason: **${reason}**\n` +
             `${emoji.blank}${emoji.wickarrow} Action: **${action.toUpperCase()}**\n` +
             `${emoji.blank}${emoji.wickarrow} DMed: **${dmed ? emoji.check : emoji.cross}**\n\n` +
-            `**Content:**\n` +
-            `\`\`\`\n${message.content ? message.content.slice(0, 1000) : 'No content'}\n\`\`\``
+            client.t(message.guild.id, "amm.content") +
+            `\`\`\`\n${message.content ? message.content.slice(0, 1000) : client.t(message.guild.id, "amm.noContent")}\n\`\`\``
         );
 
         const container = new ContainerBuilder()

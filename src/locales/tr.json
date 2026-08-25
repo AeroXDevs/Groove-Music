@@ -973,7 +973,36 @@
     "channelHint": "*Ayarlamak için bir kanal etiketle, kapatmak için aşağıdaki butonu kullan.*",
     "idHint": "*ID'yi doğrudan da yazabilirsin.*",
     "enabled": "**AutoMod şu an açık.**\n",
-    "title": "AutoMod ayarları ve yönetimi"
+    "title": "AutoMod ayarları ve yönetimi",
+    "helpTitle": "### {e} AutoMod Yardım Menüsü [{page}/{total}]",
+    "label": {
+      "logChannel": "Kayıt kanalı",
+      "channel": "Kanal",
+      "globalAction": "Genel işlem",
+      "maxEmojis": "En fazla emoji",
+      "maxMentions": "En fazla etiket",
+      "capsEmoji": "Büyük harf/emoji",
+      "invites": "Davetler",
+      "links": "Bağlantılar",
+      "mentions": "Etiketler",
+      "messages": "Mesajlar",
+      "nsfw": "NSFW"
+    },
+    "none": "Yok",
+    "confirmDisableAll": "{blank}{arrow} Bütün korumaları kapatmak istediğine emin misin?",
+    "allDisabled": "{e} Bütün AutoMod modülleri kapatıldı.",
+    "logDisabled": "{e} AutoMod kayıt tutma kapatıldı.",
+    "logSetTo": "{e} AutoMod kayıt kanalı {channel} olarak ayarlandı.",
+    "punishUpdated": "{e} Seçili filtrelerin cezası **{value}** olarak güncellendi.",
+    "whitelistAdded": "{e} **{value}** beyaz listeye eklendi.",
+    "whitelistEmpty": "{e} Beyaz listede hiç kullanıcı, rol veya kanal yok.",
+    "whitelistHint": "{blank}{arrow} Beyaz listeye eklemek için bir **rol**, **kanal** veya **kullanıcı** etiketle.\n\n",
+    "selectFilterFirst": "{e} Önce en az bir filtre seç.",
+    "needTextChannel": "{e} Geçerli bir yazı kanalı belirt (Yazı, Duyuru veya Konu).",
+    "alreadyDisabled": "AutoMod zaten kapalı.",
+    "notInitialized": "AutoMod sistemi başlatılmamış. Botu yeniden başlat veya geliştiriciye yaz.",
+    "error": "Bir hata oluştu: {message}",
+    "maxSet": "En fazla **{type}** sayısı **{value}** olarak ayarlandı."
   },
   "evt": {
     "noPrefixRevoked": "Artık prefixsiz komut kullanma iznin yok.\n",
@@ -1066,5 +1095,19 @@
     "unmutesUserVoiceChannel": "Bir kullanıcının susturmasını kaldırır.",
     "unmutesUsersCurrentVoice": "Kanaldaki herkesin susturmasını kaldırır.",
     "makesCurrentVoiceChannelX": "Ses kanalını herkese açar."
+  },
+  "amm": {
+    "actionTitle": "**AutoMod işlemi**\n",
+    "notifyTitle": "**AutoMod bildirimi**\n",
+    "violationTitle": "**AutoMod ihlal ayrıntıları**\n",
+    "yourMessage": "**Mesajın:**\n",
+    "content": "**İçerik:**\n",
+    "blocked": "Bu mesaj {bot} tarafından engellendi.",
+    "row": {
+      "user": "{blank}{arrow} Kullanıcı: {value}\n",
+      "reason": "{blank}{arrow} Sebep: **{value}**",
+      "action": "{blank}{arrow} İşlem: **{value}**\n"
+    },
+    "noContent": "İçerik yok"
   }
 }
