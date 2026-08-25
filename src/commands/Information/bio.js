@@ -35,7 +35,7 @@ module.exports = {
             const profile = client.db.profiles.get(user.id) || {};
             profile.bio = bioText;
             client.db.profiles.set(user.id, profile);
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Your bio has been set to \`${bioText}\``));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "info.bioSet", { e: emoji.check, value: bioText })${bioText}\``));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 

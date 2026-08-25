@@ -1179,7 +1179,8 @@
     },
     "formHint": "Çekiliş formunu açmak için aşağıdaki butona bas.",
     "badArgs": "{e} Geçersiz kullanım. Biçim: `{format}`",
-    "reactHint": "-# Katılmak için {e} ile tepki ver."
+    "reactHint": "-# Katılmak için {e} ile tepki ver.",
+    "badArgsFmt": "{e} Geçersiz kullanım. Biçim: `{format}`"
   },
   "cfg": {
     "needVoice": "Bu komutu kullanmak için bir ses kanalında olman gerek.",
@@ -1193,7 +1194,8 @@
       "updated": "**{e} Prefix `{value}` olarak güncellendi.**",
       "provide": "**{e} Yeni bir prefix yaz.**",
       "tooLong": "**{e} Prefix 3 karakteri geçemez.**",
-      "error": "**{e} Prefix güncellenirken bir hata oluştu:**\n"
+      "error": "**{e} Prefix güncellenirken bir hata oluştu:**\n",
+      "errorDetail": "**{e} Prefix güncellenirken bir hata oluştu:**\n```\n{message}```"
     },
     "source": {
       "set": "**{e} Tercih ettiğin müzik kaynağı `{value}` olarak ayarlandı.**",
@@ -1229,7 +1231,8 @@
       "missing": "**{e} Destek sunucusu bağlantısı ayarlanmamış.**",
       "join": "**{e} Yardım, duyurular ve topluluk için destek sunucumuza katıl.**",
       "error": "**{e} Hata: {message}**"
-    }
+    },
+    "bioSet": "{e} Biyografin `{value}` olarak ayarlandı."
   },
   "am": {
     "reset": "AutoMod ayarları sıfırlandı.",
@@ -1267,7 +1270,8 @@
     "error": "Bir hata oluştu: {message}",
     "maxSet": "En fazla **{type}** sayısı **{value}** olarak ayarlandı.",
     "enableFirst": "Önce `automod enable` ile AutoMod'u açman gerek.",
-    "whitelistUsage": "Beyaz listeden çıkarmak için bir rol, kanal veya kullanıcı etiketle. Kullanımı: `{prefix}automod whitelist remove <@rol/@kullanıcı/#kanal>`"
+    "whitelistUsage": "Beyaz listeden çıkarmak için bir rol, kanal veya kullanıcı etiketle. Kullanımı: `{prefix}automod whitelist remove <@rol/@kullanıcı/#kanal>`",
+    "needManageServer": "Bu komutu kullanmak için `Sunucuyu Yönet` yetkisine sahip olman gerek."
   },
   "evt": {
     "noPrefixRevoked": "Artık prefixsiz komut kullanma iznin yok.\n",
@@ -1475,7 +1479,14 @@
     "label": "**Favoriler:**",
     "listTitle": "**{e} Favorilerine eklediğin şarkılar :**",
     "fetchError": "**{e} Favorilerin alınırken bir hata oluştu.**",
-    "noneYet": "**{e} Henüz hiç favori şarkın yok.**"
+    "noneYet": "**{e} Henüz hiç favori şarkın yok.**",
+    "gw": {
+      "prize": "{arrow} **Ödül:** `{value}`\n",
+      "winners": "{arrow} **Kazanan sayısı:** `{value}`\n"
+    },
+    "addedCount": "**{e} `{count}` şarkı favorilerine eklendi.**\n",
+    "alreadyCount": "**{e} `{count}` şarkı zaten favorilerindeydi.**\n",
+    "countLabel": "**Favoriler:** `{count} şarkı`\n"
   },
   "role": {
     "rAddsARoleTo": "Bir kullanıcıya rol verir.",
@@ -1633,7 +1644,8 @@
     "empty": "**{e} Yok sayılan kanal listesi boş.**",
     "already": "**{e} Bu kanal zaten listede.**",
     "notIn": "**{e} Bu kanal listede değil.**",
-    "needChannel": "**{e} Geçerli bir kanal belirt.**"
+    "needChannel": "**{e} Geçerli bir kanal belirt.**",
+    "needPerm": "-# **{e} Bu komutu kullanmak için `Manage Channels` yetkisine sahip olman gerek.**"
   },
   "srv": {
     "title": "**{e} {bot} sunucu listesi**",
@@ -1665,6 +1677,7 @@
     "noSong": "**{e} Şu an çalan bir şarkı yok.**",
     "current": "**{e} Aktif filtre** `:` `{value}`",
     "notYours": "**{e} Bu senin oturumun değil. Kendi menün için `{prefix}filter` yaz.**",
-    "placeholder": "Uygulanacak filtreyi seç"
+    "placeholder": "Uygulanacak filtreyi seç",
+    "currentAlt": "**{e} Aktif filtre `:`** `{value}`"
   }
 }

@@ -53,7 +53,7 @@ module.exports = {
       });
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Your preferred music source has been set to \`${selectedSourceName}\`**`);
+        .setContent(client.t(interaction.guildId, "cfg.source.set", { e: client.emoji.check, value: selectedSourceName }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);
@@ -101,7 +101,7 @@ module.exports = {
         });
 
         const successDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.check} Your preferred music source has been set to \`${selectedSourceName}\`**`);
+          .setContent(client.t(message.guild.id, "cfg.source.set", { e: client.emoji.check, value: selectedSourceName }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(successDisplay);
@@ -137,7 +137,7 @@ module.exports = {
           });
 
           const successDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.check} Your preferred music source has been set to \`${selectedSourceName}\`**`);
+            .setContent(client.t(message.guild.id, "cfg.source.set", { e: client.emoji.check, value: selectedSourceName }));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(successDisplay);

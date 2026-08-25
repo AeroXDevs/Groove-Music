@@ -108,7 +108,7 @@ module.exports = {
 
         const infoDisplay = new TextDisplayBuilder()
           .setContent(
-            `**Favorites:** \`${currentFavorites.length} tracks\`\n` +
+            client.t(message.guild.id, "fav.countLabel", { count: currentFavorites.length }) +
             `**Page:** \`${page + 1} of ${Math.ceil(currentFavorites.length / songsPerPage)}\``
           );
 

@@ -97,7 +97,7 @@ module.exports = {
 
         const isOwner = client.owners.includes(user.id);
         if (!member.permissions.has(PermissionFlagsBits.ManageGuild) && !isOwner) {
-            return this.error(context, 'You need `Manage Server` permission to use this command.');
+            return this.error(context, client.t(context.guild.id, "am.needManageServer"));
         }
 
         const realSub = subcommand;
@@ -313,7 +313,7 @@ module.exports = {
 
         if (channel) {
             if (![ChannelType.GuildText, ChannelType.GuildAnnouncement, ChannelType.PublicThread, ChannelType.PrivateThread].includes(channel.type)) {
-                return this.error(context, "Please provide a valid text-based channel (Text, Announcement, or Thread).");
+                return this.error(context, client.t(context.guild.id, "am.needTextChannel", { e: emoji.warn }));
             }
             client.automod.updateSettings(guildId, { logChannel: channel.id });
             return this.success(context, client.t(context.guild.id, "am.logSetTo", { e: emoji.check, channel }));

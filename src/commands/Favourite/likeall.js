@@ -112,10 +112,10 @@ module.exports = {
 
             let description = ``;
             if (addedCount > 0) {
-                description += `**${client.emoji.check} Added \`${addedCount}\` songs to your favorites.**\n`;
+                description += client.t(message.guild.id, "fav.addedCount", { e: client.emoji.check, count: addedCount });
             }
             if (alreadyLikedCount > 0) {
-                description += `**${client.emoji.info} \`${alreadyLikedCount}\` songs were already in your favorites.**\n`;
+                description += client.t(message.guild.id, "fav.alreadyCount", { e: client.emoji.info, count: alreadyLikedCount });
             }
 
             const resultDisplay = new TextDisplayBuilder()

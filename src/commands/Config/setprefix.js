@@ -90,7 +90,7 @@ module.exports = {
       console.error(err);
 
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} An error occurred while updating the prefix:**\n\`\`\`\n${err.message}\`\`\``);
+        .setContent(client.t(message.guild.id, "cfg.prefix.errorDetail", { e: client.emoji.cross, message: err.message }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);

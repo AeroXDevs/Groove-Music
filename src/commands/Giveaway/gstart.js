@@ -75,8 +75,8 @@ module.exports = {
                 .addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${client.emoji.gwy} Giveaway Started`))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                    `${client.emoji.wickarrow} **Prize:** \`${prize}\`\n` +
-                    `${client.emoji.wickarrow} **Winners:** \`${winners}\`\n` +
+                    client.t(interaction.guildId, "fav.gw.prize", { arrow: client.emoji.wickarrow, value: prize }) +
+                    client.t(interaction.guildId, "fav.gw.winners", { arrow: client.emoji.wickarrow, value: winners }) +
                     `${client.emoji.wickarrow} **Host:** <@${interaction.user.id}>\n` +
                     `${client.emoji.wickarrow} **Ends:** <t:${endTimeUnix}:R> [<t:${endTimeUnix}:f>]\n\n` +
                     client.t(interaction.guildId, "gw.reactHint", { e: client.emoji.gwy })
@@ -136,7 +136,7 @@ module.exports = {
                 .addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${client.emoji.gwy} Giveaway Started`))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                    `${client.emoji.wickarrow} **Prize:** \`${prize}\`\n` +
+                    client.t(message.guild.id, "fav.gw.prize", { arrow: client.emoji.wickarrow, value: prize }) +
                     `${client.emoji.wickarrow} **Winners:** \`${winnersCount}\`\n` +
                     `${client.emoji.wickarrow} **Host:** <@${message.author.id}>\n` +
                     `${client.emoji.wickarrow} **Ends:** <t:${endTimeUnix}:R> [<t:${endTimeUnix}:f>]\n\n` +
@@ -227,7 +227,7 @@ module.exports = {
                     .addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${client.emoji.gwy} Giveaway Started`))
                     .addSeparatorComponents(new SeparatorBuilder())
                     .addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                        `${client.emoji.wickarrow} **Prize:** \`${prize}\`\n` +
+                        client.t(interaction.guildId, "fav.gw.prize", { arrow: client.emoji.wickarrow, value: prize }) +
                         `${client.emoji.wickarrow} **Winners:** \`${winnerCount}\`\n` +
                         `${client.emoji.wickarrow} **Host:** <@${interaction.user.id}>\n` +
                         `${client.emoji.wickarrow} **Ends:** <t:${endTimeUnix}:R> [<t:${endTimeUnix}:f>]\n\n` +

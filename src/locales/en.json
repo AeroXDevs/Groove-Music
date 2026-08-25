@@ -1179,7 +1179,8 @@
     },
     "formHint": "Click the button below to open the giveaway setup form.",
     "badArgs": "{e} Invalid arguments! Format: `{format}`",
-    "reactHint": "-# React with {e} to enter!"
+    "reactHint": "-# React with {e} to enter!",
+    "badArgsFmt": "{e} Invalid arguments! Format: `{format}`"
   },
   "cfg": {
     "needVoice": "You need to be in a voice channel to use this command.",
@@ -1193,7 +1194,8 @@
       "updated": "**{e} Prefix updated to `{value}`**",
       "provide": "**{e} Provide a new prefix.**",
       "tooLong": "**{e} Prefix can't exceed 3 characters.**",
-      "error": "**{e} An error occurred while updating the prefix:**\n"
+      "error": "**{e} An error occurred while updating the prefix:**\n",
+      "errorDetail": "**{e} An error occurred while updating the prefix:**\n```\n{message}```"
     },
     "source": {
       "set": "**{e} Your preferred music source has been set to `{value}`**",
@@ -1229,7 +1231,8 @@
       "missing": "**{e} Support server link is not configured.**",
       "join": "**{e} Join our support server for help, updates, and community!**",
       "error": "**{e} Error: {message}**"
-    }
+    },
+    "bioSet": "{e} Your bio has been set to `{value}`"
   },
   "am": {
     "reset": "AutoMod configuration has been reset.",
@@ -1267,7 +1270,8 @@
     "error": "An error occurred: {message}",
     "maxSet": "Successfully set max **{type}s** to **{value}**.",
     "enableFirst": "Please enable AutoMod first using `automod enable`.",
-    "whitelistUsage": "Please mention a role, channel, or user to remove from whitelist. Usage: `{prefix}automod whitelist remove <@role/@user/#channel>`"
+    "whitelistUsage": "Please mention a role, channel, or user to remove from whitelist. Usage: `{prefix}automod whitelist remove <@role/@user/#channel>`",
+    "needManageServer": "You need `Manage Server` permission to use this command."
   },
   "evt": {
     "noPrefixRevoked": "You no longer have permission to use commands without a prefix.\n",
@@ -1475,7 +1479,14 @@
     "label": "**Favorites:**",
     "listTitle": "**{e} Tracks you added to liked songs :**",
     "fetchError": "**{e} An error occurred while fetching your favorites.**",
-    "noneYet": "**{e} You don't have any favorite songs yet!**"
+    "noneYet": "**{e} You don't have any favorite songs yet!**",
+    "gw": {
+      "prize": "{arrow} **Prize:** `{value}`\n",
+      "winners": "{arrow} **Winners:** `{value}`\n"
+    },
+    "addedCount": "**{e} Added `{count}` songs to your favorites.**\n",
+    "alreadyCount": "**{e} `{count}` songs were already in your favorites.**\n",
+    "countLabel": "**Favorites:** `{count} tracks`\n"
   },
   "role": {
     "rAddsARoleTo": "Adds a role to a user.",
@@ -1633,7 +1644,8 @@
     "empty": "**{e} There are no channels in the ignore channel list.**",
     "already": "**{e} This channel is already in the ignore channel list.**",
     "notIn": "**{e} This channel is not in the ignore channel list.**",
-    "needChannel": "**{e} Please provide a valid channel.**"
+    "needChannel": "**{e} Please provide a valid channel.**",
+    "needPerm": "-# **{e} You must have `Manage Channels` permissions to use this command.**"
   },
   "srv": {
     "title": "**{e} {bot} Server List**",
@@ -1665,6 +1677,7 @@
     "noSong": "**{e} There is no song currently playing.**",
     "current": "**{e} Current Filter** `:` `{value}`",
     "notYours": "**{e} That's not your session run. Use `{prefix}filter` to create your own.**",
-    "placeholder": "Select a filter to apply"
+    "placeholder": "Select a filter to apply",
+    "currentAlt": "**{e} Current Filter `:`** `{value}`"
   }
 }

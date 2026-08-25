@@ -74,7 +74,7 @@ module.exports = {
       )
     ) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`-# **${client.emoji.warn} You must have \`Manage Channels\` permissions to use this command.**`);
+        .setContent(client.t(message.guild.id, "ign.needPerm", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);

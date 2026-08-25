@@ -96,7 +96,7 @@ module.exports = {
         const currentFilter = player.currentFilter || "None";
 
         const statusDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.info} Current Filter** \`:\` \`${currentFilter}\``);
+            .setContent(client.t(message.guild.id, "flt.current", { e: client.emoji.info, value: currentFilter }));
 
         const statusContainer = new ContainerBuilder()
             .addTextDisplayComponents(statusDisplay);
@@ -111,7 +111,7 @@ module.exports = {
                 if (message.author.id === i.user.id) return true;
                 else {
                     const errorDisplay = new TextDisplayBuilder()
-                        .setContent(`**${client.emoji.warn} That's not your session run. Use \`${prefix}filter\` to create your own.**`);
+                        .setContent(client.t(message.guild.id, "flt.notYours", { e: client.emoji.warn, prefix }));
 
                     const errorContainer = new ContainerBuilder()
                         .addTextDisplayComponents(errorDisplay);
@@ -184,7 +184,7 @@ module.exports = {
             player.currentFilter = filterName;
 
             const updatedDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.info} Current Filter \`:\`** \`${filterName}\``);
+                .setContent(client.t(message.guild.id, "flt.currentAlt", { e: client.emoji.info, value: filterName }));
 
             const updatedContainer = new ContainerBuilder()
                 .addTextDisplayComponents(updatedDisplay);
