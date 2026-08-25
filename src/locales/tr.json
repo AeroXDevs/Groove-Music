@@ -1165,9 +1165,12 @@
     "minWinners": "{e} Kazanan sayısı en az 1 olmalı.",
     "row": {
       "ends": "{arrow} **Bitiş:** <t:{ts}:R> [<t:{ts}:f>]\n\n",
-      "host": "{arrow} **Düzenleyen:** <@{id}>\n"
+      "host": "{arrow} **Düzenleyen:** <@{id}>\n",
+      "hostLine": "{arrow} **Düzenleyen:** <@{id}>\n"
     },
-    "formHint": "Çekiliş formunu açmak için aşağıdaki butona bas."
+    "formHint": "Çekiliş formunu açmak için aşağıdaki butona bas.",
+    "badArgs": "{e} Geçersiz kullanım. Biçim: `{format}`",
+    "reactHint": "-# Katılmak için {e} ile tepki ver."
   },
   "cfg": {
     "needVoice": "Bu komutu kullanmak için bir ses kanalında olman gerek.",
@@ -1366,7 +1369,8 @@
     "unknownUser": "Bilinmeyen kullanıcı",
     "grantedUntil": "**{e} {user} kullanıcısına prefixsiz kullanım verildi, bitiş**\n**<t:{ts}:F>**",
     "extended": "**{e} {user} kullanıcısının prefixsiz kullanımı uzatıldı, bitiş**\n**<t:{ts}:F>**",
-    "rowUser": "[{user}](https://discord.com/users/{id}) - {value}"
+    "rowUser": "[{user}](https://discord.com/users/{id}) - {value}",
+    "removedManyLine": "**{e} {count} kullanıcı prefixsiz kullanımdan çıkarıldı.**"
   },
   "own": {
     "needUser": "**Geçerli bir kullanıcı belirt.**",
@@ -1376,7 +1380,10 @@
     "examplesLabel": "**Örnekler:**\n",
     "durationLabel": "**Süre:**",
     "aliasesLabel": "**Takma adlar:**",
-    "argHint": "<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!"
+    "argHint": "<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!",
+    "noRanksBadges": "Bu kullanıcının rütbesi veya rozeti yok.",
+    "totalBadges": "-# Toplam rozet: {count} | İsteyen: {user}",
+    "requestedBy": "-# İsteyen: {user}"
   },
   "bl": {
     "added": "**{e} {user} kara listeye eklendi.**",
@@ -1550,5 +1557,20 @@
     "title": "**{e} {bot} sunucu listesi**",
     "none": "**{e} Hiç sunucu bulunamadı.**",
     "onlyUser": "**{e} Bu butonu yalnızca {user} kullanabilir.**"
+  },
+  "brand": {
+    "onlyUser": "{e} Bunu yalnızca {user} kullanabilir.",
+    "fillOne": "{e} En az bir alanı doldurman gerek.",
+    "resetFail": "{e} Avatar/banner/biyografi sıfırlanamadı: {message}\n",
+    "apiError": "{e} Hata: {message}\n",
+    "canSet": "**Ayarlayabileceklerin:**\n",
+    "openForm": "Botu özelleştirmek için aşağıdaki butona bas",
+    "title": "Botu özelleştir",
+    "applyFail": "Değişiklikler uygulanamadı: {message}",
+    "resetFail2": "Sıfırlama başarısız: {message}"
+  },
+  "mut": {
+    "notFound": "**{e} `{id}` ID'li kullanıcı bulunamadı.**",
+    "none": "**{e} {user} ile ortak sunucu yok.**"
   }
 }

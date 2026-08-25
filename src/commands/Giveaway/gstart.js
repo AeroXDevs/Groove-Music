@@ -79,7 +79,7 @@ module.exports = {
                     `${client.emoji.wickarrow} **Winners:** \`${winners}\`\n` +
                     `${client.emoji.wickarrow} **Host:** <@${interaction.user.id}>\n` +
                     `${client.emoji.wickarrow} **Ends:** <t:${endTimeUnix}:R> [<t:${endTimeUnix}:f>]\n\n` +
-                    `-# React with ${client.emoji.gwy} to enter!`
+                    client.t(interaction.guildId, "gw.reactHint", { e: client.emoji.gwy })
                 ));
 
             const giveawayMsg = await interaction.channel.send({
@@ -140,7 +140,7 @@ module.exports = {
                     `${client.emoji.wickarrow} **Winners:** \`${winnersCount}\`\n` +
                     `${client.emoji.wickarrow} **Host:** <@${message.author.id}>\n` +
                     `${client.emoji.wickarrow} **Ends:** <t:${endTimeUnix}:R> [<t:${endTimeUnix}:f>]\n\n` +
-                    `-# React with ${client.emoji.gwy} to enter!`
+                    client.t(message.guild.id, "gw.reactHint", { e: client.emoji.gwy })
                 ));
 
             const channel = message.guild.channels.cache.get(message.channel.id);
@@ -231,7 +231,7 @@ module.exports = {
                         `${client.emoji.wickarrow} **Winners:** \`${winnerCount}\`\n` +
                         `${client.emoji.wickarrow} **Host:** <@${interaction.user.id}>\n` +
                         `${client.emoji.wickarrow} **Ends:** <t:${endTimeUnix}:R> [<t:${endTimeUnix}:f>]\n\n` +
-                        `-# React with ${client.emoji.gwy} to enter!`
+                        client.t(interaction.guildId, "gw.reactHint", { e: client.emoji.gwy })
                     ));
 
                 const gMsg = await interaction.channel.send({

@@ -1165,9 +1165,12 @@
     "minWinners": "{e} Winners must be at least 1.",
     "row": {
       "ends": "{arrow} **Ends:** <t:{ts}:R> [<t:{ts}:f>]\n\n",
-      "host": "{arrow} **Host:** <@{id}>\n"
+      "host": "{arrow} **Host:** <@{id}>\n",
+      "hostLine": "{arrow} **Host:** <@{id}>\n"
     },
-    "formHint": "Click the button below to open the giveaway setup form."
+    "formHint": "Click the button below to open the giveaway setup form.",
+    "badArgs": "{e} Invalid arguments! Format: `{format}`",
+    "reactHint": "-# React with {e} to enter!"
   },
   "cfg": {
     "needVoice": "You need to be in a voice channel to use this command.",
@@ -1366,7 +1369,8 @@
     "unknownUser": "Unknown User",
     "grantedUntil": "**{e} Granted {user} No Prefix Access, Expiring**\n**<t:{ts}:F>**",
     "extended": "**{e} Extended {user}'s No Prefix Access, Expiring**\n**<t:{ts}:F>**",
-    "rowUser": "[{user}](https://discord.com/users/{id}) - {value}"
+    "rowUser": "[{user}](https://discord.com/users/{id}) - {value}",
+    "removedManyLine": "**{e} Successfully removed {count} user(s) from No Prefix Access.**"
   },
   "own": {
     "needUser": "**Provide me a valid user**",
@@ -1376,7 +1380,10 @@
     "examplesLabel": "**Examples:**\n",
     "durationLabel": "**Duration:**",
     "aliasesLabel": "**Aliases:**",
-    "argHint": "<> = Required Argument\nDo NOT type these when using commands!"
+    "argHint": "<> = Required Argument\nDo NOT type these when using commands!",
+    "noRanksBadges": "This user has no ranks or badges.",
+    "totalBadges": "-# Total Badges: {count} | Requested by {user}",
+    "requestedBy": "-# Requested by {user}"
   },
   "bl": {
     "added": "**{e} Added {user} to blacklist.**",
@@ -1550,5 +1557,20 @@
     "title": "**{e} {bot} Server List**",
     "none": "**{e} No servers found.**",
     "onlyUser": "**{e} Only {user} can use this button.**"
+  },
+  "brand": {
+    "onlyUser": "{e} Only {user} can use this!",
+    "fillOne": "{e} Please fill at least one field!",
+    "resetFail": "{e} Could not reset avatar/banner/bio: {message}\n",
+    "apiError": "{e} Error: {message}\n",
+    "canSet": "**You can set:**\n",
+    "openForm": "Click the button below to customize the bot",
+    "title": "Customize the bot",
+    "applyFail": "Failed to apply changes: {message}",
+    "resetFail2": "Failed to reset: {message}"
+  },
+  "mut": {
+    "notFound": "**{e} Could not find user with ID: `{id}`**",
+    "none": "**{e} No mutual servers found with {user}**"
   }
 }

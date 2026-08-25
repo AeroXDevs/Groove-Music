@@ -150,7 +150,7 @@ module.exports = {
             const separator2 = new SeparatorBuilder();
 
             const footerDisplay = new TextDisplayBuilder()
-                .setContent(`-# Page ${page + 1}/${pages} | Requested by ${message.author.displayName}`);
+                .setContent(client.t(message.guild.id, "own.pageFooter", { page: page + 1, total: pages, user: message.author.displayName }));
 
             return new ContainerBuilder()
                 .addTextDisplayComponents(headerDisplay)

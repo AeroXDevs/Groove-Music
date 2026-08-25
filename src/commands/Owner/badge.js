@@ -31,7 +31,7 @@ module.exports = {
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(helpContent));
             container.addSeparatorComponents(new SeparatorBuilder());
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName || user.username}`));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "own.requestedBy", { user: user.displayName || user.username })));
 
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -106,7 +106,7 @@ module.exports = {
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
             container.addSeparatorComponents(new SeparatorBuilder());
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName || user.username}`));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "own.requestedBy", { user: user.displayName || user.username })));
 
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
