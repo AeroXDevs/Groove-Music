@@ -488,19 +488,13 @@ module.exports = {
   async execute(message, args, client, prefix) {
     if (!args[0]) {
       const helpHeader = new TextDisplayBuilder()
-        .setContent(`\`\`\`<> = Required Argument\nDo NOT type these when using commands!\`\`\``);
+        .setContent(client.t(message.guild.id, "own.argHintBlock"));
 
       const separator = new SeparatorBuilder();
 
       const usageDisplay = new TextDisplayBuilder()
         .setContent(
-          `**Usage:**\n` +
-          `\`${prefix}nop add @user [duration]\` - Give global no-prefix access\n` +
-          `  **Duration:** \`24h/hrs\`, \`10d/day\`, \`2w/week\`, \`1m\` (month), \`1y/yr\`, \`p/perm/permanent\`\n` +
-          `\`${prefix}nop remove @user\` - Remove global no-prefix access\n` +
-          `\`${prefix}nop remove all\` - Remove all users\n` +
-          `\`${prefix}nop list\` - List users with global access\n` +
-          `\`${prefix}nop status @user\` - Check user's no-prefix status`
+client.t(message.guild.id, "nop.usage", { prefix })
         );
 
       const container = new ContainerBuilder()

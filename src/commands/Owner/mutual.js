@@ -59,11 +59,7 @@ module.exports = {
         if (!args[0]) {
             const helpDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**Usage:**\n` +
-                    `\`${prefix}mutual <user ID or @mention>\`\n\n` +
-                    `**Example:**\n` +
-                    `\`${prefix}mutual @user\`\n` +
-                    `\`${prefix}mutual 123456789012345678\``
+client.t(message.guild.id, "mut.usage", { prefix })
                 );
 
             const container = new ContainerBuilder()

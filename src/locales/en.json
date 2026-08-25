@@ -1412,7 +1412,8 @@
     "grantedUntil": "**{e} Granted {user} No Prefix Access, Expiring**\n**<t:{ts}:F>**",
     "extended": "**{e} Extended {user}'s No Prefix Access, Expiring**\n**<t:{ts}:F>**",
     "rowUser": "[{user}](https://discord.com/users/{id}) - {value}",
-    "removedManyLine": "**{e} Successfully removed {count} user(s) from No Prefix Access.**"
+    "removedManyLine": "**{e} Successfully removed {count} user(s) from No Prefix Access.**",
+    "usage": "**Usage:**\n`{prefix}nop add @user [duration]` - Give global no-prefix access\n  **Duration:** `24h/hrs`, `10d/day`, `2w/week`, `1m` (month), `1y/yr`, `p/perm/permanent`\n`{prefix}nop remove @user` - Remove global no-prefix access\n`{prefix}nop remove all` - Remove all users\n`{prefix}nop list` - List users with global access\n`{prefix}nop status @user` - Check user's no-prefix status"
   },
   "own": {
     "needUser": "**Provide me a valid user**",
@@ -1427,7 +1428,9 @@
     "totalBadges": "-# Total Badges: {count} | Requested by {user}",
     "requestedBy": "-# Requested by {user}",
     "restartIdle": "**{e} The bot is not playing anywhere.**\n**{i} Are you sure you want to restart?**",
-    "restartActive": "**{e} The bot is currently active in `{count}` servers.**\n**{i} Are you sure you want to restart?**"
+    "restartActive": "**{e} The bot is currently active in `{count}` servers.**\n**{i} Are you sure you want to restart?**",
+    "argHintBlock": "```<> = Required Argument\nDo NOT type these when using commands!```",
+    "argHintBlock2": "```[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!)```"
   },
   "bl": {
     "added": "**{e} Added {user} to blacklist.**",
@@ -1648,7 +1651,8 @@
   },
   "mut": {
     "notFound": "**{e} Could not find user with ID: `{id}`**",
-    "none": "**{e} No mutual servers found with {user}**"
+    "none": "**{e} No mutual servers found with {user}**",
+    "usage": "**Usage:**\n`{prefix}mutual <user ID or @mention>`\n\n**Example:**\n`{prefix}mutual @user`\n`{prefix}mutual 123456789012345678`"
   },
   "help": {
     "notFound": "**{e} Command `{command}` not found.**",

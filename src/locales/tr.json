@@ -1412,7 +1412,8 @@
     "grantedUntil": "**{e} {user} kullanıcısına prefixsiz kullanım verildi, bitiş**\n**<t:{ts}:F>**",
     "extended": "**{e} {user} kullanıcısının prefixsiz kullanımı uzatıldı, bitiş**\n**<t:{ts}:F>**",
     "rowUser": "[{user}](https://discord.com/users/{id}) - {value}",
-    "removedManyLine": "**{e} {count} kullanıcı prefixsiz kullanımdan çıkarıldı.**"
+    "removedManyLine": "**{e} {count} kullanıcı prefixsiz kullanımdan çıkarıldı.**",
+    "usage": "**Kullanımı:**\n`{prefix}nop add @kullanıcı [süre]` — prefixsiz kullanım izni verir\n  **Süre:** `24h/hrs`, `10d/day`, `2w/week`, `1m` (ay), `1y/yr`, `p/perm/permanent`\n`{prefix}nop remove @kullanıcı` — izni kaldırır\n`{prefix}nop remove all` — herkesin iznini kaldırır\n`{prefix}nop list` — izni olanları listeler\n`{prefix}nop status @kullanıcı` — bir kullanıcının durumunu gösterir"
   },
   "own": {
     "needUser": "**Geçerli bir kullanıcı belirt.**",
@@ -1427,7 +1428,9 @@
     "totalBadges": "-# Toplam rozet: {count} | İsteyen: {user}",
     "requestedBy": "-# İsteyen: {user}",
     "restartIdle": "**{e} Bot hiçbir yerde çalmıyor.**\n**{i} Yeniden başlatmak istediğine emin misin?**",
-    "restartActive": "**{e} Bot şu an `{count}` sunucuda aktif.**\n**{i} Yeniden başlatmak istediğine emin misin?**"
+    "restartActive": "**{e} Bot şu an `{count}` sunucuda aktif.**\n**{i} Yeniden başlatmak istediğine emin misin?**",
+    "argHintBlock": "```<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```",
+    "argHintBlock2": "```[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```"
   },
   "bl": {
     "added": "**{e} {user} kara listeye eklendi.**",
@@ -1648,7 +1651,8 @@
   },
   "mut": {
     "notFound": "**{e} `{id}` ID'li kullanıcı bulunamadı.**",
-    "none": "**{e} {user} ile ortak sunucu yok.**"
+    "none": "**{e} {user} ile ortak sunucu yok.**",
+    "usage": "**Kullanımı:**\n`{prefix}mutual <kullanıcı ID veya @etiket>`\n\n**Örnek:**\n`{prefix}mutual @kullanıcı`\n`{prefix}mutual 123456789012345678`"
   },
   "help": {
     "notFound": "**{e} `{command}` diye bir komut yok.**",

@@ -296,7 +296,7 @@ module.exports = {
 
     if (!args[0]) {
       const helpHeader = new TextDisplayBuilder()
-        .setContent(`\`\`\`[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!)\`\`\``);
+        .setContent(client.t(message.guild.id, "own.argHintBlock2"));
 
       const separator1 = new SeparatorBuilder();
 
