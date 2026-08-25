@@ -93,7 +93,7 @@ module.exports = {
     async slashExecute(interaction, client) {
         const isOwner = client.owners.includes(interaction.user.id);
         if (!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Manage Messages\` permissions.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.needPermShort", { e: emoji.warn, permission: "Manage Messages" }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -113,7 +113,7 @@ module.exports = {
     async execute(message, args, client) {
         const isOwner = client.owners.includes(message.author.id);
         if (!message.member.permissions.has(PermissionFlagsBits.ManageMessages) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Manage Messages\` permissions.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.needPermShort", { e: emoji.warn, permission: "Manage Messages" }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -157,7 +157,7 @@ module.exports = {
                     }
 
                     if (!targetUser) {
-                        const display = new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a valid user, tag, or ID.`);
+                        const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.needUser", { e: emoji.warn }));
                         return isSlash ? context.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 }) : channel.send({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
                     }
                     if (args[2] && !isNaN(args[2])) amount = parseInt(args[2]);
@@ -166,7 +166,7 @@ module.exports = {
                 case 'contain':
                     query = args[1];
                     if (!query) {
-                        const display = new TextDisplayBuilder().setContent(`${emoji.warn} Please provide text to search for.`);
+                        const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.needSearchText", { e: emoji.warn }));
                         return isSlash ? context.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 }) : channel.send({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
                     }
                     if (args[2] && !isNaN(args[2])) amount = parseInt(args[2]);
@@ -220,7 +220,7 @@ module.exports = {
                     if (fetched.size < 100) break;
                 }
 
-                const reactDisplay = new TextDisplayBuilder().setContent(`${emoji.check} Cleared reactions from **${reactCount}** messages.`);
+                const reactDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.purge.reactions", { e: emoji.check, count: reactCount }));
                 const reply = isSlash ?
                     await context.editReply({ components: [new ContainerBuilder().addTextDisplayComponents(reactDisplay)], flags: MessageFlags.IsComponentsV2 }) :
                     await channel.send({ components: [new ContainerBuilder().addTextDisplayComponents(reactDisplay)], flags: MessageFlags.IsComponentsV2 });
@@ -287,7 +287,7 @@ module.exports = {
                         }
                     } catch (err) {
                         if (err.status === 429 || err.code === 429) {
-                            const rateLimitDisplay = new TextDisplayBuilder().setContent(`${emoji.warn} API Limit hit! Stopped purging. Deleted **${totalDeleted}** messages.`);
+                            const rateLimitDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.purge.apiLimit", { e: emoji.warn, count: totalDeleted }));
                             const reply = isSlash ?
                                 await context.editReply({ components: [new ContainerBuilder().addTextDisplayComponents(rateLimitDisplay)], flags: MessageFlags.IsComponentsV2 }) :
                                 await channel.send({ components: [new ContainerBuilder().addTextDisplayComponents(rateLimitDisplay)], flags: MessageFlags.IsComponentsV2 });
@@ -310,8 +310,8 @@ module.exports = {
 
             if (totalDeleted === 0) {
                 const content = skippedOld
-                    ? `${emoji.warn} Cannot purge messages older than 14 days.`
-                    : `${emoji.warn} No messages found matching the criteria.`;
+                    ? client.t(context.guild.id, "mod.purge.tooOld", { e: emoji.warn })
+                    : client.t(context.guild.id, "mod.purge.noMatch", { e: emoji.warn });
                 const display = new TextDisplayBuilder().setContent(content);
                 const reply = isSlash ?
                     await context.editReply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 }) :
@@ -324,7 +324,7 @@ module.exports = {
                 return;
             }
 
-            let successMsg = `${emoji.check} Successfully purged **${totalDeleted}** messages.`;
+            let successMsg = client.t(context.guild.id, "mod.purge.done", { e: emoji.check, count: totalDeleted });
             if (skippedOld) successMsg += `\n-# ${emoji.arrowright} Cannot purge messages older than 14 days.`;
             const successDisplay = new TextDisplayBuilder().setContent(successMsg);
 
@@ -339,7 +339,7 @@ module.exports = {
 
         } catch (error) {
             console.error('Purge error:', error);
-            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.warn} Failed to purge messages: ${error.message}`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.failed.purge", { e: emoji.warn, message: error.message }));
             return isSlash ?
                 context.editReply({ components: [new ContainerBuilder().addTextDisplayComponents(errorDisplay)], flags: MessageFlags.IsComponentsV2 }) :
                 channel.send({ components: [new ContainerBuilder().addTextDisplayComponents(errorDisplay)], flags: MessageFlags.IsComponentsV2 });
@@ -349,23 +349,23 @@ module.exports = {
     async sendHelpMenu(message, client) {
         const pages = [
             {
-                title: 'Purge Command - Page 1/2',
+                title: client.t(message.guild.id, "mod.purge.helpTitle", { page: 1 }),
                 items: [
-                    { cmd: 'clear all', desc: 'Clears all messages in the channel.' },
-                    { cmd: 'clear bots', desc: 'Clears messages sent by bots.' },
-                    { cmd: 'clear contain', desc: 'Clears messages that contain a specific text string.' },
-                    { cmd: 'clear embed', desc: 'Clears messages with embeds.' },
-                    { cmd: 'clear emoji', desc: 'Clears messages that contain only emojis.' },
-                    { cmd: 'clear files', desc: 'Clears messages with attachments.' }
+                    { cmd: 'clear all', desc: client.t(message.guild.id, "mod.purge.all") },
+                    { cmd: 'clear bots', desc: client.t(message.guild.id, "mod.purge.bots") },
+                    { cmd: 'clear contain', desc: client.t(message.guild.id, "mod.purge.contain") },
+                    { cmd: 'clear embed', desc: client.t(message.guild.id, "mod.purge.embed") },
+                    { cmd: 'clear emoji', desc: client.t(message.guild.id, "mod.purge.emoji") },
+                    { cmd: 'clear files', desc: client.t(message.guild.id, "mod.purge.files") }
                 ]
             },
             {
-                title: 'Purge Command - Page 2/2',
+                title: client.t(message.guild.id, "mod.purge.helpTitle", { page: 2 }),
                 items: [
-                    { cmd: 'clear image', desc: 'Clears messages that contain images.' },
-                    { cmd: 'clear mentions', desc: 'Clears messages with mentions.' },
-                    { cmd: 'clear reactions', desc: 'Clears messages reactions without deleting.' },
-                    { cmd: 'clear user', desc: 'Clears messages from a specific user.' }
+                    { cmd: 'clear image', desc: client.t(message.guild.id, "mod.purge.image") },
+                    { cmd: 'clear mentions', desc: client.t(message.guild.id, "mod.purge.mentions") },
+                    { cmd: 'clear reactions', desc: client.t(message.guild.id, "mod.purge.reactions2") },
+                    { cmd: 'clear user', desc: client.t(message.guild.id, "mod.purge.user") }
                 ]
             }
         ];
@@ -395,22 +395,22 @@ module.exports = {
             return new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
                     .setCustomId('home')
-                    .setLabel('Home')
+                    .setLabel(client.t(message.guild.id, "buttons.home"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(pageIdx === 0),
                 new ButtonBuilder()
                     .setCustomId('prev')
-                    .setLabel('Previous')
+                    .setLabel(client.t(message.guild.id, "buttons.previous"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(pageIdx === 0),
                 new ButtonBuilder()
                     .setCustomId('next')
-                    .setLabel('Next')
+                    .setLabel(client.t(message.guild.id, "buttons.next"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(pageIdx === pages.length - 1),
                 new ButtonBuilder()
                     .setCustomId('close')
-                    .setLabel('Close')
+                    .setLabel(client.t(message.guild.id, "buttons.close"))
                     .setStyle(ButtonStyle.Danger)
             );
         };

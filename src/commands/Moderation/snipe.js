@@ -20,7 +20,7 @@ module.exports = {
         const snipe = client.snipes.get(message.channel.id);
 
         if (!snipe) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} There are no deleted messages to snipe in this channel.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.snipe.none", { e: emoji.warn }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 

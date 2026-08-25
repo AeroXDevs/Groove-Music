@@ -34,7 +34,7 @@ module.exports = {
     async slashExecute(interaction, client) {
         const isOwner = client.owners.includes(interaction.user.id);
         if (!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Manage Channels\` permissions to use this command.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.needPerm", { e: emoji.warn, permission: "Manage Channels" }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -50,7 +50,7 @@ module.exports = {
         const isOwner = client.owners.includes(userId);
 
         if (!message.member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Manage Channels\` permissions to use this command.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.needPerm", { e: emoji.warn, permission: "Manage Channels" }));
             return message.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -62,7 +62,7 @@ module.exports = {
             const channelId = args[0].replace(/[<#>]/g, '');
             channel = message.guild.channels.cache.get(channelId);
             if (!channel) {
-                const display = new TextDisplayBuilder().setContent(`${emoji.warn} Channel not found.`);
+                const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.channelNotFound", { e: emoji.warn }));
                 return message.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
                     flags: MessageFlags.IsComponentsV2
@@ -75,30 +75,30 @@ module.exports = {
 
     async confirmNuke(context, channel, client, isSlash) {
         if (channel.type !== ChannelType.GuildText) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} I can only nuke text channels.`);
+            const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.nuke.textOnly", { e: emoji.warn }));
             return isSlash ?
                 context.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 }) :
                 context.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         if (!context.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} I don't have \`Manage Channels\` permissions.`);
+            const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.botNeedPerm", { e: emoji.warn, permission: "Manage Channels" }));
             return isSlash ?
                 context.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 }) :
                 context.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         const confirmDisplay = new TextDisplayBuilder()
-            .setContent(`${emoji.warn} Are you sure you want to nuke ${channel}?`);
+            .setContent(client.t(context.guild.id, "mod.nuke.confirm", { e: emoji.warn, channel }));
 
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
                 .setCustomId('confirm_nuke')
-                .setLabel('Confirm')
+                .setLabel(client.t(context.guild.id, "buttons.confirm"))
                 .setStyle(ButtonStyle.Danger),
             new ButtonBuilder()
                 .setCustomId('cancel_nuke')
-                .setLabel('Cancel')
+                .setLabel(client.t(context.guild.id, "buttons.cancel"))
                 .setStyle(ButtonStyle.Secondary)
         );
 
@@ -122,7 +122,7 @@ module.exports = {
 
         collector.on('collect', async (confirmation) => {
             if (confirmation.customId === 'confirm_nuke') {
-                const loadingDisplay = new TextDisplayBuilder().setContent(`${emoji.load} Executing nuke...`);
+                const loadingDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.nuke.running", { e: emoji.load }));
                 const loadingContainer = new ContainerBuilder().addTextDisplayComponents(loadingDisplay);
 
                 await confirmation.update({
@@ -132,14 +132,14 @@ module.exports = {
 
                 return module.exports.performNuke(context, channel, client, isSlash, confirmation);
             } else {
-                const cancelDisplay = new TextDisplayBuilder().setContent(`${emoji.check} Nuke cancelled.`);
+                const cancelDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.nuke.cancelled", { e: emoji.check }));
                 await confirmation.update({ components: [new ContainerBuilder().addTextDisplayComponents(cancelDisplay)], flags: MessageFlags.IsComponentsV2 });
             }
         });
 
         collector.on('end', async (collected, reason) => {
             if (reason === 'time' && collected.size === 0) {
-                const timeoutDisplay = new TextDisplayBuilder().setContent(`${emoji.warn} Nuke confirmation timed out.`);
+                const timeoutDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.nuke.timedOut", { e: emoji.warn }));
                 const timeoutContainer = new ContainerBuilder().addTextDisplayComponents(timeoutDisplay);
 
                 if (isSlash) {

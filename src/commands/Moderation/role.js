@@ -144,7 +144,7 @@ module.exports = {
                 ));
 
                 const confirmButtons = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder().setCustomId('confirm_yes').setLabel('Yes').setStyle(ButtonStyle.Success),
+                    new ButtonBuilder().setCustomId('confirm_yes').setLabel(client.t(message.guild.id, "buttons.yes")).setStyle(ButtonStyle.Success),
                     new ButtonBuilder().setCustomId('confirm_no').setLabel('No').setStyle(ButtonStyle.Danger)
                 );
 
@@ -163,7 +163,7 @@ module.exports = {
 
                 collector.on('collect', async (int) => {
                     if (int.customId === 'confirm_no') {
-                        const cancelDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Operation cancelled.**`);
+                        const cancelDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.operationCancelled", { e: emoji.cross }));
                         const cancelContainer = new ContainerBuilder().addTextDisplayComponents(cancelDisplay);
                         return int.update({
                             components: [cancelContainer],
@@ -176,7 +176,7 @@ module.exports = {
                         try {
                             activeTasks.set(guild.id, true);
 
-                            const progressDisplay = new TextDisplayBuilder().setContent(`${emoji.load} Adding ${role} to **${members.size}** members...`);
+                            const progressDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.adding", { e: emoji.load, role, count: members.size }));
                             const progressContainer = new ContainerBuilder().addTextDisplayComponents(progressDisplay);
 
                             await int.update({
@@ -219,7 +219,7 @@ module.exports = {
                             }).catch(() => { });
                         } catch (err) {
                             activeTasks.delete(guild.id);
-                            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Error:** ${err.message}`);
+                            const errorDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.error", { e: emoji.cross, message: err.message }));
                             const errorContainer = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
                             return int.editReply({
                                 components: [errorContainer],
@@ -232,7 +232,7 @@ module.exports = {
 
                 collector.on('end', (collected, reason) => {
                     if (reason === 'time' && !activeTasks.has(guild.id)) {
-                        confirmMsg.edit({ content: `${emoji.cross} **Task timed out.**`, components: [] }).catch(() => { });
+                        confirmMsg.edit({ content: client.t(message.guild.id, "mod.taskTimedOut", { e: emoji.cross }), components: [] }).catch(() => { });
                     }
                 });
                 return;
@@ -274,15 +274,15 @@ module.exports = {
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
                         `> **Name :** \` ${name} \` \n` +
                         `> **Color :** \` ${color === '#000000' || !color ? 'Colourless' : color.toUpperCase()} \` \n` +
-                        `> **Hoisted :** \` ${hoist ? 'Yes' : 'No'} \` \n` +
-                        `> **Mentionable :** \` ${mentionable ? 'Yes' : 'No'} \` \n` +
+                        `> **Hoisted :** \` ${hoist ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
+                        `> **Mentionable :** \` ${mentionable ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
                         `> **Permissions :** ${selectedPerms.length > 0 ? selectedPerms.map(p => `\` ${p} \``).join(', ') : '\` Default \`'}`
                     ));
 
                     const buttons = new ActionRowBuilder().addComponents(
                         new ButtonBuilder().setCustomId('edit_form').setLabel('Edit Role Form').setStyle(ButtonStyle.Secondary),
                         new ButtonBuilder().setCustomId('confirm_create').setLabel('Finish & Create').setStyle(ButtonStyle.Primary),
-                        new ButtonBuilder().setCustomId('cancel_create').setLabel('Cancel').setStyle(ButtonStyle.Danger)
+                        new ButtonBuilder().setCustomId('cancel_create').setLabel(client.t(message.guild.id, "buttons.cancel")).setStyle(ButtonStyle.Danger)
                     );
 
                     const select = new ActionRowBuilder().addComponents(
@@ -334,7 +334,7 @@ module.exports = {
                             .setCustomId('role_form_hoist')
                             .setLabel('Hoisted? (Yes/No)')
                             .setStyle(TextInputStyle.Short)
-                            .setValue(hoist ? 'Yes' : 'No')
+                            .setValue(hoist ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setPlaceholder('e.g. Yes')
                             .setRequired(true);
 
@@ -342,7 +342,7 @@ module.exports = {
                             .setCustomId('role_form_mention')
                             .setLabel('Mentionable? (Yes/No)')
                             .setStyle(TextInputStyle.Short)
-                            .setValue(mentionable ? 'Yes' : 'No')
+                            .setValue(mentionable ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setPlaceholder('e.g. No')
                             .setRequired(true);
 
@@ -380,7 +380,7 @@ module.exports = {
 
                     if (i.customId === 'cancel_create') {
                         collector.stop();
-                        const cancelDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Role creation cancelled.**`);
+                        const cancelDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.creationCancelled", { e: emoji.cross }));
                         return i.update({
                             components: [new ContainerBuilder().addTextDisplayComponents(cancelDisplay)],
                             flags: MessageFlags.IsComponentsV2,
@@ -406,12 +406,12 @@ module.exports = {
                                 reason: `Role created by ${message.author.tag} via advance wizard`
                             });
 
-                            const successDisplay = new TextDisplayBuilder().setContent(`${emoji.check} Successfully created role ${newRole}!`);
+                            const successDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.created", { e: emoji.check, role: newRole }));
                             const summary = new TextDisplayBuilder().setContent(
                                 `> **Name :** ${newRole.name}\n` +
                                 `> **Permissions :** \` ${selectedPerms.length} assigned \` \n` +
-                                `> **Hoisted :** \` ${hoist ? 'Yes' : 'No'} \` \n` +
-                                `> **Mentionable :** \` ${mentionable ? 'Yes' : 'No'} \``
+                                `> **Hoisted :** \` ${hoist ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
+                                `> **Mentionable :** \` ${mentionable ? client.t(message.guild.id, "buttons.yes") : 'No'} \``
                             );
 
                             return i.update({
@@ -421,7 +421,7 @@ module.exports = {
                             }).catch(() => { });
                         } catch (err) {
                             return i.update({
-                                components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} **Error:** ${err.message}`))],
+                                components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.error", { e: emoji.cross, message: err.message })))],
                                 flags: MessageFlags.IsComponentsV2
                             }).catch(() => { });
                         }
@@ -430,7 +430,7 @@ module.exports = {
 
                 collector.on('end', (collected, reason) => {
                     if (reason === 'time') {
-                        msg.edit({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} **Session timed out.**`))], flags: MessageFlags.IsComponentsV2 }).catch(() => { });
+                        msg.edit({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.sessionTimedOut", { e: emoji.cross })))], flags: MessageFlags.IsComponentsV2 }).catch(() => { });
                     }
                 });
                 return;
@@ -477,15 +477,15 @@ module.exports = {
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
                         `> **Name :** \` ${name} \` \n` +
                         `> **Color :** \` ${color === '#000000' || !color ? 'Default / Colourless' : color.toUpperCase()} \` \n` +
-                        `> **Hoisted :** \` ${hoist ? 'Yes' : 'No'} \` \n` +
-                        `> **Mentionable :** \` ${mentionable ? 'Yes' : 'No'} \` \n` +
+                        `> **Hoisted :** \` ${hoist ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
+                        `> **Mentionable :** \` ${mentionable ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
                         `> **Permissions :** ${selectedPerms.length > 0 ? selectedPerms.map(p => `\` ${p} \``).join(', ') : '\` Default \`'}`
                     ));
 
                     const buttons = new ActionRowBuilder().addComponents(
                         new ButtonBuilder().setCustomId('edit_form').setLabel('Edit Details').setStyle(ButtonStyle.Secondary),
                         new ButtonBuilder().setCustomId('confirm_edit').setLabel('Save Changes').setStyle(ButtonStyle.Success),
-                        new ButtonBuilder().setCustomId('cancel_edit').setLabel('Cancel').setStyle(ButtonStyle.Danger)
+                        new ButtonBuilder().setCustomId('cancel_edit').setLabel(client.t(message.guild.id, "buttons.cancel")).setStyle(ButtonStyle.Danger)
                     );
 
                     const select = new ActionRowBuilder().addComponents(
@@ -537,14 +537,14 @@ module.exports = {
                             .setCustomId('role_form_hoist')
                             .setLabel('Hoisted? (Yes/No)')
                             .setStyle(TextInputStyle.Short)
-                            .setValue(hoist ? 'Yes' : 'No')
+                            .setValue(hoist ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setRequired(true);
 
                         const mentionInput = new TextInputBuilder()
                             .setCustomId('role_form_mention')
                             .setLabel('Mentionable? (Yes/No)')
                             .setStyle(TextInputStyle.Short)
-                            .setValue(mentionable ? 'Yes' : 'No')
+                            .setValue(mentionable ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setRequired(true);
 
                         modal.addComponents(
@@ -580,7 +580,7 @@ module.exports = {
 
                     if (i.customId === 'cancel_edit') {
                         collector.stop();
-                        const cancelDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Role edit cancelled.**`);
+                        const cancelDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.editCancelled", { e: emoji.cross }));
                         return i.update({
                             components: [new ContainerBuilder().addTextDisplayComponents(cancelDisplay)],
                             flags: MessageFlags.IsComponentsV2,
@@ -606,7 +606,7 @@ module.exports = {
                                 reason: `Role edited by ${message.author.tag} via wizard`
                             });
 
-                            const successDisplay = new TextDisplayBuilder().setContent(`${emoji.check} Successfully updated role ${targetRole}!`);
+                            const successDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.updated", { e: emoji.check, role: targetRole }));
                             return i.update({
                                 components: [new ContainerBuilder().addTextDisplayComponents(successDisplay)],
                                 flags: MessageFlags.IsComponentsV2,
@@ -614,7 +614,7 @@ module.exports = {
                             }).catch(() => { });
                         } catch (err) {
                             return i.update({
-                                components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} **Error:** ${err.message}`))],
+                                components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.error", { e: emoji.cross, message: err.message })))],
                                 flags: MessageFlags.IsComponentsV2
                             }).catch(() => { });
                         }
@@ -623,7 +623,7 @@ module.exports = {
 
                 collector.on('end', (collected, reason) => {
                     if (reason === 'time') {
-                        msg.edit({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} **Session timed out.**`))], flags: MessageFlags.IsComponentsV2 }).catch(() => { });
+                        msg.edit({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.sessionTimedOut", { e: emoji.cross })))], flags: MessageFlags.IsComponentsV2 }).catch(() => { });
                     }
                 });
                 return;
@@ -786,10 +786,10 @@ module.exports = {
 
         const getButtons = () => {
             return new ActionRowBuilder().addComponents(
-                new ButtonBuilder().setCustomId('home').setLabel('Home').setStyle(ButtonStyle.Secondary),
-                new ButtonBuilder().setCustomId('prev').setLabel('Previous').setStyle(ButtonStyle.Secondary),
-                new ButtonBuilder().setCustomId('next').setLabel('Next').setStyle(ButtonStyle.Secondary),
-                new ButtonBuilder().setCustomId('close').setLabel('Close').setStyle(ButtonStyle.Danger)
+                new ButtonBuilder().setCustomId('home').setLabel(client.t(message.guild.id, "buttons.home")).setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder().setCustomId('prev').setLabel(client.t(message.guild.id, "buttons.previous")).setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder().setCustomId('next').setLabel(client.t(message.guild.id, "buttons.next")).setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder().setCustomId('close').setLabel(client.t(message.guild.id, "buttons.close")).setStyle(ButtonStyle.Danger)
             );
         };
 

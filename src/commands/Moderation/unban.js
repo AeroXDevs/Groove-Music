@@ -39,7 +39,7 @@ module.exports = {
     async slashExecute(interaction, client) {
         const isOwner = client.owners.includes(interaction.user.id);
         if (!interaction.member.permissions.has(PermissionFlagsBits.BanMembers) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Ban Members\` permissions to use this command.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.needPerm", { e: emoji.warn, permission: "Ban Members" }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -57,7 +57,7 @@ module.exports = {
         const ban = bans.find(b => b.user.id === input || b.user.tag === input || b.user.username === input);
 
         if (!ban) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} User not found in the ban list.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.userNotBanned", { e: emoji.warn }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -70,22 +70,22 @@ module.exports = {
             const section = new SectionBuilder()
                 .addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(
-                        `${emoji.blank}${emoji.wickarrow} **Server:** \` ${interaction.guild.name} \` \n` +
-                        `${emoji.blank}${emoji.wickarrow} **Moderator:** [\`${interaction.user.displayName}\`](https://discord.com/users/${interaction.user.id})` +
-                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **Reason:** \`${reason}\`` : '')
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.server")}:** \` ${interaction.guild.name} \` \n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.moderator")}:** [\`${interaction.user.displayName}\`](https://discord.com/users/${interaction.user.id})` +
+                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.reason")}:** \`${reason}\`` : '')
                     )
                 )
                 .setThumbnailAccessory(new ThumbnailBuilder().setURL(ban.user.displayAvatarURL({ extension: 'png', size: 512 })));
 
             const dmContainer = new ContainerBuilder()
-                .addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} **You have been Unbanned !**`))
+                .addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.dm.unbanned", { e: emoji.check })))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addSectionComponents(section);
 
             const components = [dmContainer];
             if (invite) {
                 const row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder().setLabel(`Server Link`).setStyle(ButtonStyle.Link).setURL(invite.url)
+                    new ButtonBuilder().setLabel(client.t(interaction.guildId, "buttons.serverLink")).setStyle(ButtonStyle.Link).setURL(invite.url)
                 );
                 components.push(row);
             }
@@ -99,22 +99,22 @@ module.exports = {
             const section = new SectionBuilder()
                 .addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(
-                        `${emoji.blank}${emoji.wickarrow} **Target:** [\`${ban.user.username}\`](https://discord.com/users/${ban.user.id})\n` +
-                        `${emoji.blank}${emoji.wickarrow} **Moderator:** [\`${interaction.user.displayName}\`](https://discord.com/users/${interaction.user.id})` +
-                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **Reason:** \`${reason}\`` : '') +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.target")}:** [\`${ban.user.username}\`](https://discord.com/users/${ban.user.id})\n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.moderator")}:** [\`${interaction.user.displayName}\`](https://discord.com/users/${interaction.user.id})` +
+                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.reason")}:** \`${reason}\`` : '') +
                         `\n${emoji.blank}${emoji.wickarrow} **DMed:** ${dmSent ? emoji.check : emoji.cross}`
                     )
                 )
                 .setThumbnailAccessory(new ThumbnailBuilder().setURL(ban.user.displayAvatarURL({ extension: 'png', size: 512 })));
 
             const successContainer = new ContainerBuilder()
-                .addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} **Member Unbanned !**`))
+                .addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.unbanned", { e: emoji.check })))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addSectionComponents(section);
 
             return interaction.reply({ components: [successContainer], flags: MessageFlags.IsComponentsV2 });
         } catch (error) {
-            return interaction.reply({ content: `${emoji.warn} Failed to unban: ${error.message}`, components: [] });
+            return interaction.reply({ content: client.t(interaction.guildId, "mod.failed.unban", { e: emoji.warn, message: error.message }), components: [] });
         }
     },
 
@@ -123,13 +123,13 @@ module.exports = {
         const isOwner = client.owners.includes(userId);
 
         if (!message.member.permissions.has(PermissionFlagsBits.BanMembers) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Ban Members\` permissions to use this command.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.needPerm", { e: emoji.warn, permission: "Ban Members" }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         if (args.length === 0) {
             const header = new TextDisplayBuilder().setContent(`${emoji.info} **Unban Command !**\n-# Requested by ${message.author.username} • <t:${Math.floor(Date.now() / 1000)}:t>`);
-            const usage = new TextDisplayBuilder().setContent(`${emoji.blank}${emoji.wickarrow} **Usage:** \`unban <user/all> [reason]\`\n${emoji.blank}${emoji.wickarrow} **Example:** \`unban 123456789 Appeal\``);
+            const usage = new TextDisplayBuilder().setContent(`${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.usage")}:** \`unban <user/all> [reason]\`\n${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.example")}:** \`unban 123456789 Appeal\``);
             const container = new ContainerBuilder().addTextDisplayComponents(header).addSeparatorComponents(new SeparatorBuilder()).addTextDisplayComponents(usage);
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -145,7 +145,7 @@ module.exports = {
         const ban = bans.find(b => b.user.id === input || b.user.tag === input || b.user.username === input);
 
         if (!ban) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} User not found in the ban list.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.userNotBanned", { e: emoji.warn }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -155,22 +155,22 @@ module.exports = {
             const section = new SectionBuilder()
                 .addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(
-                        `${emoji.blank}${emoji.wickarrow} **Server:** \` ${message.guild.name} \` \n` +
-                        `${emoji.blank}${emoji.wickarrow} **Moderator:** [\`${message.author.displayName}\`](https://discord.com/users/${message.author.id})` +
-                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **Reason:** \`${reason}\`` : '')
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.server")}:** \` ${message.guild.name} \` \n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.moderator")}:** [\`${message.author.displayName}\`](https://discord.com/users/${message.author.id})` +
+                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.reason")}:** \`${reason}\`` : '')
                     )
                 )
                 .setThumbnailAccessory(new ThumbnailBuilder().setURL(ban.user.displayAvatarURL({ extension: 'png', size: 512 })));
 
             const dmContainer = new ContainerBuilder()
-                .addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} **You have been Unbanned !**`))
+                .addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.dm.unbanned", { e: emoji.check })))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addSectionComponents(section);
 
             const components = [dmContainer];
             if (invite) {
                 const row = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder().setLabel(`Server Link`).setStyle(ButtonStyle.Link).setURL(invite.url)
+                    new ButtonBuilder().setLabel(client.t(message.guild.id, "buttons.serverLink")).setStyle(ButtonStyle.Link).setURL(invite.url)
                 );
                 components.push(row);
             }
@@ -184,45 +184,45 @@ module.exports = {
             const section = new SectionBuilder()
                 .addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(
-                        `${emoji.blank}${emoji.wickarrow} **Target:** [\`${ban.user.username}\`](https://discord.com/users/${ban.user.id})\n` +
-                        `${emoji.blank}${emoji.wickarrow} **Moderator:** [\`${message.author.displayName}\`](https://discord.com/users/${message.author.id})` +
-                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **Reason:** \`${reason}\`` : '') +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.target")}:** [\`${ban.user.username}\`](https://discord.com/users/${ban.user.id})\n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.moderator")}:** [\`${message.author.displayName}\`](https://discord.com/users/${message.author.id})` +
+                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.reason")}:** \`${reason}\`` : '') +
                         `\n${emoji.blank}${emoji.wickarrow} **DMed:** ${dmSent ? emoji.check : emoji.cross}`
                     )
                 )
                 .setThumbnailAccessory(new ThumbnailBuilder().setURL(ban.user.displayAvatarURL({ extension: 'png', size: 512 })));
 
             const successContainer = new ContainerBuilder()
-                .addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} **Member Unbanned !**`))
+                .addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.unbanned", { e: emoji.check })))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addSectionComponents(section);
 
             return message.reply({ components: [successContainer], flags: MessageFlags.IsComponentsV2 });
         } catch (error) {
-            return message.reply({ content: `${emoji.warn} Failed to unban: ${error.message}`, components: [] });
+            return message.reply({ content: client.t(message.guild.id, "mod.failed.unban", { e: emoji.warn, message: error.message }), components: [] });
         }
     },
 
     async unbanAll(context, reason) {
         const bans = await context.guild.bans.fetch();
         if (bans.size === 0) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} There are no banned users in this server.`);
+            const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.noBans", { e: emoji.warn }));
             return context.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         const confirmId = `unban_all_confirm_${Date.now()}`;
         const cancelId = `unban_all_cancel_${Date.now()}`;
         const row = new ActionRowBuilder().addComponents(
-            new ButtonBuilder().setCustomId(confirmId).setLabel('Confirm').setStyle(ButtonStyle.Danger),
-            new ButtonBuilder().setCustomId(cancelId).setLabel('Cancel').setStyle(ButtonStyle.Secondary)
+            new ButtonBuilder().setCustomId(confirmId).setLabel(client.t(context.guild.id, "buttons.confirm")).setStyle(ButtonStyle.Danger),
+            new ButtonBuilder().setCustomId(cancelId).setLabel(client.t(context.guild.id, "buttons.cancel")).setStyle(ButtonStyle.Secondary)
         );
 
         const container = new ContainerBuilder()
-            .addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} **Unban All Confirmation !**`))
+            .addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.unbanAllConfirm", { e: emoji.warn })))
             .addSeparatorComponents(new SeparatorBuilder())
             .addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                `${emoji.blank}${emoji.wickarrow} **Total Bans:** \`${bans.size}\`\n` +
-                `${emoji.blank}${emoji.wickarrow} **Moderator:** [\`${(context.author || context.user).username}\`](https://discord.com/users/${(context.author || context.user).id})\n\n` +
+                `${emoji.blank}${emoji.wickarrow} **${client.t(context.guild.id, "mod.label.totalBans")}:** \`${bans.size}\`\n` +
+                `${emoji.blank}${emoji.wickarrow} **${client.t(context.guild.id, "mod.label.moderator")}:** [\`${(context.author || context.user).username}\`](https://discord.com/users/${(context.author || context.user).id})\n\n` +
                 `*Are you sure you want to unban everyone?*`
             ));
 
@@ -235,7 +235,7 @@ module.exports = {
         collector.on('collect', async (i) => {
             if (i.customId === cancelId) {
                 collector.stop();
-                return i.update({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} Unban all action cancelled.`))], flags: MessageFlags.IsComponentsV2 });
+                return i.update({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.unbanAllCancelled", { e: emoji.cross })))], flags: MessageFlags.IsComponentsV2 });
             }
 
             if (i.customId === confirmId) {
@@ -246,7 +246,7 @@ module.exports = {
                     await context.guild.members.unban(ban.user.id, reason).catch(() => null);
                     count++;
                 }
-                const success = new TextDisplayBuilder().setContent(`${emoji.check} Successfully unbanned **${count}** users.`);
+                const success = new TextDisplayBuilder().setContent(client.t(context.guild.id, "mod.unbannedCount", { e: emoji.check, count }));
                 return i.editReply({ components: [new ContainerBuilder().addTextDisplayComponents(success)], flags: MessageFlags.IsComponentsV2 });
             }
         });
