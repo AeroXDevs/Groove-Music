@@ -58,7 +58,44 @@
     "disabled": "kapatıldı",
     "alreadyPaused": "**{e} Zaten duraklatılmış durumda.**",
     "paused": "**{e} Duraklatıldı: [{title}]({uri})**",
-    "stopped": "**{e} Müzik durduruldu.**"
+    "stopped": "**{e} Müzik durduruldu.**",
+    "replaying": "**{e} Baştan alınıyor: [{title}]({uri})**",
+    "replayFailed": "**{e} Şarkı baştan alınamadı.**",
+    "alreadyResumed": "**{e} Müzik zaten çalıyor.**",
+    "resumed": "**{e} Devam ediyor: [{title}]({uri})**",
+    "nothingPlaying": "**{e} Şu an hiçbir şey çalmıyor.**",
+    "queueEmpty": "**{e} Sıra boş.**",
+    "mustBeInVoice": "**{e} Bir ses kanalında olman gerek.**",
+    "history": {
+      "empty": "**{e} Geçmiş henüz boş.**\n**{e} Çalması biten şarkılar burada görünecek.**",
+      "title": "**{e} Son Çalınan Şarkılar**",
+      "onlyUser": "**{e} Bu butonu yalnızca {user} kullanabilir.**"
+    },
+    "grab": {
+      "sent": "**{e} Şarkı bilgisini DM'den gönderdim.**",
+      "urlButton": "Şarkı Bağlantısı",
+      "duration": "**{e} Süre:** `{value}`",
+      "author": "**{e} Sanatçı:** `{value}`"
+    },
+    "cleanup": {
+      "none": "**{e} Kanaldan ayrılan kullanıcılara ait şarkı bulunamadı.**",
+      "done": "**{e} Temizlik tamamlandı.**"
+    },
+    "noConnectPerms": "**{e} Bu komut için yetkim yetersiz. `CONNECT` ve `SPEAK` yetkilerini vermen gerek.**",
+    "joinedAndBound": "**{e} <#{voice}> kanalına katıldım, <#{text}> kanalına bağlandım.**",
+    "joinError": "**{e} Kanala katılırken bir hata oluştu.**",
+    "alreadyInVoice": "**{e} Zaten senin ses kanalındayım.**",
+    "alreadyConnected": "**{e} Zaten <#{channel}> kanalına bağlıyım.**",
+    "moved": "**{e} <#{channel}> kanalına geçtim.**",
+    "moved247": "**{e} <#{channel}> kanalına geçtim.**\n**{i} 7/24 modu bu kanala güncellendi.**",
+    "moveError": "**{e} Kanal değiştirirken bir hata oluştu.**",
+    "notInVoiceChannel": "**{e} Zaten bir ses kanalında değilim.**",
+    "left": "**{e} Ses kanalından ayrıldım.**",
+    "left247": "**{e} Ses kanalından ayrıldım.**\n**{i} 7/24 modu açık, birazdan tekrar katılacağım.**",
+    "noPrevious": "**{e} Geçmişte önceki bir şarkı yok.**",
+    "previousNotFound": "**{e} Önceki şarkı bulunamadı.**",
+    "playingPrevious": "**{e} Önceki şarkı çalınıyor: [{title}]({uri})**",
+    "previousFailed": "**{e} Önceki şarkı çalınamadı.**"
   },
   "commands": {
     "skip": {
@@ -81,6 +118,39 @@
     },
     "stop": {
       "description": "Müziği durdurur."
+    },
+    "replay": {
+      "description": "Çalan şarkıyı baştan alır."
+    },
+    "resume": {
+      "description": "Duraklatılmış müziğe devam eder."
+    },
+    "history": {
+      "description": "Son çalınan şarkıları gösterir."
+    },
+    "grab": {
+      "description": "Çalan şarkının bilgisini DM olarak gönderir."
+    },
+    "leavecleanup": {
+      "description": "Kanaldan ayrılanların şarkılarını sıradan siler."
+    },
+    "move": {
+      "description": "Botu bulunduğun ses kanalına taşır."
+    },
+    "leave": {
+      "description": "Ses kanalından ayrılır."
+    },
+    "previous": {
+      "description": "Geçmişteki bir önceki şarkıyı çalar."
+    },
+    "join": {
+      "description": "Ses kanalına katılır."
     }
+  },
+  "buttons": {
+    "home": "Başa Dön",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "close": "Kapat"
   }
 }

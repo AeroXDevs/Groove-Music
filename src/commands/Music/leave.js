@@ -59,7 +59,7 @@ module.exports = {
 
     if (!player) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} I'm not in any voice channel!**`);
+        .setContent(client.t(message.guild.id, "music.notInVoiceChannel", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -81,8 +81,7 @@ module.exports = {
     if (twoFourSeven) {
       const successDisplay = new TextDisplayBuilder()
         .setContent(
-          `**${client.emoji.check} Left the voice channel.**\n` +
-          `**${client.emoji.info} 247 mode is active - I'll rejoin automatically.**`
+          client.t(message.guild.id, "music.left247", { e: client.emoji.check, i: client.emoji.info })
         );
 
       const container = new ContainerBuilder()
@@ -100,7 +99,7 @@ module.exports = {
     }
 
     const successDisplay = new TextDisplayBuilder()
-      .setContent(`**${client.emoji.check} Left the voice channel.**`);
+      .setContent(client.t(message.guild.id, "music.left", { e: client.emoji.check }));
 
     const container = new ContainerBuilder()
       .addTextDisplayComponents(successDisplay);

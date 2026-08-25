@@ -60,7 +60,7 @@ module.exports = {
 
     if (!song) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} Play a song first.**`);
+        .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -73,7 +73,7 @@ module.exports = {
 
     if (!player.shoukaku.paused) {
       const warnDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} The player is already resumed.**`);
+        .setContent(client.t(message.guild.id, "music.alreadyResumed", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(warnDisplay);
@@ -90,7 +90,7 @@ module.exports = {
     await updateNowPlayingButtons(client, player, false);
 
     const successDisplay = new TextDisplayBuilder()
-      .setContent(`**${client.emoji.check} Resumed [${song.title}](${song.uri})**`);
+      .setContent(client.t(message.guild.id, "music.resumed", { e: client.emoji.check, title: song.title, uri: song.uri }));
 
     const container = new ContainerBuilder()
       .addTextDisplayComponents(successDisplay);

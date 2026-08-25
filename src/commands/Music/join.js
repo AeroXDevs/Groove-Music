@@ -25,7 +25,7 @@ module.exports = {
   async slashExecute(interaction, client) {
     if (!interaction.member.voice.channel) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} You must be in a voice channel to use this command.**`);
+        .setContent(client.t(interaction.guildId, "core.notInVoice", { warn: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -41,7 +41,7 @@ module.exports = {
 
     if (player) {
       const warnDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} I'm already connected to <#${player.voiceId}>**`);
+        .setContent(client.t(interaction.guildId, "music.alreadyConnected", { e: client.emoji.warn, channel: player.voiceId }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(warnDisplay);
@@ -54,7 +54,7 @@ module.exports = {
 
     if (!interaction.guild.members.me.permissions.has(PermissionsBitField.resolve(["Speak", "Connect"]))) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} I don't have enough permissions to execute this command! Please give me permission \`CONNECT\` or \`SPEAK\`.**`);
+        .setContent(client.t(interaction.guildId, "music.noConnectPerms", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -75,7 +75,7 @@ module.exports = {
     });
 
     const successDisplay = new TextDisplayBuilder()
-      .setContent(`**${client.emoji.check} Joined <#${channel.id}> and bound to <#${interaction.channel.id}>**`);
+      .setContent(client.t(interaction.guildId, "music.joinedAndBound", { e: client.emoji.check, voice: channel.id, text: interaction.channel.id }));
 
     const container = new ContainerBuilder()
       .addTextDisplayComponents(successDisplay);
@@ -101,7 +101,7 @@ module.exports = {
 
     if (player) {
       const warnDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} I'm already connected to <#${player.voiceId}>**`);
+        .setContent(client.t(message.guild.id, "music.alreadyConnected", { e: client.emoji.warn, channel: player.voiceId }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(warnDisplay);
@@ -119,7 +119,7 @@ module.exports = {
     ) {
       const errorDisplay = new TextDisplayBuilder()
         .setContent(
-          `**${client.emoji.warn} I don't have enough permissions to execute this command! Please give me permission \`CONNECT\` or \`SPEAK\`.**`
+          client.t(message.guild.id, "music.noConnectPerms", { e: client.emoji.warn })
         );
 
       const container = new ContainerBuilder()
@@ -142,7 +142,7 @@ module.exports = {
 
     const successDisplay = new TextDisplayBuilder()
       .setContent(
-        `**${client.emoji.check} Joined <#${channel.id}> and bound to <#${message.channel.id}>**`
+        client.t(message.guild.id, "music.joinedAndBound", { e: client.emoji.check, voice: channel.id, text: message.channel.id })
       );
 
     const container = new ContainerBuilder()

@@ -58,7 +58,44 @@
     "disabled": "Disabled",
     "alreadyPaused": "**{e} The player is already paused.**",
     "paused": "**{e} Paused [{title}]({uri})**",
-    "stopped": "**{e} Stopped the music**"
+    "stopped": "**{e} Stopped the music**",
+    "replaying": "**{e} Replaying [{title}]({uri})**",
+    "replayFailed": "**{e} Failed to replay the track.**",
+    "alreadyResumed": "**{e} The player is already resumed.**",
+    "resumed": "**{e} Resumed [{title}]({uri})**",
+    "nothingPlaying": "**{e} Nothing is playing right now.**",
+    "queueEmpty": "**{e} The queue is empty.**",
+    "mustBeInVoice": "**{e} You need to be in a voice channel!**",
+    "history": {
+      "empty": "**{e} No songs in history yet.**\n**{e} Songs will appear here after they finish playing.**",
+      "title": "**{e} Recently Played Songs**",
+      "onlyUser": "**{e} Only {user} can use this button.**"
+    },
+    "grab": {
+      "sent": "**{e} Sent current song info to your DM.**",
+      "urlButton": "Song URL",
+      "duration": "**{e} Duration:** `{value}`",
+      "author": "**{e} Author:** `{value}`"
+    },
+    "cleanup": {
+      "none": "**{e} No songs found from users who left the voice channel.**",
+      "done": "**{e} Leave Cleanup Complete**"
+    },
+    "noConnectPerms": "**{e} I don't have enough permissions to execute this command! Please give me permission `CONNECT` or `SPEAK`.**",
+    "joinedAndBound": "**{e} Joined <#{voice}> and bound to <#{text}>**",
+    "joinError": "**{e} An error occurred while joining the channel.**",
+    "alreadyInVoice": "**{e} I am already in your voice channel.**",
+    "alreadyConnected": "**{e} I'm already connected to <#{channel}>**",
+    "moved": "**{e} Moved to <#{channel}>**",
+    "moved247": "**{e} Moved to <#{channel}>**\n**{i} Updated 247 mode to this channel**",
+    "moveError": "**{e} An error occurred while moving.**",
+    "notInVoiceChannel": "**{e} I'm not in any voice channel!**",
+    "left": "**{e} Left the voice channel.**",
+    "left247": "**{e} Left the voice channel.**\n**{i} 247 mode is active - I'll rejoin automatically.**",
+    "noPrevious": "**{e} No previous songs in history.**",
+    "previousNotFound": "**{e} Could not find the previous track.**",
+    "playingPrevious": "**{e} Playing previous song: [{title}]({uri})**",
+    "previousFailed": "**{e} Failed to play previous track.**"
   },
   "commands": {
     "skip": {
@@ -81,6 +118,39 @@
     },
     "stop": {
       "description": "Stops the music"
+    },
+    "replay": {
+      "description": "Replay the current song from the beginning"
+    },
+    "resume": {
+      "description": "Resume currently playing music"
+    },
+    "history": {
+      "description": "Show the history of recently played songs"
+    },
+    "grab": {
+      "description": "Grabs and sends you the song that is currently playing."
+    },
+    "leavecleanup": {
+      "description": "Removes absent user's songs from the queue"
+    },
+    "move": {
+      "description": "Move the bot to your current voice channel"
+    },
+    "leave": {
+      "description": "Leave voice channel"
+    },
+    "previous": {
+      "description": "Play the previous song from history"
+    },
+    "join": {
+      "description": "Join voice channel"
     }
+  },
+  "buttons": {
+    "home": "Home",
+    "previous": "Previous",
+    "next": "Next",
+    "close": "Close"
   }
 }

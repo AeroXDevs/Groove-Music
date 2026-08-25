@@ -66,7 +66,7 @@ module.exports = {
             ) {
                 const errorDisplay = new TextDisplayBuilder()
                     .setContent(
-                        `**${client.emoji.warn} I don't have enough permissions to execute this command! Please give me permission \`CONNECT\` or \`SPEAK\`.**`
+                        client.t(message.guild.id, "music.noConnectPerms", { e: client.emoji.warn })
                     );
 
                 const container = new ContainerBuilder()
@@ -91,7 +91,7 @@ module.exports = {
 
                 const successDisplay = new TextDisplayBuilder()
                     .setContent(
-                        `**${client.emoji.check} Joined <#${channel.id}> and bound to <#${message.channel.id}>**`
+                        client.t(message.guild.id, "music.joinedAndBound", { e: client.emoji.check, voice: channel.id, text: message.channel.id })
                     );
 
                 const container = new ContainerBuilder()
@@ -105,7 +105,7 @@ module.exports = {
                 console.error(error);
 
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.warn} An error occurred while joining the channel.**`);
+                    .setContent(client.t(message.guild.id, "music.joinError", { e: client.emoji.warn }));
 
                 const container = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -119,7 +119,7 @@ module.exports = {
 
         if (player.voiceId === channel.id) {
             const warnDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.warn} I am already in your voice channel.**`);
+                .setContent(client.t(message.guild.id, "music.alreadyInVoice", { e: client.emoji.warn }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(warnDisplay);
@@ -142,8 +142,8 @@ module.exports = {
             }
 
             const description = is247Updated
-                ? `**${client.emoji.check} Moved to <#${channel.id}>**\n**${client.emoji.info} Updated 247 mode to this channel**`
-                : `**${client.emoji.check} Moved to <#${channel.id}>**`;
+                ? client.t(message.guild.id, "music.moved247", { e: client.emoji.check, i: client.emoji.info, channel: channel.id })
+                : client.t(message.guild.id, "music.moved", { e: client.emoji.check, channel: channel.id });
 
             const successDisplay = new TextDisplayBuilder()
                 .setContent(description);
@@ -159,7 +159,7 @@ module.exports = {
             console.error(error);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.warn} An error occurred while moving.**`);
+                .setContent(client.t(message.guild.id, "music.moveError", { e: client.emoji.warn }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);

@@ -63,7 +63,7 @@ module.exports = {
 
     if (!player.queue.current) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} Play a song first.**`);
+        .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -78,7 +78,7 @@ module.exports = {
     const total = song.length;
 
     const successDisplay = new TextDisplayBuilder()
-      .setContent(`**${client.emoji.check} Sent current song info to your DM.**`);
+      .setContent(client.t(message.guild.id, "music.grab.sent", { e: client.emoji.check }));
 
     const container = new ContainerBuilder()
       .addTextDisplayComponents(successDisplay);
@@ -89,7 +89,7 @@ module.exports = {
     });
 
     const urlbutt = new ButtonBuilder()
-      .setLabel("Song URL")
+      .setLabel(client.t(message.guild.id, "music.grab.urlButton"))
       .setStyle(ButtonStyle.Link)
       .setURL(song.uri);
 
@@ -102,8 +102,8 @@ module.exports = {
 
     const songInfoSection = new SectionBuilder()
       .addTextDisplayComponents(
-        (textDisplay) => textDisplay.setContent(`**${client.emoji.info} Duration:** \`${convertTime(total)}\``),
-        (textDisplay) => textDisplay.setContent(`**${client.emoji.info} Author:** \`${cleanAuthorName(song.author)}\``)
+        (textDisplay) => textDisplay.setContent(client.t(message.guild.id, "music.grab.duration", { e: client.emoji.info, value: convertTime(total) })),
+        (textDisplay) => textDisplay.setContent(client.t(message.guild.id, "music.grab.author", { e: client.emoji.info, value: cleanAuthorName(song.author) }))
       );
 
     if (song.thumbnail) {
