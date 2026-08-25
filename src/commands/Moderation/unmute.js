@@ -137,7 +137,7 @@ module.exports = {
         }
 
         if (args.length === 0) {
-            const header = new TextDisplayBuilder().setContent(`${emoji.info} **Unmute Command !**\n-# Requested by ${message.author.username} • <t:${Math.floor(Date.now() / 1000)}:t>`);
+            const header = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.header.unmute", { e: emoji.info, user: message.author.username, ts: Math.floor(Date.now() / 1000) }));
             const usage = new TextDisplayBuilder().setContent(`${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.usage")}:** \`unmute <user> [reason]\`\n${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.example")}:** \`unmute @user Appeal accepted\``);
             const container = new ContainerBuilder().addTextDisplayComponents(header).addSeparatorComponents(new SeparatorBuilder()).addTextDisplayComponents(usage);
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });

@@ -141,152 +141,152 @@ module.exports = {
         try {
             switch (realSub) {
                 case 'kick': {
-                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
+                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedMoveMembers"));
                     if (!options[0]) return usage('kick', '<user>', 'Kicks a user from their voice channel.', 'k');
                     const target = await getTarget(options[0]);
-                    if (!target || !target.voice.channel) return error('User is not in a voice channel.');
+                    if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
                     const targetChannel = target.voice.channel;
                     await target.voice.disconnect();
                     return success(client.t(context.guild.id, "vc.kicked", { target, channel: targetChannel }));
                 }
                 case 'kickall': {
-                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedMoveMembers"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     const members = voiceChannel.members.filter(m => !m.user.bot);
                     for (const [, m] of members) await m.voice.disconnect();
                     return success(client.t(context.guild.id, "vc.kickedAll", { channel: voiceChannel }));
                 }
                 case 'mute': {
-                    if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error('You need `Mute Members` permission.');
+                    if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedMuteMembers"));
                     if (!options[0]) return usage('mute', '<user>', 'Mutes a user in their voice channel.', 'm');
                     const target = await getTarget(options[0]);
-                    if (!target || !target.voice.channel) return error('User is not in a voice channel.');
+                    if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
                     if (target.voice.mute) return error(`${target} is already muted.`);
                     await target.voice.setMute(true);
                     return success(client.t(context.guild.id, "vc.muted", { target }));
                 }
                 case 'unmute': {
-                    if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error('You need `Mute Members` permission.');
+                    if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedMuteMembers"));
                     if (!options[0]) return usage('unmute', '<user>', 'Unmutes a user in their voice channel.', 'um');
                     const target = await getTarget(options[0]);
-                    if (!target || !target.voice.channel) return error('User is not in a voice channel.');
+                    if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
                     if (!target.voice.mute) return error(`${target} is not muted.`);
                     await target.voice.setMute(false);
                     return success(client.t(context.guild.id, "vc.unmuted", { target }));
                 }
                 case 'muteall': {
-                    if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error('You need `Mute Members` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedMuteMembers"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     const members = voiceChannel.members.filter(m => !m.user.bot && !m.voice.mute);
-                    if (members.size === 0) return error('Everyone is already muted.');
+                    if (members.size === 0) return error(client.t(context.guild.id, "vc.vEveryoneIsAlreadyMuted"));
                     for (const [, m] of members) await m.voice.setMute(true);
                     return success(client.t(context.guild.id, "vc.mutedAll"));
                 }
                 case 'unmuteall': {
-                    if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error('You need `Mute Members` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedMuteMembers"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     const members = voiceChannel.members.filter(m => !m.user.bot && m.voice.mute);
-                    if (members.size === 0) return error('No one is muted.');
+                    if (members.size === 0) return error(client.t(context.guild.id, "vc.vNoOneIsMuted"));
                     for (const [, m] of members) await m.voice.setMute(false);
                     return success(client.t(context.guild.id, "vc.unmutedAll"));
                 }
                 case 'deafen': {
-                    if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error('You need `Deafen Members` permission.');
+                    if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedDeafenMembers"));
                     if (!options[0]) return usage('deafen', '<user>', 'Deafens a user in their voice channel.', 'd');
                     const target = await getTarget(options[0]);
-                    if (!target || !target.voice.channel) return error('User is not in a voice channel.');
+                    if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
                     if (target.voice.deaf) return error(`${target} is already deafened.`);
                     const targetChannel = target.voice.channel;
                     await target.voice.setDeaf(true);
                     return success(client.t(context.guild.id, "vc.deafened", { target, channel: targetChannel }));
                 }
                 case 'undeafen': {
-                    if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error('You need `Deafen Members` permission.');
+                    if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedDeafenMembers"));
                     if (!options[0]) return usage('undeafen', '<user>', 'Undeafens a user in their voice channel.', 'ud');
                     const target = await getTarget(options[0]);
-                    if (!target || !target.voice.channel) return error('User is not in a voice channel.');
+                    if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
                     if (!target.voice.deaf) return error(`${target} is not deafened.`);
                     const targetChannel = target.voice.channel;
                     await target.voice.setDeaf(false);
                     return success(client.t(context.guild.id, "vc.undeafened", { target, channel: targetChannel }));
                 }
                 case 'deafenall': {
-                    if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error('You need `Deafen Members` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedDeafenMembers"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     const members = voiceChannel.members.filter(m => !m.user.bot && !m.voice.deaf);
-                    if (members.size === 0) return error('Everyone is already deafened.');
+                    if (members.size === 0) return error(client.t(context.guild.id, "vc.vEveryoneIsAlreadyDeafened"));
                     for (const [, m] of members) await m.voice.setDeaf(true);
                     return success(client.t(context.guild.id, "vc.deafenedAll", { channel: voiceChannel }));
                 }
                 case 'undeafenall': {
-                    if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error('You need `Deafen Members` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedDeafenMembers"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     const members = voiceChannel.members.filter(m => !m.user.bot && m.voice.deaf);
-                    if (members.size === 0) return error('No one is deafened.');
+                    if (members.size === 0) return error(client.t(context.guild.id, "vc.vNoOneIsDeafened"));
                     for (const [, m] of members) await m.voice.setDeaf(false);
                     return success(client.t(context.guild.id, "vc.undeafenedAll", { channel: voiceChannel }));
                 }
                 case 'move': {
-                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
+                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedMoveMembers"));
                     if (!options[0]) return usage('move', '<user> <channel>', 'Moves a specific user to another voice channel.', 'mv');
-                    if (!options[1]) return usage('move', '<user> <channel>', 'Provide the destination channel.', 'mv');
+                    if (!options[1]) return usage('move', '<user> <channel>', client.t(context.guild.id, "vc.vProvideTheDestinationChannel"), 'mv');
                     const target = await getTarget(options[0]);
                     const dest = await getChannel(options[1]);
-                    if (!target || !target.voice.channel) return error('User is not in a voice channel.');
-                    if (!dest || dest.type !== ChannelType.GuildVoice) return error('Provide a valid voice channel.');
+                    if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
+                    if (!dest || dest.type !== ChannelType.GuildVoice) return error(client.t(context.guild.id, "vc.vProvideAValidVoice"));
                     await target.voice.setChannel(dest);
                     return success(client.t(context.guild.id, "vc.moved", { target, dest }));
                 }
                 case 'moveall': {
-                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedMoveMembers"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     if (!options[0]) return usage('moveall', '<channel>', 'Moves users from the current channel to another.', 'mva, mvall');
                     const dest = await getChannel(options[0]);
-                    if (!dest || dest.type !== ChannelType.GuildVoice) return error('Provide a valid voice channel.');
+                    if (!dest || dest.type !== ChannelType.GuildVoice) return error(client.t(context.guild.id, "vc.vProvideAValidVoice"));
                     const members = voiceChannel.members.filter(m => !m.user.bot);
                     for (const [, m] of members) await m.voice.setChannel(dest);
                     return success(client.t(context.guild.id, "vc.movedAll", { channel: voiceChannel, dest }));
                 }
                 case 'pull': {
-                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedMoveMembers"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     if (!options[0]) return usage('pull', '<user>', 'Pulls a user into your current voice channel.', 'p');
                     const target = await getTarget(options[0]);
-                    if (!target || !target.voice.channel) return error('User is not in a voice channel.');
+                    if (!target || !target.voice.channel) return error(client.t(context.guild.id, "vc.vUserIsNotIn"));
                     await target.voice.setChannel(voiceChannel);
                     return success(client.t(context.guild.id, "vc.pulled", { target, channel: voiceChannel }));
                 }
                 case 'pullall': {
-                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
-                    if (!options[0]) return usage('pullall', '<channel>', 'Pulls all users from a specified voice channel into yours.', 'pa, pall');
+                    if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedMoveMembers"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
+                    if (!options[0]) return usage('pullall', '<channel>', client.t(context.guild.id, "vc.vPullsAllUsersFrom"), 'pa, pall');
                     const source = await getChannel(options[0]);
-                    if (!source || source.type !== ChannelType.GuildVoice) return error('Provide a valid voice channel.');
+                    if (!source || source.type !== ChannelType.GuildVoice) return error(client.t(context.guild.id, "vc.vProvideAValidVoice"));
                     const members = source.members.filter(m => !m.user.bot);
                     for (const [, m] of members) await m.voice.setChannel(voiceChannel);
                     return success(client.t(context.guild.id, "vc.pulledAll", { source, channel: voiceChannel }));
                 }
                 case 'lock': {
-                    if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error('You need `Manage Channels` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedManageChannels"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     await voiceChannel.permissionOverwrites.edit(guild.roles.everyone, { Connect: false });
                     return success(client.t(context.guild.id, "vc.locked", { channel: voiceChannel }));
                 }
                 case 'unlock': {
-                    if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error('You need `Manage Channels` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedManageChannels"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     await voiceChannel.permissionOverwrites.edit(guild.roles.everyone, { Connect: true });
                     return success(client.t(context.guild.id, "vc.unlocked", { channel: voiceChannel }));
                 }
                 case 'private': {
-                    if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error('You need `Manage Channels` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedManageChannels"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     await voiceChannel.permissionOverwrites.edit(guild.roles.everyone, { ViewChannel: false });
                     return success(client.t(context.guild.id, "vc.private", { channel: voiceChannel }));
                 }
                 case 'unprivate': {
-                    if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error('You need `Manage Channels` permission.');
-                    if (!voiceChannel) return error('You must be in a voice channel.');
+                    if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error(client.t(context.guild.id, "vc.vYouNeedManageChannels"));
+                    if (!voiceChannel) return error(client.t(context.guild.id, "vc.vYouMustBeIn"));
                     await voiceChannel.permissionOverwrites.edit(guild.roles.everyone, { ViewChannel: true });
                     return success(client.t(context.guild.id, "vc.public", { channel: voiceChannel }));
                 }

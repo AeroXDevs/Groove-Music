@@ -94,11 +94,11 @@ module.exports = {
             case 'add': {
                 const target = await getMember(subArgs[0]);
                 const role = getRole(subArgs.slice(1).join(' '));
-                if (!target || !role) return usage('add', '<user> <role>', 'Adds a role to a user.', 'None');
+                if (!target || !role) return usage('add', '<user> <role>', client.t(message.guild.id, "role.rAddsARoleTo"), 'None');
 
-                if (target.roles.cache.has(role.id)) return error('User already has this role.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (target.roles.cache.has(role.id)) return error(client.t(message.guild.id, "role.rUserAlreadyHasThis"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 await target.roles.add(role).catch(err => {
                     return error(`Failed to add role: ${err.message}`);
@@ -108,11 +108,11 @@ module.exports = {
             case 'remove': {
                 const target = await getMember(subArgs[0]);
                 const role = getRole(subArgs.slice(1).join(' '));
-                if (!target || !role) return usage('remove', '<user> <role>', 'Removes a role from a user.', 'None');
+                if (!target || !role) return usage('remove', '<user> <role>', client.t(message.guild.id, "role.rRemovesARoleFrom"), 'None');
 
-                if (!target.roles.cache.has(role.id)) return error('User does not have this role.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (!target.roles.cache.has(role.id)) return error(client.t(message.guild.id, "role.rUserDoesNotHave"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 await target.roles.remove(role).catch(err => {
                     return error(`Failed to remove role: ${err.message}`);
@@ -124,9 +124,9 @@ module.exports = {
             case 'humans': {
                 const role = getRole(subArgs.join(' '));
                 if (!role) return usage(subcommand, '<role>', `Adds a role to all ${subcommand === 'all' ? 'members' : subcommand}.`, 'None');
-                if (activeTasks.has(guild.id)) return error('An active role task is already running in this server.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (activeTasks.has(guild.id)) return error(client.t(message.guild.id, "role.rAnActiveRoleTask"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 const members = (await guild.members.fetch()).filter(m => {
                     if (subcommand === 'bots') return m.user.bot;
@@ -134,7 +134,7 @@ module.exports = {
                     return true;
                 }).filter(m => !m.roles.cache.has(role.id));
 
-                if (members.size === 0) return error('No members found to add this role to.');
+                if (members.size === 0) return error(client.t(message.guild.id, "role.rNoMembersFoundTo"));
 
                 const estimatedTime = members.size * 1;
                 const confirmContainer = new ContainerBuilder();
@@ -236,7 +236,7 @@ module.exports = {
                 return;
             }
             case 'taskcancel': {
-                if (!activeTasks.has(guild.id)) return error('No active role task found.');
+                if (!activeTasks.has(guild.id)) return error(client.t(message.guild.id, "role.rNoActiveRoleTask"));
                 activeTasks.delete(guild.id);
                 return success(client.t(message.guild.id, "mod.role.cancelled"));
             }
@@ -271,15 +271,15 @@ module.exports = {
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} Role Creation Wizard`));
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
                         `> **Name :** \` ${name} \` \n` +
-                        `> **Color :** \` ${color === '#000000' || !color ? 'Colourless' : color.toUpperCase()} \` \n` +
+                        `> **Color :** \` ${color === '#000000' || !color ? client.t(message.guild.id, "role.rColourless") : color.toUpperCase()} \` \n` +
                         `> **Hoisted :** \` ${hoist ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
                         `> **Mentionable :** \` ${mentionable ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
                         `> **Permissions :** ${selectedPerms.length > 0 ? selectedPerms.map(p => `\` ${p} \``).join(', ') : '\` Default \`'}`
                     ));
 
                     const buttons = new ActionRowBuilder().addComponents(
-                        new ButtonBuilder().setCustomId('edit_form').setLabel('Edit Role Form').setStyle(ButtonStyle.Secondary),
-                        new ButtonBuilder().setCustomId('confirm_create').setLabel('Finish & Create').setStyle(ButtonStyle.Primary),
+                        new ButtonBuilder().setCustomId('edit_form').setLabel(client.t(message.guild.id, "role.rEditRoleForm")).setStyle(ButtonStyle.Secondary),
+                        new ButtonBuilder().setCustomId('confirm_create').setLabel(client.t(message.guild.id, "role.rFinishCreate")).setStyle(ButtonStyle.Primary),
                         new ButtonBuilder().setCustomId('cancel_create').setLabel(client.t(message.guild.id, "buttons.cancel")).setStyle(ButtonStyle.Danger)
                     );
 
@@ -311,18 +311,18 @@ module.exports = {
                     if (i.customId === 'edit_form') {
                         const modal = new ModalBuilder()
                             .setCustomId('role_modal')
-                            .setTitle('Role Details Form');
+                            .setTitle(client.t(message.guild.id, "role.rRoleDetailsForm"));
 
                         const nameInput = new TextInputBuilder()
                             .setCustomId('role_form_name')
-                            .setLabel('Role Name')
+                            .setLabel(client.t(message.guild.id, "role.rRoleName"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(name)
                             .setRequired(true);
 
                         const colorInput = new TextInputBuilder()
                             .setCustomId('role_form_color')
-                            .setLabel('Hex Color (Empty for Colourless)')
+                            .setLabel(client.t(message.guild.id, "role.rHexColorEmptyFor"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(color === '#000000' ? '' : color)
                             .setPlaceholder('e.g. #ff0000')
@@ -435,10 +435,10 @@ module.exports = {
             }
             case 'edit': {
                 const targetRole = getRole(subArgs.join(' '));
-                if (!targetRole) return usage('edit', '<role>', 'Edits an existing role using a wizard.', 'None');
+                if (!targetRole) return usage('edit', '<role>', client.t(message.guild.id, "role.rEditsAnExistingRole"), 'None');
 
-                if (targetRole.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (targetRole.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (targetRole.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (targetRole.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 let name = targetRole.name;
                 let color = targetRole.hexColor === '#000000' ? '#000000' : targetRole.hexColor;
@@ -474,22 +474,22 @@ module.exports = {
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} Role Edit Wizard: ${targetRole.name}`));
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
                         `> **Name :** \` ${name} \` \n` +
-                        `> **Color :** \` ${color === '#000000' || !color ? 'Default / Colourless' : color.toUpperCase()} \` \n` +
+                        `> **Color :** \` ${color === '#000000' || !color ? client.t(message.guild.id, "role.rDefaultColourless") : color.toUpperCase()} \` \n` +
                         `> **Hoisted :** \` ${hoist ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
                         `> **Mentionable :** \` ${mentionable ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
                         `> **Permissions :** ${selectedPerms.length > 0 ? selectedPerms.map(p => `\` ${p} \``).join(', ') : '\` Default \`'}`
                     ));
 
                     const buttons = new ActionRowBuilder().addComponents(
-                        new ButtonBuilder().setCustomId('edit_form').setLabel('Edit Details').setStyle(ButtonStyle.Secondary),
-                        new ButtonBuilder().setCustomId('confirm_edit').setLabel('Save Changes').setStyle(ButtonStyle.Success),
+                        new ButtonBuilder().setCustomId('edit_form').setLabel(client.t(message.guild.id, "role.rEditDetails")).setStyle(ButtonStyle.Secondary),
+                        new ButtonBuilder().setCustomId('confirm_edit').setLabel(client.t(message.guild.id, "role.rSaveChanges")).setStyle(ButtonStyle.Success),
                         new ButtonBuilder().setCustomId('cancel_edit').setLabel(client.t(message.guild.id, "buttons.cancel")).setStyle(ButtonStyle.Danger)
                     );
 
                     const select = new ActionRowBuilder().addComponents(
                         new StringSelectMenuBuilder()
                             .setCustomId('select_perms')
-                            .setPlaceholder('Modify Permissions...')
+                            .setPlaceholder(client.t(message.guild.id, "role.rModifyPermissions"))
                             .setMinValues(0)
                             .setMaxValues(permsList.length)
                             .addOptions(permsList.map(p => ({
@@ -514,18 +514,18 @@ module.exports = {
                     if (i.customId === 'edit_form') {
                         const modal = new ModalBuilder()
                             .setCustomId('role_edit_modal')
-                            .setTitle('Edit Role Details');
+                            .setTitle(client.t(message.guild.id, "role.rEditRoleDetails"));
 
                         const nameInput = new TextInputBuilder()
                             .setCustomId('role_form_name')
-                            .setLabel('Role Name')
+                            .setLabel(client.t(message.guild.id, "role.rRoleName"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(name)
                             .setRequired(true);
 
                         const colorInput = new TextInputBuilder()
                             .setCustomId('role_form_color')
-                            .setLabel('Hex Color (Empty for Colourless)')
+                            .setLabel(client.t(message.guild.id, "role.rHexColorEmptyFor"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(color === '#000000' ? '' : color)
                             .setPlaceholder('e.g. #ff0000')
@@ -628,9 +628,9 @@ module.exports = {
             }
             case 'delete': {
                 const role = getRole(subArgs.join(' '));
-                if (!role) return usage('delete', '<role>', 'Deletes a role.', 'None');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (!role) return usage('delete', '<role>', client.t(message.guild.id, "role.rDeletesARole"), 'None');
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 await role.delete(`Role deleted by ${message.author.tag}`).catch(err => {
                     return error(`Failed to delete role: ${err.message}`);
@@ -640,9 +640,9 @@ module.exports = {
             case 'rename': {
                 const role = getRole(subArgs[0]);
                 const newName = subArgs.slice(1).join(' ');
-                if (!role || !newName) return usage('rename', '<role> <new name>', 'Renames a role.', 'None');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (!role || !newName) return usage('rename', '<role> <new name>', client.t(message.guild.id, "role.rRenamesARole"), 'None');
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 await role.setName(newName).catch(err => {
                     return error(`Failed to rename role: ${err.message}`);
@@ -651,22 +651,22 @@ module.exports = {
             }
             case 'colour':
             case 'color': {
-                if (subArgs.length < 2) return usage('colour', '<role> <hex>', 'Changes the color of a role.', 'color');
+                if (subArgs.length < 2) return usage('colour', '<role> <hex>', client.t(message.guild.id, "role.rChangesTheColorOf"), 'color');
 
                 const colorArg = subArgs[subArgs.length - 1];
                 const roleArg = subArgs.slice(0, subArgs.length - 1).join(' ');
                 const role = getRole(roleArg);
 
-                if (!role) return error('Please provide a valid role.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (!role) return error(client.t(message.guild.id, "role.rPleaseProvideAValid"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 let finalColor = colorArg;
                 if (!finalColor.startsWith('#')) finalColor = `#${finalColor}`;
 
                 const hexRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
                 if (!hexRegex.test(finalColor)) {
-                    return error('Please provide a valid **Hex Color Code** (e.g., `#ff0000` or `ff0000`).');
+                    return error(client.t(message.guild.id, "role.rPleaseProvideAValid"));
                 }
 
                 await role.edit({ colors: finalColor }).catch(err => {
@@ -675,17 +675,17 @@ module.exports = {
                 return success(`Successfully changed the color of ${role} to \`${finalColor}\`.`);
             }
             case 'icon': {
-                if (guild.premiumTier < 2) return error('This server needs to be **Level 2** or higher to use role icons.');
+                if (guild.premiumTier < 2) return error(client.t(message.guild.id, "role.rThisServerNeedsTo"));
 
-                if (subArgs.length < 2) return usage('icon', '<role> <emoji/url>', 'Sets an icon for a role.', 'None');
+                if (subArgs.length < 2) return usage('icon', '<role> <emoji/url>', client.t(message.guild.id, "role.rSetsAnIconFor"), 'None');
 
                 const icon = subArgs[subArgs.length - 1];
                 const roleArg = subArgs.slice(0, -1).join(' ');
                 const role = getRole(roleArg);
 
-                if (!role) return error('Please provide a valid role.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (!role) return error(client.t(message.guild.id, "role.rPleaseProvideAValid"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 let finalIcon = icon;
                 const customEmoji = icon.match(/<?(?:a)?:(?:\w+):(\d+)>?/);
@@ -705,15 +705,15 @@ module.exports = {
                 const target = await getMember(subArgs[0]);
                 const durationStr = subArgs[1];
                 const role = getRole(subArgs.slice(2).join(' '));
-                if (!target || !durationStr || !role) return usage('temp', '<user> <duration> <role>', 'Gives a temporary role to a user.', 'None');
+                if (!target || !durationStr || !role) return usage('temp', '<user> <duration> <role>', client.t(message.guild.id, "role.rGivesATemporaryRole"), 'None');
 
                 const ms = parseDuration(durationStr);
                 if (!ms) return error('Invalid duration format! Use \`s, m, h, d\`.');
-                if (ms > 86400000) return error('I can only set temporary roles for up to 24 hours (non-persistent).');
+                if (ms > 86400000) return error(client.t(message.guild.id, "role.rICanOnlySet"));
 
-                if (target.roles.cache.has(role.id)) return error('User already has this role.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (target.roles.cache.has(role.id)) return error(client.t(message.guild.id, "role.rUserAlreadyHasThis"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 await target.roles.add(role).catch(err => {
                     return error(`Failed to add role: ${err.message}`);
@@ -740,23 +740,23 @@ module.exports = {
         const pages = [
             {
                 items: [
-                    { cmd: 'role add', desc: 'Adds a role to a user.' },
-                    { cmd: 'role all', desc: 'Give the role to all members.' },
-                    { cmd: 'role bots', desc: 'Give the role to all bot members.' },
-                    { cmd: 'role colour', desc: 'Changes the color of a role.' },
-                    { cmd: 'role create', desc: 'Creates a new role.' },
-                    { cmd: 'role humans', desc: 'Give the role to all human members.' }
+                    { cmd: 'role add', desc: client.t(message.guild.id, "role.rAddsARoleTo") },
+                    { cmd: 'role all', desc: client.t(message.guild.id, "role.rGiveTheRoleTo") },
+                    { cmd: 'role bots', desc: client.t(message.guild.id, "role.rGiveTheRoleTo") },
+                    { cmd: 'role colour', desc: client.t(message.guild.id, "role.rChangesTheColorOf") },
+                    { cmd: 'role create', desc: client.t(message.guild.id, "role.rCreatesANewRole") },
+                    { cmd: 'role humans', desc: client.t(message.guild.id, "role.rGiveTheRoleTo") }
                 ]
             },
             {
                 items: [
-                    { cmd: 'role delete', desc: 'Deletes a role.' },
-                    { cmd: 'role icon', desc: 'Sets an icon for a role.' },
-                    { cmd: 'role remove', desc: 'Removes a role from a user.' },
-                    { cmd: 'role rename', desc: 'Renames a role.' },
-                    { cmd: 'role edit', desc: 'Edit an existing role using a wizard.' },
-                    { cmd: 'role taskcancel', desc: 'Cancel the active role task for this server.' },
-                    { cmd: 'role temp', desc: 'Gives a temporary role to a user.' }
+                    { cmd: 'role delete', desc: client.t(message.guild.id, "role.rDeletesARole") },
+                    { cmd: 'role icon', desc: client.t(message.guild.id, "role.rSetsAnIconFor") },
+                    { cmd: 'role remove', desc: client.t(message.guild.id, "role.rRemovesARoleFrom") },
+                    { cmd: 'role rename', desc: client.t(message.guild.id, "role.rRenamesARole") },
+                    { cmd: 'role edit', desc: client.t(message.guild.id, "role.rEditAnExistingRole") },
+                    { cmd: 'role taskcancel', desc: client.t(message.guild.id, "role.rCancelTheActiveRole") },
+                    { cmd: 'role temp', desc: client.t(message.guild.id, "role.rGivesATemporaryRole") }
                 ]
             }
         ];

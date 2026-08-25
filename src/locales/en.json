@@ -760,7 +760,14 @@
       "usage": "Usage",
       "example": "Example"
     },
-    "unbanAllBody": "*Are you sure you want to unban everyone?*"
+    "unbanAllBody": "*Are you sure you want to unban everyone?*",
+    "header": {
+      "ban": "{e} **Ban Command !**\n-# Requested by {user} • <t:{ts}:t>",
+      "kick": "{e} **Kick Command !**\n-# Requested by {user} • <t:{ts}:t>",
+      "mute": "{e} **Mute Command !**\n-# Requested by {user} • <t:{ts}:t>",
+      "unban": "{e} **Unban Command !**\n-# Requested by {user} • <t:{ts}:t>",
+      "unmute": "{e} **Unmute Command !**\n-# Requested by {user} • <t:{ts}:t>"
+    }
   },
   "ui": {
     "section": {
@@ -1034,7 +1041,20 @@
     "argHint": "``` <> : Required | [] : Optional```",
     "title": "### {e} Voice Command [{count}]",
     "requestedBy": "-# Requested by {user}",
-    "footer": "\n-# Page {page}/{total} | Requested by {user}"
+    "footer": "\n-# Page {page}/{total} | Requested by {user}",
+    "vEveryoneIsAlreadyDeafened": "Everyone is already deafened.",
+    "vEveryoneIsAlreadyMuted": "Everyone is already muted.",
+    "vNoOneIsDeafened": "No one is deafened.",
+    "vNoOneIsMuted": "No one is muted.",
+    "vProvideAValidVoice": "Provide a valid voice channel.",
+    "vProvideTheDestinationChannel": "Provide the destination channel.",
+    "vUserIsNotIn": "User is not in a voice channel.",
+    "vYouMustBeIn": "You must be in a voice channel.",
+    "vYouNeedDeafenMembers": "You need `Deafen Members` permission.",
+    "vYouNeedManageChannels": "You need `Manage Channels` permission.",
+    "vYouNeedMoveMembers": "You need `Move Members` permission.",
+    "vYouNeedMuteMembers": "You need `Mute Members` permission.",
+    "vPullsAllUsersFrom": "Pulls all users from a specified voice channel into yours."
   },
   "desc": {
     "configureEnableAutomodModules": "Configure and enable AutoMod modules.",
@@ -1173,5 +1193,41 @@
     "loadFailed": "**{e} Failed to load {count} songs**\n",
     "durationRow": "Duration: {value}",
     "label": "**Favorites:**"
+  },
+  "role": {
+    "rAddsARoleTo": "Adds a role to a user.",
+    "rRemovesARoleFrom": "Removes a role from a user.",
+    "rCreatesANewRole": "Creates a new role.",
+    "rDeletesARole": "Deletes a role.",
+    "rRenamesARole": "Renames a role.",
+    "rChangesTheColorOf": "Changes the color of a role.",
+    "rSetsAnIconFor": "Sets an icon for a role.",
+    "rGivesATemporaryRole": "Gives a temporary role to a user.",
+    "rEditAnExistingRole": "Edit an existing role using a wizard.",
+    "rEditsAnExistingRole": "Edits an existing role using a wizard.",
+    "rCancelTheActiveRole": "Cancel the active role task for this server.",
+    "rGiveTheRoleTo": "Give the role to all bot members.",
+    "rUserAlreadyHasThis": "User already has this role.",
+    "rUserDoesNotHave": "User does not have this role.",
+    "rYouCannotManageThis": "You cannot manage this role.",
+    "rICannotManageThis": "I cannot manage this role.",
+    "rPleaseProvideAValid": "Please provide a valid **Hex Color Code** (e.g., `#ff0000` or `ff0000`).",
+    "rNoActiveRoleTask": "No active role task found.",
+    "rAnActiveRoleTask": "An active role task is already running in this server.",
+    "rNoMembersFoundTo": "No members found to add this role to.",
+    "rInvalidDurationFormatUse": "Invalid duration format! Use `s, m, h, d`.",
+    "rICanOnlySet": "I can only set temporary roles for up to 24 hours (non-persistent).",
+    "rThisServerNeedsTo": "This server needs to be **Level 2** or higher to use role icons.",
+    "rEditDetails": "Edit Details",
+    "rEditRoleDetails": "Edit Role Details",
+    "rEditRoleForm": "Edit Role Form",
+    "rRoleDetailsForm": "Role Details Form",
+    "rFinishCreate": "Finish & Create",
+    "rSaveChanges": "Save Changes",
+    "rRoleName": "Role Name",
+    "rModifyPermissions": "Modify Permissions...",
+    "rHexColorEmptyFor": "Hex Color (Empty for Colourless)",
+    "rDefaultColourless": "Default / Colourless",
+    "rColourless": "Colourless"
   }
 }

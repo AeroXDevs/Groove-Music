@@ -760,7 +760,14 @@
       "usage": "Kullanımı",
       "example": "Örnek"
     },
-    "unbanAllBody": "*Herkesin yasağını kaldırmak istediğine emin misin?*"
+    "unbanAllBody": "*Herkesin yasağını kaldırmak istediğine emin misin?*",
+    "header": {
+      "ban": "{e} **Yasaklama**\n-# İsteyen: {user} • <t:{ts}:t>",
+      "kick": "{e} **Atma**\n-# İsteyen: {user} • <t:{ts}:t>",
+      "mute": "{e} **Susturma**\n-# İsteyen: {user} • <t:{ts}:t>",
+      "unban": "{e} **Yasak kaldırma**\n-# İsteyen: {user} • <t:{ts}:t>",
+      "unmute": "{e} **Susturma kaldırma**\n-# İsteyen: {user} • <t:{ts}:t>"
+    }
   },
   "ui": {
     "section": {
@@ -1034,7 +1041,20 @@
     "argHint": "``` <> : zorunlu | [] : isteğe bağlı```",
     "title": "### {e} Ses Komutları [{count}]",
     "requestedBy": "-# İsteyen: {user}",
-    "footer": "\n-# Sayfa {page}/{total} | İsteyen: {user}"
+    "footer": "\n-# Sayfa {page}/{total} | İsteyen: {user}",
+    "vEveryoneIsAlreadyDeafened": "Zaten herkesin sesi kapalı.",
+    "vEveryoneIsAlreadyMuted": "Zaten herkes susturulmuş.",
+    "vNoOneIsDeafened": "Sesi kapalı kimse yok.",
+    "vNoOneIsMuted": "Susturulmuş kimse yok.",
+    "vProvideAValidVoice": "Geçerli bir ses kanalı belirt.",
+    "vProvideTheDestinationChannel": "Hedef kanalı belirt.",
+    "vUserIsNotIn": "Kullanıcı bir ses kanalında değil.",
+    "vYouMustBeIn": "Bir ses kanalında olman gerek.",
+    "vYouNeedDeafenMembers": "`Deafen Members` yetkisine sahip olman gerek.",
+    "vYouNeedManageChannels": "`Manage Channels` yetkisine sahip olman gerek.",
+    "vYouNeedMoveMembers": "`Move Members` yetkisine sahip olman gerek.",
+    "vYouNeedMuteMembers": "`Mute Members` yetkisine sahip olman gerek.",
+    "vPullsAllUsersFrom": "Belirtilen kanaldaki herkesi kendi kanalına çeker."
   },
   "desc": {
     "configureEnableAutomodModules": "AutoMod modüllerini ayarlar ve açar.",
@@ -1173,5 +1193,41 @@
     "loadFailed": "**{e} {count} şarkı yüklenemedi.**\n",
     "durationRow": "Süre: {value}",
     "label": "**Favoriler:**"
+  },
+  "role": {
+    "rAddsARoleTo": "Bir kullanıcıya rol verir.",
+    "rRemovesARoleFrom": "Bir kullanıcıdan rol alır.",
+    "rCreatesANewRole": "Yeni bir rol oluşturur.",
+    "rDeletesARole": "Bir rolü siler.",
+    "rRenamesARole": "Bir rolün adını değiştirir.",
+    "rChangesTheColorOf": "Bir rolün rengini değiştirir.",
+    "rSetsAnIconFor": "Bir role ikon ayarlar.",
+    "rGivesATemporaryRole": "Bir kullanıcıya geçici rol verir.",
+    "rEditAnExistingRole": "Var olan bir rolü sihirbazla düzenler.",
+    "rEditsAnExistingRole": "Var olan bir rolü sihirbazla düzenler.",
+    "rCancelTheActiveRole": "Sunucudaki aktif rol işlemini iptal eder.",
+    "rGiveTheRoleTo": "Rolü bütün botlara verir.",
+    "rUserAlreadyHasThis": "Kullanıcıda bu rol zaten var.",
+    "rUserDoesNotHave": "Kullanıcıda bu rol yok.",
+    "rYouCannotManageThis": "Bu rolü yönetemezsin.",
+    "rICannotManageThis": "Bu rolü yönetemem.",
+    "rPleaseProvideAValid": "Geçerli bir **hex renk kodu** gir (örn. `#ff0000` veya `ff0000`).",
+    "rNoActiveRoleTask": "Aktif bir rol işlemi yok.",
+    "rAnActiveRoleTask": "Bu sunucuda zaten bir rol işlemi çalışıyor.",
+    "rNoMembersFoundTo": "Bu rolün verileceği üye bulunamadı.",
+    "rInvalidDurationFormatUse": "Süre biçimi geçersiz. `s, m, h, d` kullan.",
+    "rICanOnlySet": "Geçici rolleri en fazla 24 saat için ayarlayabiliyorum (kalıcı değil).",
+    "rThisServerNeedsTo": "Rol ikonu için sunucunun **2. seviye** veya üstü olması gerek.",
+    "rEditDetails": "Ayrıntıları düzenle",
+    "rEditRoleDetails": "Rol ayrıntılarını düzenle",
+    "rEditRoleForm": "Rol düzenleme formu",
+    "rRoleDetailsForm": "Rol bilgileri formu",
+    "rFinishCreate": "Bitir ve oluştur",
+    "rSaveChanges": "Değişiklikleri kaydet",
+    "rRoleName": "Rol adı",
+    "rModifyPermissions": "Yetkileri düzenle...",
+    "rHexColorEmptyFor": "Hex renk (boş bırakılırsa renksiz)",
+    "rDefaultColourless": "Varsayılan / renksiz",
+    "rColourless": "Renksiz"
   }
 }
