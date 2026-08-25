@@ -87,7 +87,7 @@ module.exports = {
 
     if (!args[0]) {
       const usageDisplay = new TextDisplayBuilder()
-        .setContent(` \`\`\`[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!\`\`\``);
+        .setContent(client.t(message.guild.id, "cfg.argHintBlock"));
 
       const separator1 = new SeparatorBuilder();
 

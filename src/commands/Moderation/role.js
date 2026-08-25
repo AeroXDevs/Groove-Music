@@ -332,7 +332,7 @@ module.exports = {
 
                         const hoistInput = new TextInputBuilder()
                             .setCustomId('role_form_hoist')
-                            .setLabel('Hoisted? (Yes/No)')
+                            .setLabel(client.t(message.guild.id, "mod.role.hoisted"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(hoist ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setPlaceholder('e.g. Yes')
@@ -340,7 +340,7 @@ module.exports = {
 
                         const mentionInput = new TextInputBuilder()
                             .setCustomId('role_form_mention')
-                            .setLabel('Mentionable? (Yes/No)')
+                            .setLabel(client.t(message.guild.id, "mod.role.mentionable"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(mentionable ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setPlaceholder('e.g. No')
@@ -535,14 +535,14 @@ module.exports = {
 
                         const hoistInput = new TextInputBuilder()
                             .setCustomId('role_form_hoist')
-                            .setLabel('Hoisted? (Yes/No)')
+                            .setLabel(client.t(message.guild.id, "mod.role.hoisted"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(hoist ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setRequired(true);
 
                         const mentionInput = new TextInputBuilder()
                             .setCustomId('role_form_mention')
-                            .setLabel('Mentionable? (Yes/No)')
+                            .setLabel(client.t(message.guild.id, "mod.role.mentionable"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(mentionable ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setRequired(true);

@@ -413,7 +413,7 @@ module.exports = {
             let content = `**AutoMod Modules !**\n`;
 
             if (isAnyEnabled) {
-                content = `**AutoMod is currently Enabled !**\n` +
+                content = client.t(context.guild.id, "am.enabled") +
                     `╰ *Use \`automod config\` to view full details or edit below.*\n\n`;
             }
 

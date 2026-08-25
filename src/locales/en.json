@@ -510,7 +510,10 @@
       "adding": "{e} Adding {role} to **{count}** members...",
       "continue": "**Do you want to continue ?**",
       "cancelled": "Successfully cancelled the active role task.",
-      "permPlaceholder": "Select Permissions..."
+      "permPlaceholder": "Select Permissions...",
+      "massDone": "{role}'s mass assignment has been successfully completed in **{time}**",
+      "hoisted": "Hoisted? (Yes/No)",
+      "mentionable": "Mentionable? (Yes/No)"
     },
     "failed": {
       "ban": "{e} Failed to ban: {message}",
@@ -547,7 +550,8 @@
       "totalBans": "Total Bans",
       "usage": "Usage",
       "example": "Example"
-    }
+    },
+    "unbanAllBody": "*Are you sure you want to unban everyone?*"
   },
   "ui": {
     "section": {
@@ -726,7 +730,8 @@
     "row": {
       "ends": "{arrow} **Ends:** <t:{ts}:R> [<t:{ts}:f>]\n\n",
       "host": "{arrow} **Host:** <@{id}>\n"
-    }
+    },
+    "formHint": "Click the button below to open the giveaway setup form."
   },
   "cfg": {
     "needVoice": "You need to be in a voice channel to use this command.",
@@ -734,7 +739,8 @@
     "needVoiceShort": "You need to be in a voice channel to use this.",
     "err247Update": "An error occurred while updating 24/7 mode. Please try again.",
     "err247Load": "An error occurred while loading 247 settings. Please try again later.",
-    "argHint": "[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands."
+    "argHint": "[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands.",
+    "argHintBlock": " ```[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!```"
   },
   "info": {
     "noBio": "No bio is set.",
@@ -746,13 +752,18 @@
     "bioCleared": "{e} Your bio has been cleared.",
     "uptime": "{blank}{arrow} I have been online for **{uptime}**",
     "totals": "{blank}{arrow} Total of **__{users}__** users in **__{servers}__** servers",
-    "aliases": "{arrow} **Aliases :** {value}\n"
+    "aliases": "{arrow} **Aliases :** {value}\n",
+    "bio": {
+      "setLine": "**\n╰ Sets your profile bio.\n\n",
+      "clearLine": "**\n╰ Clears your profile bio."
+    }
   },
   "am": {
     "reset": "AutoMod configuration has been reset.",
     "channelHint": "*Mention a channel to set it, or use the button below to disable.*",
     "idHint": "*You can also send the ID directly.*",
-    "enabled": "**AutoMod is currently Enabled !**\n"
+    "enabled": "**AutoMod is currently Enabled !**\n",
+    "title": "AutoMod configuration and management"
   },
   "evt": {
     "noPrefixRevoked": "You no longer have permission to use commands without a prefix.\n",

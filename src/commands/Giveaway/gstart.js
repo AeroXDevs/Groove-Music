@@ -171,7 +171,7 @@ module.exports = {
 
         const header = new TextDisplayBuilder().setContent(`### Giveaway System\n-# Requested by ${message.author.username} • <t:${Math.floor(Date.now() / 1000)}:t>`);
         const separator = new SeparatorBuilder();
-        const info = new TextDisplayBuilder().setContent(`Click the button below to open the giveaway setup form.`);
+        const info = new TextDisplayBuilder().setContent(client.t(message.guild.id, "gw.formHint"));
 
         const container = new ContainerBuilder()
             .addTextDisplayComponents(header)

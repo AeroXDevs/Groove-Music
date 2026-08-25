@@ -510,7 +510,10 @@
       "adding": "{e} {role} rolü **{count}** üyeye veriliyor...",
       "continue": "**Devam etmek istiyor musun?**",
       "cancelled": "Aktif rol işlemi iptal edildi.",
-      "permPlaceholder": "Yetkileri seç..."
+      "permPlaceholder": "Yetkileri seç...",
+      "massDone": "{role} rolünün toplu ataması **{time}** içinde tamamlandı.",
+      "hoisted": "Ayrı gösterilsin mi? (Evet/Hayır)",
+      "mentionable": "Etiketlenebilir mi? (Evet/Hayır)"
     },
     "failed": {
       "ban": "{e} Yasaklama başarısız: {message}",
@@ -547,7 +550,8 @@
       "totalBans": "Toplam yasak",
       "usage": "Kullanımı",
       "example": "Örnek"
-    }
+    },
+    "unbanAllBody": "*Herkesin yasağını kaldırmak istediğine emin misin?*"
   },
   "ui": {
     "section": {
@@ -726,7 +730,8 @@
     "row": {
       "ends": "{arrow} **Bitiş:** <t:{ts}:R> [<t:{ts}:f>]\n\n",
       "host": "{arrow} **Düzenleyen:** <@{id}>\n"
-    }
+    },
+    "formHint": "Çekiliş formunu açmak için aşağıdaki butona bas."
   },
   "cfg": {
     "needVoice": "Bu komutu kullanmak için bir ses kanalında olman gerek.",
@@ -734,7 +739,8 @@
     "needVoiceShort": "Bunu kullanmak için bir ses kanalında olman gerek.",
     "err247Update": "7/24 modu güncellenirken bir hata oluştu, tekrar dene.",
     "err247Load": "7/24 ayarları yüklenemedi, birazdan tekrar dene.",
-    "argHint": "[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma."
+    "argHint": "[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma.",
+    "argHintBlock": " ```[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```"
   },
   "info": {
     "noBio": "Henüz bir biyografi yok.",
@@ -746,13 +752,18 @@
     "bioCleared": "{e} Biyografin temizlendi.",
     "uptime": "{blank}{arrow} **{uptime}** süredir çevrimiçiyim",
     "totals": "{blank}{arrow} **__{servers}__** sunucuda toplam **__{users}__** kullanıcı",
-    "aliases": "{arrow} **Takma adlar :** {value}\n"
+    "aliases": "{arrow} **Takma adlar :** {value}\n",
+    "bio": {
+      "setLine": "**\n╰ Profil biyografini ayarlar.\n\n",
+      "clearLine": "**\n╰ Profil biyografini temizler."
+    }
   },
   "am": {
     "reset": "AutoMod ayarları sıfırlandı.",
     "channelHint": "*Ayarlamak için bir kanal etiketle, kapatmak için aşağıdaki butonu kullan.*",
     "idHint": "*ID'yi doğrudan da yazabilirsin.*",
-    "enabled": "**AutoMod şu an açık.**\n"
+    "enabled": "**AutoMod şu an açık.**\n",
+    "title": "AutoMod ayarları ve yönetimi"
   },
   "evt": {
     "noPrefixRevoked": "Artık prefixsiz komut kullanma iznin yok.\n",

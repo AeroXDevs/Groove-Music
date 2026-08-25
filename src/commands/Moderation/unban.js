@@ -223,7 +223,7 @@ module.exports = {
             .addTextDisplayComponents(new TextDisplayBuilder().setContent(
                 `${emoji.blank}${emoji.wickarrow} **${client.t(context.guild.id, "mod.label.totalBans")}:** \`${bans.size}\`\n` +
                 `${emoji.blank}${emoji.wickarrow} **${client.t(context.guild.id, "mod.label.moderator")}:** [\`${(context.author || context.user).username}\`](https://discord.com/users/${(context.author || context.user).id})\n\n` +
-                `*Are you sure you want to unban everyone?*`
+                client.t(context.guild.id, "mod.unbanAllBody")
             ));
 
         const response = await context.reply({ components: [container, row], flags: MessageFlags.IsComponentsV2, withResponse: true });
