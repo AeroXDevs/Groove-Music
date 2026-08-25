@@ -47,5 +47,40 @@
     "body": "{bot} has been successfully added to `{guild}`\n\nYou can report any issues at my **[Support Server]({support})** following the needed steps. You can also reach out to my **[Developers]({support})** if you want to know more about me.",
     "languagePrompt": "**Before you start:** pick the language you want me to speak on this server. You can change it any time with the `language` command.",
     "supportButton": "Support Server"
+  },
+  "music": {
+    "playFirst": "**{e} Play a song first.**",
+    "skipped": "**{e} Skipped [{title}]({uri})**",
+    "queueCleared": "**{e} Removed all songs from the queue.**",
+    "shuffled": "**{e} Shuffled the queue.**",
+    "autoplayToggled": "**{e} Autoplay has been `{state}`.**",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "alreadyPaused": "**{e} The player is already paused.**",
+    "paused": "**{e} Paused [{title}]({uri})**",
+    "stopped": "**{e} Stopped the music**"
+  },
+  "commands": {
+    "skip": {
+      "description": "Skip the current song instantly."
+    },
+    "clearqueue": {
+      "description": "Removes all songs in the music queue."
+    },
+    "shuffle": {
+      "description": "Shuffle queue"
+    },
+    "autoplay": {
+      "description": "Toggle autoplay mode"
+    },
+    "forceskip": {
+      "description": "To force skip the current playing song."
+    },
+    "pause": {
+      "description": "Pause the currently playing music"
+    },
+    "stop": {
+      "description": "Stops the music"
+    }
   }
 }

@@ -4,6 +4,9 @@ const path = require("path");
 const LOCALES_PATH = path.join(__dirname, "..", "locales");
 const DEFAULT_LANG = "en";
 
+// Maps our locale codes to Discord's, where they differ.
+const DISCORD_LOCALE = { tr: "tr" };
+
 const locales = new Map();
 
 for (const file of readdirSync(LOCALES_PATH).filter((f) => f.endsWith(".json"))) {
@@ -51,7 +54,22 @@ const t = (lang, key, vars = {}) => {
   return interpolate(str, vars);
 };
 
+/**
+ * Build a Discord `*_localizations` map for a key: every non-default language
+ * that actually defines the key. Discord falls back to the base string itself
+ * for any locale left out, so absent keys are safe to omit.
+ */
+const localizations = (key) => {
+  const map = {};
+  for (const [lang, tree] of locales) {
+    if (lang === DEFAULT_LANG) continue;
+    const str = resolve(tree, key);
+    if (str !== undefined) map[DISCORD_LOCALE[lang] || lang] = str;
+  }
+  return Object.keys(map).length ? map : undefined;
+};
+
 const isSupported = (lang) => locales.has(lang);
 const languages = () => [...locales.keys()];
 
-module.exports = { t, isSupported, languages, DEFAULT_LANG };
+module.exports = { t, isSupported, languages, localizations, DEFAULT_LANG };

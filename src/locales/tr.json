@@ -47,5 +47,40 @@
     "body": "{bot}, `{guild}` sunucusuna başarıyla eklendi.\n\nTakıldığın bir yer olursa **[Destek Sunucusu]({support})** üzerinden bildirebilirsin. Beni daha yakından tanımak istersen **[Geliştiricilere]({support})** de ulaşabilirsin.",
     "languagePrompt": "**Başlamadan önce:** bu sunucuda hangi dili konuşmamı istediğini seç. Dilediğin zaman `language` komutuyla değiştirebilirsin.",
     "supportButton": "Destek Sunucusu"
+  },
+  "music": {
+    "playFirst": "**{e} Önce bir şarkı çal.**",
+    "skipped": "**{e} Geçildi: [{title}]({uri})**",
+    "queueCleared": "**{e} Sıradaki bütün şarkılar silindi.**",
+    "shuffled": "**{e} Sıra karıştırıldı.**",
+    "autoplayToggled": "**{e} Otomatik çalma `{state}`.**",
+    "enabled": "açıldı",
+    "disabled": "kapatıldı",
+    "alreadyPaused": "**{e} Zaten duraklatılmış durumda.**",
+    "paused": "**{e} Duraklatıldı: [{title}]({uri})**",
+    "stopped": "**{e} Müzik durduruldu.**"
+  },
+  "commands": {
+    "skip": {
+      "description": "Çalan şarkıyı anında geçer."
+    },
+    "clearqueue": {
+      "description": "Sıradaki bütün şarkıları siler."
+    },
+    "shuffle": {
+      "description": "Sırayı karıştırır."
+    },
+    "autoplay": {
+      "description": "Otomatik çalmayı açar veya kapatır."
+    },
+    "forceskip": {
+      "description": "Çalan şarkıyı zorla geçer."
+    },
+    "pause": {
+      "description": "Çalan müziği duraklatır."
+    },
+    "stop": {
+      "description": "Müziği durdurur."
+    }
   }
 }
