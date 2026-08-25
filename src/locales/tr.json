@@ -133,6 +133,46 @@
       "modeTrack": "Şarkı Tekrarı",
       "modeQueue": "Sıra Tekrarı",
       "onlyUser": "**{e} Bu butonları yalnızca {user} kullanabilir.**"
+    },
+    "remove": {
+      "removed": "**{e} Sıradan silindi: [{title}]({uri})**",
+      "title": "**{e} Şarkı Sil**",
+      "duration": "Süre: {value}",
+      "placeholder": "Silinecek şarkıları seç",
+      "onlyUser": "**{e} Bunu yalnızca {user} kullanabilir.**",
+      "nowEmpty": "**{e} Sıra artık boş.**",
+      "doneEmpty": "**{e} {count} şarkı silindi, sıra artık boş.**",
+      "done": "**{e} {count} şarkı silindi.**",
+      "cleared": "**{e} Sıradan {count} şarkı temizlendi.**",
+      "timedOut": "**{e} Süre doldu. Gerekirse komutu tekrar kullan.**"
+    },
+    "seek": {
+      "invalidTime": "**{e} Zaman biçimi geçersiz. Örnek: `40`, `1:30`, `10s`, `1m`**",
+      "outOfBounds": "**{e} Şarkı süresinin dışında.**\n{blank}{arrow} Şarkı süresi: ` {duration} `",
+      "header": "{e} **Seek komutu**",
+      "usage": "{blank}{arrow} **Kullanımı:** `seek <zaman>`\n{blank}{arrow} **Örnek:** `seek 1:30`",
+      "success": "**{action}!**\n{blank}{arrow} Şarkı: [**{title}**]({uri})\n{blank}{arrow} Konum: ` {position} / {duration} `",
+      "forwarded": "İleri sarıldı",
+      "rewound": "Geri sarıldı"
+    },
+    "volume": {
+      "range": "**{e} Ses seviyesi 0 ile 100 arasında olmalı.**",
+      "noPlayer": "**{e} Oynatıcı bulunamadı.**",
+      "error": "**{e} Ses seviyesi ayarlanırken bir hata oluştu.**"
+    },
+    "artistradio": {
+      "needArtist": "**{e} Bir sanatçı adı yazmalısın.**\nÖrnek: `{prefix}artistradio Sezen Aksu`",
+      "started": "### {e} **{artist} radyosu** başladı!\n> **{artist}** sanatçısından **{original}**, {artists} gibi benzer sanatçılardan **{similar}** şarkı sıraya eklendi.",
+      "noTracks": "Radyo için hiç şarkı bulunamadı.",
+      "unresolved": "Öneriler bulundu ama çalınabilir şarkıya dönüştürülemedi."
+    },
+    "forcefix": {
+      "vcRequired": "**{e} Ses kanalında olmalısın.**",
+      "vcBody": "Bu komutu kullanmak için bir ses kanalında olman gerek.",
+      "title": "**{e} Müzik botu onarılıyor**",
+      "body": "Onarım sürüyor, biraz bekle...",
+      "success": "Müzik botu `{action}` işlemiyle onarıldı.",
+      "failed": "Onarım başarısız oldu. Tekrar dene veya destek sunucusuna yaz."
     }
   },
   "commands": {
@@ -204,6 +244,21 @@
     },
     "rewind": {
       "description": "Çalan şarkıyı belirtilen saniye kadar geri sarar."
+    },
+    "remove": {
+      "description": "Sıradan şarkı siler."
+    },
+    "seek": {
+      "description": "Çalan şarkıda istenen ana atlar."
+    },
+    "volume": {
+      "description": "Ses seviyesini değiştirir."
+    },
+    "artistradio": {
+      "description": "Benzer sanatçılardan bir radyo başlatır."
+    },
+    "forcefix": {
+      "description": "Müzik sorunlarını zorla onarır."
     }
   },
   "buttons": {
@@ -216,6 +271,7 @@
     "disable": "Kapat",
     "track": "Şarkı",
     "queue": "Sıra",
-    "back": "Geri"
+    "back": "Geri",
+    "clearQueue": "Sırayı Temizle"
   }
 }

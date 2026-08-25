@@ -37,7 +37,7 @@ module.exports = {
   async slashExecute(interaction, client) {
     const player = client.manager.players.get(interaction.guild.id);
     if (!player.queue.current) {
-      const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.warn} Play a song first.**`);
+      const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.playFirst", { e: client.emoji.warn }));
       const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
       return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
     }
@@ -57,7 +57,7 @@ module.exports = {
     }
 
     if (volume < 0 || volume > 100) {
-      const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} Volume must be between 0 and 100.**`);
+      const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.volume.range", { e: client.emoji.cross }));
       const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
       return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
     }
@@ -81,7 +81,7 @@ module.exports = {
 
     if (!player.queue.current) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} Play a song first.**`);
+        .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -169,7 +169,7 @@ module.exports = {
         const currentPlayer = client.manager.players.get(message.guild.id);
         if (!currentPlayer) {
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} Player not found.**`);
+            .setContent(client.t(message.guild.id, "music.volume.noPlayer", { e: client.emoji.cross }));
 
           const errorContainer = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -204,7 +204,7 @@ module.exports = {
         console.error("Volume control error:", error);
 
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} An error occurred while adjusting volume.**`);
+          .setContent(client.t(message.guild.id, "music.volume.error", { e: client.emoji.cross }));
 
         const errorContainer = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);

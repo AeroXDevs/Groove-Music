@@ -35,7 +35,7 @@ module.exports = {
         const artistName = args.join(" ");
         if (!artistName) {
             const display = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.warn} Please provide an artist name.**\nExample: \`${prefix}artistradio Imagine Dragons\``);
+                .setContent(client.t(message.guild.id, "music.artistradio.needArtist", { e: client.emoji.warn, prefix }));
             const container = new ContainerBuilder().addTextDisplayComponents(display);
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -104,7 +104,7 @@ module.exports = {
             radioTracks.push(...similarPool.slice(0, 3));
 
             if (radioTracks.length === 0) {
-                return await reply(`Could not find any tracks for the radio.`, true);
+                return await reply(client.t(message.guild.id, "music.artistradio.noTracks"), true);
             }
 
             let player = client.manager.players.get(message.guild.id);
@@ -152,13 +152,13 @@ module.exports = {
             player.data?.set("autoplay", true);
 
             if (originalQueued + similarQueued === 0) {
-                return await reply(`Found recommendations but could not resolve them to playable tracks.`, true);
+                return await reply(client.t(message.guild.id, "music.artistradio.unresolved"), true);
             }
 
             if (!player.playing && !player.paused) await player.play();
 
             const successDisplay = new TextDisplayBuilder()
-                .setContent(`### ${client.emoji.check} **${correctedName} Radio** Started!\n> Queued **${originalQueued}** tracks from **${correctedName}** and **${similarQueued}** from similar artists like ${similarArtists.slice(0, 2).join(", ")}.`);
+                .setContent(client.t(message.guild.id, "music.artistradio.started", { e: client.emoji.check, artist: correctedName, original: originalQueued, similar: similarQueued, artists: similarArtists.slice(0, 2).join(", ") }));
 
             const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
             if (isInteraction) await message.editReply({ components: [container], flags: MessageFlags.IsComponentsV2 });

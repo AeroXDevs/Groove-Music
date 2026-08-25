@@ -133,6 +133,46 @@
       "modeTrack": "Track Loop",
       "modeQueue": "Queue Loop",
       "onlyUser": "**{e} Only {user} can use these buttons.**"
+    },
+    "remove": {
+      "removed": "**{e} Removed [{title}]({uri})**",
+      "title": "**{e} Remove Tracks**",
+      "duration": "Duration: {value}",
+      "placeholder": "Select tracks to remove",
+      "onlyUser": "**{e} Only {user} can use this!**",
+      "nowEmpty": "**{e} The queue is now empty.**",
+      "doneEmpty": "**{e} Removed {count} track(s). The queue is now empty!**",
+      "done": "**{e} Removed {count} track(s)**",
+      "cleared": "**{e} Cleared {count} tracks from the queue**",
+      "timedOut": "**{e} Session timed out. Use the command again if needed.**"
+    },
+    "seek": {
+      "invalidTime": "**{e} Invalid time format. Examples: `40`, `1:30`, `10s`, `1m`**",
+      "outOfBounds": "**{e} Out of Bounds**\n{blank}{arrow} Song Duration: ` {duration} `",
+      "header": "{e} **Seek Command !**",
+      "usage": "{blank}{arrow} **Usage:** `seek <time>`\n{blank}{arrow} **Example:** `seek 1:30`",
+      "success": "**Successfully {action}!**\n{blank}{arrow} Track: [**{title}**]({uri})\n{blank}{arrow} Position: ` {position} / {duration} `",
+      "forwarded": "Forwarded",
+      "rewound": "Rewound"
+    },
+    "volume": {
+      "range": "**{e} Volume must be between 0 and 100.**",
+      "noPlayer": "**{e} Player not found.**",
+      "error": "**{e} An error occurred while adjusting volume.**"
+    },
+    "artistradio": {
+      "needArtist": "**{e} Please provide an artist name.**\nExample: `{prefix}artistradio Imagine Dragons`",
+      "started": "### {e} **{artist} Radio** Started!\n> Queued **{original}** tracks from **{artist}** and **{similar}** from similar artists like {artists}.",
+      "noTracks": "Could not find any tracks for the radio.",
+      "unresolved": "Found recommendations but could not resolve them to playable tracks."
+    },
+    "forcefix": {
+      "vcRequired": "**{e} Voice Channel Required**",
+      "vcBody": "You need to be in a voice channel to use this command.",
+      "title": "**{e} Force Fixing Music Bot**",
+      "body": "Please wait while the music bot is being fixed...",
+      "success": "Music bot has been force fixed using `{action}` action!",
+      "failed": "Failed to fix music bot. Please try again or contact support."
     }
   },
   "commands": {
@@ -204,6 +244,21 @@
     },
     "rewind": {
       "description": "Rewind the current song by specified seconds"
+    },
+    "remove": {
+      "description": "Remove tracks from the queue"
+    },
+    "seek": {
+      "description": "Seek the currently playing song"
+    },
+    "volume": {
+      "description": "Change volume of currently playing music"
+    },
+    "artistradio": {
+      "description": "Starts a radio based on similar artists from Last.fm"
+    },
+    "forcefix": {
+      "description": "Force fix music bot issues (not playing/not joining VC)"
     }
   },
   "buttons": {
@@ -216,6 +271,7 @@
     "disable": "Disable",
     "track": "Track",
     "queue": "Queue",
-    "back": "Back"
+    "back": "Back",
+    "clearQueue": "Clear Queue"
   }
 }

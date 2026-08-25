@@ -60,12 +60,12 @@ module.exports = {
 
         if (!member?.voice?.channel) {
             const display = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} Voice Channel Required**`);
+                .setContent(client.t(message.guild.id, "music.forcefix.vcRequired", { e: client.emoji.cross }));
 
             const separator = new SeparatorBuilder();
 
             const infoDisplay = new TextDisplayBuilder()
-                .setContent(`You need to be in a voice channel to use this command.`);
+                .setContent(client.t(message.guild.id, "music.forcefix.vcBody"));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(display)
@@ -81,12 +81,12 @@ module.exports = {
         const voiceChannel = member.voice.channel;
 
         const progressDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.load} Force Fixing Music Bot**`);
+            .setContent(client.t(message.guild.id, "music.forcefix.title", { e: client.emoji.load }));
 
         const progressSeparator = new SeparatorBuilder();
 
         const progressInfo = new TextDisplayBuilder()
-            .setContent(`Please wait while the music bot is being fixed...`);
+            .setContent(client.t(message.guild.id, "music.forcefix.body"));
 
         const progressContainer = new ContainerBuilder()
             .addTextDisplayComponents(progressDisplay)
@@ -124,8 +124,8 @@ async function updateMessage(msg, client, message, type, error) {
     const infoDisplay = new TextDisplayBuilder()
         .setContent(
             isSuccess
-                ? `Music bot has been force fixed using \`${action}\` action!`
-                : `Failed to fix music bot. Please try again or contact support.`
+                ? client.t(message.guild.id, "music.forcefix.success", { action })
+                : client.t(message.guild.id, "music.forcefix.failed")
         );
 
     const footerContent = isSuccess
