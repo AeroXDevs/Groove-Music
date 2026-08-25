@@ -81,7 +81,7 @@ module.exports = {
 
       if (!favorites || !favorites.length) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} You don't have any favorite songs!**`);
+          .setContent(client.t(message.guild.id, "fav.none", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -102,7 +102,7 @@ module.exports = {
         const pageTracks = currentFavorites.slice(start, end);
 
         const headerDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} Remove Favorites**`);
+          .setContent(client.t(message.guild.id, "fav.removeTitle", { e: client.emoji.info }));
 
         const separator1 = new SeparatorBuilder();
 
@@ -140,7 +140,7 @@ module.exports = {
           const position = start + i;
           return {
             label: `${position}. ${track.title.substring(0, 90)}`,
-            description: `Duration: ${formatDuration(track.duration || track.length)}`,
+            description: client.t(message.guild.id, "fav.durationRow", { value: formatDuration(track.duration || track.length) }),
             value: `unlike_${position}`
           };
         });
@@ -195,7 +195,7 @@ module.exports = {
           if (i.user.id === message.author.id) return true;
 
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} Only ${message.author.tag} can use this!**`);
+            .setContent(client.t(message.guild.id, "fav.onlyUser", { e: client.emoji.cross, user: message.author.tag }));
 
           const errorContainer = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -214,7 +214,7 @@ module.exports = {
 
         if (!currentFavs || (interaction.customId !== 'clear_favorites' && currentFavs.length === 0)) {
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.info} You don't have any favorite songs left!**`);
+            .setContent(client.t(message.guild.id, "fav.noneLeft", { e: client.emoji.info }));
           const errorContainer = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
           await interaction.reply({ components: [errorContainer], flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2 });
           collector.stop();
@@ -245,13 +245,13 @@ module.exports = {
 
           if (currentFavs.length === 0) {
             const emptyDisplay = new TextDisplayBuilder()
-              .setContent(`**${client.emoji.check} Removed ${removedTracks.length} favorite(s). Your favorites list is now empty!**`);
+              .setContent(client.t(message.guild.id, "fav.removedEmpty", { e: client.emoji.check, count: removedTracks.length }));
             const emptyContainer = new ContainerBuilder().addTextDisplayComponents(emptyDisplay);
             await msg.edit({ components: [emptyContainer], flags: MessageFlags.IsComponentsV2 });
             collector.stop();
           } else {
             const successDisplay = new TextDisplayBuilder()
-              .setContent(`**${client.emoji.check} Removed ${removedTracks.length} favorite(s)**`);
+              .setContent(client.t(message.guild.id, "fav.removed", { e: client.emoji.check, count: removedTracks.length }));
             const successContainer = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
             await msg.edit({
@@ -297,7 +297,7 @@ module.exports = {
           client.db.liked.set(userId, []);
 
           const successDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.check} Cleared all ${favCount} favorites**`);
+            .setContent(client.t(message.guild.id, "fav.cleared", { e: client.emoji.check, count: favCount }));
 
           const successContainer = new ContainerBuilder()
             .addTextDisplayComponents(successDisplay);
@@ -318,7 +318,7 @@ module.exports = {
       collector.on('end', async (collected, reason) => {
         if (reason === 'idle' || reason === 'time') {
           const timeoutDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.info} Session timed out. Use the command again if needed.**`);
+            .setContent(client.t(message.guild.id, "fav.timedOut", { e: client.emoji.info }));
           const timeoutContainer = new ContainerBuilder().addTextDisplayComponents(timeoutDisplay);
 
           await msg.edit({
@@ -332,7 +332,7 @@ module.exports = {
       console.error(err);
 
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} An error occurred while removing from favorites.**`);
+        .setContent(client.t(message.guild.id, "fav.removeError", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);

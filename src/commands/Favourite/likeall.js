@@ -57,7 +57,7 @@ module.exports = {
             const player = client.manager.getPlayer(message.guild.id);
             if (!player) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.cross} There is no queue to add to favorites!**`);
+                    .setContent(client.t(message.guild.id, "fav.noQueue", { e: client.emoji.cross }));
 
                 const container = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -71,7 +71,7 @@ module.exports = {
             const tracks = [player.queue.current, ...player.queue].filter(track => track);
             if (tracks.length === 0) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.cross} There are no songs in the queue!**`);
+                    .setContent(client.t(message.guild.id, "fav.emptyQueue", { e: client.emoji.cross }));
 
                 const container = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -133,7 +133,7 @@ module.exports = {
             console.error(err);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} An error occurred while adding songs to favorites!**`);
+                .setContent(client.t(message.guild.id, "fav.addAllError", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
