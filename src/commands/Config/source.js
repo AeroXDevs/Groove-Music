@@ -67,7 +67,7 @@ module.exports = {
       console.error('Error in source slash command:', error);
 
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} An error occurred while saving your preference. Please try again.**`);
+        .setContent(client.t(interaction.guildId, "cfg.source.saveError", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -151,7 +151,7 @@ module.exports = {
           console.error('Error updating user preference:', error);
 
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} An error occurred while saving your preference. Please try again.**`);
+            .setContent(client.t(message.guild.id, "cfg.source.saveError", { e: client.emoji.cross }));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -173,7 +173,7 @@ module.exports = {
       console.error('Error in source command:', error);
 
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} An error occurred while loading the source menu. Please try again.**`);
+        .setContent(client.t(message.guild.id, "cfg.source.loadError", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);

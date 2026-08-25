@@ -60,7 +60,7 @@ module.exports = {
 
     if (!newPrefix) {
       const infoDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.info} Provide a new prefix.**`);
+        .setContent(client.t(message.guild.id, "cfg.prefix.provide", { e: client.emoji.info }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(infoDisplay);
@@ -73,7 +73,7 @@ module.exports = {
 
     if (newPrefix.length > 3) {
       const warnDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} Prefix can't exceed 3 characters.**`);
+        .setContent(client.t(message.guild.id, "cfg.prefix.tooLong", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(warnDisplay);
@@ -102,7 +102,7 @@ module.exports = {
     }
 
     const successDisplay = new TextDisplayBuilder()
-      .setContent(`**${client.emoji.check} Prefix updated to \`${newPrefix}\`**`);
+      .setContent(client.t(message.guild.id, "cfg.prefix.updated", { e: client.emoji.check, value: newPrefix }));
 
     const container = new ContainerBuilder()
       .addTextDisplayComponents(successDisplay);

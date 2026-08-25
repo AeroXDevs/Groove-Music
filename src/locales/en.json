@@ -993,7 +993,8 @@
       "mute": "{e} **Mute Command !**\n-# Requested by {user} • <t:{ts}:t>",
       "unban": "{e} **Unban Command !**\n-# Requested by {user} • <t:{ts}:t>",
       "unmute": "{e} **Unmute Command !**\n-# Requested by {user} • <t:{ts}:t>"
-    }
+    },
+    "needPermThis": "{e} You need `{permission}` permissions to use this."
   },
   "ui": {
     "section": {
@@ -1185,7 +1186,25 @@
     "err247Update": "An error occurred while updating 24/7 mode. Please try again.",
     "err247Load": "An error occurred while loading 247 settings. Please try again later.",
     "argHint": "[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands.",
-    "argHintBlock": " ```[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!```"
+    "argHintBlock": " ```[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!```",
+    "prefix": {
+      "updated": "**{e} Prefix updated to `{value}`**",
+      "provide": "**{e} Provide a new prefix.**",
+      "tooLong": "**{e} Prefix can't exceed 3 characters.**",
+      "error": "**{e} An error occurred while updating the prefix:**\n"
+    },
+    "source": {
+      "set": "**{e} Your preferred music source has been set to `{value}`**",
+      "saveError": "**{e} An error occurred while saving your preference. Please try again.**",
+      "loadError": "**{e} An error occurred while loading the source menu. Please try again.**"
+    },
+    "247": {
+      "error": "### {e} **Error Occurred**",
+      "diffVoice": "### {e} **Different Voice Channel**",
+      "notVoice": "### {e} **Not in Voice Channel**",
+      "timedOut": "-# 247 settings menu timed out!",
+      "actionBy": "-# Action Performed by {user}"
+    }
   },
   "info": {
     "noBio": "No bio is set.",
@@ -1202,6 +1221,12 @@
       "setLine": "**\n╰ Sets your profile bio.\n\n",
       "clearLine": "**\n╰ Clears your profile bio.",
       "help": "> ** `{prefix}bio set <text>` **\n╰ Sets your profile bio.\n\n> ** `{prefix}bio clear` **\n╰ Clears your profile bio."
+    },
+    "inviteBot": "**{e} Invite {bot} to your server.**",
+    "support": {
+      "missing": "**{e} Support server link is not configured.**",
+      "join": "**{e} Join our support server for help, updates, and community!**",
+      "error": "**{e} Error: {message}**"
     }
   },
   "am": {
@@ -1432,7 +1457,10 @@
     "loading": "**{e} Loading {count} songs from your favorites...**",
     "loadFailed": "**{e} Failed to load {count} songs**\n",
     "durationRow": "Duration: {value}",
-    "label": "**Favorites:**"
+    "label": "**Favorites:**",
+    "listTitle": "**{e} Tracks you added to liked songs :**",
+    "fetchError": "**{e} An error occurred while fetching your favorites.**",
+    "noneYet": "**{e} You don't have any favorite songs yet!**"
   },
   "role": {
     "rAddsARoleTo": "Adds a role to a user.",
@@ -1587,5 +1615,11 @@
     "notFound": "**{e} Command `{command}` not found.**",
     "notYours": "**{e} You can't use this menu.**",
     "intro": "**{bot}** is your ultimate multi-purpose companion, offering high-fidelity music from **YT Music**,**Spotify**,**Apple Music** and more. Featuring advanced **Moderation**, **Utility**, **Invites**, and more—all designed to elevate your server experience to the next level."
+  },
+  "flt": {
+    "noSong": "**{e} There is no song currently playing.**",
+    "current": "**{e} Current Filter** `:` `{value}`",
+    "notYours": "**{e} That's not your session run. Use `{prefix}filter` to create your own.**",
+    "placeholder": "Select a filter to apply"
   }
 }

@@ -56,7 +56,7 @@ module.exports = {
 
       if (!supportURL) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} Support server link is not configured.**`);
+          .setContent(client.t(message.guild.id, "info.support.missing", { e: client.emoji.cross }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -77,7 +77,7 @@ module.exports = {
       const separator = new SeparatorBuilder();
 
       const supportDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.info} Join our support server for help, updates, and community!**`);
+        .setContent(client.t(message.guild.id, "info.support.join", { e: client.emoji.info }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(supportDisplay)
@@ -90,7 +90,7 @@ module.exports = {
       });
     } catch (error) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} Error: ${error.message}**`);
+        .setContent(client.t(message.guild.id, "info.support.error", { e: client.emoji.cross, message: error.message }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);

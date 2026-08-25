@@ -993,7 +993,8 @@
       "mute": "{e} **Susturma**\n-# İsteyen: {user} • <t:{ts}:t>",
       "unban": "{e} **Yasak kaldırma**\n-# İsteyen: {user} • <t:{ts}:t>",
       "unmute": "{e} **Susturma kaldırma**\n-# İsteyen: {user} • <t:{ts}:t>"
-    }
+    },
+    "needPermThis": "{e} Bunu kullanmak için `{permission}` yetkisine sahip olman gerek."
   },
   "ui": {
     "section": {
@@ -1185,7 +1186,25 @@
     "err247Update": "7/24 modu güncellenirken bir hata oluştu, tekrar dene.",
     "err247Load": "7/24 ayarları yüklenemedi, birazdan tekrar dene.",
     "argHint": "[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma.",
-    "argHintBlock": " ```[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```"
+    "argHintBlock": " ```[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```",
+    "prefix": {
+      "updated": "**{e} Prefix `{value}` olarak güncellendi.**",
+      "provide": "**{e} Yeni bir prefix yaz.**",
+      "tooLong": "**{e} Prefix 3 karakteri geçemez.**",
+      "error": "**{e} Prefix güncellenirken bir hata oluştu:**\n"
+    },
+    "source": {
+      "set": "**{e} Tercih ettiğin müzik kaynağı `{value}` olarak ayarlandı.**",
+      "saveError": "**{e} Tercihin kaydedilemedi, tekrar dene.**",
+      "loadError": "**{e} Kaynak menüsü yüklenemedi, tekrar dene.**"
+    },
+    "247": {
+      "error": "### {e} **Bir hata oluştu**",
+      "diffVoice": "### {e} **Farklı ses kanalı**",
+      "notVoice": "### {e} **Ses kanalında değilsin**",
+      "timedOut": "-# 7/24 ayar menüsünün süresi doldu.",
+      "actionBy": "-# İşlemi yapan: {user}"
+    }
   },
   "info": {
     "noBio": "Henüz bir biyografi yok.",
@@ -1202,6 +1221,12 @@
       "setLine": "**\n╰ Profil biyografini ayarlar.\n\n",
       "clearLine": "**\n╰ Profil biyografini temizler.",
       "help": "> ** `{prefix}bio set <metin>` **\n╰ Profil biyografini ayarlar.\n\n> ** `{prefix}bio clear` **\n╰ Profil biyografini temizler."
+    },
+    "inviteBot": "**{e} {bot} botunu sunucuna ekle.**",
+    "support": {
+      "missing": "**{e} Destek sunucusu bağlantısı ayarlanmamış.**",
+      "join": "**{e} Yardım, duyurular ve topluluk için destek sunucumuza katıl.**",
+      "error": "**{e} Hata: {message}**"
     }
   },
   "am": {
@@ -1432,7 +1457,10 @@
     "loading": "**{e} Favorilerinden {count} şarkı yükleniyor...**",
     "loadFailed": "**{e} {count} şarkı yüklenemedi.**\n",
     "durationRow": "Süre: {value}",
-    "label": "**Favoriler:**"
+    "label": "**Favoriler:**",
+    "listTitle": "**{e} Favorilerine eklediğin şarkılar :**",
+    "fetchError": "**{e} Favorilerin alınırken bir hata oluştu.**",
+    "noneYet": "**{e} Henüz hiç favori şarkın yok.**"
   },
   "role": {
     "rAddsARoleTo": "Bir kullanıcıya rol verir.",
@@ -1587,5 +1615,11 @@
     "notFound": "**{e} `{command}` diye bir komut yok.**",
     "notYours": "**{e} Bu menüyü kullanamazsın.**",
     "intro": "**{bot}**, sunucun için çok yönlü bir yardımcı: **YT Music**, **Spotify**, **Apple Music** ve daha fazlasından yüksek kaliteli müzik çalar. Gelişmiş **moderasyon**, **yardımcı araçlar**, **davet takibi** ve fazlasıyla sunucunu bir adım öteye taşır."
+  },
+  "flt": {
+    "noSong": "**{e} Şu an çalan bir şarkı yok.**",
+    "current": "**{e} Aktif filtre** `:` `{value}`",
+    "notYours": "**{e} Bu senin oturumun değil. Kendi menün için `{prefix}filter` yaz.**",
+    "placeholder": "Uygulanacak filtreyi seç"
   }
 }

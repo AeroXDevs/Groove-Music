@@ -69,7 +69,7 @@ module.exports = {
       const voiceChannel = message.member.voice.channel;
       if (!voiceChannel) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`### ${client.emoji.warn} **Not in Voice Channel**`);
+          .setContent(client.t(message.guild.id, "cfg.247.notVoice", { e: client.emoji.warn }));
 
         const separator = new SeparatorBuilder();
 
@@ -91,7 +91,7 @@ module.exports = {
       if (player && player.voiceId) {
         if (voiceChannel.id !== player.voiceId) {
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`### ${client.emoji.warn} **Different Voice Channel**`);
+            .setContent(client.t(message.guild.id, "cfg.247.diffVoice", { e: client.emoji.warn }));
 
           const separator = new SeparatorBuilder();
 
@@ -135,7 +135,7 @@ module.exports = {
         const separator = new SeparatorBuilder();
 
         const actionByDisplay = new TextDisplayBuilder()
-          .setContent(`-# Action Performed by ${message.author.displayName}`);
+          .setContent(client.t(message.guild.id, "cfg.247.actionBy", { user: message.author.displayName }));
 
         const successContainer = new ContainerBuilder()
           .addTextDisplayComponents(successDisplay)
@@ -156,7 +156,7 @@ module.exports = {
         const separator = new SeparatorBuilder();
 
         const actionByDisplay = new TextDisplayBuilder()
-          .setContent(`-# Action Performed by ${message.author.displayName}`);
+          .setContent(client.t(message.guild.id, "cfg.247.actionBy", { user: message.author.displayName }));
 
         const successContainer = new ContainerBuilder()
           .addTextDisplayComponents(successDisplay)
@@ -178,7 +178,7 @@ module.exports = {
       const separator = new SeparatorBuilder();
 
       const actionByDisplay = new TextDisplayBuilder()
-        .setContent(`-# Action Performed by ${message.author.displayName}`);
+        .setContent(client.t(message.guild.id, "cfg.247.actionBy", { user: message.author.displayName }));
 
       const enableButton = new ButtonBuilder()
         .setCustomId('247_enable')
@@ -223,7 +223,7 @@ module.exports = {
           const member = await message.guild.members.fetch(interaction.user.id);
           if (!member.voice.channel) {
             const errorDisplay = new TextDisplayBuilder()
-              .setContent(`### ${client.emoji.warn} **Not in Voice Channel**`);
+              .setContent(client.t(message.guild.id, "cfg.247.notVoice", { e: client.emoji.warn }));
 
             const separator = new SeparatorBuilder();
 
@@ -266,7 +266,7 @@ module.exports = {
             const separator = new SeparatorBuilder();
 
             const actionByDisplay = new TextDisplayBuilder()
-              .setContent(`-# Action Performed by ${interaction.user.displayName}`);
+              .setContent(client.t(message.guild.id, "cfg.247.actionBy", { user: interaction.user.displayName }));
 
             const successContainer = new ContainerBuilder()
               .addTextDisplayComponents(successDisplay)
@@ -287,7 +287,7 @@ module.exports = {
             const separator = new SeparatorBuilder();
 
             const actionByDisplay = new TextDisplayBuilder()
-              .setContent(`-# Action Performed by ${interaction.user.displayName}`);
+              .setContent(client.t(message.guild.id, "cfg.247.actionBy", { user: interaction.user.displayName }));
 
             const successContainer = new ContainerBuilder()
               .addTextDisplayComponents(successDisplay)
@@ -304,7 +304,7 @@ module.exports = {
           console.error('Error in 247 button interaction:', error);
 
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`### ${client.emoji.cross} **Error Occurred**`);
+            .setContent(client.t(message.guild.id, "cfg.247.error", { e: client.emoji.cross }));
 
           const separator = new SeparatorBuilder();
 
@@ -331,7 +331,7 @@ module.exports = {
           const separator = new SeparatorBuilder();
 
           const timeoutInfo = new TextDisplayBuilder()
-            .setContent(`-# 247 settings menu timed out!`);
+            .setContent(client.t(message.guild.id, "cfg.247.timedOut"));
 
           const timeoutContainer = new ContainerBuilder()
             .addTextDisplayComponents(timeoutDisplay)
@@ -349,7 +349,7 @@ module.exports = {
       console.error('Error in 247 command:', error);
 
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`### ${client.emoji.cross} **Error Occurred**`);
+        .setContent(client.t(message.guild.id, "cfg.247.error", { e: client.emoji.cross }));
 
       const separator = new SeparatorBuilder();
 

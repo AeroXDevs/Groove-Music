@@ -61,7 +61,7 @@ module.exports = {
       const songs = client.db.liked.get(userId);
       if (!songs || !songs.length) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} You don't have any favorite songs yet!**`);
+          .setContent(client.t(message.guild.id, "fav.noneYet", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -82,7 +82,7 @@ module.exports = {
         const currentSongs = songs.slice(start, end);
 
         const headerDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.check} Tracks you added to liked songs :**`);
+          .setContent(client.t(message.guild.id, "fav.listTitle", { e: client.emoji.check }));
 
         const separator = new SeparatorBuilder();
 
@@ -181,7 +181,7 @@ module.exports = {
       console.error(err);
 
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} An error occurred while fetching your favorites.**`);
+        .setContent(client.t(message.guild.id, "fav.fetchError", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);

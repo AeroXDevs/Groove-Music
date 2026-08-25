@@ -57,7 +57,7 @@ module.exports = {
     const separator = new SeparatorBuilder();
 
     const inviteDisplay = new TextDisplayBuilder()
-      .setContent(`**${client.emoji.info} Invite ${client.user.username} to your server.**`);
+      .setContent(client.t(message.guild.id, "info.inviteBot", { e: client.emoji.info, bot: client.user.username }));
 
     const container = new ContainerBuilder()
       .addTextDisplayComponents(inviteDisplay)

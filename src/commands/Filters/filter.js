@@ -60,7 +60,7 @@ module.exports = {
 
         if (!player.queue.current) {
             const warnDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.warn} There is no song currently playing.**`);
+                .setContent(client.t(message.guild.id, "flt.noSong", { e: client.emoji.warn }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(warnDisplay);
@@ -74,7 +74,7 @@ module.exports = {
         const row4 = new ActionRowBuilder().addComponents(
             new StringSelectMenuBuilder()
                 .setCustomId("disable_h")
-                .setPlaceholder(`Select a filter to apply`)
+                .setPlaceholder(client.t(message.guild.id, "flt.placeholder"))
                 .addOptions([
                     { label: "Reset Filters", value: "clear", emoji: client.emoji.warn },
                     { label: "8D Audio", value: "8d_but", emoji: client.emoji.check },
