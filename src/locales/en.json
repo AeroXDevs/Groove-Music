@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "name": "English",
+    "flag": "🇬🇧"
+  },
+  "core": {
+    "mention": {
+      "greeting": "**{check} Hey {user}!**\n",
+      "prefix": "**{info} My prefix for this server is **`{prefix}`\n",
+      "help": "**{info} Type `{prefix}help` for a list of commands.**"
+    },
+    "blacklisted": "**{warn} You have been blacklisted from using the bot!**",
+    "cooldown": "**{warn} Please wait {time}s before using `{command}` command again.**",
+    "noBotPermChannel": "**{cross} I don't have `{permission}` permission in this channel to execute the `{command}` command.**",
+    "noBotPerm": "I need the **`{permission}`** permission(s) to execute this command.",
+    "noUserPerm": "You need the **`{permission}`** permission(s) to use this command.",
+    "noBotPermSlash": "**{warn} I don't have `{permission}` permission in {channel} to execute this `{command}` command.**",
+    "noUserPermSlash": "**{warn} You don't have `{permission}` permission in {channel} to execute this `{command}` command.**",
+    "missingArgs": "You didn't provide any arguments, {user}!",
+    "usage": "\nUsage: `{usage}`",
+    "noPlayer": "**{warn} There is no music player active in this server.**",
+    "noPlayerSlash": "**{warn} There is no player for this guild.**",
+    "notInVoice": "**{warn} You must be in a voice channel to use this command.**",
+    "notInVoiceSlash": "**{warn} You must be in a voice channel.**",
+    "notSameVoice": "**{warn} You must be in the same voice channel as me.**",
+    "notSameVoiceSlash": "**{warn} You must be in the same {channel} to use this command.**",
+    "notConnected": "**{warn} An error occurred. It seems the bot is not properly connected to the guild.**",
+    "commandError": "**{warn} An error occurred while executing this command!**",
+    "unexpectedError": "**{warn} An unexpected error occurred.**",
+    "inputError": "**{warn} There was an error processing your input. Please try again.**",
+    "interactionError": "**{cross} An error occurred while processing this interaction.**"
+  },
+  "language": {
+    "description": "Change the bot's language for this server.",
+    "optionDescription": "The language to use",
+    "title": "### {info} Server Language",
+    "body": "The bot currently speaks **{current}** on this server.\nPick a language below to change it.",
+    "placeholder": "Select a language",
+    "changed": "**{check} Language set to {language}.** All bot messages on this server will now use it.",
+    "unchanged": "**{info} The language is already set to {language}.**",
+    "unsupported": "**{cross} `{lang}` isn't a supported language.** Available: {available}",
+    "noPermission": "**{warn} You need the `Manage Server` permission to change the language.**",
+    "onlyInvoker": "**{cross} Only the person who ran the command can use this menu.**"
+  },
+  "welcome": {
+    "header": "### {check} Thank you for choosing {bot}!",
+    "body": "{bot} has been successfully added to `{guild}`\n\nYou can report any issues at my **[Support Server]({support})** following the needed steps. You can also reach out to my **[Developers]({support})** if you want to know more about me.",
+    "languagePrompt": "**Before you start:** pick the language you want me to speak on this server. You can change it any time with the `language` command.",
+    "supportButton": "Support Server"
+  }
+}

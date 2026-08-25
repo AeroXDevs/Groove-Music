@@ -79,6 +79,13 @@ const tables = [
         `
     },
     {
+        name: 'guildlang',
+        schema: `
+            guildId TEXT PRIMARY KEY,
+            lang TEXT DEFAULT 'en'
+        `
+    },
+    {
         name: 'rankPermissions',
         schema: `
             rank TEXT PRIMARY KEY,
@@ -829,6 +836,22 @@ managers.automod = {
             db.prepare(`INSERT INTO automod (${keys.join(', ')}) VALUES (${keys.map(() => '?').join(', ')})`).run(...vals);
         }
     }
+};
+
+managers.guildlang = {
+    get: (guildId) => {
+        const row = db.prepare('SELECT lang FROM guildlang WHERE guildId = ?').get(guildId);
+        return row ? row.lang : null;
+    },
+    set: (guildId, lang) => {
+        db.prepare(
+            'INSERT INTO guildlang (guildId, lang) VALUES (?, ?) ON CONFLICT(guildId) DO UPDATE SET lang = excluded.lang'
+        ).run(guildId, lang);
+    },
+    delete: (guildId) => {
+        db.prepare('DELETE FROM guildlang WHERE guildId = ?').run(guildId);
+    },
+    getAll: () => db.prepare('SELECT * FROM guildlang').all()
 };
 
 const Database = { db, ...managers };

@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "name": "Türkçe",
+    "flag": "🇹🇷"
+  },
+  "core": {
+    "mention": {
+      "greeting": "**{check} Selam {user}!**\n",
+      "prefix": "**{info} Bu sunucudaki prefixim **`{prefix}`\n",
+      "help": "**{info} Komutların listesi için `{prefix}help` yazabilirsin.**"
+    },
+    "blacklisted": "**{warn} Kara listeye alındın, botu kullanamazsın.**",
+    "cooldown": "**{warn} `{command}` komutunu tekrar kullanabilmen için {time} saniye beklemen gerek.**",
+    "noBotPermChannel": "**{cross} `{command}` komutunu bu kanalda çalıştırmak için `{permission}` yetkim yok.**",
+    "noBotPerm": "Bu komutu çalıştırabilmem için **`{permission}`** yetkisine ihtiyacım var.",
+    "noUserPerm": "Bu komutu kullanabilmen için **`{permission}`** yetkisine sahip olman gerek.",
+    "noBotPermSlash": "**{warn} `{command}` komutunu {channel} kanalında çalıştırmak için `{permission}` yetkim yok.**",
+    "noUserPermSlash": "**{warn} `{command}` komutunu {channel} kanalında kullanmak için `{permission}` yetkin yok.**",
+    "missingArgs": "{user}, komutu eksik kullandın.",
+    "usage": "\nKullanımı: `{usage}`",
+    "noPlayer": "**{warn} Bu sunucuda çalan bir şey yok.**",
+    "noPlayerSlash": "**{warn} Bu sunucuda aktif bir oynatıcı yok.**",
+    "notInVoice": "**{warn} Bu komutu kullanmak için bir ses kanalında olman gerek.**",
+    "notInVoiceSlash": "**{warn} Bir ses kanalında olman gerek.**",
+    "notSameVoice": "**{warn} Benimle aynı ses kanalında olman gerek.**",
+    "notSameVoiceSlash": "**{warn} Bu komutu kullanmak için {channel} kanalında olman gerek.**",
+    "notConnected": "**{warn} Bir hata oluştu. Bot sunucuya düzgün bağlanamamış görünüyor.**",
+    "commandError": "**{warn} Komut çalıştırılırken bir hata oluştu.**",
+    "unexpectedError": "**{warn} Beklenmedik bir hata oluştu.**",
+    "inputError": "**{warn} Girdiğin değer işlenemedi, tekrar dene.**",
+    "interactionError": "**{cross} Bu işlem sırasında bir hata oluştu.**"
+  },
+  "language": {
+    "description": "Botun bu sunucuda kullanacağı dili değiştirir.",
+    "optionDescription": "Kullanılacak dil",
+    "title": "### {info} Sunucu Dili",
+    "body": "Bu sunucuda şu an **{current}** konuşuyorum.\nDeğiştirmek için aşağıdan bir dil seç.",
+    "placeholder": "Bir dil seç",
+    "changed": "**{check} Dil {language} olarak ayarlandı.** Bundan sonra bu sunucudaki tüm mesajlarım bu dilde olacak.",
+    "unchanged": "**{info} Dil zaten {language} olarak ayarlı.**",
+    "unsupported": "**{cross} `{lang}` desteklenen bir dil değil.** Kullanılabilir diller: {available}",
+    "noPermission": "**{warn} Dili değiştirmek için `Sunucuyu Yönet` yetkisine sahip olman gerek.**",
+    "onlyInvoker": "**{cross} Bu menüyü yalnızca komutu kullanan kişi kullanabilir.**"
+  },
+  "welcome": {
+    "header": "### {check} {bot} botunu tercih ettiğin için teşekkürler!",
+    "body": "{bot}, `{guild}` sunucusuna başarıyla eklendi.\n\nTakıldığın bir yer olursa **[Destek Sunucusu]({support})** üzerinden bildirebilirsin. Beni daha yakından tanımak istersen **[Geliştiricilere]({support})** de ulaşabilirsin.",
+    "languagePrompt": "**Başlamadan önce:** bu sunucuda hangi dili konuşmamı istediğini seç. Dilediğin zaman `language` komutuyla değiştirebilirsin.",
+    "supportButton": "Destek Sunucusu"
+  }
+}

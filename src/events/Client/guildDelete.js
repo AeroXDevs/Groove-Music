@@ -46,6 +46,8 @@ module.exports = {
 
     try {
       client.db.prefixes.delete(guild.id);
+      client.db.guildlang.delete(guild.id);
+      client.langCache.delete(guild.id);
       client.db.twofourseven.delete(guild.id);
       client.db.setup.delete(guild.id);
       client.db.autorole.delete(guild.id);

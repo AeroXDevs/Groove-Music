@@ -8,8 +8,11 @@ const {
   ButtonStyle,
   ActionRowBuilder,
   MessageFlags,
+  StringSelectMenuBuilder,
+  StringSelectMenuOptionBuilder,
   AuditLogEvent
 } = require("discord.js");
+const { t, languages, DEFAULT_LANG } = require("../../utils/i18n");
 const config = require("../../config.js");
 const {
   Webhooks: { guild_join },
@@ -55,41 +58,80 @@ module.exports = {
     try {
       if (own && own.user) {
         const recipient = own.user;
+        const lang = client.getLang(guild.id);
 
-        const welcomeHeader = new TextDisplayBuilder()
-          .setContent(`### ${client.emoji.check} Thank you for choosing ${client.user.username}!`);
+        const buildWelcome = (language) => {
+          const vars = {
+            check: client.emoji.check,
+            bot: client.user.username,
+            guild: guild.name,
+            support
+          };
 
-        const separator1 = new SeparatorBuilder();
+          const menu = new StringSelectMenuBuilder()
+            .setCustomId(`language:${recipient.id}`)
+            .setPlaceholder(t(language, "language.placeholder"))
+            .addOptions(
+              languages().map((code) =>
+                new StringSelectMenuOptionBuilder()
+                  .setLabel(t(code, "meta.name"))
+                  .setValue(code)
+                  .setEmoji(t(code, "meta.flag"))
+                  .setDefault(code === language)
+              )
+            );
 
-        const infoDisplay = new TextDisplayBuilder()
-          .setContent(
-            `${client.user.username} has been successfully added to \`${guild.name}\`\n\n` +
-            `You can report any issues at my **[Support Server](${support})** following the needed steps. You can also reach out to my **[Developers](${support})** if you want to know more about me.`
-          );
+          return new ContainerBuilder()
+            .addTextDisplayComponents(
+              new TextDisplayBuilder().setContent(t(language, "welcome.header", vars))
+            )
+            .addSeparatorComponents(new SeparatorBuilder())
+            .addTextDisplayComponents(
+              new TextDisplayBuilder().setContent(t(language, "welcome.body", vars))
+            )
+            .addSeparatorComponents(new SeparatorBuilder())
+            .addTextDisplayComponents(
+              new TextDisplayBuilder().setContent(t(language, "welcome.languagePrompt", vars))
+            )
+            .addActionRowComponents(new ActionRowBuilder().addComponents(menu))
+            .addActionRowComponents(
+              new ActionRowBuilder().addComponents(
+                new ButtonBuilder()
+                  .setLabel(t(language, "welcome.supportButton"))
+                  .setStyle(ButtonStyle.Link)
+                  .setURL(support)
+              )
+            );
+        };
 
-        const separator2 = new SeparatorBuilder();
-
-        const supportButton = new ButtonBuilder()
-          .setLabel('Support Server')
-          .setStyle(ButtonStyle.Link)
-          .setURL(support);
-
-        const buttonRow = new ActionRowBuilder()
-          .addComponents(supportButton);
-
-        const container = new ContainerBuilder()
-          .addTextDisplayComponents(welcomeHeader)
-          .addSeparatorComponents(separator1)
-          .addTextDisplayComponents(infoDisplay)
-          .addSeparatorComponents(separator2)
-          .addActionRowComponents(buttonRow);
-
-        await recipient.send({
-          components: [container],
+        const sent = await recipient.send({
+          components: [buildWelcome(lang)],
           flags: MessageFlags.IsComponentsV2
         }).catch((err) => {
           console.log(`Could not send welcome DM to ${recipient.username}: ${err.message}`);
+          return null;
         });
+
+        if (sent) {
+          const collector = sent.createMessageComponentCollector({ time: 10 * 60 * 1000 });
+
+          collector.on("collect", async (interaction) => {
+            if (interaction.user.id !== recipient.id) return;
+
+            const chosen = interaction.values[0];
+            try {
+              client.setLang(guild.id, chosen);
+            } catch (err) {
+              console.error(`[i18n] Could not set language for ${guild.id}: ${err.message}`);
+              return;
+            }
+
+            await interaction.update({
+              components: [buildWelcome(chosen)],
+              flags: MessageFlags.IsComponentsV2
+            }).catch(() => { });
+          });
+        }
       }
     } catch (error) {
       console.error('Error sending welcome DM:', error);

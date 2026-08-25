@@ -41,9 +41,9 @@ module.exports = {
 
       const greetDisplay = new TextDisplayBuilder()
         .setContent(
-          `**${client.emoji.check} Hey ${message.author}!**\n` +
-          `**${client.emoji.info} My prefix for this server is  **\`${prefix}\`\n\n` +
-          `**${client.emoji.info} Type \`${prefix}help\` for a list of commands.**`
+          client.t(message.guild.id, "core.mention.greeting", { check: client.emoji.check, user: message.author }) +
+          client.t(message.guild.id, "core.mention.prefix", { info: client.emoji.info, prefix }) + "\n" +
+          client.t(message.guild.id, "core.mention.help", { info: client.emoji.info, prefix })
         );
 
       const container = new ContainerBuilder()
@@ -85,7 +85,7 @@ module.exports = {
     const isBlacklisted = client.db.blacklist.get(message.author.id);
     if (isBlacklisted) {
       const blacklistDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} You have been blacklisted from using the bot!**`);
+        .setContent(client.t(message.guild.id, "core.blacklisted", { warn: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(blacklistDisplay);
@@ -113,7 +113,7 @@ module.exports = {
         const timeLeft = ((expirationTime - now) / 1000).toFixed(1);
 
         const cooldownDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} Please wait ${timeLeft}s before using \`${command.name}\` command again.**`);
+          .setContent(client.t(message.guild.id, "core.cooldown", { warn: client.emoji.warn, time: timeLeft, command: command.name }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(cooldownDisplay);
@@ -135,7 +135,7 @@ module.exports = {
     const perms = message.channel.permissionsFor(client.user);
     if (!perms || !perms.has(PermissionsBitField.Flags.SendMessages)) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} I don't have \`SEND_MESSAGES\` permission in this channel to execute the \`${command.name}\` command.**`);
+        .setContent(client.t(message.guild.id, "core.noBotPermChannel", { cross: client.emoji.cross, permission: "SEND_MESSAGES", command: command.name }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -148,7 +148,7 @@ module.exports = {
 
     if (!perms.has(PermissionsBitField.Flags.EmbedLinks)) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} I don't have \`EMBED_LINKS\` permission in this channel to execute the \`${command.name}\` command.**`);
+        .setContent(client.t(message.guild.id, "core.noBotPermChannel", { cross: client.emoji.cross, permission: "EMBED_LINKS", command: command.name }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -160,9 +160,9 @@ module.exports = {
     }
 
     if (command.args && !args.length) {
-      let reply = `You didn't provide any arguments, ${message.author}!`;
+      let reply = client.t(message.guild.id, "core.missingArgs", { user: message.author });
       if (command.usage) {
-        reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``;
+        reply += client.t(message.guild.id, "core.usage", { usage: `${prefix}${command.name} ${command.usage}` });
       }
 
       const argsDisplay = new TextDisplayBuilder()
@@ -179,7 +179,7 @@ module.exports = {
 
     if (command.botPerms && !message.guild.members.me.permissions.has(PermissionsBitField.resolve(command.botPerms || []))) {
       const permDisplay = new TextDisplayBuilder()
-        .setContent(`I need the **\`${command.botPerms.join(', ')}\`** permission(s) to execute this command.`);
+        .setContent(client.t(message.guild.id, "core.noBotPerm", { permission: command.botPerms.join(', ') }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(permDisplay);
@@ -192,7 +192,7 @@ module.exports = {
 
     if (command.userPerms && !client.config.ownerID.includes(message.author.id) && !message.member.permissions.has(PermissionsBitField.resolve(command.userPerms || []))) {
       const permDisplay = new TextDisplayBuilder()
-        .setContent(`You need the **\`${command.userPerms.join(', ')}\`** permission(s) to use this command.`);
+        .setContent(client.t(message.guild.id, "core.noUserPerm", { permission: command.userPerms.join(', ') }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(permDisplay);
@@ -214,7 +214,7 @@ module.exports = {
     const player = client.manager.players.get(message.guild.id);
     if (command.player && !player) {
       const playerDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} There is no music player active in this server.**`);
+        .setContent(client.t(message.guild.id, "core.noPlayer", { warn: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(playerDisplay);
@@ -227,7 +227,7 @@ module.exports = {
 
     if (command.inVoiceChannel && !message.member.voice.channel) {
       const vcDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} You must be in a voice channel to use this command.**`);
+        .setContent(client.t(message.guild.id, "core.notInVoice", { warn: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(vcDisplay);
@@ -240,7 +240,7 @@ module.exports = {
 
     if (command.sameVoiceChannel && player && message.member.voice.channel.id !== player.voiceId) {
       const sameVcDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} You must be in the same voice channel as me.**`);
+        .setContent(client.t(message.guild.id, "core.notSameVoice", { warn: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(sameVcDisplay);
@@ -276,7 +276,7 @@ module.exports = {
       console.error(`Error executing command ${command.name}:`, error);
 
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} An error occurred while executing this command!**`);
+        .setContent(client.t(message.guild.id, "core.commandError", { warn: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -291,7 +291,7 @@ module.exports = {
             });
           } else {
             await message.channel.send({
-              content: `**${client.emoji.warn} An error occurred while executing this command!**`
+              content: client.t(message.guild.id, "core.commandError", { warn: client.emoji.warn })
             });
           }
         }

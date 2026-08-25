@@ -54,7 +54,7 @@ module.exports = {
         ) {
           const errorDisplay = new TextDisplayBuilder()
             .setContent(
-              `**${client.emoji.warn} I don't have \`${command.botPerms}\` permission in ${interaction.channel.toString()} to execute this \`${command.name}\` command.**`
+              client.t(interaction.guildId, "core.noBotPermSlash", { warn: client.emoji.warn, permission: command.botPerms, channel: interaction.channel.toString(), command: command.name })
             );
 
           const container = new ContainerBuilder()
@@ -75,7 +75,7 @@ module.exports = {
         ) {
           const errorDisplay = new TextDisplayBuilder()
             .setContent(
-              `**${client.emoji.warn} You don't have \`${command.userPerms}\` permission in ${interaction.channel.toString()} to execute this \`${command.name}\` command.**`
+              client.t(interaction.guildId, "core.noUserPermSlash", { warn: client.emoji.warn, permission: command.userPerms, channel: interaction.channel.toString(), command: command.name })
             );
 
           const container = new ContainerBuilder()
@@ -93,7 +93,7 @@ module.exports = {
       );
       if (command.player && !player) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} There is no player for this guild.**`);
+          .setContent(client.t(interaction.guildId, "core.noPlayerSlash", { warn: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -116,7 +116,7 @@ module.exports = {
       }
       if (command.inVoiceChannel && !interaction.member.voice.channel) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} You must be in a voice channel.**`);
+          .setContent(client.t(interaction.guildId, "core.notInVoiceSlash", { warn: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -140,7 +140,7 @@ module.exports = {
       if (command.sameVoiceChannel) {
         if (!interaction.guild || !interaction.guild.members.me) {
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.warn} An error occurred. It seems the bot is not properly connected to the guild.**`);
+            .setContent(client.t(interaction.guildId, "core.notConnected", { warn: client.emoji.warn }));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -159,7 +159,7 @@ module.exports = {
         if (botVoiceChannel) {
           if (userVoiceChannel !== botVoiceChannel) {
             const errorDisplay = new TextDisplayBuilder()
-              .setContent(`**${client.emoji.warn} You must be in the same ${botVoiceChannel.toString()} to use this command.**`);
+              .setContent(client.t(interaction.guildId, "core.notSameVoiceSlash", { warn: client.emoji.warn, channel: botVoiceChannel.toString() }));
 
             const container = new ContainerBuilder()
               .addTextDisplayComponents(errorDisplay);
@@ -281,7 +281,7 @@ module.exports = {
         if (error.code === 10008) return;
 
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} An unexpected error occurred.**`);
+          .setContent(client.t(interaction.guildId, "core.unexpectedError", { warn: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -314,7 +314,7 @@ module.exports = {
           console.error("Error handling bioset modal submission:", error);
 
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.warn} There was an error processing your input. Please try again.**`);
+            .setContent(client.t(interaction.guildId, "core.inputError", { warn: client.emoji.warn }));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -348,7 +348,7 @@ module.exports = {
           console.error(`Error executing componentsV2 for ${potentialCommandName}:`, error);
 
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} An error occurred while processing this interaction.**`);
+            .setContent(client.t(interaction.guildId, "core.interactionError", { cross: client.emoji.cross }));
 
           const errorContainer = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);

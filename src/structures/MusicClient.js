@@ -8,6 +8,7 @@ const loadPlayerManager = require("../loaders/loadPlayerManager");
 const permissionHandler = require("../events/Client/PremiumChecks");
 const VoiceHealthMonitor = require("../utils/voiceHealthMonitor");
 const AutomodManager = require("../utils/automodManager");
+const { t, isSupported, DEFAULT_LANG } = require("../utils/i18n");
 
 class MusicBot extends Client {
   constructor() {
@@ -45,6 +46,7 @@ class MusicBot extends Client {
     this.cooldowns = new Collection();
     this.db = require("./Database");
     this.logger.log("[DB] Local SQLite Database Initialized", "ready");
+    this.langCache = new Map();
 
     try {
       this.automod = new AutomodManager(this);
@@ -72,6 +74,37 @@ class MusicBot extends Client {
     ].forEach((handler) => {
       require(`../loaders/${handler}`)(this);
     });
+  }
+
+  /**
+   * Resolve a guild's configured language, falling back to the default.
+   * Cached in memory because this is hit on every message and interaction.
+   */
+  getLang(guildId) {
+    if (!guildId) return DEFAULT_LANG;
+    if (this.langCache.has(guildId)) return this.langCache.get(guildId);
+
+    let lang = DEFAULT_LANG;
+    try {
+      const stored = this.db.guildlang.get(guildId);
+      if (stored && isSupported(stored)) lang = stored;
+    } catch (err) {
+      this.logger.log(`[i18n] Could not read language for ${guildId}: ${err.message}`, "error");
+    }
+
+    this.langCache.set(guildId, lang);
+    return lang;
+  }
+
+  setLang(guildId, lang) {
+    if (!isSupported(lang)) throw new Error(`Unsupported language: ${lang}`);
+    this.db.guildlang.set(guildId, lang);
+    this.langCache.set(guildId, lang);
+  }
+
+  /** Translate a key in the given guild's language. */
+  t(guildId, key, vars = {}) {
+    return t(this.getLang(guildId), key, vars);
   }
 
   connect() {
