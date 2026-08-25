@@ -732,17 +732,17 @@ module.exports = {
         const author = message.author || message.user;
 
         const allItems = [
-            { cmd: 'automod enable', desc: 'Configure and enable AutoMod modules.' },
-            { cmd: 'automod disable', desc: 'Disable all AutoMod protections.' },
-            { cmd: 'automod config', desc: 'View current AutoMod configuration.' },
-            { cmd: 'automod punishment', desc: 'Setup custom punishments for filters.' },
-            { cmd: 'automod logging', desc: 'Set or disable the logging channel.' },
-            { cmd: 'automod heat', desc: 'Adjust sensitivity/heat for each filter.' },
-            { cmd: 'automod limits', desc: 'Set max allowed emojis/mentions limit.' },
-            { cmd: 'automod whitelist <target>', desc: 'Whitelist a role, user, or channel.' },
-            { cmd: 'automod whitelist remove <target>', desc: 'Remove an item from the whitelist.' },
-            { cmd: 'automod whitelist show', desc: 'Show all whitelisted users/roles/channels.' },
-            { cmd: 'automod reset', desc: 'Reset all AutoMod settings to default.' }
+            { cmd: 'automod enable', desc: client.t(message.guild.id, "desc.configureEnableAutomodModules") },
+            { cmd: 'automod disable', desc: client.t(message.guild.id, "desc.disableAutomodProtections") },
+            { cmd: 'automod config', desc: client.t(message.guild.id, "desc.viewCurrentAutomodConfiguration") },
+            { cmd: 'automod punishment', desc: client.t(message.guild.id, "desc.setupCustomPunishmentsFilters") },
+            { cmd: 'automod logging', desc: client.t(message.guild.id, "desc.setDisableLoggingChannel") },
+            { cmd: 'automod heat', desc: client.t(message.guild.id, "desc.adjustSensitivityheatEachFilter") },
+            { cmd: 'automod limits', desc: client.t(message.guild.id, "desc.setMaxAllowedEmojismentions") },
+            { cmd: 'automod whitelist <target>', desc: client.t(message.guild.id, "desc.whitelistRoleUserChannel") },
+            { cmd: 'automod whitelist remove <target>', desc: client.t(message.guild.id, "desc.removeItemWhitelist") },
+            { cmd: 'automod whitelist show', desc: client.t(message.guild.id, "desc.showWhitelistedUsersroleschannels") },
+            { cmd: 'automod reset', desc: client.t(message.guild.id, "desc.resetAutomodSettingsDefault") }
         ];
 
         const pageSize = 5;

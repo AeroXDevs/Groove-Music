@@ -250,22 +250,22 @@ module.exports = {
                 let selectedPerms = [];
 
                 const permsList = [
-                    { label: 'Read Messages', value: 'ViewChannel', desc: 'Basic access to read.' },
-                    { label: 'Send Messages', value: 'SendMessages', desc: 'Allow chatting in channels.' },
-                    { label: 'Embed Links', value: 'EmbedLinks', desc: 'Allow sending embeds.' },
-                    { label: 'Attach Files', value: 'AttachFiles', desc: 'Allow uploading files.' },
-                    { label: 'Add Reactions', value: 'AddReactions', desc: 'Allow reacting with emojis.' },
-                    { label: 'Use External Emojis', value: 'UseExternalEmojis', desc: 'Use emojis from other servers.' },
-                    { label: 'Connect (Voice)', value: 'Connect', desc: 'Join voice channels.' },
-                    { label: 'Speak (Voice)', value: 'Speak', desc: 'Speak in voice channels.' },
-                    { label: 'Administrator', value: 'Administrator', desc: 'Full control. Dangerous!' },
-                    { label: 'Manage Server', value: 'ManageGuild', desc: 'Edit guild settings/emojis.' },
-                    { label: 'Manage Roles', value: 'ManageRoles', desc: 'Edit or create roles.' },
+                    { label: 'Read Messages', value: 'ViewChannel', desc: client.t(message.guild.id, "desc.basicAccessRead") },
+                    { label: 'Send Messages', value: 'SendMessages', desc: client.t(message.guild.id, "desc.allowChattingChannels") },
+                    { label: 'Embed Links', value: 'EmbedLinks', desc: client.t(message.guild.id, "desc.allowSendingEmbeds") },
+                    { label: 'Attach Files', value: 'AttachFiles', desc: client.t(message.guild.id, "desc.allowUploadingFiles") },
+                    { label: 'Add Reactions', value: 'AddReactions', desc: client.t(message.guild.id, "desc.allowReactingEmojis") },
+                    { label: 'Use External Emojis', value: 'UseExternalEmojis', desc: client.t(message.guild.id, "desc.useEmojisOtherServers") },
+                    { label: 'Connect (Voice)', value: 'Connect', desc: client.t(message.guild.id, "desc.joinVoiceChannels") },
+                    { label: 'Speak (Voice)', value: 'Speak', desc: client.t(message.guild.id, "desc.speakVoiceChannels") },
+                    { label: 'Administrator', value: 'Administrator', desc: client.t(message.guild.id, "desc.fullControlDangerous") },
+                    { label: 'Manage Server', value: 'ManageGuild', desc: client.t(message.guild.id, "desc.editGuildSettingsemojis") },
+                    { label: 'Manage Roles', value: 'ManageRoles', desc: client.t(message.guild.id, "desc.editCreateRoles") },
                     { label: 'Manage Messages', value: 'ManageMessages', desc: 'Delete anyone\'s messages.' },
-                    { label: 'Kick Members', value: 'KickMembers', desc: 'Kick bad members.' },
-                    { label: 'Ban Members', value: 'BanMembers', desc: 'Ban bad members.' },
-                    { label: 'Mute Members', value: 'MuteMembers', desc: 'Mute people in voice.' },
-                    { label: 'Move Members', value: 'MoveMembers', desc: 'Move people in voice.' }
+                    { label: 'Kick Members', value: 'KickMembers', desc: client.t(message.guild.id, "desc.kickBadMembers") },
+                    { label: 'Ban Members', value: 'BanMembers', desc: client.t(message.guild.id, "desc.banBadMembers") },
+                    { label: 'Mute Members', value: 'MuteMembers', desc: client.t(message.guild.id, "desc.mutePeopleVoice") },
+                    { label: 'Move Members', value: 'MoveMembers', desc: client.t(message.guild.id, "desc.movePeopleVoice") }
                 ];
 
                 const createSetupUI = () => {
@@ -449,22 +449,22 @@ module.exports = {
 
 
                 const permsList = [
-                    { label: 'Read Messages', value: 'ViewChannel', desc: 'Basic access to read.' },
-                    { label: 'Send Messages', value: 'SendMessages', desc: 'Allow chatting in channels.' },
-                    { label: 'Embed Links', value: 'EmbedLinks', desc: 'Allow sending embeds.' },
-                    { label: 'Attach Files', value: 'AttachFiles', desc: 'Allow uploading files.' },
-                    { label: 'Add Reactions', value: 'AddReactions', desc: 'Allow reacting with emojis.' },
-                    { label: 'Use External Emojis', value: 'UseExternalEmojis', desc: 'Use emojis from other servers.' },
-                    { label: 'Connect (Voice)', value: 'Connect', desc: 'Join voice channels.' },
-                    { label: 'Speak (Voice)', value: 'Speak', desc: 'Speak in voice channels.' },
-                    { label: 'Administrator', value: 'Administrator', desc: 'Full control. Dangerous!' },
-                    { label: 'Manage Server', value: 'ManageGuild', desc: 'Edit guild settings/emojis.' },
-                    { label: 'Manage Roles', value: 'ManageRoles', desc: 'Edit or create roles.' },
+                    { label: 'Read Messages', value: 'ViewChannel', desc: client.t(message.guild.id, "desc.basicAccessRead") },
+                    { label: 'Send Messages', value: 'SendMessages', desc: client.t(message.guild.id, "desc.allowChattingChannels") },
+                    { label: 'Embed Links', value: 'EmbedLinks', desc: client.t(message.guild.id, "desc.allowSendingEmbeds") },
+                    { label: 'Attach Files', value: 'AttachFiles', desc: client.t(message.guild.id, "desc.allowUploadingFiles") },
+                    { label: 'Add Reactions', value: 'AddReactions', desc: client.t(message.guild.id, "desc.allowReactingEmojis") },
+                    { label: 'Use External Emojis', value: 'UseExternalEmojis', desc: client.t(message.guild.id, "desc.useEmojisOtherServers") },
+                    { label: 'Connect (Voice)', value: 'Connect', desc: client.t(message.guild.id, "desc.joinVoiceChannels") },
+                    { label: 'Speak (Voice)', value: 'Speak', desc: client.t(message.guild.id, "desc.speakVoiceChannels") },
+                    { label: 'Administrator', value: 'Administrator', desc: client.t(message.guild.id, "desc.fullControlDangerous") },
+                    { label: 'Manage Server', value: 'ManageGuild', desc: client.t(message.guild.id, "desc.editGuildSettingsemojis") },
+                    { label: 'Manage Roles', value: 'ManageRoles', desc: client.t(message.guild.id, "desc.editCreateRoles") },
                     { label: 'Manage Messages', value: 'ManageMessages', desc: 'Delete anyone\'s messages.' },
-                    { label: 'Kick Members', value: 'KickMembers', desc: 'Kick bad members.' },
-                    { label: 'Ban Members', value: 'BanMembers', desc: 'Ban bad members.' },
-                    { label: 'Mute Members', value: 'MuteMembers', desc: 'Mute people in voice.' },
-                    { label: 'Move Members', value: 'MoveMembers', desc: 'Move people in voice.' }
+                    { label: 'Kick Members', value: 'KickMembers', desc: client.t(message.guild.id, "desc.kickBadMembers") },
+                    { label: 'Ban Members', value: 'BanMembers', desc: client.t(message.guild.id, "desc.banBadMembers") },
+                    { label: 'Mute Members', value: 'MuteMembers', desc: client.t(message.guild.id, "desc.mutePeopleVoice") },
+                    { label: 'Move Members', value: 'MoveMembers', desc: client.t(message.guild.id, "desc.movePeopleVoice") }
                 ];
 
                 let selectedPerms = permsList

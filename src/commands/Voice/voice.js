@@ -304,32 +304,32 @@ module.exports = {
         const pages = [
             {
                 items: [
-                    { cmd: 'voice deafen', desc: 'Deafens a user in their voice channel.' },
-                    { cmd: 'voice deafenall', desc: 'Deafens all users in your current voice channel.' },
-                    { cmd: 'voice kick', desc: 'Kicks a user from their voice channel.' },
-                    { cmd: 'voice kickall', desc: 'Kicks all users from the current voice channel.' },
-                    { cmd: 'voice lock', desc: 'Locks the current voice channel.' },
-                    { cmd: 'voice move', desc: 'Moves a specific user to another voice channel.' },
-                    { cmd: 'voice moveall', desc: 'Moves users from the current channel to another.' }
+                    { cmd: 'voice deafen', desc: client.t(message.guild.id, "desc.deafensUserVoiceChannel") },
+                    { cmd: 'voice deafenall', desc: client.t(message.guild.id, "desc.deafensUsersCurrentVoice") },
+                    { cmd: 'voice kick', desc: client.t(message.guild.id, "desc.kicksUserVoiceChannel") },
+                    { cmd: 'voice kickall', desc: client.t(message.guild.id, "desc.kicksUsersCurrentVoice") },
+                    { cmd: 'voice lock', desc: client.t(message.guild.id, "desc.locksCurrentVoiceChannel") },
+                    { cmd: 'voice move', desc: client.t(message.guild.id, "desc.movesSpecificUserAnother") },
+                    { cmd: 'voice moveall', desc: client.t(message.guild.id, "desc.movesUsersCurrentChannel") }
                 ]
             },
             {
                 items: [
-                    { cmd: 'voice mute', desc: 'Mutes a user in their voice channel.' },
-                    { cmd: 'voice muteall', desc: 'Mutes all users in your current voice channel.' },
-                    { cmd: 'voice private', desc: 'Makes the current voice channel private.' },
-                    { cmd: 'voice pull', desc: 'Pulls a user into your current voice channel.' },
-                    { cmd: 'voice pullall', desc: 'Pulls all users from a specified voice channel.' },
-                    { cmd: 'voice undeafen', desc: 'Undeafens a user in their voice channel.' },
-                    { cmd: 'voice undeafenall', desc: 'Undeafens all users in your current voice channel.' }
+                    { cmd: 'voice mute', desc: client.t(message.guild.id, "desc.mutesUserVoiceChannel") },
+                    { cmd: 'voice muteall', desc: client.t(message.guild.id, "desc.mutesUsersCurrentVoice") },
+                    { cmd: 'voice private', desc: client.t(message.guild.id, "desc.makesCurrentVoiceChannel") },
+                    { cmd: 'voice pull', desc: client.t(message.guild.id, "desc.pullsUserIntoCurrent") },
+                    { cmd: 'voice pullall', desc: client.t(message.guild.id, "desc.pullsUsersSpecifiedVoice") },
+                    { cmd: 'voice undeafen', desc: client.t(message.guild.id, "desc.undeafensUserVoiceChannel") },
+                    { cmd: 'voice undeafenall', desc: client.t(message.guild.id, "desc.undeafensUsersCurrentVoice") }
                 ]
             },
             {
                 items: [
-                    { cmd: 'voice unlock', desc: 'Unlocks the current voice channel.' },
-                    { cmd: 'voice unmute', desc: 'Unmutes a user in their voice channel.' },
-                    { cmd: 'voice unmuteall', desc: 'Unmutes all users in your current voice channel.' },
-                    { cmd: 'voice unprivate', desc: 'Makes the current voice channel public.' }
+                    { cmd: 'voice unlock', desc: client.t(message.guild.id, "desc.unlocksCurrentVoiceChannel") },
+                    { cmd: 'voice unmute', desc: client.t(message.guild.id, "desc.unmutesUserVoiceChannel") },
+                    { cmd: 'voice unmuteall', desc: client.t(message.guild.id, "desc.unmutesUsersCurrentVoice") },
+                    { cmd: 'voice unprivate', desc: client.t(message.guild.id, "desc.makesCurrentVoiceChannelX") }
                 ]
             }
         ];
