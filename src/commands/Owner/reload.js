@@ -41,7 +41,7 @@ module.exports = {
     const target = args[0]?.toLowerCase();
     if (!target) {
       return message.reply({
-        content: `**${client.emoji.warn} Please provide a target: \`<command|all|everything>\`**`
+        content: client.t(message.guild.id, "own.needTarget", { e: client.emoji.warn })
       });
     }
     await this.processReload(message, target, client);

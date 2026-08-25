@@ -1,3 +1,6 @@
+// Registered as a prefix command only (.language / .lang / .dil). Discord caps
+// global application commands at 100 and this bot is already at the cap, so
+// adding a 101st slash command makes the whole deployment fail.
 const {
   ContainerBuilder,
   TextDisplayBuilder,
@@ -26,40 +29,7 @@ module.exports = {
   userPerms: ["ManageGuild"],
   owner: false,
   cooldown: 3,
-  slashOptions: [
-    {
-      name: "language",
-      description: "The language to use",
-      type: 3,
-      required: false,
-      choices: languages().map((lang) => ({
-        name: `${t(lang, "meta.flag")} ${t(lang, "meta.name")}`,
-        value: lang
-      }))
-    }
-  ],
 
-  async slashExecute(interaction, client) {
-    const interactionWrapper = {
-      guild: interaction.guild,
-      channel: interaction.channel,
-      author: interaction.user,
-      member: interaction.member,
-      createdTimestamp: interaction.createdTimestamp,
-      reply: async (options) => {
-        if (interaction.deferred) return interaction.editReply(options);
-        if (interaction.replied) return interaction.followUp(options);
-        return interaction.reply(options);
-      }
-    };
-
-    const args = [];
-    for (const option of interaction.options?.data || []) {
-      if (option.value !== undefined) args.push(option.value.toString());
-    }
-
-    return this.execute(interactionWrapper, args, client, client.prefix);
-  },
 
   async execute(message, args, client) {
     const guildId = message.guild.id;

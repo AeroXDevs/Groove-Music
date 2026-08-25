@@ -92,10 +92,10 @@ module.exports = {
       const separator1 = new SeparatorBuilder();
 
       const aliasesDisplay = new TextDisplayBuilder()
-        .setContent(`**Aliases:** \`\`[ignore]\`\``);
+        .setContent(client.t(message.guild.id, "own.aliasesLine", { value: "[ignore]" }));
 
       const usageInfoDisplay = new TextDisplayBuilder()
-        .setContent(`**Usage:** \`\`add/remove/list/reset\`\``);
+        .setContent(client.t(message.guild.id, "own.usageLine", { value: "add/remove/list/reset" }));
 
       const separator2 = new SeparatorBuilder();
 

@@ -74,7 +74,7 @@ module.exports = {
   async execute(message, args, client, prefix) {
     if (!args[0]) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} Please provide a guild ID.**`);
+        .setContent(client.t(message.guild.id, "own.needGuildId", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);

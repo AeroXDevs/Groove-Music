@@ -1084,7 +1084,8 @@
     "listEmpty": "{e} No items found in this category.",
     "needRole": "{e} Please provide a valid role.",
     "timer": {
-      "max": "{e} I can only set timers for up to 24 hours as they don't persist after restarts."
+      "max": "{e} I can only set timers for up to 24 hours as they don't persist after restarts.",
+      "needDuration": "{e} Please provide a duration! Format: `{prefix}timer <duration> [label]`"
     }
   },
   "owner": {
@@ -1412,7 +1413,11 @@
     },
     "node": {
       "status": "**{bot} is {status}**\n"
-    }
+    },
+    "needGuildId": "**{e} Please provide a guild ID.**",
+    "needTarget": "**{e} Please provide a target: `<command|all|everything>`**",
+    "aliasesLine": "**Aliases:** ``{value}``",
+    "usageLine": "**Usage:** ``{value}``"
   },
   "bl": {
     "added": "**{e} Added {user} to blacklist.**",

@@ -1084,7 +1084,8 @@
     "listEmpty": "{e} Bu kategoride hiç kayıt yok.",
     "needRole": "{e} Geçerli bir rol belirtmen gerek.",
     "timer": {
-      "max": "{e} Zamanlayıcılar yeniden başlatmada silindiği için en fazla 24 saat kurabiliyorum."
+      "max": "{e} Zamanlayıcılar yeniden başlatmada silindiği için en fazla 24 saat kurabiliyorum.",
+      "needDuration": "{e} Bir süre girmen gerek. Biçim: `{prefix}timer <süre> [etiket]`"
     }
   },
   "owner": {
@@ -1412,7 +1413,11 @@
     },
     "node": {
       "status": "**{bot} {status}**\n"
-    }
+    },
+    "needGuildId": "**{e} Bir sunucu ID'si girmen gerek.**",
+    "needTarget": "**{e} Bir hedef belirt: `<komut|all|everything>`**",
+    "aliasesLine": "**Takma adlar:** ``{value}``",
+    "usageLine": "**Kullanımı:** ``{value}``"
   },
   "bl": {
     "added": "**{e} {user} kara listeye eklendi.**",

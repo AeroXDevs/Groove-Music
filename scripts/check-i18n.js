@@ -109,5 +109,44 @@ for (const file of files) {
 }
 if (problems === scoped) console.log(`  ✓ ${calls} çeviri çağrısının anahtarı ve kapsamı geçerli`);
 
+console.log("\n[4] Çağrı yerlerinin değişkenleri");
+{
+  const before = problems;
+  let checked = 0;
+  const need = (k) => {
+    const s = get(en, k);
+    return typeof s === "string" ? new Set([...s.matchAll(/\{(\w+)\}/g)].map((m) => m[1])) : null;
+  };
+  for (const file of files) {
+    let ast;
+    try { ast = acorn.parse(fs.readFileSync(file, "utf8"), { ecmaVersion: "latest", locations: true }); }
+    catch { continue; }
+    walk.full(ast, (node) => {
+      if (node.type !== "CallExpression") return;
+      const c = node.callee;
+      const isT = (c.type === "MemberExpression" && c.property.name === "t") ||
+                  (c.type === "Identifier" && c.name === "t");
+      if (!isT) return;
+      const keyArg = node.arguments[1];
+      if (!keyArg || keyArg.type !== "Literal" || typeof keyArg.value !== "string") return;
+      const required = need(keyArg.value);
+      if (!required) return;
+      const varsArg = node.arguments[2];
+      // A vars object passed by name can't be resolved statically.
+      if (varsArg && varsArg.type !== "ObjectExpression") return;
+      checked++;
+      const supplied = new Set();
+      for (const p of varsArg?.properties || []) {
+        if (p.type === "Property" && p.key) supplied.add(p.key.name || p.key.value);
+        else if (p.type === "SpreadElement") return;
+      }
+      const missing = [...required].filter((v) => !supplied.has(v));
+      if (missing.length)
+        report(`${path.relative(ROOT, file)}:${node.loc.start.line}  "${keyArg.value}" eksik değişken: {${missing.join("}, {")}}`);
+    });
+  }
+  if (problems === before) console.log(`  ✓ ${checked} çağrı gerekli değişkenlerin hepsini gönderiyor`);
+}
+
 console.log("\n" + (problems ? `${problems} sorun bulundu` : "Tüm çeviri denetimleri geçti"));
 process.exit(problems ? 1 : 0);

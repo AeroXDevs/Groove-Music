@@ -301,10 +301,10 @@ module.exports = {
       const separator1 = new SeparatorBuilder();
 
       const aliasesDisplay = new TextDisplayBuilder()
-        .setContent(`**Aliases:** \`\`[bl]\`\``);
+        .setContent(client.t(message.guild.id, "own.aliasesLine", { value: "[bl]" }));
 
       const usageDisplay = new TextDisplayBuilder()
-        .setContent(`**Usage:** \`\`add/remove/list\`\``);
+        .setContent(client.t(message.guild.id, "own.usageLine", { value: "add/remove/list" }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(helpHeader)

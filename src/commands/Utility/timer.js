@@ -18,7 +18,7 @@ module.exports = {
         const label = args.slice(1).join(' ') || 'Timer';
 
         if (!durationStr) {
-            const display = new TextDisplayBuilder().setContent(`${client.emoji.warn} Please provide a duration! Format: \`.timer <duration> [label]\``);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "ui.timer.needDuration", { e: client.emoji.warn, prefix: "." }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
