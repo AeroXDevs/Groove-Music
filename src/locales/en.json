@@ -173,6 +173,26 @@
       "body": "Please wait while the music bot is being fixed...",
       "success": "Music bot has been force fixed using `{action}` action!",
       "failed": "Failed to fix music bot. Please try again or contact support."
+    },
+    "speed": {
+      "title": "**{e} Speed Control**",
+      "info": "**Current speed** `:` `{speed}x`\n**Range** `:` `0.25x - 3.0x`",
+      "invalid": "**{e} Invalid speed value**\n**Valid range** `:` `0.25x - 3.0x`",
+      "invalidEx": "**{e} Invalid speed value**\n**Valid range** `:` `0.25x - 3.0x`\n**Examples** `:` `0.5`, `1.5`, `2.0`",
+      "usage": "**{e} Invalid speed value**\n**Usage** `:` `{prefix}speed [0.25-3.0]`\n**Examples** `:` `{prefix}speed 0.5` (slow) | `{prefix}speed 1.5` (fast)\n**Current speed** `:` `{speed}x`",
+      "set": "**{e} Playback speed set to `{speed}x`**",
+      "failed": "**{e} Failed to change playback speed.**",
+      "prompt": "**{e} Send a message with your desired speed** `:` `0.5x`, `1.5x`, `2.0x`, etc.",
+      "timedOut": "**{e} Speed change timed out.**"
+    },
+    "search": {
+      "usage": "**{d} Usage** `:` `{prefix}search <song name>`\n**{d} Example** `:` `{prefix}search imagine dragons believer`",
+      "noNode": "**{e} No music node available**",
+      "noResults": "**{e} No results found for `{query}`**",
+      "added": "**{e} Added [{title}]({uri}) to queue.**",
+      "addedAll": "**{e} Added all {count} tracks to queue.**",
+      "noArtist": "**{e} Artist data not found. Please try searching again.**",
+      "noArtistTracks": "**{e} No tracks found for this artist.**"
     }
   },
   "commands": {
@@ -259,6 +279,12 @@
     },
     "forcefix": {
       "description": "Force fix music bot issues (not playing/not joining VC)"
+    },
+    "speed": {
+      "description": "Change the playback speed of the current song"
+    },
+    "search": {
+      "description": "Search for songs and artists and add them to queue"
     }
   },
   "buttons": {
@@ -272,6 +298,9 @@
     "track": "Track",
     "queue": "Queue",
     "back": "Back",
-    "clearQueue": "Clear Queue"
+    "clearQueue": "Clear Queue",
+    "songs": "Songs",
+    "artists": "Artists",
+    "last": "Last"
   }
 }

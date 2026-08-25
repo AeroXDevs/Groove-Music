@@ -173,6 +173,26 @@
       "body": "Onarım sürüyor, biraz bekle...",
       "success": "Müzik botu `{action}` işlemiyle onarıldı.",
       "failed": "Onarım başarısız oldu. Tekrar dene veya destek sunucusuna yaz."
+    },
+    "speed": {
+      "title": "**{e} Hız Ayarı**",
+      "info": "**Şu anki hız** `:` `{speed}x`\n**Aralık** `:` `0.25x - 3.0x`",
+      "invalid": "**{e} Geçersiz hız değeri.**\n**Geçerli aralık** `:` `0.25x - 3.0x`",
+      "invalidEx": "**{e} Geçersiz hız değeri.**\n**Geçerli aralık** `:` `0.25x - 3.0x`\n**Örnekler** `:` `0.5`, `1.5`, `2.0`",
+      "usage": "**{e} Geçersiz hız değeri.**\n**Kullanımı** `:` `{prefix}speed [0.25-3.0]`\n**Örnekler** `:` `{prefix}speed 0.5` (yavaş) | `{prefix}speed 1.5` (hızlı)\n**Şu anki hız** `:` `{speed}x`",
+      "set": "**{e} Çalma hızı `{speed}x` olarak ayarlandı.**",
+      "failed": "**{e} Çalma hızı değiştirilemedi.**",
+      "prompt": "**{e} İstediğin hızı mesaj olarak yaz** `:` `0.5x`, `1.5x`, `2.0x` gibi.",
+      "timedOut": "**{e} Süre doldu, hız değiştirilmedi.**"
+    },
+    "search": {
+      "usage": "**{d} Kullanımı** `:` `{prefix}search <şarkı adı>`\n**{d} Örnek** `:` `{prefix}search sezen aksu firuze`",
+      "noNode": "**{e} Kullanılabilir müzik sunucusu yok.**",
+      "noResults": "**{e} `{query}` için sonuç bulunamadı.**",
+      "added": "**{e} Sıraya eklendi: [{title}]({uri})**",
+      "addedAll": "**{e} {count} şarkının hepsi sıraya eklendi.**",
+      "noArtist": "**{e} Sanatçı bilgisi bulunamadı, tekrar aratmayı dene.**",
+      "noArtistTracks": "**{e} Bu sanatçıya ait şarkı bulunamadı.**"
     }
   },
   "commands": {
@@ -259,6 +279,12 @@
     },
     "forcefix": {
       "description": "Müzik sorunlarını zorla onarır."
+    },
+    "speed": {
+      "description": "Çalma hızını değiştirir."
+    },
+    "search": {
+      "description": "Şarkı ve sanatçı arar, sıraya ekler."
     }
   },
   "buttons": {
@@ -272,6 +298,9 @@
     "track": "Şarkı",
     "queue": "Sıra",
     "back": "Geri",
-    "clearQueue": "Sırayı Temizle"
+    "clearQueue": "Sırayı Temizle",
+    "songs": "Şarkılar",
+    "artists": "Sanatçılar",
+    "last": "Son"
   }
 }

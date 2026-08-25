@@ -39,8 +39,7 @@ module.exports = {
         if (!args.length) {
             const usageDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**${client.emoji.dot} Usage** \`:\` \`${prefix}search <song name>\`\n` +
-                    `**${client.emoji.dot} Example** \`:\` \`${prefix}search imagine dragons believer\``
+client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix })
                 );
 
             const container = new ContainerBuilder()
@@ -88,7 +87,7 @@ module.exports = {
 
         const node = [...client.manager.shoukaku.nodes.values()][0];
         if (!node) {
-            const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} No music node available**`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "music.search.noNode", { e: client.emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             const options = { components: [container], flags: MessageFlags.IsComponentsV2 };
             return isSlash ? context.editReply(options) : context.reply(options);
@@ -127,7 +126,7 @@ module.exports = {
         const multiple = 5;
 
         if (songs.length === 0) {
-            const noResultsDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} No results found for \`${query}\`**`);
+            const noResultsDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "music.search.noResults", { e: client.emoji.cross, query }));
             const noResultsContainer = new ContainerBuilder().addTextDisplayComponents(noResultsDisplay);
             const options = { components: [noResultsContainer], flags: MessageFlags.IsComponentsV2 };
             return isSlash ? context.editReply(options) : context.reply(options);
@@ -141,15 +140,15 @@ module.exports = {
                 const headerRow = new ActionRowBuilder().addComponents(
                     new ButtonBuilder()
                         .setCustomId('mode_songs')
-                        .setLabel('Songs')
+                        .setLabel(client.t(message.guild.id, "buttons.songs"))
                         .setStyle(mode === 'songs' ? ButtonStyle.Primary : ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('mode_artists')
-                        .setLabel('Artists')
+                        .setLabel(client.t(message.guild.id, "buttons.artists"))
                         .setStyle(mode === 'artists' ? ButtonStyle.Primary : ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('delete_search')
-                        .setLabel("Close")
+                        .setLabel(client.t(message.guild.id, "buttons.close"))
                         .setStyle(ButtonStyle.Secondary)
                 );
                 container.addActionRowComponents(headerRow);
@@ -220,17 +219,17 @@ module.exports = {
             const row = new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
                     .setCustomId('prev')
-                    .setLabel('Previous')
+                    .setLabel(client.t(message.guild.id, "buttons.previous"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(p === 0),
                 new ButtonBuilder()
                     .setCustomId('next')
-                    .setLabel('Next')
+                    .setLabel(client.t(message.guild.id, "buttons.next"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(p === totalPages - 1 || totalPages === 0),
                 new ButtonBuilder()
                     .setCustomId('last')
-                    .setLabel('Last')
+                    .setLabel(client.t(message.guild.id, "buttons.last"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(p === totalPages - 1 || totalPages === 0)
             );
@@ -239,7 +238,7 @@ module.exports = {
                 row.addComponents(
                     new ButtonBuilder()
                         .setCustomId('queue_all')
-                        .setLabel('Queue All')
+                        .setLabel(client.t(message.guild.id, "buttons.queueAll"))
                         .setStyle(ButtonStyle.Secondary)
                         .setDisabled(songs.length === 0)
                 );
@@ -319,7 +318,7 @@ module.exports = {
                 if (!player.playing && !player.paused) await player.play();
 
                 const successDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.check} Added [${track.title}](${track.uri}) to queue.**`);
+                    .setContent(client.t(message.guild.id, "music.search.added", { e: client.emoji.check, title: track.title, uri: track.uri }));
                 const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                 return i.channel.send({
@@ -332,7 +331,7 @@ module.exports = {
                 if (!player.playing && !player.paused) await player.play();
 
                 const successDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.check} Added all ${songs.length} tracks to queue.**`);
+                    .setContent(client.t(message.guild.id, "music.search.addedAll", { e: client.emoji.check, count: songs.length }));
                 const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                 return i.channel.send({
@@ -346,13 +345,13 @@ module.exports = {
                     const artist = artists[index];
 
                     if (!artist) {
-                        return i.editReply({ content: `**${client.emoji.cross} Artist data not found. Please try searching again.**` });
+                        return i.editReply({ content: client.t(message.guild.id, "music.search.noArtist", { e: client.emoji.cross }) });
                     }
 
                     const artistTracks = await loadArtistTracks(artist.author || artist.title);
 
                     if (!artistTracks || artistTracks.length === 0) {
-                        return i.editReply({ content: `**${client.emoji.cross} No tracks found for this artist.**` });
+                        return i.editReply({ content: client.t(message.guild.id, "music.search.noArtistTracks", { e: client.emoji.cross }) });
                     }
 
                     let artistPage = 0;
@@ -383,10 +382,10 @@ module.exports = {
                     const generateArtistButtons = (ap) => {
                         const totalPages = Math.ceil(artistTracks.length / multiple);
                         return new ActionRowBuilder().addComponents(
-                            new ButtonBuilder().setCustomId('aprev').setLabel('Previous').setStyle(ButtonStyle.Secondary).setDisabled(ap === 0),
-                            new ButtonBuilder().setCustomId('anext').setLabel('Next').setStyle(ButtonStyle.Secondary).setDisabled(ap === totalPages - 1),
-                            new ButtonBuilder().setCustomId('alast').setLabel('Last').setStyle(ButtonStyle.Secondary).setDisabled(ap === totalPages - 1),
-                            new ButtonBuilder().setCustomId('aall').setLabel('Queue All').setStyle(ButtonStyle.Secondary)
+                            new ButtonBuilder().setCustomId('aprev').setLabel(client.t(message.guild.id, "buttons.previous")).setStyle(ButtonStyle.Secondary).setDisabled(ap === 0),
+                            new ButtonBuilder().setCustomId('anext').setLabel(client.t(message.guild.id, "buttons.next")).setStyle(ButtonStyle.Secondary).setDisabled(ap === totalPages - 1),
+                            new ButtonBuilder().setCustomId('alast').setLabel(client.t(message.guild.id, "buttons.last")).setStyle(ButtonStyle.Secondary).setDisabled(ap === totalPages - 1),
+                            new ButtonBuilder().setCustomId('aall').setLabel(client.t(message.guild.id, "buttons.queueAll")).setStyle(ButtonStyle.Secondary)
                         );
                     };
 
@@ -411,7 +410,7 @@ module.exports = {
                             if (!player.playing && !player.paused) await player.play();
 
                             const successDisplay = new TextDisplayBuilder()
-                                .setContent(`**${client.emoji.check} Added [${track.title}](${track.uri}) to queue.**`);
+                                .setContent(client.t(message.guild.id, "music.search.added", { e: client.emoji.check, title: track.title, uri: track.uri }));
                             const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                             return ai.channel.send({
@@ -424,7 +423,7 @@ module.exports = {
                             if (!player.playing && !player.paused) await player.play();
 
                             const successDisplay = new TextDisplayBuilder()
-                                .setContent(`**${client.emoji.check} Added all ${artistTracks.length} tracks to queue.**`);
+                                .setContent(client.t(message.guild.id, "music.search.addedAll", { e: client.emoji.check, count: artistTracks.length }));
                             const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                             return ai.channel.send({

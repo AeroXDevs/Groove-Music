@@ -34,7 +34,7 @@ module.exports = {
     async slashExecute(interaction, client) {
         const player = client.manager.players.get(interaction.guild.id);
         if (!player.queue.current) {
-            const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.warn} Play a song first.**`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.playFirst", { e: client.emoji.warn }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -43,15 +43,15 @@ module.exports = {
         let speed = interaction.options.getNumber("speed");
 
         if (speed === null) {
-            const headerDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.info} Speed Control**`);
+            const headerDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.speed.title", { e: client.emoji.info }));
             const separator1 = new SeparatorBuilder();
-            const infoDisplay = new TextDisplayBuilder().setContent(`**Current speed** \`:\` \`${currentSpeed}x\`\n**Range** \`:\` \`0.25x - 3.0x\``);
+            const infoDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.speed.info", { speed: currentSpeed }));
             const container = new ContainerBuilder().addTextDisplayComponents(headerDisplay).addSeparatorComponents(separator1).addTextDisplayComponents(infoDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
         if (speed < 0.25 || speed > 3) {
-            const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} Invalid speed value**\n**Valid range** \`:\` \`0.25x - 3.0x\``);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.speed.invalid", { e: client.emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -60,12 +60,12 @@ module.exports = {
             const currentPitch = player.data.get("pitch") || 1.0;
             await player.shoukaku.setFilters({ timescale: { speed: speed, pitch: currentPitch, rate: 1.0 } });
             player.data.set("speed", speed);
-            const successDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.check} Playback speed set to \`${speed}x\`**`);
+            const successDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.speed.set", { e: client.emoji.check, speed }));
             const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         } catch (error) {
             console.error("Error setting speed:", error);
-            const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} Failed to change playback speed.**`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.speed.failed", { e: client.emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -76,7 +76,7 @@ module.exports = {
 
         if (!player.queue.current) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.warn} Play a song first.**`);
+                .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.warn }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
@@ -91,20 +91,19 @@ module.exports = {
 
         if (args.length === 0) {
             const headerDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.info} Speed Control**`);
+                .setContent(client.t(message.guild.id, "music.speed.title", { e: client.emoji.info }));
 
             const separator1 = new SeparatorBuilder();
 
             const infoDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**Current speed** \`:\` \`${currentSpeed}x\`\n` +
-                    `**Range** \`:\` \`0.25x - 3.0x\``
+client.t(message.guild.id, "music.speed.info", { speed: currentSpeed })
                 );
 
             const separator2 = new SeparatorBuilder();
 
             const promptDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.dot} Send a message with your desired speed** \`:\` \`0.5x\`, \`1.5x\`, \`2.0x\`, etc.`);
+                .setContent(client.t(message.guild.id, "music.speed.prompt", { e: client.emoji.dot }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(headerDisplay)
@@ -132,9 +131,7 @@ module.exports = {
                 if (isNaN(speed) || speed < 0.25 || speed > 3) {
                     const errorDisplay = new TextDisplayBuilder()
                         .setContent(
-                            `**${client.emoji.cross} Invalid speed value**\n` +
-                            `**Valid range** \`:\` \`0.25x - 3.0x\`\n` +
-                            `**Examples** \`:\` \`0.5\`, \`1.5\`, \`2.0\``
+client.t(message.guild.id, "music.speed.invalidEx", { e: client.emoji.cross })
                         );
 
                     const errorContainer = new ContainerBuilder()
@@ -159,7 +156,7 @@ module.exports = {
                     player.data.set("speed", speed);
 
                     const successDisplay = new TextDisplayBuilder()
-                        .setContent(`**${client.emoji.check} Playback speed set to \`${speed}x\`**`);
+                        .setContent(client.t(message.guild.id, "music.speed.set", { e: client.emoji.check, speed }));
 
                     const successContainer = new ContainerBuilder()
                         .addTextDisplayComponents(successDisplay);
@@ -174,7 +171,7 @@ module.exports = {
                     console.error("Error setting speed:", error);
 
                     const errorDisplay = new TextDisplayBuilder()
-                        .setContent(`**${client.emoji.cross} Failed to change playback speed.**`);
+                        .setContent(client.t(message.guild.id, "music.speed.failed", { e: client.emoji.cross }));
 
                     const errorContainer = new ContainerBuilder()
                         .addTextDisplayComponents(errorDisplay);
@@ -189,7 +186,7 @@ module.exports = {
             collector.on('end', async (collected, reason) => {
                 if (reason === 'time' && collected.size === 0) {
                     const timeoutDisplay = new TextDisplayBuilder()
-                        .setContent(`**${client.emoji.info} Speed change timed out.**`);
+                        .setContent(client.t(message.guild.id, "music.speed.timedOut", { e: client.emoji.info }));
 
                     const timeoutContainer = new ContainerBuilder()
                         .addTextDisplayComponents(timeoutDisplay);
@@ -209,10 +206,7 @@ module.exports = {
         if (isNaN(speed) || speed < 0.25 || speed > 3) {
             const errorDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**${client.emoji.cross} Invalid speed value**\n` +
-                    `**Usage** \`:\` \`${prefix}speed [0.25-3.0]\`\n` +
-                    `**Examples** \`:\` \`${prefix}speed 0.5\` (slow) | \`${prefix}speed 1.5\` (fast)\n` +
-                    `**Current speed** \`:\` \`${currentSpeed}x\``
+client.t(message.guild.id, "music.speed.usage", { e: client.emoji.cross, prefix, speed: currentSpeed })
                 );
 
             const container = new ContainerBuilder()
@@ -241,7 +235,7 @@ module.exports = {
             player.data.set("speed", speed);
 
             const successDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.check} Playback speed set to \`${speed}x\`**`);
+                .setContent(client.t(message.guild.id, "music.speed.set", { e: client.emoji.check, speed }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(successDisplay);
@@ -259,7 +253,7 @@ module.exports = {
             console.error("Error setting speed:", error);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} Failed to change playback speed.**`);
+                .setContent(client.t(message.guild.id, "music.speed.failed", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
