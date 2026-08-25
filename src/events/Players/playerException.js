@@ -43,7 +43,7 @@ module.exports = {
           if (searchResult.tracks.length > 0) {
             if (channel) {
               const fallbackDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.warn} YouTube restricted → using alternative source!**`);
+                .setContent(client.t(player.guildId, "player.ytRestricted", { e: client.emoji.warn }));
 
               const container = new ContainerBuilder()
                 .addTextDisplayComponents(fallbackDisplay);
@@ -65,8 +65,7 @@ module.exports = {
         if (channel) {
           const blockedDisplay = new TextDisplayBuilder()
             .setContent(
-              `**${client.emoji.error} Couldn't play this track [YouTube blocked].**\n` +
-              `**${client.emoji.info} Skipping...**`
+client.t(player.guildId, "player.ytBlocked", { e: client.emoji.error, i: client.emoji.info })
             );
 
           const container = new ContainerBuilder()
@@ -90,8 +89,7 @@ module.exports = {
         if (channel) {
           const errorDisplay = new TextDisplayBuilder()
             .setContent(
-              `**${client.emoji.warn} Playback error occurred.**\n` +
-              `**${client.emoji.info} Skipping track...**`
+client.t(player.guildId, "player.playbackError", { e: client.emoji.warn, i: client.emoji.info })
             );
 
           const container = new ContainerBuilder()

@@ -302,5 +302,29 @@
     "songs": "Şarkılar",
     "artists": "Sanatçılar",
     "last": "Son"
+  },
+  "player": {
+    "card": {
+      "author": "> - **Sanatçı:** [{author}]({uri})",
+      "duration": "> - **Süre:** `{duration}`",
+      "requester": "> - **İsteyen:** [{user}](https://discord.com/users/{id})"
+    },
+    "voiceStatus": "{e} Çalıyor: **{title}**",
+    "noPrevious": "**{e} Geçmişte önceki bir şarkı yok.**",
+    "alreadyFav": "**{e} `{title}` zaten favorilerinde.**",
+    "addedFav": "**{e} `{title}` favorilerine eklendi.**",
+    "favFailed": "**{e} Şarkı favorilere kaydedilemedi, tekrar dene.**",
+    "unknownButton": "**{e} Bilinmeyen buton işlemi.**",
+    "requestError": "**{e} İsteğin işlenirken bir hata oluştu.**",
+    "notSameVoice": "**{e} Botla aynı ses kanalında olman gerek.**",
+    "queueEnded": "**{e} Sıra bitti.**",
+    "inactivity": "Hareketsizlik nedeniyle ayrılıyorum.",
+    "trackStuck": "**{e} Şarkı takıldı.**\n**{i} Sıradakine geçiyorum...**",
+    "loadFailed": "**{e} Şarkı yüklenemedi.**\n**{i} Sıradakine geçiyorum...**",
+    "unexpected": "**{e} Beklenmedik bir hata oluştu.**\n**{i} Oynatıcı sıfırlanacak.**",
+    "ytRestricted": "**{e} YouTube kısıtladı → alternatif kaynağa geçiyorum.**",
+    "ytBlocked": "**{e} Bu şarkı çalınamadı [YouTube engelledi].**\n**{i} Geçiyorum...**",
+    "playbackError": "**{e} Oynatma hatası oluştu.**\n**{i} Şarkıyı geçiyorum...**",
+    "nowPlayingTitle": "**{e} Şu An Çalıyor**"
   }
 }

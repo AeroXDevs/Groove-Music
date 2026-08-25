@@ -302,5 +302,29 @@
     "songs": "Songs",
     "artists": "Artists",
     "last": "Last"
+  },
+  "player": {
+    "card": {
+      "author": "> - **Author:** [{author}]({uri})",
+      "duration": "> - **Duration:** `{duration}`",
+      "requester": "> - **Requester:** [{user}](https://discord.com/users/{id})"
+    },
+    "voiceStatus": "{e} Playing **{title}**",
+    "noPrevious": "**{e} No previous track found in history.**",
+    "alreadyFav": "**{e} `{title}` is already in your favourite list.**",
+    "addedFav": "**{e} Added `{title}` to your favourite list.**",
+    "favFailed": "**{e} Failed to save song to favorites. Please try again.**",
+    "unknownButton": "**{e} Unknown button interaction.**",
+    "requestError": "**{e} An error occurred while processing your request.**",
+    "notSameVoice": "**{e} You must be in the same voice channel as the bot.**",
+    "queueEnded": "**{e} Queue Ended**",
+    "inactivity": "Disconnecting due to inactivity.",
+    "trackStuck": "**{e} Track got stuck.**\n**{i} Skipping to next track...**",
+    "loadFailed": "**{e} Failed to load track.**\n**{i} Skipping to next track...**",
+    "unexpected": "**{e} An unexpected error occurred.**\n**{i} The player will be reset.**",
+    "ytRestricted": "**{e} YouTube restricted → using alternative source!**",
+    "ytBlocked": "**{e} Couldn't play this track [YouTube blocked].**\n**{i} Skipping...**",
+    "playbackError": "**{e} Playback error occurred.**\n**{i} Skipping track...**",
+    "nowPlayingTitle": "**{e} Now Playing**"
   }
 }

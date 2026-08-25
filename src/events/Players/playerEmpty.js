@@ -59,12 +59,12 @@ module.exports = {
 
         if ((!player.queue || player.queue.size === 0) && !player.playing && !player.paused) {
           const headerDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.info} Queue Ended**`);
+            .setContent(client.t(player.guildId, "player.queueEnded", { e: client.emoji.info }));
 
           const separator = new SeparatorBuilder();
 
           const infoDisplay = new TextDisplayBuilder()
-            .setContent(`Disconnecting due to inactivity.`);
+            .setContent(client.t(player.guildId, "player.inactivity"));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(headerDisplay)

@@ -20,8 +20,7 @@ module.exports = {
             if (channel) {
               const stuckDisplay = new TextDisplayBuilder()
                 .setContent(
-                  `**${client.emoji.warn} Track got stuck.**\n` +
-                  `**${client.emoji.info} Skipping to next track...**`
+client.t(player.guildId, "player.trackStuck", { e: client.emoji.warn, i: client.emoji.info })
                 );
 
               const container = new ContainerBuilder()
@@ -43,8 +42,7 @@ module.exports = {
             if (channel) {
               const loadFailDisplay = new TextDisplayBuilder()
                 .setContent(
-                  `**${client.emoji.warn} Failed to load track.**\n` +
-                  `**${client.emoji.info} Skipping to next track...**`
+client.t(player.guildId, "player.loadFailed", { e: client.emoji.warn, i: client.emoji.info })
                 );
 
               const container = new ContainerBuilder()
@@ -65,8 +63,7 @@ module.exports = {
           if (channel) {
             const errorDisplay = new TextDisplayBuilder()
               .setContent(
-                `**${client.emoji.warn} An unexpected error occurred.**\n` +
-                `**${client.emoji.info} The player will be reset.**`
+client.t(player.guildId, "player.unexpected", { e: client.emoji.warn, i: client.emoji.info })
               );
 
             const container = new ContainerBuilder()

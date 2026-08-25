@@ -87,7 +87,7 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
 
         const node = [...client.manager.shoukaku.nodes.values()][0];
         if (!node) {
-            const errorDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "music.search.noNode", { e: client.emoji.cross }));
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(guildId, "music.search.noNode", { e: client.emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             const options = { components: [container], flags: MessageFlags.IsComponentsV2 };
             return isSlash ? context.editReply(options) : context.reply(options);
@@ -126,7 +126,7 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
         const multiple = 5;
 
         if (songs.length === 0) {
-            const noResultsDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "music.search.noResults", { e: client.emoji.cross, query }));
+            const noResultsDisplay = new TextDisplayBuilder().setContent(client.t(guildId, "music.search.noResults", { e: client.emoji.cross, query }));
             const noResultsContainer = new ContainerBuilder().addTextDisplayComponents(noResultsDisplay);
             const options = { components: [noResultsContainer], flags: MessageFlags.IsComponentsV2 };
             return isSlash ? context.editReply(options) : context.reply(options);
@@ -140,15 +140,15 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
                 const headerRow = new ActionRowBuilder().addComponents(
                     new ButtonBuilder()
                         .setCustomId('mode_songs')
-                        .setLabel(client.t(message.guild.id, "buttons.songs"))
+                        .setLabel(client.t(guildId, "buttons.songs"))
                         .setStyle(mode === 'songs' ? ButtonStyle.Primary : ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('mode_artists')
-                        .setLabel(client.t(message.guild.id, "buttons.artists"))
+                        .setLabel(client.t(guildId, "buttons.artists"))
                         .setStyle(mode === 'artists' ? ButtonStyle.Primary : ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('delete_search')
-                        .setLabel(client.t(message.guild.id, "buttons.close"))
+                        .setLabel(client.t(guildId, "buttons.close"))
                         .setStyle(ButtonStyle.Secondary)
                 );
                 container.addActionRowComponents(headerRow);
@@ -219,17 +219,17 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
             const row = new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
                     .setCustomId('prev')
-                    .setLabel(client.t(message.guild.id, "buttons.previous"))
+                    .setLabel(client.t(guildId, "buttons.previous"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(p === 0),
                 new ButtonBuilder()
                     .setCustomId('next')
-                    .setLabel(client.t(message.guild.id, "buttons.next"))
+                    .setLabel(client.t(guildId, "buttons.next"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(p === totalPages - 1 || totalPages === 0),
                 new ButtonBuilder()
                     .setCustomId('last')
-                    .setLabel(client.t(message.guild.id, "buttons.last"))
+                    .setLabel(client.t(guildId, "buttons.last"))
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(p === totalPages - 1 || totalPages === 0)
             );
@@ -238,7 +238,7 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
                 row.addComponents(
                     new ButtonBuilder()
                         .setCustomId('queue_all')
-                        .setLabel(client.t(message.guild.id, "buttons.queueAll"))
+                        .setLabel(client.t(guildId, "buttons.queueAll"))
                         .setStyle(ButtonStyle.Secondary)
                         .setDisabled(songs.length === 0)
                 );
@@ -318,7 +318,7 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
                 if (!player.playing && !player.paused) await player.play();
 
                 const successDisplay = new TextDisplayBuilder()
-                    .setContent(client.t(message.guild.id, "music.search.added", { e: client.emoji.check, title: track.title, uri: track.uri }));
+                    .setContent(client.t(guildId, "music.search.added", { e: client.emoji.check, title: track.title, uri: track.uri }));
                 const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                 return i.channel.send({
@@ -331,7 +331,7 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
                 if (!player.playing && !player.paused) await player.play();
 
                 const successDisplay = new TextDisplayBuilder()
-                    .setContent(client.t(message.guild.id, "music.search.addedAll", { e: client.emoji.check, count: songs.length }));
+                    .setContent(client.t(guildId, "music.search.addedAll", { e: client.emoji.check, count: songs.length }));
                 const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                 return i.channel.send({
@@ -345,13 +345,13 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
                     const artist = artists[index];
 
                     if (!artist) {
-                        return i.editReply({ content: client.t(message.guild.id, "music.search.noArtist", { e: client.emoji.cross }) });
+                        return i.editReply({ content: client.t(guildId, "music.search.noArtist", { e: client.emoji.cross }) });
                     }
 
                     const artistTracks = await loadArtistTracks(artist.author || artist.title);
 
                     if (!artistTracks || artistTracks.length === 0) {
-                        return i.editReply({ content: client.t(message.guild.id, "music.search.noArtistTracks", { e: client.emoji.cross }) });
+                        return i.editReply({ content: client.t(guildId, "music.search.noArtistTracks", { e: client.emoji.cross }) });
                     }
 
                     let artistPage = 0;
@@ -382,10 +382,10 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
                     const generateArtistButtons = (ap) => {
                         const totalPages = Math.ceil(artistTracks.length / multiple);
                         return new ActionRowBuilder().addComponents(
-                            new ButtonBuilder().setCustomId('aprev').setLabel(client.t(message.guild.id, "buttons.previous")).setStyle(ButtonStyle.Secondary).setDisabled(ap === 0),
-                            new ButtonBuilder().setCustomId('anext').setLabel(client.t(message.guild.id, "buttons.next")).setStyle(ButtonStyle.Secondary).setDisabled(ap === totalPages - 1),
-                            new ButtonBuilder().setCustomId('alast').setLabel(client.t(message.guild.id, "buttons.last")).setStyle(ButtonStyle.Secondary).setDisabled(ap === totalPages - 1),
-                            new ButtonBuilder().setCustomId('aall').setLabel(client.t(message.guild.id, "buttons.queueAll")).setStyle(ButtonStyle.Secondary)
+                            new ButtonBuilder().setCustomId('aprev').setLabel(client.t(guildId, "buttons.previous")).setStyle(ButtonStyle.Secondary).setDisabled(ap === 0),
+                            new ButtonBuilder().setCustomId('anext').setLabel(client.t(guildId, "buttons.next")).setStyle(ButtonStyle.Secondary).setDisabled(ap === totalPages - 1),
+                            new ButtonBuilder().setCustomId('alast').setLabel(client.t(guildId, "buttons.last")).setStyle(ButtonStyle.Secondary).setDisabled(ap === totalPages - 1),
+                            new ButtonBuilder().setCustomId('aall').setLabel(client.t(guildId, "buttons.queueAll")).setStyle(ButtonStyle.Secondary)
                         );
                     };
 
@@ -410,7 +410,7 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
                             if (!player.playing && !player.paused) await player.play();
 
                             const successDisplay = new TextDisplayBuilder()
-                                .setContent(client.t(message.guild.id, "music.search.added", { e: client.emoji.check, title: track.title, uri: track.uri }));
+                                .setContent(client.t(guildId, "music.search.added", { e: client.emoji.check, title: track.title, uri: track.uri }));
                             const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                             return ai.channel.send({
@@ -423,7 +423,7 @@ client.t(message.guild.id, "music.search.usage", { d: client.emoji.dot, prefix }
                             if (!player.playing && !player.paused) await player.play();
 
                             const successDisplay = new TextDisplayBuilder()
-                                .setContent(client.t(message.guild.id, "music.search.addedAll", { e: client.emoji.check, count: artistTracks.length }));
+                                .setContent(client.t(guildId, "music.search.addedAll", { e: client.emoji.check, count: artistTracks.length }));
                             const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
                             return ai.channel.send({

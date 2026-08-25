@@ -38,7 +38,7 @@ module.exports = {
 
       if (!current) {
         const nothingDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} Nothing is playing right now.**`);
+          .setContent(client.t(player.guildId, "music.nothingPlaying", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(nothingDisplay);
@@ -53,7 +53,7 @@ module.exports = {
       const currDuration = convertTime(current.length || 0);
 
       const headerDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.info} Now Playing**`);
+        .setContent(client.t(player.guildId, "player.nowPlayingTitle", { e: client.emoji.info }));
 
       const separator1 = new SeparatorBuilder();
 
@@ -86,19 +86,19 @@ module.exports = {
       const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setCustomId("previous")
-          .setLabel("Previous")
+          .setLabel(client.t(player.guildId, "buttons.previous"))
           .setStyle(ButtonStyle.Secondary),
         new ButtonBuilder()
           .setCustomId("home")
-          .setLabel("Home")
+          .setLabel(client.t(player.guildId, "buttons.home"))
           .setStyle(ButtonStyle.Secondary),
         new ButtonBuilder()
           .setCustomId("next")
-          .setLabel("Next")
+          .setLabel(client.t(player.guildId, "buttons.next"))
           .setStyle(ButtonStyle.Secondary),
         new ButtonBuilder()
           .setCustomId("close")
-          .setLabel("Close")
+          .setLabel(client.t(player.guildId, "buttons.close"))
           .setStyle(ButtonStyle.Danger)
       );
 
