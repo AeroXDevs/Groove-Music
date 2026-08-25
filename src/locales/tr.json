@@ -158,7 +158,10 @@
     "volume": {
       "range": "**{e} Ses seviyesi 0 ile 100 arasında olmalı.**",
       "noPlayer": "**{e} Oynatıcı bulunamadı.**",
-      "error": "**{e} Ses seviyesi ayarlanırken bir hata oluştu.**"
+      "error": "**{e} Ses seviyesi ayarlanırken bir hata oluştu.**",
+      "current": "{blank}{arrow} **Ses seviyesi : `{value}%`**",
+      "currentPlain": "{blank}{arrow} **Ses seviyesi :** `{value}%`",
+      "usage": "**{e} Kullanımı** `:` `{prefix}volume [0-100]`\n{arrow} **__Ses seviyesi__ :** `{value}%`"
     },
     "artistradio": {
       "needArtist": "**{e} Bir sanatçı adı yazmalısın.**\nÖrnek: `{prefix}artistradio Sezen Aksu`",

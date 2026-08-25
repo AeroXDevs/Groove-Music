@@ -47,7 +47,7 @@ module.exports = {
       const volumeDisplay = new TextDisplayBuilder()
         .setContent(
           `**Volume !**\n` +
-          `${client.emoji.blank}${client.emoji.wickarrow} **Current Volume : \`${player.volume}%\`**`
+          client.t(interaction.guildId, "music.volume.current", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: player.volume })
         );
 
       const container = new ContainerBuilder()
@@ -98,8 +98,7 @@ module.exports = {
       if (isNaN(volume) || volume < 0 || volume > 100) {
         const errorDisplay = new TextDisplayBuilder()
           .setContent(
-            `**${client.emoji.cross} Usage** \`:\` \`${prefix}volume [0-100]\`\n` +
-            `${client.emoji.wickarrow} **__Current Volume__ :** \`${player.volume}%\``
+client.t(message.guild.id, "music.volume.usage", { e: client.emoji.cross, arrow: client.emoji.wickarrow, prefix, value: player.volume })
           );
 
         const container = new ContainerBuilder()
@@ -133,7 +132,7 @@ module.exports = {
       const volumeDisplay = new TextDisplayBuilder()
         .setContent(
           `**Volume !**\n` +
-          `${client.emoji.blank}${client.emoji.wickarrow} **Current Volume :** \`${currentVol}%\``
+          client.t(message.guild.id, "music.volume.currentPlain", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: currentVol })
         );
 
       const buttons = new ActionRowBuilder().addComponents(
@@ -224,7 +223,7 @@ module.exports = {
         const volumeDisplay = new TextDisplayBuilder()
           .setContent(
             `**Volume !**\n` +
-            `${client.emoji.blank}${client.emoji.wickarrow} **Current Volume : \`${finalVolume}%\`**`
+            client.t(message.guild.id, "music.volume.current", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: finalVolume })
           );
 
         const finalContainer = new ContainerBuilder()

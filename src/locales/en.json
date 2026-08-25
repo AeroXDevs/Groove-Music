@@ -158,7 +158,10 @@
     "volume": {
       "range": "**{e} Volume must be between 0 and 100.**",
       "noPlayer": "**{e} Player not found.**",
-      "error": "**{e} An error occurred while adjusting volume.**"
+      "error": "**{e} An error occurred while adjusting volume.**",
+      "current": "{blank}{arrow} **Current Volume : `{value}%`**",
+      "currentPlain": "{blank}{arrow} **Current Volume :** `{value}%`",
+      "usage": "**{e} Usage** `:` `{prefix}volume [0-100]`\n{arrow} **__Current Volume__ :** `{value}%`"
     },
     "artistradio": {
       "needArtist": "**{e} Please provide an artist name.**\nExample: `{prefix}artistradio Imagine Dragons`",
