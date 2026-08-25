@@ -643,5 +643,86 @@
     "timer": {
       "max": "{e} I can only set timers for up to 24 hours as they don't persist after restarts."
     }
+  },
+  "owner": {
+    "reload": {
+      "done": "{e} **Command Reloaded!**",
+      "systemDone": "{e} **System Reload Successful!**",
+      "notFound": "{e} **Command Not Found**",
+      "globalFail": "{e} **Global Reload Failed**",
+      "error": "{e} **Reload Error**"
+    },
+    "row": {
+      "commands": "{blank}{arrow} **Commands:** `{value}`",
+      "coreFiles": "{blank}{arrow} **Core Files:** `{value}`",
+      "events": "{blank}{arrow} **Events:** `{value}`"
+    },
+    "dbWiped": "{e} **Database Wiped**: All user profiles and team settings have been deleted.",
+    "teamReset": "{e} **Team Reset**: All team ranks, badges, and permissions have been cleared across all users.",
+    "inviteFor": "{e} **Invite for {guild}:**\n{invite}",
+    "allowedUser": "{e} Allowed **{item}** for **{user}**.",
+    "allowedRank": "{e} Allowed **{item}** for all **{rank}** members.",
+    "deniedUser": "{e} Denied **{item}** for **{user}**.",
+    "deniedRank": "{e} Denied **{item}** for all **{rank}** members.",
+    "rankSet": "{e} Success! **{user}** rank set to **{rank}**.",
+    "removedFromTeam": "{e} Success! **{user}** removed from the team.",
+    "badgeAdded": "{e} Success! Added badge **{badge}** for **{user}**.",
+    "badgeRemoved": "{e} Success! Removed badge **{badge}** from **{user}**.",
+    "itemRemoved": "{e} Success! Removed **{item}** from **{user}**.",
+    "hasBadge": "{e} **{user}** already has the **{badge}** badge.",
+    "noBadge": "{e} **{user}** does not have the **{badge}** badge.",
+    "noRankBadge": "{e} **{user}** does not hold the **{item}** rank/badge.",
+    "noTeam": "{e} No team members found.",
+    "ownerRankLocked": "{e} Only hardcoded owners (from config.json) can hold the **Owner** rank.",
+    "needName": "{e} Please provide a name.",
+    "needUser": "{e} Please provide a user.",
+    "needUserOrRank": "{e} Please provide a valid User or Rank.",
+    "needValidRank": "{e} Please specify a valid rank: {ranks}",
+    "ranksNotRemovable": "{e} Ranks cannot be removed, only users.",
+    "specifyAllow": "{e} Specify a command or rank badge to allow.",
+    "specifyDeny": "{e} Specify a command or rank badge to deny.",
+    "noTeamData": "{e} This user has no team data.",
+    "userNotFound": "{e} User not found.",
+    "error": "{e} **Error:** {message}"
+  },
+  "trk": {
+    "clearedUser": "{e} **Successfully cleared invite data for [{user}](https://discord.com/users/{id}).**",
+    "resetOwn": "{e} **Successfully reset your invite statistics!**",
+    "errMembers": "{e} **An error occurred while fetching invited members.**",
+    "errLeaderboard": "{e} **An error occurred while fetching the leaderboard.**",
+    "errClearing": "{e} **An error occurred while clearing invite data.**",
+    "errCodesPerms": "{e} **An error occurred while fetching invite codes. Make sure I have enough permissions.**",
+    "errCodes": "{e} **An error occurred while fetching invite codes.**",
+    "errInviter": "{e} **An error occurred while fetching inviter information.**",
+    "errReset": "{e} **An error occurred while resetting your invite statistics.**",
+    "errStats": "{e} An error occurred while fetching invite statistics.",
+    "noInviter": "{e} **Could not fetch inviter information.**",
+    "userNotFound": "{e} **Could not find that user.**",
+    "userNotFoundHint": "{e} Could not find that user. Please mention a valid user or use their ID.",
+    "noneInvited": "{e} **{user} hasn't invited anyone yet!**",
+    "noGuildData": "{e} **No invite data found for this server!**",
+    "noRecordTag": "{e} **No invite record found for {user}.**",
+    "noRecordsUser": "{e} **No invite records found for [{user}](https://discord.com/users/{id}).**",
+    "noRecordsGuild": "{e} **No invite records found in this server.**",
+    "noRecordsOwn": "{e} **You don't have any invite records in this server.**",
+    "noActiveCodes": "{e} **[{user}](https://discord.com/users/{id}) has no active invite codes.**",
+    "botsNoStats": "{e} Bots cannot have invite statistics.",
+    "botsNoInviter": "{e} Bots don't have inviters."
+  },
+  "gw": {
+    "started": "{e} Giveaway started!",
+    "noActiveId": "{e} Active giveaway not found with that ID.",
+    "noEndedId": "{e} Ended giveaway not found with that ID.",
+    "invalidInput": "{e} Invalid input provided.",
+    "noActive": "{e} No active giveaways found in this channel.",
+    "noEnded": "{e} No ended giveaways found in this channel.",
+    "pickActive": "{e} Multiple active giveaways found. Please select one:",
+    "pickEnded": "{e} Multiple ended giveaways found. Please select one:",
+    "badDuration": "{e} Invalid duration suffix! Use s, m, h, or d.",
+    "minWinners": "{e} Winners must be at least 1.",
+    "row": {
+      "ends": "{arrow} **Ends:** <t:{ts}:R> [<t:{ts}:f>]\n\n",
+      "host": "{arrow} **Host:** <@{id}>\n"
+    }
   }
 }

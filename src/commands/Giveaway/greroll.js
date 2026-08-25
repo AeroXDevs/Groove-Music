@@ -76,7 +76,7 @@ module.exports = {
         if (selectedId) {
             const gwy = client.db.giveaways.get(selectedId);
             if (!gwy || !gwy.ended) {
-                const display = new TextDisplayBuilder().setContent(`${client.emoji.cross} Ended giveaway not found with that ID.`);
+                const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "gw.noEndedId", { e: client.emoji.cross }));
                 return message.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
                     flags: MessageFlags.IsComponentsV2
@@ -96,7 +96,7 @@ module.exports = {
 
         const giveaways = client.db.giveaways.getEndedForChannel(message.channel.id);
         if (giveaways.length === 0) {
-            const display = new TextDisplayBuilder().setContent(`${client.emoji.cross} No ended giveaways found in this channel.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "gw.noEnded", { e: client.emoji.cross }));
             return message.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -121,7 +121,7 @@ module.exports = {
             .setPlaceholder('Select a giveaway to reroll')
             .addOptions(giveaways.map(g => new StringSelectMenuOptionBuilder().setLabel(g.prize.substring(0, 100)).setDescription(`Message ID: ${g.messageId}`).setValue(g.messageId)));
 
-        const chooseDisplay = new TextDisplayBuilder().setContent(`${client.emoji.gwy} Multiple ended giveaways found. Please select one:`);
+        const chooseDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "gw.pickEnded", { e: client.emoji.gwy }));
         const msg = await message.reply({
             components: [new ContainerBuilder().addTextDisplayComponents(chooseDisplay), new ActionRowBuilder().addComponents(selectMenu)],
             flags: MessageFlags.IsComponentsV2

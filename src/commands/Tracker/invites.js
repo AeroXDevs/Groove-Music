@@ -110,7 +110,7 @@ module.exports = {
                     targetUser = await message.guild.members.fetch(userMention).then(m => m.user);
                 } catch (error) {
                     const display = new TextDisplayBuilder()
-                        .setContent(`${client.emoji.warn} Could not find that user. Please mention a valid user or use their ID.`);
+                        .setContent(client.t(message.guild.id, "trk.userNotFoundHint", { e: client.emoji.warn }));
 
                     return message.reply({
                         components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -122,7 +122,7 @@ module.exports = {
 
             if (targetUser.bot) {
                 const display = new TextDisplayBuilder()
-                    .setContent(`${client.emoji.warn} Bots cannot have invite statistics.`);
+                    .setContent(client.t(message.guild.id, "trk.botsNoStats", { e: client.emoji.warn }));
 
                 return message.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -163,7 +163,7 @@ module.exports = {
             console.error('Error in invites command:', error);
 
             const display = new TextDisplayBuilder()
-                .setContent(`${client.emoji.warn} An error occurred while fetching invite statistics.`);
+                .setContent(client.t(message.guild.id, "trk.errStats", { e: client.emoji.warn }));
 
             return message.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],

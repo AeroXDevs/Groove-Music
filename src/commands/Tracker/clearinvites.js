@@ -80,7 +80,7 @@ module.exports = {
 
                 if (count === 0) {
                     const display = new TextDisplayBuilder()
-                        .setContent(`${client.emoji.warn} **No invite records found in this server.**`);
+                        .setContent(client.t(message.guild.id, "trk.noRecordsGuild", { e: client.emoji.warn }));
 
                     return message.reply({
                         components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -114,7 +114,7 @@ module.exports = {
                     targetUser = await message.guild.members.fetch(userMention).then(m => m.user);
                 } catch (error) {
                     const display = new TextDisplayBuilder()
-                        .setContent(`${client.emoji.warn} **Could not find that user.**`);
+                        .setContent(client.t(message.guild.id, "trk.userNotFound", { e: client.emoji.warn }));
 
                     return message.reply({
                         components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -135,7 +135,7 @@ module.exports = {
 
                 if (inviterCount === 0 && invitedCount === 0) {
                     const display = new TextDisplayBuilder()
-                        .setContent(`${client.emoji.warn} **No invite records found for [${targetUser.displayName}](https://discord.com/users/${targetUser.id}).**`);
+                        .setContent(client.t(message.guild.id, "trk.noRecordsUser", { e: client.emoji.warn, user: targetUser.displayName, id: targetUser.id }));
 
                     return message.reply({
                         components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -170,7 +170,7 @@ module.exports = {
 
                 const successDisplay = new TextDisplayBuilder()
                     .setContent(
-                        `${client.emoji.check} **Successfully cleared invite data for [${targetUser.displayName}](https://discord.com/users/${targetUser.id}).**`
+                        client.t(message.guild.id, "trk.clearedUser", { e: client.emoji.check, user: targetUser.displayName, id: targetUser.id })
                     );
 
                 return message.reply({
@@ -184,7 +184,7 @@ module.exports = {
             console.error('Error in clearinvites command:', error);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`${client.emoji.warn} **An error occurred while clearing invite data.**`);
+                .setContent(client.t(message.guild.id, "trk.errClearing", { e: client.emoji.warn }));
 
             return message.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(errorDisplay)],

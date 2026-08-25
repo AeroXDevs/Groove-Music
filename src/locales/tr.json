@@ -643,5 +643,86 @@
     "timer": {
       "max": "{e} Zamanlayıcılar yeniden başlatmada silindiği için en fazla 24 saat kurabiliyorum."
     }
+  },
+  "owner": {
+    "reload": {
+      "done": "{e} **Komut yeniden yüklendi.**",
+      "systemDone": "{e} **Sistem yeniden yüklendi.**",
+      "notFound": "{e} **Komut bulunamadı.**",
+      "globalFail": "{e} **Genel yeniden yükleme başarısız.**",
+      "error": "{e} **Yeniden yükleme hatası**"
+    },
+    "row": {
+      "commands": "{blank}{arrow} **Komutlar:** `{value}`",
+      "coreFiles": "{blank}{arrow} **Çekirdek dosyalar:** `{value}`",
+      "events": "{blank}{arrow} **Olaylar:** `{value}`"
+    },
+    "dbWiped": "{e} **Veritabanı temizlendi**: Bütün kullanıcı profilleri ve ekip ayarları silindi.",
+    "teamReset": "{e} **Ekip sıfırlandı**: Bütün rütbeler, rozetler ve yetkiler temizlendi.",
+    "inviteFor": "{e} **{guild} için davet:**\n{invite}",
+    "allowedUser": "{e} **{user}** için **{item}** izni verildi.",
+    "allowedRank": "{e} Bütün **{rank}** üyeleri için **{item}** izni verildi.",
+    "deniedUser": "{e} **{user}** için **{item}** engellendi.",
+    "deniedRank": "{e} Bütün **{rank}** üyeleri için **{item}** engellendi.",
+    "rankSet": "{e} **{user}** kullanıcısının rütbesi **{rank}** yapıldı.",
+    "removedFromTeam": "{e} **{user}** ekipten çıkarıldı.",
+    "badgeAdded": "{e} **{user}** kullanıcısına **{badge}** rozeti verildi.",
+    "badgeRemoved": "{e} **{user}** kullanıcısından **{badge}** rozeti alındı.",
+    "itemRemoved": "{e} **{user}** kullanıcısından **{item}** kaldırıldı.",
+    "hasBadge": "{e} **{user}** zaten **{badge}** rozetine sahip.",
+    "noBadge": "{e} **{user}** kullanıcısında **{badge}** rozeti yok.",
+    "noRankBadge": "{e} **{user}** kullanıcısında **{item}** rütbesi/rozeti yok.",
+    "noTeam": "{e} Hiç ekip üyesi yok.",
+    "ownerRankLocked": "{e} **Owner** rütbesi yalnızca config.json'daki sahiplerde olabilir.",
+    "needName": "{e} Bir isim yazman gerek.",
+    "needUser": "{e} Bir kullanıcı belirtmen gerek.",
+    "needUserOrRank": "{e} Geçerli bir kullanıcı veya rütbe belirt.",
+    "needValidRank": "{e} Geçerli bir rütbe belirt: {ranks}",
+    "ranksNotRemovable": "{e} Rütbeler kaldırılamaz, yalnızca kullanıcılar.",
+    "specifyAllow": "{e} İzin verilecek komutu veya rozeti belirt.",
+    "specifyDeny": "{e} Engellenecek komutu veya rozeti belirt.",
+    "noTeamData": "{e} Bu kullanıcının ekip kaydı yok.",
+    "userNotFound": "{e} Kullanıcı bulunamadı.",
+    "error": "{e} **Hata:** {message}"
+  },
+  "trk": {
+    "clearedUser": "{e} **[{user}](https://discord.com/users/{id}) için davet kayıtları temizlendi.**",
+    "resetOwn": "{e} **Davet istatistiklerin sıfırlandı.**",
+    "errMembers": "{e} **Davet edilen üyeler alınırken bir hata oluştu.**",
+    "errLeaderboard": "{e} **Sıralama alınırken bir hata oluştu.**",
+    "errClearing": "{e} **Davet kayıtları temizlenirken bir hata oluştu.**",
+    "errCodesPerms": "{e} **Davet kodları alınamadı. Yeterli yetkim olduğundan emin ol.**",
+    "errCodes": "{e} **Davet kodları alınırken bir hata oluştu.**",
+    "errInviter": "{e} **Davet eden bilgisi alınırken bir hata oluştu.**",
+    "errReset": "{e} **Davet istatistiklerin sıfırlanırken bir hata oluştu.**",
+    "errStats": "{e} Davet istatistikleri alınırken bir hata oluştu.",
+    "noInviter": "{e} **Davet eden bilgisi alınamadı.**",
+    "userNotFound": "{e} **Böyle bir kullanıcı bulunamadı.**",
+    "userNotFoundHint": "{e} Kullanıcı bulunamadı. Geçerli bir kullanıcı etiketle veya ID'sini gir.",
+    "noneInvited": "{e} **{user} henüz kimseyi davet etmemiş.**",
+    "noGuildData": "{e} **Bu sunucu için davet kaydı yok.**",
+    "noRecordTag": "{e} **{user} için davet kaydı bulunamadı.**",
+    "noRecordsUser": "{e} **[{user}](https://discord.com/users/{id}) için davet kaydı yok.**",
+    "noRecordsGuild": "{e} **Bu sunucuda hiç davet kaydı yok.**",
+    "noRecordsOwn": "{e} **Bu sunucuda hiç davet kaydın yok.**",
+    "noActiveCodes": "{e} **[{user}](https://discord.com/users/{id}) için aktif davet kodu yok.**",
+    "botsNoStats": "{e} Botların davet istatistiği olmaz.",
+    "botsNoInviter": "{e} Botları kimse davet etmez."
+  },
+  "gw": {
+    "started": "{e} Çekiliş başladı.",
+    "noActiveId": "{e} Bu ID ile aktif çekiliş bulunamadı.",
+    "noEndedId": "{e} Bu ID ile bitmiş çekiliş bulunamadı.",
+    "invalidInput": "{e} Geçersiz giriş.",
+    "noActive": "{e} Bu kanalda aktif çekiliş yok.",
+    "noEnded": "{e} Bu kanalda bitmiş çekiliş yok.",
+    "pickActive": "{e} Birden fazla aktif çekiliş var, birini seç:",
+    "pickEnded": "{e} Birden fazla bitmiş çekiliş var, birini seç:",
+    "badDuration": "{e} Geçersiz süre eki. s, m, h veya d kullan.",
+    "minWinners": "{e} Kazanan sayısı en az 1 olmalı.",
+    "row": {
+      "ends": "{arrow} **Bitiş:** <t:{ts}:R> [<t:{ts}:f>]\n\n",
+      "host": "{arrow} **Düzenleyen:** <@{id}>\n"
+    }
   }
 }

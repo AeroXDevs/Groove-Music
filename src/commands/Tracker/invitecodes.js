@@ -52,7 +52,7 @@ module.exports = {
                     targetUser = await message.guild.members.fetch(userMention).then(m => m.user);
                 } catch (error) {
                     const display = new TextDisplayBuilder()
-                        .setContent(`${client.emoji.warn} **Could not find that user.**`);
+                        .setContent(client.t(message.guild.id, "trk.userNotFound", { e: client.emoji.warn }));
 
                     return message.reply({
                         components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -74,7 +74,7 @@ module.exports = {
             const invites = await message.guild.invites.fetch().catch(() => null);
             if (!invites) {
                 const display = new TextDisplayBuilder()
-                    .setContent(`${client.emoji.warn} **An error occurred while fetching invite codes. Make sure I have enough permissions.**`);
+                    .setContent(client.t(message.guild.id, "trk.errCodesPerms", { e: client.emoji.warn }));
 
                 return message.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -86,7 +86,7 @@ module.exports = {
 
             if (userInvites.size === 0) {
                 const display = new TextDisplayBuilder()
-                    .setContent(`${client.emoji.warn} **[${targetUser.displayName}](https://discord.com/users/${targetUser.id}) has no active invite codes.**`);
+                    .setContent(client.t(message.guild.id, "trk.noActiveCodes", { e: client.emoji.warn, user: targetUser.displayName, id: targetUser.id }));
 
                 return message.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -133,7 +133,7 @@ module.exports = {
             console.error('Error in invitecodes command:', error);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`${client.emoji.warn} **An error occurred while fetching invite codes.**`);
+                .setContent(client.t(message.guild.id, "trk.errCodes", { e: client.emoji.warn }));
 
             return message.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(errorDisplay)],

@@ -79,13 +79,13 @@ module.exports = {
 
         const targetId = args[1]?.replace(/[<@!>]/g, '');
         if (!targetId) {
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a user.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.needUser", { e: emoji.warn })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
         const targetUser = await client.users.fetch(targetId).catch(() => null);
         if (!targetUser) {
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} User not found.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.userNotFound", { e: emoji.warn })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -113,7 +113,7 @@ module.exports = {
 
         const badgeName = args.slice(2).join(' ');
         if (!badgeName) {
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a name.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.needName", { e: emoji.warn })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -125,24 +125,24 @@ module.exports = {
 
         if (action === 'add') {
             if (profile.badges.includes(badgeName)) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} **${targetUser.username}** already has the **${badgeName}** badge.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.hasBadge", { e: emoji.warn, user: targetUser.username, badge: badgeName })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
             profile.badges.push(badgeName);
             client.db.profiles.set(targetUser.id, profile);
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Success! Added badge **${badgeName}** for **${targetUser.username}**.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.badgeAdded", { e: emoji.check, badge: badgeName, user: targetUser.username })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
 
         } else if (action === 'remove') {
             const idx = profile.badges.indexOf(badgeName);
             if (idx === -1) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} **${targetUser.username}** does not have the **${badgeName}** badge.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.noBadge", { e: emoji.warn, user: targetUser.username, badge: badgeName })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
 
             profile.badges.splice(idx, 1);
             client.db.profiles.set(targetUser.id, profile);
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Success! Removed badge **${badgeName}** from **${targetUser.username}**.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.badgeRemoved", { e: emoji.check, badge: badgeName, user: targetUser.username })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
     }

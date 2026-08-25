@@ -175,7 +175,7 @@ module.exports = {
         }
 
         return await reply(
-          `${client.emoji.check} **System Reload Successful!**`,
+          client.t(message.guild.id, "owner.reload.systemDone", { e: client.emoji.check }),
           `${client.emoji.blank}${client.emoji.wickarrow} **Commands:** \` ${stats.commands} \` [Slash: \` ${stats.slash} \`]\n` +
           `${client.emoji.blank}${client.emoji.wickarrow} **Events:** \` ${stats.events} \` \n` +
           `${client.emoji.blank}${client.emoji.wickarrow} **Core Files:** \` ${stats.others} \``
@@ -183,12 +183,12 @@ module.exports = {
 
       } catch (err) {
         console.error(err);
-        return await reply(`${client.emoji.cross} **Global Reload Failed**`, `\`\`\`js\n${err.message}\`\`\``);
+        return await reply(client.t(message.guild.id, "owner.reload.globalFail", { e: client.emoji.cross }), `\`\`\`js\n${err.message}\`\`\``);
       }
     }
 
     const command = client.commands.get(target) || client.commands.find(c => c.aliases?.includes(target));
-    if (!command) return await reply(`${client.emoji.cross} **Command Not Found**`, `${client.emoji.blank}${client.emoji.wickarrow} Target: \` ${target} \``);
+    if (!command) return await reply(client.t(message.guild.id, "owner.reload.notFound", { e: client.emoji.cross }), `${client.emoji.blank}${client.emoji.wickarrow} Target: \` ${target} \``);
 
     try {
       const categoryPath = path.join(process.cwd(), "src/commands", command.category);
@@ -232,10 +232,10 @@ module.exports = {
         client.slashCommands.set(newCmd.name, slashData);
       }
 
-      return await reply(`${client.emoji.check} **Command Reloaded!**`, `${client.emoji.blank}${client.emoji.wickarrow} Command: \` ${newCmd.name} \` \n${client.emoji.blank}${client.emoji.wickarrow} Category: \` ${newCmd.category} \``);
+      return await reply(client.t(message.guild.id, "owner.reload.done", { e: client.emoji.check }), `${client.emoji.blank}${client.emoji.wickarrow} Command: \` ${newCmd.name} \` \n${client.emoji.blank}${client.emoji.wickarrow} Category: \` ${newCmd.category} \``);
     } catch (err) {
       console.error(err);
-      return await reply(`${client.emoji.cross} **Reload Error**`, `\`\`\`js\n${err.message}\`\`\``);
+      return await reply(client.t(message.guild.id, "owner.reload.error", { e: client.emoji.cross }), `\`\`\`js\n${err.message}\`\`\``);
     }
   }
 };

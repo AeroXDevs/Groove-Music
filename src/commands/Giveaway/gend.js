@@ -76,7 +76,7 @@ module.exports = {
         if (selectedId) {
             const gwy = client.db.giveaways.get(selectedId);
             if (!gwy || gwy.ended) {
-                const display = new TextDisplayBuilder().setContent(`${client.emoji.cross} Active giveaway not found with that ID.`);
+                const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "gw.noActiveId", { e: client.emoji.cross }));
                 return message.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
                     flags: MessageFlags.IsComponentsV2
@@ -88,7 +88,7 @@ module.exports = {
 
         const giveaways = client.db.giveaways.getActiveForChannel(message.channel.id);
         if (giveaways.length === 0) {
-            const display = new TextDisplayBuilder().setContent(`${client.emoji.cross} No active giveaways found in this channel.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "gw.noActive", { e: client.emoji.cross }));
             return message.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -105,7 +105,7 @@ module.exports = {
             .setPlaceholder('Select a giveaway to end')
             .addOptions(giveaways.map(g => new StringSelectMenuOptionBuilder().setLabel(g.prize.substring(0, 100)).setDescription(`Message ID: ${g.messageId}`).setValue(g.messageId)));
 
-        const chooseDisplay = new TextDisplayBuilder().setContent(`${client.emoji.gwy} Multiple active giveaways found. Please select one:`);
+        const chooseDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "gw.pickActive", { e: client.emoji.gwy }));
         const msg = await message.reply({
             components: [new ContainerBuilder().addTextDisplayComponents(chooseDisplay), new ActionRowBuilder().addComponents(selectMenu)],
             flags: MessageFlags.IsComponentsV2

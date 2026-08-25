@@ -60,11 +60,11 @@ module.exports = {
         if (prize && winners && durationStr) {
             const durationMs = parseDuration(durationStr);
             if (!durationMs) {
-                const display = new TextDisplayBuilder().setContent(`${client.emoji.warn} Invalid duration suffix! Use s, m, h, or d.`);
+                const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "gw.badDuration", { e: client.emoji.warn }));
                 return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral });
             }
             if (winners < 1) {
-                const display = new TextDisplayBuilder().setContent(`${client.emoji.warn} Winners must be at least 1.`);
+                const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "gw.minWinners", { e: client.emoji.warn }));
                 return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral });
             }
 
@@ -101,7 +101,7 @@ module.exports = {
                 ended: false
             });
 
-            const successDisplay = new TextDisplayBuilder().setContent(`${client.emoji.check} Giveaway started!`);
+            const successDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "gw.started", { e: client.emoji.check }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(successDisplay)], flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral });
         }
     },
@@ -212,7 +212,7 @@ module.exports = {
                 const winnerCount = parseInt(winnersStr);
 
                 if (!durationMs || isNaN(winnerCount) || winnerCount < 1) {
-                    const errorDisplay = new TextDisplayBuilder().setContent(`${client.emoji.cross} Invalid input provided.`);
+                    const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "gw.invalidInput", { e: client.emoji.cross }));
                     return modalSubmit.reply({
                         components: [new ContainerBuilder().addTextDisplayComponents(errorDisplay)],
                         flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral
