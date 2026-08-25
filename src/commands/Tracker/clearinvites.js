@@ -62,10 +62,7 @@ module.exports = {
             if (!args[0]) {
                 const display = new TextDisplayBuilder()
                     .setContent(
-                        `${client.emoji.warn} **Invalid usage!**\n\n` +
-                        `**Usage:**\n` +
-                        `\`${client.prefix}clearinvites all\` - Clear all invite data\n` +
-                        `\`${client.prefix}clearinvites @member\` - Clear data for a specific member`
+client.t(message.guild.id, "trk.invalidUsage", { e: client.emoji.warn, prefix: client.prefix })
                     );
 
                 return message.reply({

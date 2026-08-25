@@ -1158,7 +1158,8 @@
     "noRecordsOwn": "{e} **You don't have any invite records in this server.**",
     "noActiveCodes": "{e} **[{user}](https://discord.com/users/{id}) has no active invite codes.**",
     "botsNoStats": "{e} Bots cannot have invite statistics.",
-    "botsNoInviter": "{e} Bots don't have inviters."
+    "botsNoInviter": "{e} Bots don't have inviters.",
+    "invalidUsage": "{e} **Invalid usage!**\n\n**Usage:**\n`{prefix}clearinvites all` - Clear all invite data\n`{prefix}clearinvites @member` - Clear data for a specific member"
   },
   "gw": {
     "started": "{e} Giveaway started!",
@@ -1413,7 +1414,8 @@
     "extended": "**{e} Extended {user}'s No Prefix Access, Expiring**\n**<t:{ts}:F>**",
     "rowUser": "[{user}](https://discord.com/users/{id}) - {value}",
     "removedManyLine": "**{e} Successfully removed {count} user(s) from No Prefix Access.**",
-    "usage": "**Usage:**\n`{prefix}nop add @user [duration]` - Give global no-prefix access\n  **Duration:** `24h/hrs`, `10d/day`, `2w/week`, `1m` (month), `1y/yr`, `p/perm/permanent`\n`{prefix}nop remove @user` - Remove global no-prefix access\n`{prefix}nop remove all` - Remove all users\n`{prefix}nop list` - List users with global access\n`{prefix}nop status @user` - Check user's no-prefix status"
+    "usage": "**Usage:**\n`{prefix}nop add @user [duration]` - Give global no-prefix access\n  **Duration:** `24h/hrs`, `10d/day`, `2w/week`, `1m` (month), `1y/yr`, `p/perm/permanent`\n`{prefix}nop remove @user` - Remove global no-prefix access\n`{prefix}nop remove all` - Remove all users\n`{prefix}nop list` - List users with global access\n`{prefix}nop status @user` - Check user's no-prefix status",
+    "durationExamples": "**Examples:**\n`24h` or `24hrs` - 24 hours\n`10d` or `10day` - 10 days\n`2w` or `2week` - 2 weeks\n`1m` - 1 month\n`1y` or `1yr` - 1 year\n`permanent` or `perm` or `p` - Permanent"
   },
   "own": {
     "needUser": "**Provide me a valid user**",

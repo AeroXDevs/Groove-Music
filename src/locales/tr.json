@@ -1158,7 +1158,8 @@
     "noRecordsOwn": "{e} **Bu sunucuda hiç davet kaydın yok.**",
     "noActiveCodes": "{e} **[{user}](https://discord.com/users/{id}) için aktif davet kodu yok.**",
     "botsNoStats": "{e} Botların davet istatistiği olmaz.",
-    "botsNoInviter": "{e} Botları kimse davet etmez."
+    "botsNoInviter": "{e} Botları kimse davet etmez.",
+    "invalidUsage": "{e} **Hatalı kullanım.**\n\n**Kullanımı:**\n`{prefix}clearinvites all` — bütün davet kayıtlarını siler\n`{prefix}clearinvites @üye` — belirli bir üyenin kaydını siler"
   },
   "gw": {
     "started": "{e} Çekiliş başladı.",
@@ -1413,7 +1414,8 @@
     "extended": "**{e} {user} kullanıcısının prefixsiz kullanımı uzatıldı, bitiş**\n**<t:{ts}:F>**",
     "rowUser": "[{user}](https://discord.com/users/{id}) - {value}",
     "removedManyLine": "**{e} {count} kullanıcı prefixsiz kullanımdan çıkarıldı.**",
-    "usage": "**Kullanımı:**\n`{prefix}nop add @kullanıcı [süre]` — prefixsiz kullanım izni verir\n  **Süre:** `24h/hrs`, `10d/day`, `2w/week`, `1m` (ay), `1y/yr`, `p/perm/permanent`\n`{prefix}nop remove @kullanıcı` — izni kaldırır\n`{prefix}nop remove all` — herkesin iznini kaldırır\n`{prefix}nop list` — izni olanları listeler\n`{prefix}nop status @kullanıcı` — bir kullanıcının durumunu gösterir"
+    "usage": "**Kullanımı:**\n`{prefix}nop add @kullanıcı [süre]` — prefixsiz kullanım izni verir\n  **Süre:** `24h/hrs`, `10d/day`, `2w/week`, `1m` (ay), `1y/yr`, `p/perm/permanent`\n`{prefix}nop remove @kullanıcı` — izni kaldırır\n`{prefix}nop remove all` — herkesin iznini kaldırır\n`{prefix}nop list` — izni olanları listeler\n`{prefix}nop status @kullanıcı` — bir kullanıcının durumunu gösterir",
+    "durationExamples": "**Örnekler:**\n`24h` veya `24hrs` — 24 saat\n`10d` veya `10day` — 10 gün\n`2w` veya `2week` — 2 hafta\n`1m` — 1 ay\n`1y` veya `1yr` — 1 yıl\n`permanent`, `perm` veya `p` — kalıcı"
   },
   "own": {
     "needUser": "**Geçerli bir kullanıcı belirt.**",

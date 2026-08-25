@@ -135,13 +135,7 @@ module.exports = {
             const errorDisplay = new TextDisplayBuilder()
               .setContent(
                 client.t(interaction.guildId, "nop.badDuration", { e: client.emoji.warn }) +
-                `**Examples:**\n` +
-                `\`24h\` or \`24hrs\` - 24 hours\n` +
-                `\`10d\` or \`10day\` - 10 days\n` +
-                `\`2w\` or \`2week\` - 2 weeks\n` +
-                `\`1m\` - 1 month\n` +
-                `\`1y\` or \`1yr\` - 1 year\n` +
-                `\`permanent\` or \`perm\` or \`p\` - Permanent`
+client.t(interaction.guildId, "nop.durationExamples")
               );
 
             const container = new ContainerBuilder()
@@ -565,13 +559,7 @@ client.t(message.guild.id, "nop.usage", { prefix })
             const errorDisplay = new TextDisplayBuilder()
               .setContent(
                 client.t(message.guild.id, "nop.badDuration", { e: client.emoji.warn }) +
-                `**Examples:**\n` +
-                `\`24h\` or \`24hrs\` - 24 hours\n` +
-                `\`10d\` or \`10day\` - 10 days\n` +
-                `\`2w\` or \`2week\` - 2 weeks\n` +
-                `\`1m\` - 1 month\n` +
-                `\`1y\` or \`1yr\` - 1 year\n` +
-                `\`permanent\` or \`perm\` or \`p\` - Permanent`
+client.t(message.guild.id, "nop.durationExamples")
               );
 
             const container = new ContainerBuilder()
