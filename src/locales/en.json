@@ -1646,5 +1646,55 @@
   },
   "vcx": {
     "need247Channel": "Bot is in 24/7 mode. Please join the bot's voice channel"
+  },
+  "radio": {
+    "title": "### {e} Live Radio Stations",
+    "body": "**{count} stations** available — pick one from the menu below and start listening instantly.\n\n**Popular:** {popular}\n\n-# **Tip:** You can also use `{prefix}radio <name>` to play directly.",
+    "selectPlaceholder": "Select a radio station...",
+    "liveStream": "Live stream",
+    "playing": "**{e} {emoji} Now playing: {name}**\n-# Live radio stream started",
+    "loadFailed": "**{e} Failed to load station: {name}**",
+    "invalidNumber": "**{e} Invalid station number.** Use a number between 0 and {max}.",
+    "notFound": "**{e} No station found matching \"{query}\".**",
+    "joinFirst": "**{e} Join a voice channel first!**"
+  },
+  "removedupes": {
+    "none": "**{e} No duplicate tracks found in the queue.**",
+    "done": "**{e} Removed {count} duplicate(s) — {remaining} tracks remaining.**"
+  },
+  "unshuffle": {
+    "noShuffle": "**{e} No shuffle to undo.** You need to shuffle the queue first.",
+    "done": "**{e} Restored the original queue order — {count} tracks.**"
+  },
+  "moveme": {
+    "botNotInVoice": "**{e} I'm not in any voice channel right now.**",
+    "alreadyHere": "**{e} You're already in <#{channel}>.**",
+    "channelFull": "**{e} <#{channel}> is full.**",
+    "moved": "**{e} Moved you to <#{channel}>.**",
+    "noPermission": "**{e} I don't have permission to move members. I need the **Move Members** permission.**"
+  },
+  "playlist": {
+    "usage": "**{e} Playlist Commands**\n`{prefix}playlist create <name>` — Create from current queue\n`{prefix}playlist play <name>` — Load & play\n`{prefix}playlist list` — Show all playlists\n`{prefix}playlist show <name>` — Show tracks\n`{prefix}playlist delete <name>` — Delete\n`{prefix}playlist addcurrent <name>` — Add current track\n`{prefix}playlist addqueue <name>` — Add entire queue",
+    "needName": "**{e} Please provide a playlist name.**",
+    "nameTooLong": "**{e} Playlist name must be {max} characters or less.**",
+    "alreadyExists": "**{e} A playlist named `{name}` already exists.**",
+    "maxReached": "**{e} You've reached the maximum of {max} playlists.**",
+    "created": "**{e} Created playlist `{name}` with {count} tracks.**",
+    "notFound": "**{e} No playlist found named `{name}`.**",
+    "empty": "**{e} Playlist `{name}` is empty.**",
+    "loading": "**{e} Loading playlist `{name}` ({count} tracks)...**",
+    "loaded": "**{e} Loaded {count} tracks from playlist `{name}`.**",
+    "noPlaylists": "**{e} You don't have any saved playlists yet.**",
+    "tracks": "tracks",
+    "listAll": "**{e} Your Playlists ({count})**\n{list}",
+    "details": "**{e} Playlist: {name}** ({count} tracks)\n{list}",
+    "deleted": "**{e} Deleted playlist `{name}`.**",
+    "trackAdded": "**{e} Added `{title}` to playlist `{name}`.**",
+    "queueAdded": "**{e} Added {count} tracks to playlist `{name}`.**"
+  },
+  "defaultvolume": {
+    "current": "**{e} Default volume for this server is `{volume}%`.**",
+    "invalid": "**{e} Please provide a valid volume between 1 and 150.**",
+    "set": "**{e} Default volume set to `{volume}%`.**"
   }
 }

@@ -62,11 +62,12 @@ async function recreatePlayer(client, guildId, voiceId, textId) {
 
         await new Promise(resolve => setTimeout(resolve, 1500));
 
+        const vol = getDefaultVolume(client, guildId);
         const newPlayer = await client.manager.createPlayer({
             guildId: guildId,
             voiceId: voiceId,
             textId: textId,
-            volume: 80,
+            volume: vol,
             deaf: true,
         });
 
@@ -90,7 +91,7 @@ async function recreatePlayer(client, guildId, voiceId, textId) {
                     guildId: guildId,
                     voiceId: voiceId,
                     textId: textId,
-                    volume: 80,
+                    volume: vol,
                     deaf: true,
                 });
             } catch (retryError) {
@@ -123,4 +124,12 @@ async function forceCleanup(client, guildId) {
     }
 }
 
-module.exports = { safeDestroyPlayer, handleSessionError, recreatePlayer, forceCleanup };
+function getDefaultVolume(client, guildId) {
+    try {
+        return client.db?.defaultvolume?.get(guildId) ?? 80;
+    } catch {
+        return 80;
+    }
+}
+
+module.exports = { safeDestroyPlayer, handleSessionError, recreatePlayer, forceCleanup, getDefaultVolume };

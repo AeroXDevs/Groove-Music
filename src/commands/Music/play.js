@@ -168,7 +168,7 @@ module.exports = {
             guildId: interaction.guild.id,
             voiceId: channel.id,
             textId: interaction.channel.id,
-            volume: 80,
+            volume: require("../../utils/playerUtils").getDefaultVolume(client, message.guild.id),
             deaf: true,
           });
 
@@ -709,7 +709,7 @@ client.t(message.guild.id, "music.play.usage", { d: client.emoji.dot, prefix })
             guildId: message.guild.id,
             voiceId: channel.id,
             textId: message.channel.id,
-            volume: 80,
+            volume: require("../../utils/playerUtils").getDefaultVolume(client, message.guild.id),
             deaf: true,
           });
 
@@ -740,7 +740,7 @@ client.t(message.guild.id, "music.play.usage", { d: client.emoji.dot, prefix })
                 guildId: message.guild.id,
                 voiceId: channel.id,
                 textId: message.channel.id,
-                volume: 80,
+                volume: require("../../utils/playerUtils").getDefaultVolume(client, message.guild.id),
                 deaf: true,
               });
 

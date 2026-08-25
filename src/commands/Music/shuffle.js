@@ -69,7 +69,9 @@ module.exports = {
       });
     }
 
+    const beforeShuffle = [...player.queue];
     await player.queue.shuffle();
+    player.data.set("beforeShuffle", beforeShuffle);
 
     const successDisplay = new TextDisplayBuilder()
       .setContent(client.t(message.guild.id, "music.shuffled", { e: client.emoji.check }));

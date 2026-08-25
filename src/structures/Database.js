@@ -209,6 +209,24 @@ const tables = [
         `
     },
     {
+        name: 'savedqueues',
+        schema: `
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            userId TEXT,
+            name TEXT,
+            tracks TEXT DEFAULT '[]',
+            createdAt INTEGER,
+            UNIQUE(userId, name)
+        `
+    },
+    {
+        name: 'defaultvolume',
+        schema: `
+            guildId TEXT PRIMARY KEY,
+            volume INTEGER DEFAULT 80
+        `
+    },
+    {
         name: 'automod',
         schema: `
             guildId TEXT PRIMARY KEY,
@@ -289,7 +307,10 @@ const indexes = [
     'CREATE INDEX IF NOT EXISTS idx_invite_logs_userId ON invite_logs(userId)',
     'CREATE INDEX IF NOT EXISTS idx_giveaways_guildId ON giveaways(guildId)',
     'CREATE INDEX IF NOT EXISTS idx_giveaways_ended ON giveaways(ended)',
-    'CREATE INDEX IF NOT EXISTS idx_invites_guildId_userId ON invites(guildId, userId)'
+    'CREATE INDEX IF NOT EXISTS idx_invites_guildId_userId ON invites(guildId, userId)',
+    'CREATE INDEX IF NOT EXISTS idx_savedqueues_userId ON savedqueues(userId)',
+    'CREATE INDEX IF NOT EXISTS idx_savedqueues_userId_name ON savedqueues(userId, name)',
+    'CREATE INDEX IF NOT EXISTS idx_defaultvolume_guildId ON defaultvolume(guildId)'
 ];
 
 indexes.forEach(index => {
@@ -852,6 +873,50 @@ managers.guildlang = {
         db.prepare('DELETE FROM guildlang WHERE guildId = ?').run(guildId);
     },
     getAll: () => db.prepare('SELECT * FROM guildlang').all()
+};
+
+managers.savedqueues = {
+    getAll: (userId) => {
+        return db.prepare('SELECT * FROM savedqueues WHERE userId = ?').all(userId).map(row => ({
+            ...row,
+            tracks: deserialize(row.tracks)
+        }));
+    },
+    get: (userId, name) => {
+        const row = db.prepare('SELECT * FROM savedqueues WHERE userId = ? AND name = ?').get(userId, name);
+        if (!row) return null;
+        return { ...row, tracks: deserialize(row.tracks) };
+    },
+    create: (userId, name, tracks = []) => {
+        db.prepare('INSERT INTO savedqueues (userId, name, tracks, createdAt) VALUES (?, ?, ?, ?)').run(
+            userId, name, serialize(tracks), Date.now()
+        );
+    },
+    update: (userId, name, tracks) => {
+        db.prepare('UPDATE savedqueues SET tracks = ? WHERE userId = ? AND name = ?').run(
+            serialize(tracks), userId, name
+        );
+    },
+    delete: (userId, name) => {
+        db.prepare('DELETE FROM savedqueues WHERE userId = ? AND name = ?').run(userId, name);
+    },
+    count: (userId) => {
+        const row = db.prepare('SELECT COUNT(*) as count FROM savedqueues WHERE userId = ?').get(userId);
+        return row ? row.count : 0;
+    }
+};
+
+managers.defaultvolume = {
+    get: (guildId) => {
+        const row = db.prepare('SELECT volume FROM defaultvolume WHERE guildId = ?').get(guildId);
+        return row ? row.volume : null;
+    },
+    set: (guildId, volume) => {
+        db.prepare('INSERT OR REPLACE INTO defaultvolume (guildId, volume) VALUES (?, ?)').run(guildId, volume);
+    },
+    delete: (guildId) => {
+        db.prepare('DELETE FROM defaultvolume WHERE guildId = ?').run(guildId);
+    }
 };
 
 const Database = { db, ...managers };

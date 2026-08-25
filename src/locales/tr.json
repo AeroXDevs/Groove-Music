@@ -1646,5 +1646,55 @@
   },
   "vcx": {
     "need247Channel": "Bot 7/24 modunda. Botun bulunduğu ses kanalına katılman gerek."
+  },
+  "radio": {
+    "title": "### {e} Canlı Radyo İstasyonları",
+    "body": "**{count} istasyon** hazır — aşağıdan birini seç ve hemen dinlemeye başla.\n\n**Popüler:** {popular}\n\n-# **İpucu:** `{prefix}radio <isim>` yazarak da direkt çalabilirsin.",
+    "selectPlaceholder": "Bir radyo istasyonu seç...",
+    "liveStream": "Canlı yayın",
+    "playing": "**{e} {emoji} Şu an çalıyor: {name}**\n-# Canlı radyo yayını başlatıldı",
+    "loadFailed": "**{e} İstasyon yüklenemedi: {name}**",
+    "invalidNumber": "**{e} Geçersiz istasyon numarası.** 0 ile {max} arasında bir numara gir.",
+    "notFound": "**{e} \"{query}\" ile eşleşen istasyon bulunamadı.**",
+    "joinFirst": "**{e} Önce bir ses kanalına katıl!**"
+  },
+  "removedupes": {
+    "none": "**{e} Sırada tekrar eden şarkı bulunamadı.**",
+    "done": "**{e} {count} tekrar silindi — {remaining} şarkı kaldı.**"
+  },
+  "unshuffle": {
+    "noShuffle": "**{e} Geri alınacak bir karıştırma yok.** Önce sırayı karıştırman gerekiyor.",
+    "done": "**{e} Eski sıra geri yüklendi — {count} şarkı.**"
+  },
+  "moveme": {
+    "botNotInVoice": "**{e} Şu anda hiçbir ses kanalında değilim.**",
+    "alreadyHere": "**{e} Zaten <#{channel}> kanalındasın.**",
+    "channelFull": "**{e} <#{channel}> kanalı dolu.**",
+    "moved": "**{e} <#{channel}> kanalına taşındın.**",
+    "noPermission": "**{e} Üyeleri taşıma iznim yok. **Üyeleri Taşı** izni gerekiyor.**"
+  },
+  "playlist": {
+    "usage": "**{e} Playlist Komutları**\n`{prefix}playlist create <isim>` — Mevcut sıradan oluştur\n`{prefix}playlist play <isim>` — Yükle ve çal\n`{prefix}playlist list` — Tüm playlistleri göster\n`{prefix}playlist show <isim>` — Şarkıları göster\n`{prefix}playlist delete <isim>` — Sil\n`{prefix}playlist addcurrent <isim>` — Mevcut şarkıyı ekle\n`{prefix}playlist addqueue <isim>` — Tüm sırayı ekle",
+    "needName": "**{e} Lütfen bir playlist ismi gir.**",
+    "nameTooLong": "**{e} Playlist ismi en fazla {max} karakter olabilir.**",
+    "alreadyExists": "**{e} `{name}` adında bir playlist zaten var.**",
+    "maxReached": "**{e} En fazla {max} playlist oluşturabilirsin.**",
+    "created": "**{e} `{name}` playlisti {count} şarkı ile oluşturuldu.**",
+    "notFound": "**{e} `{name}` adında playlist bulunamadı.**",
+    "empty": "**{e} `{name}` playlisti boş.**",
+    "loading": "**{e} `{name}` playlisti yükleniyor ({count} şarkı)...**",
+    "loaded": "**{e} `{name}` playlistinden {count} şarkı yüklendi.**",
+    "noPlaylists": "**{e} Henüz kayıtlı playlistin yok.**",
+    "tracks": "şarkı",
+    "listAll": "**{e} Playlistlerin ({count})**\n{list}",
+    "details": "**{e} Playlist: {name}** ({count} şarkı)\n{list}",
+    "deleted": "**{e} `{name}` playlisti silindi.**",
+    "trackAdded": "**{e} `{title}` şarkısı `{name}` playlistine eklendi.**",
+    "queueAdded": "**{e} {count} şarkı `{name}` playlistine eklendi.**"
+  },
+  "defaultvolume": {
+    "current": "**{e} Bu sunucunun varsayılan ses seviyesi `%{volume}`.**",
+    "invalid": "**{e} Lütfen 1 ile 150 arasında geçerli bir değer gir.**",
+    "set": "**{e} Varsayılan ses seviyesi `%{volume}` olarak ayarlandı.**"
   }
 }
