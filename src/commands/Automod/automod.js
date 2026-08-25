@@ -839,12 +839,12 @@ module.exports = {
             return new TextDisplayBuilder()
                 .setContent(
                     `**Heat & Sensitivity !**\n` +
-                    `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.messages")}: **__${hs.msg || 15}%__**\n` +
-                    `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.links")}: **__${hs.link || 60}%__**\n` +
-                    `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.invites")}: **__${hs.invite || 70}%__**\n` +
-                    `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.mentions")}: **__${hs.mention || 25}%__**\n` +
+                    `${emoji.blank}${emoji.wickarrow} ${client.t(context.guild.id, "am.label.messages")}: **__${hs.msg || 15}%__**\n` +
+                    `${emoji.blank}${emoji.wickarrow} ${client.t(context.guild.id, "am.label.links")}: **__${hs.link || 60}%__**\n` +
+                    `${emoji.blank}${emoji.wickarrow} ${client.t(context.guild.id, "am.label.invites")}: **__${hs.invite || 70}%__**\n` +
+                    `${emoji.blank}${emoji.wickarrow} ${client.t(context.guild.id, "am.label.mentions")}: **__${hs.mention || 25}%__**\n` +
                     `${emoji.blank}${emoji.wickarrow} NSFW: **__${hs.nsfw || 100}%__**\n` +
-                    `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.capsEmoji")}: **__${hs.caps || 35}%__**`
+                    `${emoji.blank}${emoji.wickarrow} ${client.t(context.guild.id, "am.label.capsEmoji")}: **__${hs.caps || 35}%__**`
                 );
         };
 
@@ -929,14 +929,14 @@ module.exports = {
             else update.maxMentions = val;
 
             client.automod.updateSettings(guildId, update);
-            return this.success(context, client.t(message.guild.id, "am.maxSet", { type, value: val }));
+            return this.success(context, client.t(context.guild.id, "am.maxSet", { type, value: val }));
         }
 
         const display = new TextDisplayBuilder()
             .setContent(
                 `**AutoMod Limits !**\n` +
-                `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.maxMentions")}: **__${s.maxMentions}__**\n` +
-                `${emoji.blank}${emoji.wickarrow} ${client.t(message.guild.id, "am.label.maxEmojis")}: **__${s.maxEmoji || 10}__**`
+                `${emoji.blank}${emoji.wickarrow} ${client.t(context.guild.id, "am.label.maxMentions")}: **__${s.maxMentions}__**\n` +
+                `${emoji.blank}${emoji.wickarrow} ${client.t(context.guild.id, "am.label.maxEmojis")}: **__${s.maxEmoji || 10}__**`
             );
 
         return context.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
