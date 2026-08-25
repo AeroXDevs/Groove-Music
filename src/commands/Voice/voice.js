@@ -83,7 +83,7 @@ module.exports = {
 
         const usage = (cmd, use, desc, aliases) => {
             const container = new ContainerBuilder();
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`\`\`\` <> : Required | [] : Optional\`\`\``));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(context.guild.id, "vc.argHint")));
             container.addSeparatorComponents(new SeparatorBuilder());
 
             const content = `> **\`${prefix}voice ${cmd} ${use}\`**\n\n` +
@@ -92,7 +92,7 @@ module.exports = {
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
             container.addSeparatorComponents(new SeparatorBuilder());
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName}`));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(context.guild.id, "vc.requestedBy", { user: user.displayName })));
             return context.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         };
 
@@ -147,14 +147,14 @@ module.exports = {
                     if (!target || !target.voice.channel) return error('User is not in a voice channel.');
                     const targetChannel = target.voice.channel;
                     await target.voice.disconnect();
-                    return success(`Kicked ${target} from ${targetChannel}.`);
+                    return success(client.t(context.guild.id, "vc.kicked", { target, channel: targetChannel }));
                 }
                 case 'kickall': {
                     if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
                     if (!voiceChannel) return error('You must be in a voice channel.');
                     const members = voiceChannel.members.filter(m => !m.user.bot);
                     for (const [, m] of members) await m.voice.disconnect();
-                    return success(`Kicked all users from ${voiceChannel}.`);
+                    return success(client.t(context.guild.id, "vc.kickedAll", { channel: voiceChannel }));
                 }
                 case 'mute': {
                     if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error('You need `Mute Members` permission.');
@@ -163,7 +163,7 @@ module.exports = {
                     if (!target || !target.voice.channel) return error('User is not in a voice channel.');
                     if (target.voice.mute) return error(`${target} is already muted.`);
                     await target.voice.setMute(true);
-                    return success(`Muted ${target}.`);
+                    return success(client.t(context.guild.id, "vc.muted", { target }));
                 }
                 case 'unmute': {
                     if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error('You need `Mute Members` permission.');
@@ -172,7 +172,7 @@ module.exports = {
                     if (!target || !target.voice.channel) return error('User is not in a voice channel.');
                     if (!target.voice.mute) return error(`${target} is not muted.`);
                     await target.voice.setMute(false);
-                    return success(`Unmuted ${target}.`);
+                    return success(client.t(context.guild.id, "vc.unmuted", { target }));
                 }
                 case 'muteall': {
                     if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error('You need `Mute Members` permission.');
@@ -180,7 +180,7 @@ module.exports = {
                     const members = voiceChannel.members.filter(m => !m.user.bot && !m.voice.mute);
                     if (members.size === 0) return error('Everyone is already muted.');
                     for (const [, m] of members) await m.voice.setMute(true);
-                    return success(`Muted everyone.`);
+                    return success(client.t(context.guild.id, "vc.mutedAll"));
                 }
                 case 'unmuteall': {
                     if (!member.permissions.has(PermissionFlagsBits.MuteMembers) && !isOwner) return error('You need `Mute Members` permission.');
@@ -188,7 +188,7 @@ module.exports = {
                     const members = voiceChannel.members.filter(m => !m.user.bot && m.voice.mute);
                     if (members.size === 0) return error('No one is muted.');
                     for (const [, m] of members) await m.voice.setMute(false);
-                    return success(`Unmuted everyone.`);
+                    return success(client.t(context.guild.id, "vc.unmutedAll"));
                 }
                 case 'deafen': {
                     if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error('You need `Deafen Members` permission.');
@@ -198,7 +198,7 @@ module.exports = {
                     if (target.voice.deaf) return error(`${target} is already deafened.`);
                     const targetChannel = target.voice.channel;
                     await target.voice.setDeaf(true);
-                    return success(`Deafened ${target} in ${targetChannel}.`);
+                    return success(client.t(context.guild.id, "vc.deafened", { target, channel: targetChannel }));
                 }
                 case 'undeafen': {
                     if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error('You need `Deafen Members` permission.');
@@ -208,7 +208,7 @@ module.exports = {
                     if (!target.voice.deaf) return error(`${target} is not deafened.`);
                     const targetChannel = target.voice.channel;
                     await target.voice.setDeaf(false);
-                    return success(`Undeafened ${target} in ${targetChannel}.`);
+                    return success(client.t(context.guild.id, "vc.undeafened", { target, channel: targetChannel }));
                 }
                 case 'deafenall': {
                     if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error('You need `Deafen Members` permission.');
@@ -216,7 +216,7 @@ module.exports = {
                     const members = voiceChannel.members.filter(m => !m.user.bot && !m.voice.deaf);
                     if (members.size === 0) return error('Everyone is already deafened.');
                     for (const [, m] of members) await m.voice.setDeaf(true);
-                    return success(`Deafened everyone in ${voiceChannel}.`);
+                    return success(client.t(context.guild.id, "vc.deafenedAll", { channel: voiceChannel }));
                 }
                 case 'undeafenall': {
                     if (!member.permissions.has(PermissionFlagsBits.DeafenMembers) && !isOwner) return error('You need `Deafen Members` permission.');
@@ -224,7 +224,7 @@ module.exports = {
                     const members = voiceChannel.members.filter(m => !m.user.bot && m.voice.deaf);
                     if (members.size === 0) return error('No one is deafened.');
                     for (const [, m] of members) await m.voice.setDeaf(false);
-                    return success(`Undeafened everyone in ${voiceChannel}.`);
+                    return success(client.t(context.guild.id, "vc.undeafenedAll", { channel: voiceChannel }));
                 }
                 case 'move': {
                     if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
@@ -235,7 +235,7 @@ module.exports = {
                     if (!target || !target.voice.channel) return error('User is not in a voice channel.');
                     if (!dest || dest.type !== ChannelType.GuildVoice) return error('Provide a valid voice channel.');
                     await target.voice.setChannel(dest);
-                    return success(`Moved ${target} to ${dest}.`);
+                    return success(client.t(context.guild.id, "vc.moved", { target, dest }));
                 }
                 case 'moveall': {
                     if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
@@ -245,7 +245,7 @@ module.exports = {
                     if (!dest || dest.type !== ChannelType.GuildVoice) return error('Provide a valid voice channel.');
                     const members = voiceChannel.members.filter(m => !m.user.bot);
                     for (const [, m] of members) await m.voice.setChannel(dest);
-                    return success(`Moved everyone from ${voiceChannel} to ${dest}.`);
+                    return success(client.t(context.guild.id, "vc.movedAll", { channel: voiceChannel, dest }));
                 }
                 case 'pull': {
                     if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
@@ -254,7 +254,7 @@ module.exports = {
                     const target = await getTarget(options[0]);
                     if (!target || !target.voice.channel) return error('User is not in a voice channel.');
                     await target.voice.setChannel(voiceChannel);
-                    return success(`Pulled ${target} into ${voiceChannel}.`);
+                    return success(client.t(context.guild.id, "vc.pulled", { target, channel: voiceChannel }));
                 }
                 case 'pullall': {
                     if (!member.permissions.has(PermissionFlagsBits.MoveMembers) && !isOwner) return error('You need `Move Members` permission.');
@@ -264,38 +264,38 @@ module.exports = {
                     if (!source || source.type !== ChannelType.GuildVoice) return error('Provide a valid voice channel.');
                     const members = source.members.filter(m => !m.user.bot);
                     for (const [, m] of members) await m.voice.setChannel(voiceChannel);
-                    return success(`Pulled everyone from ${source} into ${voiceChannel}.`);
+                    return success(client.t(context.guild.id, "vc.pulledAll", { source, channel: voiceChannel }));
                 }
                 case 'lock': {
                     if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error('You need `Manage Channels` permission.');
                     if (!voiceChannel) return error('You must be in a voice channel.');
                     await voiceChannel.permissionOverwrites.edit(guild.roles.everyone, { Connect: false });
-                    return success(`Locked ${voiceChannel}.`);
+                    return success(client.t(context.guild.id, "vc.locked", { channel: voiceChannel }));
                 }
                 case 'unlock': {
                     if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error('You need `Manage Channels` permission.');
                     if (!voiceChannel) return error('You must be in a voice channel.');
                     await voiceChannel.permissionOverwrites.edit(guild.roles.everyone, { Connect: true });
-                    return success(`Unlocked ${voiceChannel}.`);
+                    return success(client.t(context.guild.id, "vc.unlocked", { channel: voiceChannel }));
                 }
                 case 'private': {
                     if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error('You need `Manage Channels` permission.');
                     if (!voiceChannel) return error('You must be in a voice channel.');
                     await voiceChannel.permissionOverwrites.edit(guild.roles.everyone, { ViewChannel: false });
-                    return success(`Made ${voiceChannel} private.`);
+                    return success(client.t(context.guild.id, "vc.private", { channel: voiceChannel }));
                 }
                 case 'unprivate': {
                     if (!member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) return error('You need `Manage Channels` permission.');
                     if (!voiceChannel) return error('You must be in a voice channel.');
                     await voiceChannel.permissionOverwrites.edit(guild.roles.everyone, { ViewChannel: true });
-                    return success(`Made ${voiceChannel} public.`);
+                    return success(client.t(context.guild.id, "vc.public", { channel: voiceChannel }));
                 }
                 default:
                     return this.sendHelpMenu(context, client, prefix);
             }
         } catch (err) {
             console.error(err);
-            return error(`An error occurred: ${err.message}`);
+            return error(client.t(context.guild.id, "vc.error", { message: err.message }));
         }
     },
 
@@ -342,7 +342,7 @@ module.exports = {
         const createContainer = (pageIdx) => {
             const page = pages[pageIdx];
             const container = new ContainerBuilder();
-            const header = new TextDisplayBuilder().setContent(`### ${emoji.info} Voice Command [${totalCommands}]`);
+            const header = new TextDisplayBuilder().setContent(client.t(message.guild.id, "vc.title", { e: emoji.info, count: totalCommands }));
             container.addTextDisplayComponents(header);
             container.addSeparatorComponents(new SeparatorBuilder());
 
@@ -350,7 +350,7 @@ module.exports = {
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
             container.addSeparatorComponents(new SeparatorBuilder());
 
-            const footer = new TextDisplayBuilder().setContent(`\n-# Page ${pageIdx + 1}/${pages.length} | Requested by ${author.displayName}`);
+            const footer = new TextDisplayBuilder().setContent(client.t(message.guild.id, "vc.footer", { page: pageIdx + 1, total: pages.length, user: author.displayName }));
             container.addTextDisplayComponents(footer);
 
             return container;

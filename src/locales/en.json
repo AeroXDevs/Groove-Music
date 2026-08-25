@@ -760,5 +760,30 @@
     "goodbye": "Sorry for all and any of bad experience/(s) you had with me!\n",
     "noVanity": "No vanity URL",
     "removedFrom": "{bot} was just removed from `{guild}`\n\nSorry for all and any of bad experience/(s) you had with me!\nPlease leave a feedback or report any issue you hat at my **[Support Server]({support})** so that it can be fixed / worked on as soon as possible."
+  },
+  "vc": {
+    "deafened": "Deafened {target} in {channel}.",
+    "deafenedAll": "Deafened everyone in {channel}.",
+    "undeafened": "Undeafened {target} in {channel}.",
+    "undeafenedAll": "Undeafened everyone in {channel}.",
+    "kicked": "Kicked {target} from {channel}.",
+    "kickedAll": "Kicked all users from {channel}.",
+    "locked": "Locked {channel}.",
+    "unlocked": "Unlocked {channel}.",
+    "private": "Made {channel} private.",
+    "public": "Made {channel} public.",
+    "moved": "Moved {target} to {dest}.",
+    "movedAll": "Moved everyone from {channel} to {dest}.",
+    "muted": "Muted {target}.",
+    "mutedAll": "Muted everyone.",
+    "unmuted": "Unmuted {target}.",
+    "unmutedAll": "Unmuted everyone.",
+    "pulled": "Pulled {target} into {channel}.",
+    "pulledAll": "Pulled everyone from {source} into {channel}.",
+    "error": "An error occurred: {message}",
+    "argHint": "``` <> : Required | [] : Optional```",
+    "title": "### {e} Voice Command [{count}]",
+    "requestedBy": "-# Requested by {user}",
+    "footer": "\n-# Page {page}/{total} | Requested by {user}"
   }
 }

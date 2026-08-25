@@ -760,5 +760,30 @@
     "goodbye": "Yaşadığın olumsuz deneyimler için kusura bakma.\n",
     "noVanity": "Özel URL yok",
     "removedFrom": "{bot}, `{guild}` sunucusundan çıkarıldı.\n\nYaşadığın olumsuz deneyimler için kusura bakma. Görüşlerini veya karşılaştığın sorunları **[Destek Sunucusu]({support})** üzerinden iletirsen en kısa sürede ilgilenilir."
+  },
+  "vc": {
+    "deafened": "{target} kullanıcısının sesi {channel} kanalında kapatıldı.",
+    "deafenedAll": "{channel} kanalındaki herkesin sesi kapatıldı.",
+    "undeafened": "{target} kullanıcısının sesi {channel} kanalında açıldı.",
+    "undeafenedAll": "{channel} kanalındaki herkesin sesi açıldı.",
+    "kicked": "{target}, {channel} kanalından atıldı.",
+    "kickedAll": "{channel} kanalındaki herkes atıldı.",
+    "locked": "{channel} kilitlendi.",
+    "unlocked": "{channel} kilidi açıldı.",
+    "private": "{channel} gizli yapıldı.",
+    "public": "{channel} herkese açık yapıldı.",
+    "moved": "{target}, {dest} kanalına taşındı.",
+    "movedAll": "{channel} kanalındaki herkes {dest} kanalına taşındı.",
+    "muted": "{target} susturuldu.",
+    "mutedAll": "Herkes susturuldu.",
+    "unmuted": "{target} susturması kaldırıldı.",
+    "unmutedAll": "Herkesin susturması kaldırıldı.",
+    "pulled": "{target}, {channel} kanalına çekildi.",
+    "pulledAll": "{source} kanalındaki herkes {channel} kanalına çekildi.",
+    "error": "Bir hata oluştu: {message}",
+    "argHint": "``` <> : zorunlu | [] : isteğe bağlı```",
+    "title": "### {e} Ses Komutları [{count}]",
+    "requestedBy": "-# İsteyen: {user}",
+    "footer": "\n-# Sayfa {page}/{total} | İsteyen: {user}"
   }
 }
