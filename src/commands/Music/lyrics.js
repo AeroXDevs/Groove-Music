@@ -183,7 +183,7 @@ module.exports = {
 
         if (!player || !player.queue.current) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} No song is currently playing.**`);
+                .setContent(client.t(message.guild.id, "music.lyrics.noSong", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
@@ -197,7 +197,7 @@ module.exports = {
         const track = player.queue.current;
 
         const loadingDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.info} Searching for lyrics...**`);
+            .setContent(client.t(message.guild.id, "music.lyrics.searching", { e: client.emoji.info }));
 
         const loadingContainer = new ContainerBuilder()
             .addTextDisplayComponents(loadingDisplay);
@@ -212,7 +212,7 @@ module.exports = {
 
         if (!result || !result.lyrics) {
             const notFoundDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} No lyrics found for \`${track.title}\` by \`${track.author}\`**`);
+                .setContent(client.t(message.guild.id, "music.lyrics.notFound", { e: client.emoji.cross, title: track.title, author: track.author }));
 
             const notFoundContainer = new ContainerBuilder()
                 .addTextDisplayComponents(notFoundDisplay);
@@ -243,16 +243,16 @@ module.exports = {
         const choiceButtons = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
                 .setCustomId("static_lyrics")
-                .setLabel("Static")
+                .setLabel(client.t(message.guild.id, "buttons.static"))
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
                 .setCustomId("live_sync")
-                .setLabel("Live Sync")
+                .setLabel(client.t(message.guild.id, "buttons.liveSync"))
                 .setStyle(ButtonStyle.Secondary)
                 .setDisabled(!hasSyncedLyrics),
             new ButtonBuilder()
                 .setCustomId("close_lyrics")
-                .setLabel("Close")
+                .setLabel(client.t(message.guild.id, "buttons.close"))
                 .setStyle(ButtonStyle.Secondary)
         );
 
@@ -276,7 +276,7 @@ module.exports = {
         choiceCollector.on("collect", async (interaction) => {
             if (interaction.user.id !== message.author.id) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.cross} Only ${message.author.tag} can use these buttons.**`);
+                    .setContent(client.t(message.guild.id, "music.lyrics.onlyUser", { e: client.emoji.cross, user: message.author.tag }));
 
                 const errorContainer = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -337,22 +337,22 @@ async function showStaticLyrics(client, message, track, lyrics, source, authorId
         const separator2 = new SeparatorBuilder();
 
         const footerDisplay = new TextDisplayBuilder()
-            .setContent(`**Page** \`:\` \`${currentPage + 1}/${pages.length}\``);
+            .setContent(client.t(message.guild.id, "music.lyrics.page", { current: currentPage + 1, total: pages.length }));
 
         const buttons = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
                 .setCustomId("previous")
-                .setLabel("Previous")
+                .setLabel(client.t(message.guild.id, "buttons.previous"))
                 .setStyle(ButtonStyle.Secondary)
                 .setDisabled(currentPage === 0),
             new ButtonBuilder()
                 .setCustomId("next")
-                .setLabel("Next")
+                .setLabel(client.t(message.guild.id, "buttons.next"))
                 .setStyle(ButtonStyle.Secondary)
                 .setDisabled(currentPage === pages.length - 1),
             new ButtonBuilder()
                 .setCustomId("close")
-                .setLabel("Close")
+                .setLabel(client.t(message.guild.id, "buttons.close"))
                 .setStyle(ButtonStyle.Secondary)
         );
 
@@ -380,7 +380,7 @@ async function showStaticLyrics(client, message, track, lyrics, source, authorId
     collector.on("collect", async (interaction) => {
         if (interaction.user.id !== authorId) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} Only the command user can use these buttons.**`);
+                .setContent(client.t(message.guild.id, "music.lyrics.onlyInvoker", { e: client.emoji.cross }));
 
             const errorContainer = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
@@ -492,11 +492,11 @@ async function showLiveSyncLyrics(client, message, track, syncedLines, player, s
                 const buttons = new ActionRowBuilder().addComponents(
                     new ButtonBuilder()
                         .setCustomId("back_to_static")
-                        .setLabel("Static")
+                        .setLabel(client.t(message.guild.id, "buttons.static"))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId("close_sync")
-                        .setLabel("Close")
+                        .setLabel(client.t(message.guild.id, "buttons.close"))
                         .setStyle(ButtonStyle.Secondary)
                 );
 
@@ -535,7 +535,7 @@ async function showLiveSyncLyrics(client, message, track, syncedLines, player, s
     collector.on("collect", async (interaction) => {
         if (interaction.user.id !== authorId) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} Only the command user can use these buttons.**`);
+                .setContent(client.t(message.guild.id, "music.lyrics.onlyInvoker", { e: client.emoji.cross }));
 
             const errorContainer = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);

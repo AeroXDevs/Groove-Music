@@ -193,6 +193,50 @@
       "addedAll": "**{e} {count} şarkının hepsi sıraya eklendi.**",
       "noArtist": "**{e} Sanatçı bilgisi bulunamadı, tekrar aratmayı dene.**",
       "noArtistTracks": "**{e} Bu sanatçıya ait şarkı bulunamadı.**"
+    },
+    "mood": {
+      "regionPlaceholder": "Önce bölgeni veya dilini seç...",
+      "title": "### {e} **Herkes İçin Müzik**\nBaşlamak için bir bölge seç, sana göre istasyonlar açılsın.",
+      "moodPlaceholder": "Şimdi bir {region} modu seç...",
+      "moodTitle": "**{region} Merkezi**\nBugün havan nasıl?",
+      "started": "### {e} **{label} radyosu** başladı!\n> Havana uygun **{count}** şarkı sıraya eklendi.",
+      "unresolved": "Havana uygun şarkılar bulundu ama çalınabilir sürümleri alınamadı."
+    },
+    "sleep": {
+      "noMusic": "**{e} Çalan müzik yok.**",
+      "noTimer": "**{e} Aktif bir zamanlayıcı yok.**",
+      "cancelled": "**{e} Zamanlayıcı iptal edildi.**",
+      "invalid": "**{e} Geçersiz süre.**\n\nKullan: `30m`, `1h`, `45m` (1-180 dk)",
+      "set": "**{e} Zamanlayıcı Kuruldu**",
+      "details": "**{d} Süre** `:` `{duration}dk`\n**{d} Bitiş** `:` <t:{ends}:t>\n**{d} İşlem** `:` Ses kanalından ayrıl",
+      "ended": "**{e} Süre doldu — {user} ses kanalından çıkarıldı.**"
+    },
+    "lyrics": {
+      "noSong": "**{e} Şu an çalan bir şarkı yok.**",
+      "searching": "**{e} Şarkı sözleri aranıyor...**",
+      "notFound": "**{e} `{author}` — `{title}` için şarkı sözü bulunamadı.**",
+      "page": "**Sayfa** `:` `{current}/{total}`",
+      "onlyUser": "**{e} Bu butonları yalnızca {user} kullanabilir.**",
+      "onlyInvoker": "**{e} Bu butonları yalnızca komutu kullanan kişi kullanabilir.**"
+    },
+    "play": {
+      "needVoice": "**{e} Önce bir ses kanalına girmen gerek.**",
+      "noPerms": "**{e} Yetkim yetersiz. `CONNECT` ve `SPEAK` yetkilerini vermen gerek.**",
+      "serverDown": "**{e} Müzik sunucusu şu an kullanılamıyor, biraz sonra tekrar dene.**",
+      "otherChannel": "**{e} Zaten başka bir ses kanalına bağlıyım.**",
+      "noResults": "**{e} \"{query}\" için sonuç bulunamadı.**",
+      "noTracks": "**{e} Hiçbir şarkı işlenemedi.**",
+      "queuedPlaylist": "**{e} `{playlist}` listesinden `{count}` şarkı sıraya eklendi.**",
+      "trackAdded": "### {e} Şarkı Eklendi",
+      "trackInfo": "[**{title}**]({uri}) — ` {author} `\n-# Sıra ` #{position} ` • Süre ` {duration} ` • Ekleyen ` {user} `",
+      "mustBeInVoice": "**{e} Bunu kullanmak için benim ses kanalımda olman gerek.**",
+      "removedFromQueue": "**{e} Sıradan silindi: [{title}]({uri})**",
+      "movedNext": "**{e} Sıranın başına alındı: [{title}]({uri})**",
+      "notInQueue": "**{e} Bu şarkı artık sırada değil.**",
+      "unreachable": "Müzik sunucusuna ulaşılamıyor. Tekrar dene veya destek sunucusuna yaz.",
+      "genericError": "Bir hata oluştu: {message}",
+      "playError": "Çalarken bir hata oluştu: {message}",
+      "trackInfoQuoted": "> [**{title}**]({uri}) — ` {author} `\n> Sıra ` #{position} ` • Süre ` {duration} ` • Ekleyen ` {user} `"
     }
   },
   "commands": {
@@ -285,6 +329,18 @@
     },
     "search": {
       "description": "Şarkı ve sanatçı arar, sıraya ekler."
+    },
+    "mood": {
+      "description": "Havana göre bir radyo başlatır."
+    },
+    "sleep": {
+      "description": "Uyku zamanlayıcısı kurar."
+    },
+    "lyrics": {
+      "description": "Çalan şarkının sözlerini gösterir."
+    },
+    "play": {
+      "description": "Şarkı veya çalma listesi çalar."
     }
   },
   "buttons": {
@@ -301,7 +357,11 @@
     "clearQueue": "Sırayı Temizle",
     "songs": "Şarkılar",
     "artists": "Sanatçılar",
-    "last": "Son"
+    "last": "Son",
+    "static": "Sabit",
+    "liveSync": "Canlı Takip",
+    "remove": "Sıradan Sil",
+    "playNext": "Sıranın Başına Al"
   },
   "player": {
     "card": {

@@ -32,12 +32,12 @@ module.exports = {
 
         const regionMenu = new StringSelectMenuBuilder()
             .setCustomId("region_select")
-            .setPlaceholder("First, select your specific region/language...")
+            .setPlaceholder(client.t(message.guild.id, "music.mood.regionPlaceholder"))
             .addOptions(regions);
 
         const row = new ActionRowBuilder().addComponents(regionMenu);
         const display = new TextDisplayBuilder()
-            .setContent(`### ${client.emoji.dance} **Music for Everyone**\nSelect a region to get started with custom vibe stations!`);
+            .setContent(client.t(message.guild.id, "music.mood.title", { e: client.emoji.dance }));
 
         const container = new ContainerBuilder().addTextDisplayComponents(display);
 
@@ -67,12 +67,12 @@ module.exports = {
 
                 const moodMenu = new StringSelectMenuBuilder()
                     .setCustomId("mood_select")
-                    .setPlaceholder(`Now, choose a ${selectedRegion.label} mood...`)
+                    .setPlaceholder(client.t(message.guild.id, "music.mood.moodPlaceholder", { region: selectedRegion.label }))
                     .addOptions(moodOptions);
 
                 const moodRow = new ActionRowBuilder().addComponents(moodMenu);
                 const moodDisplay = new TextDisplayBuilder()
-                    .setContent(`**${selectedRegion.label} Center**\nWhat's your vibe today?`);
+                    .setContent(client.t(message.guild.id, "music.mood.moodTitle", { region: selectedRegion.label }));
 
                 const moodContainer = new ContainerBuilder().addTextDisplayComponents(moodDisplay);
                 await msg.edit({ components: [moodContainer, moodRow] });
@@ -167,13 +167,13 @@ module.exports = {
             player.data?.set("autoplay", true);
 
             if (originalQueued === 0) {
-                return await updateStatus(`Found mood tracks but could not resolve them to playable versions.`, true);
+                return await updateStatus(client.t(message.guild.id, "music.mood.unresolved"), true);
             }
 
             if (!player.playing && !player.paused) await player.play();
 
             const successDisplay = new TextDisplayBuilder()
-                .setContent(`### ${client.emoji.check} **${label} Radio** Started!\n> Queued **${originalQueued}** tracks matching your vibe.`);
+                .setContent(client.t(message.guild.id, "music.mood.started", { e: client.emoji.check, label, count: originalQueued }));
 
             const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
             await statusMsg.edit({ components: [container], flags: MessageFlags.IsComponentsV2 });

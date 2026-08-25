@@ -193,6 +193,50 @@
       "addedAll": "**{e} Added all {count} tracks to queue.**",
       "noArtist": "**{e} Artist data not found. Please try searching again.**",
       "noArtistTracks": "**{e} No tracks found for this artist.**"
+    },
+    "mood": {
+      "regionPlaceholder": "First, select your specific region/language...",
+      "title": "### {e} **Music for Everyone**\nSelect a region to get started with custom vibe stations!",
+      "moodPlaceholder": "Now, choose a {region} mood...",
+      "moodTitle": "**{region} Center**\nWhat's your vibe today?",
+      "started": "### {e} **{label} Radio** Started!\n> Queued **{count}** tracks matching your vibe.",
+      "unresolved": "Found mood tracks but could not resolve them to playable versions."
+    },
+    "sleep": {
+      "noMusic": "**{e} No music playing.**",
+      "noTimer": "**{e} No active timer.**",
+      "cancelled": "**{e} Timer cancelled.**",
+      "invalid": "**{e} Invalid duration**\n\nUse: `30m`, `1h`, `45m` (1-180 min)",
+      "set": "**{e} Timer Set**",
+      "details": "**{d} Duration** `:` `{duration}m`\n**{d} Ends** `:` <t:{ends}:t>\n**{d} Action** `:` Disconnect from VC",
+      "ended": "**{e} Timer ended - {user} disconnected.**"
+    },
+    "lyrics": {
+      "noSong": "**{e} No song is currently playing.**",
+      "searching": "**{e} Searching for lyrics...**",
+      "notFound": "**{e} No lyrics found for `{title}` by `{author}`**",
+      "page": "**Page** `:` `{current}/{total}`",
+      "onlyUser": "**{e} Only {user} can use these buttons.**",
+      "onlyInvoker": "**{e} Only the command user can use these buttons.**"
+    },
+    "play": {
+      "needVoice": "**{e} You need to be in a voice channel first.**",
+      "noPerms": "**{e} I don't have enough permissions! Please give me `CONNECT` and `SPEAK`.**",
+      "serverDown": "**{e} The music server is currently unavailable. Please try again later.**",
+      "otherChannel": "**{e} I'm already connected to a different voice channel.**",
+      "noResults": "**{e} No results found for \"{query}\"**",
+      "noTracks": "**{e} No tracks could be processed**",
+      "queuedPlaylist": "**{e} Queued `{count}` tracks from `{playlist}`**",
+      "trackAdded": "### {e} Track Added",
+      "trackInfo": "[**{title}**]({uri}) by ` {author} `\n-# Position ` #{position} ` • Duration ` {duration} ` • By ` {user} `",
+      "mustBeInVoice": "**{e} You must be in my voice channel to use this.**",
+      "removedFromQueue": "**{e} Removed [{title}]({uri}) from queue.**",
+      "movedNext": "**{e} Moved [{title}]({uri}) to next in queue.**",
+      "notInQueue": "**{e} This track is no longer in the queue.**",
+      "unreachable": "The music server is currently unreachable. Please try again or contact support.",
+      "genericError": "An error occurred: {message}",
+      "playError": "An error occurred while playing: {message}",
+      "trackInfoQuoted": "> [**{title}**]({uri}) by ` {author} `\n> Position ` #{position} ` • Duration ` {duration} ` • By ` {user} `"
     }
   },
   "commands": {
@@ -285,6 +329,18 @@
     },
     "search": {
       "description": "Search for songs and artists and add them to queue"
+    },
+    "mood": {
+      "description": "Play music based on your mood or genre"
+    },
+    "sleep": {
+      "description": "Set a sleep timer to stop the music"
+    },
+    "lyrics": {
+      "description": "Display lyrics for the currently playing song"
+    },
+    "play": {
+      "description": "Plays a song or playlist."
     }
   },
   "buttons": {
@@ -301,7 +357,11 @@
     "clearQueue": "Clear Queue",
     "songs": "Songs",
     "artists": "Artists",
-    "last": "Last"
+    "last": "Last",
+    "static": "Static",
+    "liveSync": "Live Sync",
+    "remove": "Remove",
+    "playNext": "Play Next"
   },
   "player": {
     "card": {
