@@ -174,7 +174,7 @@ module.exports = {
         } catch (error) {
             console.error('Nuke error:', error);
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`${emoji.warn} Failed to nuke the channel: \`${error.message}\``);
+                .setContent(client.t(context.guild.id, "mod.nuke.failed", { e: emoji.warn, message: error.message }));
 
             if (interaction && (interaction.replied || interaction.deferred)) {
                 return interaction.followUp({

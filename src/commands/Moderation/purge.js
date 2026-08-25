@@ -325,7 +325,7 @@ module.exports = {
             }
 
             let successMsg = client.t(context.guild.id, "mod.purge.done", { e: emoji.check, count: totalDeleted });
-            if (skippedOld) successMsg += `\n-# ${emoji.arrowright} Cannot purge messages older than 14 days.`;
+            if (skippedOld) successMsg += client.t(context.guild.id, "mod.purge.tooOldNote", { arrow: emoji.arrowright });
             const successDisplay = new TextDisplayBuilder().setContent(successMsg);
 
             const reply = isSlash ?

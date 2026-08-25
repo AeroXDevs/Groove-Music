@@ -148,7 +148,7 @@ module.exports = {
         return new ActionRowBuilder().addComponents(
           new StringSelectMenuBuilder()
             .setCustomId('select_favorite')
-            .setPlaceholder('Select favorites to remove')
+            .setPlaceholder(client.t(message.guild.id, "fav.selectRemove"))
             .setMinValues(1)
             .setMaxValues(Math.min(options.length, 10))
             .addOptions(options)

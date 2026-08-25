@@ -25,7 +25,7 @@ module.exports = {
                 container.addSeparatorComponents(new SeparatorBuilder());
                 container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`> **\`${prefix}bio set <text>\`**\n\n${emoji.arrowright} Sets your profile bio.`));
                 container.addSeparatorComponents(new SeparatorBuilder());
-                container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName || user.username}`));
+                container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "info.requestedBy", { user: user.displayName || user.username })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
             if (bioText.length > 100) {
@@ -55,7 +55,7 @@ module.exports = {
 
         container.addTextDisplayComponents(new TextDisplayBuilder().setContent(helpContent));
         container.addSeparatorComponents(new SeparatorBuilder());
-        container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName || user.username}`));
+        container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "info.requestedBy", { user: user.displayName || user.username })));
 
         return message.reply({
             components: [container],

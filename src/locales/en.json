@@ -909,7 +909,8 @@
       "image": "Clears messages that contain images.",
       "mentions": "Clears messages with mentions.",
       "reactions2": "Clears messages reactions without deleting.",
-      "user": "Clears messages from a specific user."
+      "user": "Clears messages from a specific user.",
+      "tooOldNote": "\n-# {arrow} Cannot purge messages older than 14 days."
     },
     "snipe": {
       "none": "{e} There are no deleted messages to snipe in this channel."
@@ -919,7 +920,8 @@
       "textOnly": "{e} I can only nuke text channels.",
       "running": "{e} Executing nuke...",
       "cancelled": "{e} Nuke cancelled.",
-      "timedOut": "{e} Nuke confirmation timed out."
+      "timedOut": "{e} Nuke confirmation timed out.",
+      "failed": "{e} Failed to nuke the channel: `{message}`"
     },
     "banConfirm": "{e} **Ban Confirmation !**",
     "unbanAllConfirm": "{e} **Unban All Confirmation !**",
@@ -1202,7 +1204,8 @@
       "join": "**{e} Join our support server for help, updates, and community!**",
       "error": "**{e} Error: {message}**"
     },
-    "bioSet": "{e} Your bio has been set to `{value}`"
+    "bioSet": "{e} Your bio has been set to `{value}`",
+    "requestedBy": "-# Requested by {user}"
   },
   "am": {
     "reset": "AutoMod configuration has been reset.",
@@ -1237,7 +1240,11 @@
     "error": "An error occurred: {message}",
     "maxSet": "Successfully set max **{type}s** to **{value}**.",
     "enableFirst": "Please enable AutoMod first using `automod enable`.",
-    "needManageServer": "You need `Manage Server` permission to use this command."
+    "needManageServer": "You need `Manage Server` permission to use this command.",
+    "selectFilters": "Select filters",
+    "selectModules": "Select modules to toggle...",
+    "whitelistRemoved": "Removed **{value}** from whitelist.",
+    "whitelistAdded2": "Added **{value}** to whitelist."
   },
   "evt": {
     "removedFrom": "{bot} was just removed from `{guild}`\n\nSorry for all and any of bad experience/(s) you had with me!\nPlease leave a feedback or report any issue you hat at my **[Support Server]({support})** so that it can be fixed / worked on as soon as possible."
@@ -1432,7 +1439,9 @@
     },
     "addedCount": "**{e} Added `{count}` songs to your favorites.**\n",
     "alreadyCount": "**{e} `{count}` songs were already in your favorites.**\n",
-    "countLabel": "**Favorites:** `{count} tracks`\n"
+    "countLabel": "**Favorites:** `{count} tracks`\n",
+    "selectRemove": "Select favorites to remove",
+    "pageOf": "{page} of {total}"
   },
   "role": {
     "rAddsARoleTo": "Adds a role to a user.",
@@ -1494,7 +1503,9 @@
     },
     "auditCreate": "Role created by {user} via advance wizard",
     "auditEdit": "Role edited by {user} via wizard",
-    "auditDelete": "Role deleted by {user}"
+    "auditDelete": "Role deleted by {user}",
+    "colorChangedTo": "Successfully changed the color of {role} to `{color}`.",
+    "needEmojiOrUrl": "Please provide a valid **custom emoji** or an **image URL**. Standard emojis or text names are not supported."
   },
   "aud": {
     "noPerm": "{e} **I do not have the `View Audit Log` permission.**",

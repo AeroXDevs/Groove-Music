@@ -672,7 +672,7 @@ module.exports = {
                 await role.edit({ colors: finalColor }).catch(err => {
                     return error(client.t(message.guild.id, "role.colorFailed", { message: err.message }));
                 });
-                return success(`Successfully changed the color of ${role} to \`${finalColor}\`.`);
+                return success(client.t(message.guild.id, "role.colorChangedTo", { role, color: finalColor }));
             }
             case 'icon': {
                 if (guild.premiumTier < 2) return error(client.t(message.guild.id, "role.rThisServerNeedsTo"));

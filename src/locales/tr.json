@@ -909,7 +909,8 @@
       "image": "Görsel içeren mesajları siler.",
       "mentions": "Etiket içeren mesajları siler.",
       "reactions2": "Mesajları silmeden tepkilerini temizler.",
-      "user": "Belirli bir kullanıcının mesajlarını siler."
+      "user": "Belirli bir kullanıcının mesajlarını siler.",
+      "tooOldNote": "\n-# {arrow} 14 günden eski mesajlar silinemez."
     },
     "snipe": {
       "none": "{e} Bu kanalda geri getirilecek silinmiş mesaj yok."
@@ -919,7 +920,8 @@
       "textOnly": "{e} Yalnızca yazı kanallarını sıfırlayabilirim.",
       "running": "{e} Kanal sıfırlanıyor...",
       "cancelled": "{e} Sıfırlama iptal edildi.",
-      "timedOut": "{e} Onay süresi doldu, sıfırlama yapılmadı."
+      "timedOut": "{e} Onay süresi doldu, sıfırlama yapılmadı.",
+      "failed": "{e} Kanal sıfırlanamadı: `{message}`"
     },
     "banConfirm": "{e} **Yasaklama onayı**",
     "unbanAllConfirm": "{e} **Tüm yasakları kaldırma onayı**",
@@ -1202,7 +1204,8 @@
       "join": "**{e} Yardım, duyurular ve topluluk için destek sunucumuza katıl.**",
       "error": "**{e} Hata: {message}**"
     },
-    "bioSet": "{e} Biyografin `{value}` olarak ayarlandı."
+    "bioSet": "{e} Biyografin `{value}` olarak ayarlandı.",
+    "requestedBy": "-# İsteyen: {user}"
   },
   "am": {
     "reset": "AutoMod ayarları sıfırlandı.",
@@ -1237,7 +1240,11 @@
     "error": "Bir hata oluştu: {message}",
     "maxSet": "En fazla **{type}** sayısı **{value}** olarak ayarlandı.",
     "enableFirst": "Önce `automod enable` ile AutoMod'u açman gerek.",
-    "needManageServer": "Bu komutu kullanmak için `Sunucuyu Yönet` yetkisine sahip olman gerek."
+    "needManageServer": "Bu komutu kullanmak için `Sunucuyu Yönet` yetkisine sahip olman gerek.",
+    "selectFilters": "Filtreleri seç",
+    "selectModules": "Açılıp kapatılacak modülleri seç...",
+    "whitelistRemoved": "**{value}** beyaz listeden çıkarıldı.",
+    "whitelistAdded2": "**{value}** beyaz listeye eklendi."
   },
   "evt": {
     "removedFrom": "{bot}, `{guild}` sunucusundan çıkarıldı.\n\nYaşadığın olumsuz deneyimler için kusura bakma. Görüşlerini veya karşılaştığın sorunları **[Destek Sunucusu]({support})** üzerinden iletirsen en kısa sürede ilgilenilir."
@@ -1432,7 +1439,9 @@
     },
     "addedCount": "**{e} `{count}` şarkı favorilerine eklendi.**\n",
     "alreadyCount": "**{e} `{count}` şarkı zaten favorilerindeydi.**\n",
-    "countLabel": "**Favoriler:** `{count} şarkı`\n"
+    "countLabel": "**Favoriler:** `{count} şarkı`\n",
+    "selectRemove": "Çıkarılacak favorileri seç",
+    "pageOf": "{page} / {total}"
   },
   "role": {
     "rAddsARoleTo": "Bir kullanıcıya rol verir.",
@@ -1494,7 +1503,9 @@
     },
     "auditCreate": "Rol {user} tarafından sihirbazla oluşturuldu",
     "auditEdit": "Rol {user} tarafından sihirbazla düzenlendi",
-    "auditDelete": "Rol {user} tarafından silindi"
+    "auditDelete": "Rol {user} tarafından silindi",
+    "colorChangedTo": "{role} rolünün rengi `{color}` yapıldı.",
+    "needEmojiOrUrl": "Geçerli bir **özel emoji** veya **görsel bağlantısı** gir. Standart emojiler ve metin adları desteklenmiyor."
   },
   "aud": {
     "noPerm": "{e} **`View Audit Log` yetkim yok.**",

@@ -204,7 +204,7 @@ module.exports = {
             const filterMenu = new ActionRowBuilder().addComponents(
                 new StringSelectMenuBuilder()
                     .setCustomId("am_punish_filter_select")
-                    .setPlaceholder("Select filters")
+                    .setPlaceholder(client.t(context.guild.id, "am.selectFilters"))
                     .setMinValues(1).setMaxValues(7)
                     .addOptions([
                         { label: "Anti spam", value: "antiSpam" },
@@ -432,7 +432,7 @@ module.exports = {
             return new ActionRowBuilder().addComponents(
                 new StringSelectMenuBuilder()
                     .setCustomId("am_enable_select")
-                    .setPlaceholder("Select modules to toggle...")
+                    .setPlaceholder(client.t(context.guild.id, "am.selectModules"))
                     .setMinValues(1).setMaxValues(7)
                     .addOptions([
                         { label: `Anti spam`, value: "antiSpam", default: !!s.antiSpam },
@@ -622,7 +622,7 @@ module.exports = {
             s.whitelistUsers = s.whitelistUsers.filter(x => x !== target.id);
 
             client.automod.updateSettings(guildId, s);
-            return this.success(context, `Removed **${target.name || target.user?.tag || target.tag || target.id}** from whitelist.`);
+            return this.success(context, client.t(context.guild.id, "am.whitelistRemoved", { value: target.name || target.user?.tag || target.tag || target.id }));
         }
 
         const initialArg = args[0];
@@ -642,7 +642,7 @@ module.exports = {
             else s.whitelistUsers = [...new Set([...s.whitelistUsers, id])];
 
             client.automod.updateSettings(guildId, s);
-            return this.success(context, `Added **${initialTarget.name || initialTarget.user?.tag || initialTarget.tag || initialTarget.id}** to whitelist.`);
+            return this.success(context, client.t(context.guild.id, "am.whitelistAdded2", { value: initialTarget.name || initialTarget.user?.tag || initialTarget.tag || initialTarget.id }));
         }
 
         const display = new TextDisplayBuilder()
