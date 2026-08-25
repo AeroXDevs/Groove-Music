@@ -54,7 +54,7 @@ module.exports = {
         }
 
         if (!target) {
-            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Could not find that user.**`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.userNotFound", { e: emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             const options = { components: [container], flags: MessageFlags.IsComponentsV2 };
             return isSlash ? context.editReply(options) : context.reply(options);
@@ -74,14 +74,14 @@ module.exports = {
 
                 const generalSection = new SectionBuilder();
                 generalSection.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                    `${emoji.hastag} **__General__**\n` +
-                    `> **Name :** ${target.displayName}\n` +
-                    `> **Username :** ${target.username}\n` +
-                    `> **ID :** ${target.id}\n` +
-                    `> **Nickname :** ${member?.nickname || "None"}\n` +
-                    `> **Is Bot :** ${target.bot ? "Yes" : "No"}\n` +
-                    `> **Account Created :** <t:${createdAt}:R>\n` +
-                    (joinedAt ? `> **Server Joined :** <t:${joinedAt}:R>` : "")
+                    `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.general")}__**\n` +
+                    `> **${client.t(context.guild.id, "ui.label.name")} :** ${target.displayName}\n` +
+                    `> **${client.t(context.guild.id, "ui.label.username")} :** ${target.username}\n` +
+                    `> **${client.t(context.guild.id, "ui.label.id")} :** ${target.id}\n` +
+                    `> **${client.t(context.guild.id, "ui.label.nickname")} :** ${member?.nickname || "None"}\n` +
+                    `> **${client.t(context.guild.id, "ui.label.isBot")} :** ${target.bot ? "Yes" : "No"}\n` +
+                    `> **${client.t(context.guild.id, "ui.label.accountCreated")} :** <t:${createdAt}:R>\n` +
+                    (joinedAt ? `> **${client.t(context.guild.id, "ui.label.serverJoined")} :** <t:${joinedAt}:R>` : "")
                 ));
 
                 generalSection.setThumbnailAccessory((thumbnail) =>
@@ -96,9 +96,9 @@ module.exports = {
                         .sort((a, b) => b.position - a.position);
 
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                        `${emoji.hastag} **__Roles__**\n` +
-                        `> **Top Role :** ${member.roles.highest.id === guild.id ? "@everyone" : `<@&${member.roles.highest.id}>`}\n` +
-                        `> **Total Roles :** ${roles.size}`
+                        `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.roles")}__**\n` +
+                        `> **${client.t(context.guild.id, "ui.label.topRole")} :** ${member.roles.highest.id === guild.id ? "@everyone" : `<@&${member.roles.highest.id}>`}\n` +
+                        `> **${client.t(context.guild.id, "ui.label.totalRoles")} :** ${roles.size}`
                     ));
                 }
 
@@ -109,17 +109,17 @@ module.exports = {
                         "None";
 
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                        `${emoji.hastag} **__Presence__**\n` +
-                        `> **Status :** ${member.presence?.status ? member.presence.status.charAt(0).toUpperCase() + member.presence.status.slice(1) : "Offline"}\n` +
-                        `> **Custom :** ${customText}\n` +
-                        `> **Device :** ${member.presence?.clientStatus ? Object.keys(member.presence.clientStatus).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(", ") : "None"}`
+                        `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.presence")}__**\n` +
+                        `> **${client.t(context.guild.id, "ui.label.status")} :** ${member.presence?.status ? member.presence.status.charAt(0).toUpperCase() + member.presence.status.slice(1) : "Offline"}\n` +
+                        `> **${client.t(context.guild.id, "ui.label.custom")} :** ${customText}\n` +
+                        `> **${client.t(context.guild.id, "ui.label.device")} :** ${member.presence?.clientStatus ? Object.keys(member.presence.clientStatus).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(", ") : "None"}`
                     ));
 
                     const voiceChannel = member.voice.channel;
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                        `${emoji.hastag} **__Extras__**\n` +
-                        `> **Boosting :** ${member.premiumSince ? "Yes" : "No"}\n` +
-                        `> **In VC :** ${voiceChannel ? voiceChannel.name : "No"}`
+                        `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.extras")}__**\n` +
+                        `> **${client.t(context.guild.id, "ui.label.boosting")} :** ${member.premiumSince ? "Yes" : "No"}\n` +
+                        `> **${client.t(context.guild.id, "ui.label.inVc")} :** ${voiceChannel ? voiceChannel.name : "No"}`
                     ));
                 }
 
@@ -145,7 +145,7 @@ module.exports = {
                     if (userPerms.length > 0) {
                         const permsDisplay = userPerms.map(p => `**${p}**`).join(", ");
                         container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                            `${emoji.hastag} **__Key Perms__**\n` +
+                            `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.keyPerms")}__**\n` +
                             `> ${permsDisplay}`
                         ));
                     }
@@ -158,7 +158,7 @@ module.exports = {
                     else if (member.permissions.has(PermissionFlagsBits.ManageMessages)) acknowledgment = "Server Moderator";
 
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                        `${emoji.hastag} **__Acknowledgement__**\n` +
+                        `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.acknowledgement")}__**\n` +
                         `> **${acknowledgment}**`
                     ));
                 }

@@ -579,12 +579,12 @@ module.exports = {
 
             if (s.whitelistRoles?.length > 0) {
                 const roleList = s.whitelistRoles.map((id, i) => `\`${(i + 1).toString().padStart(2, '0')}.\` : <@&${id}>`).join('\n');
-                sections.push(`${emoji.hastag} **__Roles__**\n${roleList}`);
+                sections.push(`${emoji.hastag} **__${client.t(context.guild.id, "ui.section.roles")}__**\n${roleList}`);
             }
 
             if (s.whitelistChannels?.length > 0) {
                 const channelList = s.whitelistChannels.map((id, i) => `\`${(i + 1).toString().padStart(2, '0')}.\` : <#${id}>`).join('\n');
-                sections.push(`${emoji.hastag} **__Channels__**\n${channelList}`);
+                sections.push(`${emoji.hastag} **__${client.t(context.guild.id, "ui.section.channels")}__**\n${channelList}`);
             }
 
             if (sections.length === 0) {

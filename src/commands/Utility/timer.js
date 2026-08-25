@@ -30,7 +30,7 @@ module.exports = {
         }
 
         if (durationMs > 86400000) {
-            const display = new TextDisplayBuilder().setContent(`${client.emoji.warn} I can only set timers for up to 24 hours as they don't persist after restarts.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "ui.timer.max", { e: client.emoji.warn }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 

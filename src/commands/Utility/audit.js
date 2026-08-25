@@ -287,7 +287,7 @@ module.exports = {
             });
 
         } catch (error) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.cross} **Failed to fetch audit logs.**`);
+            const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.auditFailed", { e: emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(display);
             return (isSlash ? context.editReply : context.reply).call(context, { components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
         }

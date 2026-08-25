@@ -181,7 +181,7 @@ module.exports = {
                     const previewSeparator = new SeparatorBuilder();
 
                     let previewText = '**Changes to apply:**\n\n';
-                    if (nickname) previewText += `**Nickname:** ${nickname}\n`;
+                    if (nickname) previewText += `**${client.t(message.guild.id, "ui.label.nickname")}:** ${nickname}\n`;
                     if (bio) previewText += `**Bio:** ${bio}\n`;
                     if (avatarUrl) previewText += `**Avatar:** ${avatarUrl}\n`;
                     if (bannerUrl) previewText += `**Banner:** ${bannerUrl}\n`;

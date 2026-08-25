@@ -232,7 +232,7 @@ module.exports = {
 
             const content = `> **\`${usageStr}\`**\n\n` +
                 `${client.emoji.arrowright} ${displayDescription}\n` +
-                `${client.emoji.arrowright} **Category :** ${commandCategory}\n` +
+                `${client.emoji.arrowright} **${client.t(interaction.guildId, "ui.label.category")} :** ${commandCategory}\n` +
                 (aliases !== 'None' ? `${client.emoji.arrowright} **Aliases :** ${aliases}\n` : '') +
                 `${client.emoji.arrowright} **Example :** \`${exampleStr}\``;
 
@@ -545,7 +545,7 @@ module.exports = {
 
             const content = `> **\`${usageStr}\`**\n\n` +
                 `${emoji.arrowright} ${displayDescription}\n` +
-                `${emoji.arrowright} **Category :** ${commandCategory}\n` +
+                `${emoji.arrowright} **${client.t(message.guild.id, "ui.label.category")} :** ${commandCategory}\n` +
                 (aliases !== 'None' ? `${emoji.arrowright} **Aliases :** ${aliases}\n` : '') +
                 `${emoji.arrowright} **Example :** \`${exampleStr}\``;
 

@@ -37,7 +37,7 @@ module.exports = {
         let userInput = isSlash ? context.options.getString("code") : args[0];
 
         if (!userInput) {
-            const noCode = new TextDisplayBuilder().setContent(`${emoji.cross} **Please provide a vanity code or invite link to check.**`);
+            const noCode = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.needVanity", { e: emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(noCode);
             const options = { components: [container], flags: MessageFlags.IsComponentsV2 };
             return isSlash ? context.reply(options) : context.reply(options);
@@ -64,10 +64,10 @@ module.exports = {
 
                 const infoContent =
                     `${emoji.cross} **The vanity URL \` discord.gg/${vanityCode} \` is \` TAKEN \`.**\n\n` +
-                    `${emoji.hastag} **__Server Info__**\n` +
-                    `> **Name :** **\` ${guildName} \`**\n` +
-                    `> **ID :** **\` ${guildId} \`**\n` +
-                    `> **Members :** **\` ${memberCount.toLocaleString()} \`**`;
+                    `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.serverInfo")}__**\n` +
+                    `> **${client.t(context.guild.id, "ui.label.name")} :** **\` ${guildName} \`**\n` +
+                    `> **${client.t(context.guild.id, "ui.label.id")} :** **\` ${guildId} \`**\n` +
+                    `> **${client.t(context.guild.id, "ui.label.members")} :** **\` ${memberCount.toLocaleString()} \`**`;
 
                 if (iconHash) {
                     const iconURL = `https://cdn.discordapp.com/icons/${guildId}/${iconHash}.png?size=256`;
@@ -92,7 +92,7 @@ module.exports = {
 
         } catch (error) {
             console.error("Error in checkvanity command:", error);
-            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.warn} **An error occurred while checking vanity availability.**`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.vanityError", { e: emoji.warn }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             if (isSlash) return context.editReply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             else return context.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });

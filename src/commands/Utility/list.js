@@ -181,7 +181,7 @@ module.exports = {
                     const roleId = isSlash ? args[1] : args[1]?.replace(/[<@&>]/g, '');
                     const role = guild.roles.cache.get(roleId);
                     if (!role) {
-                        const display = new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a valid role.`);
+                        const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.needRole", { e: emoji.warn }));
                         const container = new ContainerBuilder().addTextDisplayComponents(display);
                         if (isSlash) return context.editReply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
                         else return context.reply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
@@ -235,7 +235,7 @@ module.exports = {
             }
 
             if (items.length === 0) {
-                const display = new TextDisplayBuilder().setContent(`${emoji.warn} No items found in this category.`);
+                const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.listEmpty", { e: emoji.warn }));
                 const container = new ContainerBuilder().addTextDisplayComponents(display);
                 if (isSlash) return context.editReply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
                 else return context.reply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
@@ -319,7 +319,7 @@ module.exports = {
 
         } catch (error) {
             console.error('List error:', error);
-            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.warn} An error occurred while fetching the list.`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.listError", { e: emoji.warn }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             if (isSlash) return context.editReply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
             else return context.reply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });

@@ -43,7 +43,7 @@ module.exports = {
 
                 return `**\`${start + i + 1}\` : ${guild?.name || "Unknown"}**\n` +
                     `> **Track:** ${track ? `[${track.title.substring(0, 30)}](${track.uri})` : "None"}\n` +
-                    `> **Listeners:** \` ${members} \`\n> **ID:** \` ${player.guildId} \``;
+                    `> **Listeners:** \` ${members} \`\n> **${client.t(message.guild.id, "ui.label.id")}:** \` ${player.guildId} \``;
             });
 
             const headerDisplay = new TextDisplayBuilder()
