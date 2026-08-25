@@ -507,7 +507,10 @@
       "updated": "{e} Successfully updated role {role}!",
       "creationCancelled": "{e} **Role creation cancelled.**",
       "editCancelled": "{e} **Role edit cancelled.**",
-      "adding": "{e} Adding {role} to **{count}** members..."
+      "adding": "{e} Adding {role} to **{count}** members...",
+      "continue": "**Do you want to continue ?**",
+      "cancelled": "Successfully cancelled the active role task.",
+      "permPlaceholder": "Select Permissions..."
     },
     "failed": {
       "ban": "{e} Failed to ban: {message}",
@@ -724,5 +727,38 @@
       "ends": "{arrow} **Ends:** <t:{ts}:R> [<t:{ts}:f>]\n\n",
       "host": "{arrow} **Host:** <@{id}>\n"
     }
+  },
+  "cfg": {
+    "needVoice": "You need to be in a voice channel to use this command.",
+    "needSameVoice": "You need to be in the same voice channel as me to use this command.",
+    "needVoiceShort": "You need to be in a voice channel to use this.",
+    "err247Update": "An error occurred while updating 24/7 mode. Please try again.",
+    "err247Load": "An error occurred while loading 247 settings. Please try again later.",
+    "argHint": "[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands."
+  },
+  "info": {
+    "noBio": "No bio is set.",
+    "noDescription": "No description available",
+    "noCommands": "No commands found",
+    "noPrefixAccess": "no prefix access",
+    "supportServer": "Support Server",
+    "bioTooLong": "{e} Bio cannot exceed 100 characters.",
+    "bioCleared": "{e} Your bio has been cleared.",
+    "uptime": "{blank}{arrow} I have been online for **{uptime}**",
+    "totals": "{blank}{arrow} Total of **__{users}__** users in **__{servers}__** servers",
+    "aliases": "{arrow} **Aliases :** {value}\n"
+  },
+  "am": {
+    "reset": "AutoMod configuration has been reset.",
+    "channelHint": "*Mention a channel to set it, or use the button below to disable.*",
+    "idHint": "*You can also send the ID directly.*",
+    "enabled": "**AutoMod is currently Enabled !**\n"
+  },
+  "evt": {
+    "noPrefixRevoked": "You no longer have permission to use commands without a prefix.\n",
+    "noPrefixContact": "If you need continued access, please contact the bot owner.",
+    "goodbye": "Sorry for all and any of bad experience/(s) you had with me!\n",
+    "noVanity": "No vanity URL",
+    "removedFrom": "{bot} was just removed from `{guild}`\n\nSorry for all and any of bad experience/(s) you had with me!\nPlease leave a feedback or report any issue you hat at my **[Support Server]({support})** so that it can be fixed / worked on as soon as possible."
   }
 }

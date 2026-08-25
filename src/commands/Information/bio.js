@@ -29,7 +29,7 @@ module.exports = {
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
             if (bioText.length > 100) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} Bio cannot exceed 100 characters.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "info.bioTooLong", { e: emoji.cross })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
             const profile = client.db.profiles.get(user.id) || {};
@@ -41,9 +41,9 @@ module.exports = {
 
         if (sub === 'clear') {
             const profile = client.db.profiles.get(user.id) || {};
-            profile.bio = "No bio is set.";
+            profile.bio = client.t(message.guild.id, "info.noBio");
             client.db.profiles.set(user.id, profile);
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Your bio has been cleared.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "info.bioCleared", { e: emoji.check })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 

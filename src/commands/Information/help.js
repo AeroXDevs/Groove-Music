@@ -171,7 +171,7 @@ module.exports = {
                 return foundCommand.execute(interaction, parts.slice(1), client, '/');
             }
 
-            let displayDescription = foundCommand.description || 'No description available';
+            let displayDescription = foundCommand.description || client.t(interaction.guildId, "info.noDescription");
             let displayName = foundCommand.name;
             let displayUsage = foundCommand.usage;
             let displayExample = foundCommand.example;
@@ -233,7 +233,7 @@ module.exports = {
             const content = `> **\`${usageStr}\`**\n\n` +
                 `${client.emoji.arrowright} ${displayDescription}\n` +
                 `${client.emoji.arrowright} **${client.t(interaction.guildId, "ui.label.category")} :** ${commandCategory}\n` +
-                (aliases !== 'None' ? `${client.emoji.arrowright} **Aliases :** ${aliases}\n` : '') +
+                (aliases !== 'None' ? client.t(interaction.guildId, "info.aliases", { arrow: client.emoji.arrowright, value: aliases }) : '') +
                 `${client.emoji.arrowright} **Example :** \`${exampleStr}\``;
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
@@ -380,7 +380,7 @@ module.exports = {
 
             const commandsText = commandsList.length > 0
                 ? commandsList.map(cmd => `\`${cmd.name}\``).join(' , ')
-                : 'No commands found';
+                : client.t(interaction.guildId, "info.noCommands");
 
             const commandsDisplay = new TextDisplayBuilder()
                 .setContent(commandsText);
@@ -484,7 +484,7 @@ module.exports = {
                 return foundCommand.execute(message, args.slice(1), message.client, serverPrefix);
             }
 
-            let displayDescription = foundCommand.description || 'No description available';
+            let displayDescription = foundCommand.description || client.t(message.guild.id, "info.noDescription");
             let displayName = foundCommand.name;
             let displayUsage = foundCommand.usage;
             let displayExample = foundCommand.example;
@@ -546,7 +546,7 @@ module.exports = {
             const content = `> **\`${usageStr}\`**\n\n` +
                 `${emoji.arrowright} ${displayDescription}\n` +
                 `${emoji.arrowright} **${client.t(message.guild.id, "ui.label.category")} :** ${commandCategory}\n` +
-                (aliases !== 'None' ? `${emoji.arrowright} **Aliases :** ${aliases}\n` : '') +
+                (aliases !== 'None' ? client.t(message.guild.id, "info.aliases", { arrow: emoji.arrowright, value: aliases }) : '') +
                 `${emoji.arrowright} **Example :** \`${exampleStr}\``;
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
@@ -692,7 +692,7 @@ module.exports = {
 
             const commandsText = commandsList.length > 0
                 ? commandsList.map(cmd => `\`${cmd.name}\``).join(' , ')
-                : 'No commands found';
+                : client.t(message.guild.id, "info.noCommands");
 
             const commandsDisplay = new TextDisplayBuilder()
                 .setContent(commandsText);

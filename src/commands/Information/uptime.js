@@ -31,7 +31,7 @@ module.exports = {
         const display = new TextDisplayBuilder()
             .setContent(
                 `**Groove's Uptime !**\n` +
-                `${emoji.blank}${emoji.wickarrow} I have been online for **${uptimeString}**`
+                client.t(message.guild.id, "info.uptime", { blank: emoji.blank, arrow: emoji.wickarrow, uptime: uptimeString })
             );
 
         const container = new ContainerBuilder()

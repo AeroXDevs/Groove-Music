@@ -138,7 +138,7 @@ module.exports = {
 
                 const estimatedTime = members.size * 1;
                 const confirmContainer = new ContainerBuilder();
-                confirmContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(`**Do you want to continue ?**`));
+                confirmContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.continue")));
                 confirmContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(
                     `~ \` ${members.size} Users \` in \` ${estimatedTime}s \``
                 ));
@@ -288,7 +288,7 @@ module.exports = {
                     const select = new ActionRowBuilder().addComponents(
                         new StringSelectMenuBuilder()
                             .setCustomId('select_perms')
-                            .setPlaceholder('Select Permissions...')
+                            .setPlaceholder(client.t(message.guild.id, "mod.role.permPlaceholder"))
                             .setMinValues(0)
                             .setMaxValues(permsList.length)
                             .addOptions(permsList.map(p => ({

@@ -74,7 +74,7 @@ module.exports = {
         const separator = new SeparatorBuilder();
 
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`You need to be in a voice channel to use this command.`);
+          .setContent(client.t(message.guild.id, "cfg.needVoice"));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay)
@@ -96,7 +96,7 @@ module.exports = {
           const separator = new SeparatorBuilder();
 
           const infoDisplay = new TextDisplayBuilder()
-            .setContent(`You need to be in the same voice channel as me to use this command.`);
+            .setContent(client.t(message.guild.id, "cfg.needSameVoice"));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay)
@@ -228,7 +228,7 @@ module.exports = {
             const separator = new SeparatorBuilder();
 
             const infoDisplay = new TextDisplayBuilder()
-              .setContent(`You need to be in a voice channel to use this.`);
+              .setContent(client.t(message.guild.id, "cfg.needVoiceShort"));
 
             const errorContainer = new ContainerBuilder()
               .addTextDisplayComponents(errorDisplay)
@@ -309,7 +309,7 @@ module.exports = {
           const separator = new SeparatorBuilder();
 
           const errorInfo = new TextDisplayBuilder()
-            .setContent(`An error occurred while updating 24/7 mode. Please try again.`);
+            .setContent(client.t(message.guild.id, "cfg.err247Update"));
 
           const errorContainer = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay)
@@ -354,7 +354,7 @@ module.exports = {
       const separator = new SeparatorBuilder();
 
       const errorInfo = new TextDisplayBuilder()
-        .setContent(`An error occurred while loading 247 settings. Please try again later.`);
+        .setContent(client.t(message.guild.id, "cfg.err247Load"));
 
       const errorContainer = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay)

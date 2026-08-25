@@ -507,7 +507,10 @@
       "updated": "{e} {role} rolü güncellendi.",
       "creationCancelled": "{e} **Rol oluşturma iptal edildi.**",
       "editCancelled": "{e} **Rol düzenleme iptal edildi.**",
-      "adding": "{e} {role} rolü **{count}** üyeye veriliyor..."
+      "adding": "{e} {role} rolü **{count}** üyeye veriliyor...",
+      "continue": "**Devam etmek istiyor musun?**",
+      "cancelled": "Aktif rol işlemi iptal edildi.",
+      "permPlaceholder": "Yetkileri seç..."
     },
     "failed": {
       "ban": "{e} Yasaklama başarısız: {message}",
@@ -724,5 +727,38 @@
       "ends": "{arrow} **Bitiş:** <t:{ts}:R> [<t:{ts}:f>]\n\n",
       "host": "{arrow} **Düzenleyen:** <@{id}>\n"
     }
+  },
+  "cfg": {
+    "needVoice": "Bu komutu kullanmak için bir ses kanalında olman gerek.",
+    "needSameVoice": "Bu komutu kullanmak için benimle aynı ses kanalında olman gerek.",
+    "needVoiceShort": "Bunu kullanmak için bir ses kanalında olman gerek.",
+    "err247Update": "7/24 modu güncellenirken bir hata oluştu, tekrar dene.",
+    "err247Load": "7/24 ayarları yüklenemedi, birazdan tekrar dene.",
+    "argHint": "[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma."
+  },
+  "info": {
+    "noBio": "Henüz bir biyografi yok.",
+    "noDescription": "Açıklama yok",
+    "noCommands": "Komut bulunamadı",
+    "noPrefixAccess": "prefixsiz kullanım",
+    "supportServer": "Destek Sunucusu",
+    "bioTooLong": "{e} Biyografi 100 karakteri geçemez.",
+    "bioCleared": "{e} Biyografin temizlendi.",
+    "uptime": "{blank}{arrow} **{uptime}** süredir çevrimiçiyim",
+    "totals": "{blank}{arrow} **__{servers}__** sunucuda toplam **__{users}__** kullanıcı",
+    "aliases": "{arrow} **Takma adlar :** {value}\n"
+  },
+  "am": {
+    "reset": "AutoMod ayarları sıfırlandı.",
+    "channelHint": "*Ayarlamak için bir kanal etiketle, kapatmak için aşağıdaki butonu kullan.*",
+    "idHint": "*ID'yi doğrudan da yazabilirsin.*",
+    "enabled": "**AutoMod şu an açık.**\n"
+  },
+  "evt": {
+    "noPrefixRevoked": "Artık prefixsiz komut kullanma iznin yok.\n",
+    "noPrefixContact": "Erişimin devam etmesini istiyorsan bot sahibiyle iletişime geç.",
+    "goodbye": "Yaşadığın olumsuz deneyimler için kusura bakma.\n",
+    "noVanity": "Özel URL yok",
+    "removedFrom": "{bot}, `{guild}` sunucusundan çıkarıldı.\n\nYaşadığın olumsuz deneyimler için kusura bakma. Görüşlerini veya karşılaştığın sorunları **[Destek Sunucusu]({support})** üzerinden iletirsen en kısa sürede ilgilenilir."
   }
 }

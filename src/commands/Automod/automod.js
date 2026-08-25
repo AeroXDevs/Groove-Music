@@ -324,7 +324,7 @@ module.exports = {
             .setContent(
                 `**AutoMod Logging !**\n` +
                 `${emoji.blank}${emoji.wickarrow} Channel: **__${settings.logChannel ? `<#${settings.logChannel}>` : "None"}__**\n\n` +
-                `*Mention a channel to set it, or use the button below to disable.*`
+                client.t(context.guild.id, "am.channelHint")
             );
 
         const row = new ActionRowBuilder().addComponents(
@@ -649,7 +649,7 @@ module.exports = {
             .setContent(
                 `**AutoMod Whitelist !**\n` +
                 `${emoji.blank}${emoji.wickarrow} Mention a **Role**, **Channel**, or **User** to add to the whitelist.\n\n` +
-                `*You can also send the ID directly.*`
+                client.t(context.guild.id, "am.idHint")
             );
 
         const row = new ActionRowBuilder().addComponents(
