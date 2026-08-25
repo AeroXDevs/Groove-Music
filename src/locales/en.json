@@ -31,15 +31,12 @@
     "interactionError": "**{cross} An error occurred while processing this interaction.**"
   },
   "language": {
-    "description": "Change the bot's language for this server.",
-    "optionDescription": "The language to use",
     "title": "### {info} Server Language",
     "body": "The bot currently speaks **{current}** on this server.\nPick a language below to change it.",
     "placeholder": "Select a language",
     "changed": "**{check} Language set to {language}.** All bot messages on this server will now use it.",
     "unchanged": "**{info} The language is already set to {language}.**",
     "unsupported": "**{cross} `{lang}` isn't a supported language.** Available: {available}",
-    "noPermission": "**{warn} You need the `Manage Server` permission to change the language.**",
     "onlyInvoker": "**{cross} Only the person who ran the command can use this menu.**"
   },
   "welcome": {
@@ -934,7 +931,6 @@
     "sessionTimedOut": "{e} **Session timed out.**",
     "taskTimedOut": "{e} **Task timed out.**",
     "error": "{e} **Error:** {message}",
-    "renamed": "{e} Successfully renamed **`{old}`** to **`{new}`**",
     "unbannedCount": "{e} Successfully unbanned **{count}** users.",
     "role": {
       "created": "{e} Successfully created role {role}!",
@@ -945,7 +941,6 @@
       "continue": "**Do you want to continue ?**",
       "cancelled": "Successfully cancelled the active role task.",
       "permPlaceholder": "Select Permissions...",
-      "massDone": "{role}'s mass assignment has been successfully completed in **{time}**",
       "hoisted": "Hoisted? (Yes/No)",
       "mentionable": "Mentionable? (Yes/No)",
       "massTitle": "### Mass Role task completed!",
@@ -968,14 +963,6 @@
       "purge": "{e} Failed to purge messages: {message}",
       "rename": "{e} Failed to rename channel: {message}"
     },
-    "row": {
-      "target": "{blank}{arrow} **Target:** [`{value}`]({url})",
-      "moderator": "{blank}{arrow} **Moderator:** [`{value}`]({url})",
-      "server": "{blank}{arrow} **Server:** `{value}`",
-      "duration": "{blank}{arrow} **Duration:** `{value}`",
-      "totalBans": "{blank}{arrow} **Total Bans:** `{value}`",
-      "usage": "{blank}{arrow} **Usage:** `{value}`"
-    },
     "banConfirmBody": " \n\n*Are you sure you want to ban this member?*",
     "label": {
       "target": "Target",
@@ -995,7 +982,8 @@
       "unban": "{e} **Unban Command !**\n-# Requested by {user} • <t:{ts}:t>",
       "unmute": "{e} **Unmute Command !**\n-# Requested by {user} • <t:{ts}:t>"
     },
-    "needPermThis": "{e} You need `{permission}` permissions to use this."
+    "needPermThis": "{e} You need `{permission}` permissions to use this.",
+    "renamed": "{e} Successfully renamed **`{old}`** to **`{new}`**"
   },
   "ui": {
     "section": {
@@ -1103,11 +1091,6 @@
       "globalFail": "{e} **Global Reload Failed**",
       "error": "{e} **Reload Error**"
     },
-    "row": {
-      "commands": "{blank}{arrow} **Commands:** `{value}`",
-      "coreFiles": "{blank}{arrow} **Core Files:** `{value}`",
-      "events": "{blank}{arrow} **Events:** `{value}`"
-    },
     "dbWiped": "{e} **Database Wiped**: All user profiles and team settings have been deleted.",
     "teamReset": "{e} **Team Reset**: All team ranks, badges, and permissions have been cleared across all users.",
     "inviteFor": "{e} **Invite for {guild}:**\n{invite}",
@@ -1138,7 +1121,6 @@
   },
   "trk": {
     "clearedUser": "{e} **Successfully cleared invite data for [{user}](https://discord.com/users/{id}).**",
-    "resetOwn": "{e} **Successfully reset your invite statistics!**",
     "errMembers": "{e} **An error occurred while fetching invited members.**",
     "errLeaderboard": "{e} **An error occurred while fetching the leaderboard.**",
     "errClearing": "{e} **An error occurred while clearing invite data.**",
@@ -1172,15 +1154,8 @@
     "pickEnded": "{e} Multiple ended giveaways found. Please select one:",
     "badDuration": "{e} Invalid duration suffix! Use s, m, h, or d.",
     "minWinners": "{e} Winners must be at least 1.",
-    "row": {
-      "ends": "{arrow} **Ends:** <t:{ts}:R> [<t:{ts}:f>]\n\n",
-      "host": "{arrow} **Host:** <@{id}>\n",
-      "hostLine": "{arrow} **Host:** <@{id}>\n"
-    },
     "formHint": "Click the button below to open the giveaway setup form.",
-    "badArgs": "{e} Invalid arguments! Format: `{format}`",
-    "reactHint": "-# React with {e} to enter!",
-    "badArgsFmt": "{e} Invalid arguments! Format: `{format}`"
+    "reactHint": "-# React with {e} to enter!"
   },
   "cfg": {
     "needVoice": "You need to be in a voice channel to use this command.",
@@ -1188,13 +1163,11 @@
     "needVoiceShort": "You need to be in a voice channel to use this.",
     "err247Update": "An error occurred while updating 24/7 mode. Please try again.",
     "err247Load": "An error occurred while loading 247 settings. Please try again later.",
-    "argHint": "[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands.",
     "argHintBlock": " ```[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!```",
     "prefix": {
       "updated": "**{e} Prefix updated to `{value}`**",
       "provide": "**{e} Provide a new prefix.**",
       "tooLong": "**{e} Prefix can't exceed 3 characters.**",
-      "error": "**{e} An error occurred while updating the prefix:**\n",
       "errorDetail": "**{e} An error occurred while updating the prefix:**\n```\n{message}```"
     },
     "source": {
@@ -1214,7 +1187,6 @@
     "noBio": "No bio is set.",
     "noDescription": "No description available",
     "noCommands": "No commands found",
-    "noPrefixAccess": "no prefix access",
     "supportServer": "Support Server",
     "bioTooLong": "{e} Bio cannot exceed 100 characters.",
     "bioCleared": "{e} Your bio has been cleared.",
@@ -1222,8 +1194,6 @@
     "totals": "{blank}{arrow} Total of **__{users}__** users in **__{servers}__** servers",
     "aliases": "{arrow} **Aliases :** {value}\n",
     "bio": {
-      "setLine": "**\n╰ Sets your profile bio.\n\n",
-      "clearLine": "**\n╰ Clears your profile bio.",
       "help": "> ** `{prefix}bio set <text>` **\n╰ Sets your profile bio.\n\n> ** `{prefix}bio clear` **\n╰ Clears your profile bio."
     },
     "inviteBot": "**{e} Invite {bot} to your server.**",
@@ -1239,11 +1209,9 @@
     "channelHint": "*Mention a channel to set it, or use the button below to disable.*",
     "idHint": "*You can also send the ID directly.*",
     "enabled": "**AutoMod is currently Enabled !**\n",
-    "title": "AutoMod configuration and management",
     "helpTitle": "### {e} AutoMod Help Menu [{page}/{total}]",
     "label": {
       "logChannel": "Log Channel",
-      "channel": "Channel",
       "globalAction": "Global Action",
       "maxEmojis": "Max Emojis",
       "maxMentions": "Max Mentions",
@@ -1251,8 +1219,7 @@
       "invites": "Invites",
       "links": "Links",
       "mentions": "Mentions",
-      "messages": "Messages",
-      "nsfw": "NSFW"
+      "messages": "Messages"
     },
     "none": "None",
     "confirmDisableAll": "{blank}{arrow} Are you sure you want to disable all protections?",
@@ -1270,14 +1237,9 @@
     "error": "An error occurred: {message}",
     "maxSet": "Successfully set max **{type}s** to **{value}**.",
     "enableFirst": "Please enable AutoMod first using `automod enable`.",
-    "whitelistUsage": "Please mention a role, channel, or user to remove from whitelist. Usage: `{prefix}automod whitelist remove <@role/@user/#channel>`",
     "needManageServer": "You need `Manage Server` permission to use this command."
   },
   "evt": {
-    "noPrefixRevoked": "You no longer have permission to use commands without a prefix.\n",
-    "noPrefixContact": "If you need continued access, please contact the bot owner.",
-    "goodbye": "Sorry for all and any of bad experience/(s) you had with me!\n",
-    "noVanity": "No vanity URL",
     "removedFrom": "{bot} was just removed from `{guild}`\n\nSorry for all and any of bad experience/(s) you had with me!\nPlease leave a feedback or report any issue you hat at my **[Support Server]({support})** so that it can be fixed / worked on as soon as possible."
   },
   "vc": {
@@ -1388,7 +1350,6 @@
     "violationTitle": "**AutoMod Violation Details !**\n",
     "yourMessage": "**Your Message:**\n",
     "content": "**Content:**\n",
-    "blocked": "This message was blocked by {bot}",
     "row": {
       "user": "{blank}{arrow} User: {value}\n",
       "reason": "{blank}{arrow} Reason: **{value}**",
@@ -1406,18 +1367,12 @@
     "granted": "**{e} Granted {user} No Prefix Access for permanent.**",
     "updatedPerm": "**{e} Updated {user}'s No Prefix Access To Permanent.**",
     "removed": "**{e} Successfully removed {user} from No Prefix Access.**",
-    "removedMany": "**{e} Successfully removed {count} user(s) from No Prefix Access.**",
     "notHas": "**{e} {user} does not have No Prefix Access.**",
     "expired": "**{e} {user}'s No Prefix Access has expired.**",
     "none": "**{e} There are no users with No Prefix Access.**",
     "thisNotHas": "**{e} This user doesn't have No Prefix Access.**",
     "badDuration": "**{e} Invalid duration format.**\n",
     "listTitle": "**No Prefix Users [{count}]**",
-    "unknownUser": "Unknown User",
-    "grantedUntil": "**{e} Granted {user} No Prefix Access, Expiring**\n**<t:{ts}:F>**",
-    "extended": "**{e} Extended {user}'s No Prefix Access, Expiring**\n**<t:{ts}:F>**",
-    "rowUser": "[{user}](https://discord.com/users/{id}) - {value}",
-    "removedManyLine": "**{e} Successfully removed {count} user(s) from No Prefix Access.**",
     "usage": "**Usage:**\n`{prefix}nop add @user [duration]` - Give global no-prefix access\n  **Duration:** `24h/hrs`, `10d/day`, `2w/week`, `1m` (month), `1y/yr`, `p/perm/permanent`\n`{prefix}nop remove @user` - Remove global no-prefix access\n`{prefix}nop remove all` - Remove all users\n`{prefix}nop list` - List users with global access\n`{prefix}nop status @user` - Check user's no-prefix status",
     "durationExamples": "**Examples:**\n`24h` or `24hrs` - 24 hours\n`10d` or `10day` - 10 days\n`2w` or `2week` - 2 weeks\n`1m` - 1 month\n`1y` or `1yr` - 1 year\n`permanent` or `perm` or `p` - Permanent"
   },
@@ -1425,13 +1380,6 @@
     "needUser": "**Provide me a valid user**",
     "needUserOrAll": "**Provide me a valid user or use 'all' to remove everyone**",
     "pageFooter": "-# Page {page}/{total} | Requested by {user}",
-    "usageLabel": "**Usage:**\n",
-    "examplesLabel": "**Examples:**\n",
-    "durationLabel": "**Duration:**",
-    "aliasesLabel": "**Aliases:**",
-    "argHint": "<> = Required Argument\nDo NOT type these when using commands!",
-    "noRanksBadges": "This user has no ranks or badges.",
-    "totalBadges": "-# Total Badges: {count} | Requested by {user}",
     "requestedBy": "-# Requested by {user}",
     "restartIdle": "**{e} The bot is not playing anywhere.**\n**{i} Are you sure you want to restart?**",
     "restartActive": "**{e} The bot is currently active in `{count}` servers.**\n**{i} Are you sure you want to restart?**",
@@ -1442,7 +1390,6 @@
     "added": "**{e} Added {user} to blacklist.**",
     "title": "**{e} Blacklisted Users**",
     "removed": "**{e} Successfully removed {user} from my blacklist.**",
-    "removedAll": "**{e} Successfully removed all {count} users from the blacklist.**",
     "empty": "**{e} No users are currently blacklisted.**",
     "already": "**{e} This user is already blacklisted.**",
     "notIn": "**{e} This user is not blacklisted.**",
@@ -1476,7 +1423,6 @@
     "loading": "**{e} Loading {count} songs from your favorites...**",
     "loadFailed": "**{e} Failed to load {count} songs**\n",
     "durationRow": "Duration: {value}",
-    "label": "**Favorites:**",
     "listTitle": "**{e} Tracks you added to liked songs :**",
     "fetchError": "**{e} An error occurred while fetching your favorites.**",
     "noneYet": "**{e} You don't have any favorite songs yet!**",
@@ -1509,7 +1455,6 @@
     "rNoActiveRoleTask": "No active role task found.",
     "rAnActiveRoleTask": "An active role task is already running in this server.",
     "rNoMembersFoundTo": "No members found to add this role to.",
-    "rInvalidDurationFormatUse": "Invalid duration format! Use `s, m, h, d`.",
     "rICanOnlySet": "I can only set temporary roles for up to 24 hours (non-persistent).",
     "rThisServerNeedsTo": "This server needs to be **Level 2** or higher to use role icons.",
     "rEditDetails": "Edit Details",
@@ -1531,11 +1476,9 @@
     "deleteFailed": "Failed to delete role: {message}",
     "renamed": "Renamed role to **{name}**.",
     "renameFailed": "Failed to rename role: {message}",
-    "colorChanged": "Successfully changed the color of {role} to `{color}`.",
     "colorFailed": "Failed to change role color: {message}",
     "iconSet": "Successfully set the icon for {role}.",
     "iconFailed": "Failed to set role icon: {message}",
-    "temp": "Gave {role} to {target} for **{duration}**.",
     "createWizard": "### {e} Role Creation Wizard",
     "editWizard": "### {e} Role Edit Wizard: {name}",
     "cmdTitle": "### {e} Role Command [{count}]",
@@ -1555,19 +1498,6 @@
   },
   "aud": {
     "noPerm": "{e} **I do not have the `View Audit Log` permission.**",
-    "channelCreate": "{executor} created channel {target}",
-    "channelUpdate": "{executor} updated channel {target}",
-    "memberAdd": "{executor} added {target} to the server",
-    "memberRemove": "{executor} removed {target}",
-    "botAdd": "{executor} added a bot {target}",
-    "integrationAdd": "{executor} added integration {target}",
-    "integrationRemove": "{executor} removed integration {target}",
-    "voiceStatusSet": "{executor} set voice channel status for {target}",
-    "voiceStatusClear": "{executor} cleared voice channel status for {target}",
-    "voiceStatusDelete": "{executor} deleted voice channel status",
-    "voiceStatusUpdate": "{executor} updated voice channel status",
-    "commandPerms": "{executor} updated command permissions",
-    "serverSettings": "{executor} updated server settings",
     "acceptedCreatorMonetizationTerms": "{executor} accepted creator monetization terms",
     "addedTToTheServer": "{executor} added {t} to the server",
     "addedABotT": "{executor} added a bot {t}",
@@ -1658,14 +1588,10 @@
     "resetFail": "{e} Could not reset avatar/banner/bio: {message}\n",
     "apiError": "{e} Error: {message}\n",
     "canSet": "**You can set:**\n",
-    "openForm": "Click the button below to customize the bot",
-    "title": "Customize the bot",
     "applyFail": "Failed to apply changes: {message}",
     "resetFail2": "Failed to reset: {message}"
   },
   "mut": {
-    "notFound": "**{e} Could not find user with ID: `{id}`**",
-    "none": "**{e} No mutual servers found with {user}**",
     "usage": "**Usage:**\n`{prefix}mutual <user ID or @mention>`\n\n**Example:**\n`{prefix}mutual @user`\n`{prefix}mutual 123456789012345678`"
   },
   "help": {

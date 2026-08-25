@@ -31,15 +31,12 @@
     "interactionError": "**{cross} Bu işlem sırasında bir hata oluştu.**"
   },
   "language": {
-    "description": "Botun bu sunucuda kullanacağı dili değiştirir.",
-    "optionDescription": "Kullanılacak dil",
     "title": "### {info} Sunucu Dili",
     "body": "Bu sunucuda şu an **{current}** konuşuyorum.\nDeğiştirmek için aşağıdan bir dil seç.",
     "placeholder": "Bir dil seç",
     "changed": "**{check} Dil {language} olarak ayarlandı.** Bundan sonra bu sunucudaki tüm mesajlarım bu dilde olacak.",
     "unchanged": "**{info} Dil zaten {language} olarak ayarlı.**",
     "unsupported": "**{cross} `{lang}` desteklenen bir dil değil.** Kullanılabilir diller: {available}",
-    "noPermission": "**{warn} Dili değiştirmek için `Sunucuyu Yönet` yetkisine sahip olman gerek.**",
     "onlyInvoker": "**{cross} Bu menüyü yalnızca komutu kullanan kişi kullanabilir.**"
   },
   "welcome": {
@@ -934,7 +931,6 @@
     "sessionTimedOut": "{e} **Oturum zaman aşımına uğradı.**",
     "taskTimedOut": "{e} **İşlem zaman aşımına uğradı.**",
     "error": "{e} **Hata:** {message}",
-    "renamed": "{e} **`{old}`** → **`{new}`** olarak yeniden adlandırıldı.",
     "unbannedCount": "{e} **{count}** kullanıcının yasağı kaldırıldı.",
     "role": {
       "created": "{e} {role} rolü oluşturuldu.",
@@ -945,7 +941,6 @@
       "continue": "**Devam etmek istiyor musun?**",
       "cancelled": "Aktif rol işlemi iptal edildi.",
       "permPlaceholder": "Yetkileri seç...",
-      "massDone": "{role} rolünün toplu ataması **{time}** içinde tamamlandı.",
       "hoisted": "Ayrı gösterilsin mi? (Evet/Hayır)",
       "mentionable": "Etiketlenebilir mi? (Evet/Hayır)",
       "massTitle": "### Toplu rol işlemi tamamlandı.",
@@ -968,14 +963,6 @@
       "purge": "{e} Mesajlar silinemedi: {message}",
       "rename": "{e} Kanal adı değiştirilemedi: {message}"
     },
-    "row": {
-      "target": "{blank}{arrow} **Hedef:** [`{value}`]({url})",
-      "moderator": "{blank}{arrow} **Yetkili:** [`{value}`]({url})",
-      "server": "{blank}{arrow} **Sunucu:** `{value}`",
-      "duration": "{blank}{arrow} **Süre:** `{value}`",
-      "totalBans": "{blank}{arrow} **Toplam yasak:** `{value}`",
-      "usage": "{blank}{arrow} **Kullanımı:** `{value}`"
-    },
     "banConfirmBody": " \n\n*Bu üyeyi yasaklamak istediğine emin misin?*",
     "label": {
       "target": "Hedef",
@@ -995,7 +982,8 @@
       "unban": "{e} **Yasak kaldırma**\n-# İsteyen: {user} • <t:{ts}:t>",
       "unmute": "{e} **Susturma kaldırma**\n-# İsteyen: {user} • <t:{ts}:t>"
     },
-    "needPermThis": "{e} Bunu kullanmak için `{permission}` yetkisine sahip olman gerek."
+    "needPermThis": "{e} Bunu kullanmak için `{permission}` yetkisine sahip olman gerek.",
+    "renamed": "{e} **`{old}`** → **`{new}`** olarak yeniden adlandırıldı."
   },
   "ui": {
     "section": {
@@ -1103,11 +1091,6 @@
       "globalFail": "{e} **Genel yeniden yükleme başarısız.**",
       "error": "{e} **Yeniden yükleme hatası**"
     },
-    "row": {
-      "commands": "{blank}{arrow} **Komutlar:** `{value}`",
-      "coreFiles": "{blank}{arrow} **Çekirdek dosyalar:** `{value}`",
-      "events": "{blank}{arrow} **Olaylar:** `{value}`"
-    },
     "dbWiped": "{e} **Veritabanı temizlendi**: Bütün kullanıcı profilleri ve ekip ayarları silindi.",
     "teamReset": "{e} **Ekip sıfırlandı**: Bütün rütbeler, rozetler ve yetkiler temizlendi.",
     "inviteFor": "{e} **{guild} için davet:**\n{invite}",
@@ -1138,7 +1121,6 @@
   },
   "trk": {
     "clearedUser": "{e} **[{user}](https://discord.com/users/{id}) için davet kayıtları temizlendi.**",
-    "resetOwn": "{e} **Davet istatistiklerin sıfırlandı.**",
     "errMembers": "{e} **Davet edilen üyeler alınırken bir hata oluştu.**",
     "errLeaderboard": "{e} **Sıralama alınırken bir hata oluştu.**",
     "errClearing": "{e} **Davet kayıtları temizlenirken bir hata oluştu.**",
@@ -1172,15 +1154,8 @@
     "pickEnded": "{e} Birden fazla bitmiş çekiliş var, birini seç:",
     "badDuration": "{e} Geçersiz süre eki. s, m, h veya d kullan.",
     "minWinners": "{e} Kazanan sayısı en az 1 olmalı.",
-    "row": {
-      "ends": "{arrow} **Bitiş:** <t:{ts}:R> [<t:{ts}:f>]\n\n",
-      "host": "{arrow} **Düzenleyen:** <@{id}>\n",
-      "hostLine": "{arrow} **Düzenleyen:** <@{id}>\n"
-    },
     "formHint": "Çekiliş formunu açmak için aşağıdaki butona bas.",
-    "badArgs": "{e} Geçersiz kullanım. Biçim: `{format}`",
-    "reactHint": "-# Katılmak için {e} ile tepki ver.",
-    "badArgsFmt": "{e} Geçersiz kullanım. Biçim: `{format}`"
+    "reactHint": "-# Katılmak için {e} ile tepki ver."
   },
   "cfg": {
     "needVoice": "Bu komutu kullanmak için bir ses kanalında olman gerek.",
@@ -1188,13 +1163,11 @@
     "needVoiceShort": "Bunu kullanmak için bir ses kanalında olman gerek.",
     "err247Update": "7/24 modu güncellenirken bir hata oluştu, tekrar dene.",
     "err247Load": "7/24 ayarları yüklenemedi, birazdan tekrar dene.",
-    "argHint": "[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma.",
     "argHintBlock": " ```[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```",
     "prefix": {
       "updated": "**{e} Prefix `{value}` olarak güncellendi.**",
       "provide": "**{e} Yeni bir prefix yaz.**",
       "tooLong": "**{e} Prefix 3 karakteri geçemez.**",
-      "error": "**{e} Prefix güncellenirken bir hata oluştu:**\n",
       "errorDetail": "**{e} Prefix güncellenirken bir hata oluştu:**\n```\n{message}```"
     },
     "source": {
@@ -1214,7 +1187,6 @@
     "noBio": "Henüz bir biyografi yok.",
     "noDescription": "Açıklama yok",
     "noCommands": "Komut bulunamadı",
-    "noPrefixAccess": "prefixsiz kullanım",
     "supportServer": "Destek Sunucusu",
     "bioTooLong": "{e} Biyografi 100 karakteri geçemez.",
     "bioCleared": "{e} Biyografin temizlendi.",
@@ -1222,8 +1194,6 @@
     "totals": "{blank}{arrow} **__{servers}__** sunucuda toplam **__{users}__** kullanıcı",
     "aliases": "{arrow} **Takma adlar :** {value}\n",
     "bio": {
-      "setLine": "**\n╰ Profil biyografini ayarlar.\n\n",
-      "clearLine": "**\n╰ Profil biyografini temizler.",
       "help": "> ** `{prefix}bio set <metin>` **\n╰ Profil biyografini ayarlar.\n\n> ** `{prefix}bio clear` **\n╰ Profil biyografini temizler."
     },
     "inviteBot": "**{e} {bot} botunu sunucuna ekle.**",
@@ -1239,11 +1209,9 @@
     "channelHint": "*Ayarlamak için bir kanal etiketle, kapatmak için aşağıdaki butonu kullan.*",
     "idHint": "*ID'yi doğrudan da yazabilirsin.*",
     "enabled": "**AutoMod şu an açık.**\n",
-    "title": "AutoMod ayarları ve yönetimi",
     "helpTitle": "### {e} AutoMod Yardım Menüsü [{page}/{total}]",
     "label": {
       "logChannel": "Kayıt kanalı",
-      "channel": "Kanal",
       "globalAction": "Genel işlem",
       "maxEmojis": "En fazla emoji",
       "maxMentions": "En fazla etiket",
@@ -1251,8 +1219,7 @@
       "invites": "Davetler",
       "links": "Bağlantılar",
       "mentions": "Etiketler",
-      "messages": "Mesajlar",
-      "nsfw": "NSFW"
+      "messages": "Mesajlar"
     },
     "none": "Yok",
     "confirmDisableAll": "{blank}{arrow} Bütün korumaları kapatmak istediğine emin misin?",
@@ -1270,14 +1237,9 @@
     "error": "Bir hata oluştu: {message}",
     "maxSet": "En fazla **{type}** sayısı **{value}** olarak ayarlandı.",
     "enableFirst": "Önce `automod enable` ile AutoMod'u açman gerek.",
-    "whitelistUsage": "Beyaz listeden çıkarmak için bir rol, kanal veya kullanıcı etiketle. Kullanımı: `{prefix}automod whitelist remove <@rol/@kullanıcı/#kanal>`",
     "needManageServer": "Bu komutu kullanmak için `Sunucuyu Yönet` yetkisine sahip olman gerek."
   },
   "evt": {
-    "noPrefixRevoked": "Artık prefixsiz komut kullanma iznin yok.\n",
-    "noPrefixContact": "Erişimin devam etmesini istiyorsan bot sahibiyle iletişime geç.",
-    "goodbye": "Yaşadığın olumsuz deneyimler için kusura bakma.\n",
-    "noVanity": "Özel URL yok",
     "removedFrom": "{bot}, `{guild}` sunucusundan çıkarıldı.\n\nYaşadığın olumsuz deneyimler için kusura bakma. Görüşlerini veya karşılaştığın sorunları **[Destek Sunucusu]({support})** üzerinden iletirsen en kısa sürede ilgilenilir."
   },
   "vc": {
@@ -1388,7 +1350,6 @@
     "violationTitle": "**AutoMod ihlal ayrıntıları**\n",
     "yourMessage": "**Mesajın:**\n",
     "content": "**İçerik:**\n",
-    "blocked": "Bu mesaj {bot} tarafından engellendi.",
     "row": {
       "user": "{blank}{arrow} Kullanıcı: {value}\n",
       "reason": "{blank}{arrow} Sebep: **{value}**",
@@ -1406,18 +1367,12 @@
     "granted": "**{e} {user} kullanıcısına kalıcı prefixsiz kullanım verildi.**",
     "updatedPerm": "**{e} {user} kullanıcısının prefixsiz kullanımı kalıcıya çevrildi.**",
     "removed": "**{e} {user} prefixsiz kullanımdan çıkarıldı.**",
-    "removedMany": "**{e} {count} kullanıcı prefixsiz kullanımdan çıkarıldı.**",
     "notHas": "**{e} {user} prefixsiz kullanıma sahip değil.**",
     "expired": "**{e} {user} kullanıcısının prefixsiz kullanımı sona ermiş.**",
     "none": "**{e} Prefixsiz kullanıma sahip kimse yok.**",
     "thisNotHas": "**{e} Bu kullanıcının prefixsiz kullanımı yok.**",
     "badDuration": "**{e} Süre biçimi geçersiz.**\n",
     "listTitle": "**Prefixsiz kullanıcılar [{count}]**",
-    "unknownUser": "Bilinmeyen kullanıcı",
-    "grantedUntil": "**{e} {user} kullanıcısına prefixsiz kullanım verildi, bitiş**\n**<t:{ts}:F>**",
-    "extended": "**{e} {user} kullanıcısının prefixsiz kullanımı uzatıldı, bitiş**\n**<t:{ts}:F>**",
-    "rowUser": "[{user}](https://discord.com/users/{id}) - {value}",
-    "removedManyLine": "**{e} {count} kullanıcı prefixsiz kullanımdan çıkarıldı.**",
     "usage": "**Kullanımı:**\n`{prefix}nop add @kullanıcı [süre]` — prefixsiz kullanım izni verir\n  **Süre:** `24h/hrs`, `10d/day`, `2w/week`, `1m` (ay), `1y/yr`, `p/perm/permanent`\n`{prefix}nop remove @kullanıcı` — izni kaldırır\n`{prefix}nop remove all` — herkesin iznini kaldırır\n`{prefix}nop list` — izni olanları listeler\n`{prefix}nop status @kullanıcı` — bir kullanıcının durumunu gösterir",
     "durationExamples": "**Örnekler:**\n`24h` veya `24hrs` — 24 saat\n`10d` veya `10day` — 10 gün\n`2w` veya `2week` — 2 hafta\n`1m` — 1 ay\n`1y` veya `1yr` — 1 yıl\n`permanent`, `perm` veya `p` — kalıcı"
   },
@@ -1425,13 +1380,6 @@
     "needUser": "**Geçerli bir kullanıcı belirt.**",
     "needUserOrAll": "**Geçerli bir kullanıcı belirt ya da herkesi kaldırmak için 'all' yaz.**",
     "pageFooter": "-# Sayfa {page}/{total} | İsteyen: {user}",
-    "usageLabel": "**Kullanımı:**\n",
-    "examplesLabel": "**Örnekler:**\n",
-    "durationLabel": "**Süre:**",
-    "aliasesLabel": "**Takma adlar:**",
-    "argHint": "<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!",
-    "noRanksBadges": "Bu kullanıcının rütbesi veya rozeti yok.",
-    "totalBadges": "-# Toplam rozet: {count} | İsteyen: {user}",
     "requestedBy": "-# İsteyen: {user}",
     "restartIdle": "**{e} Bot hiçbir yerde çalmıyor.**\n**{i} Yeniden başlatmak istediğine emin misin?**",
     "restartActive": "**{e} Bot şu an `{count}` sunucuda aktif.**\n**{i} Yeniden başlatmak istediğine emin misin?**",
@@ -1442,7 +1390,6 @@
     "added": "**{e} {user} kara listeye eklendi.**",
     "title": "**{e} Kara listedeki kullanıcılar**",
     "removed": "**{e} {user} kara listeden çıkarıldı.**",
-    "removedAll": "**{e} Kara listedeki {count} kullanıcının hepsi çıkarıldı.**",
     "empty": "**{e} Kara listede kimse yok.**",
     "already": "**{e} Bu kullanıcı zaten kara listede.**",
     "notIn": "**{e} Bu kullanıcı kara listede değil.**",
@@ -1476,7 +1423,6 @@
     "loading": "**{e} Favorilerinden {count} şarkı yükleniyor...**",
     "loadFailed": "**{e} {count} şarkı yüklenemedi.**\n",
     "durationRow": "Süre: {value}",
-    "label": "**Favoriler:**",
     "listTitle": "**{e} Favorilerine eklediğin şarkılar :**",
     "fetchError": "**{e} Favorilerin alınırken bir hata oluştu.**",
     "noneYet": "**{e} Henüz hiç favori şarkın yok.**",
@@ -1509,7 +1455,6 @@
     "rNoActiveRoleTask": "Aktif bir rol işlemi yok.",
     "rAnActiveRoleTask": "Bu sunucuda zaten bir rol işlemi çalışıyor.",
     "rNoMembersFoundTo": "Bu rolün verileceği üye bulunamadı.",
-    "rInvalidDurationFormatUse": "Süre biçimi geçersiz. `s, m, h, d` kullan.",
     "rICanOnlySet": "Geçici rolleri en fazla 24 saat için ayarlayabiliyorum (kalıcı değil).",
     "rThisServerNeedsTo": "Rol ikonu için sunucunun **2. seviye** veya üstü olması gerek.",
     "rEditDetails": "Ayrıntıları düzenle",
@@ -1531,11 +1476,9 @@
     "deleteFailed": "Rol silinemedi: {message}",
     "renamed": "Rolün adı **{name}** olarak değiştirildi.",
     "renameFailed": "Rol adı değiştirilemedi: {message}",
-    "colorChanged": "{role} rolünün rengi `{color}` yapıldı.",
     "colorFailed": "Rol rengi değiştirilemedi: {message}",
     "iconSet": "{role} rolünün ikonu ayarlandı.",
     "iconFailed": "Rol ikonu ayarlanamadı: {message}",
-    "temp": "{role} rolü {target} kullanıcısına **{duration}** süreyle verildi.",
     "createWizard": "### {e} Rol Oluşturma Sihirbazı",
     "editWizard": "### {e} Rol Düzenleme Sihirbazı: {name}",
     "cmdTitle": "### {e} Rol Komutları [{count}]",
@@ -1555,19 +1498,6 @@
   },
   "aud": {
     "noPerm": "{e} **`View Audit Log` yetkim yok.**",
-    "channelCreate": "{executor}, {target} kanalını oluşturdu",
-    "channelUpdate": "{executor}, {target} kanalını güncelledi",
-    "memberAdd": "{executor}, {target} kullanıcısını sunucuya ekledi",
-    "memberRemove": "{executor}, {target} kullanıcısını çıkardı",
-    "botAdd": "{executor}, {target} botunu ekledi",
-    "integrationAdd": "{executor}, {target} entegrasyonunu ekledi",
-    "integrationRemove": "{executor}, {target} entegrasyonunu kaldırdı",
-    "voiceStatusSet": "{executor}, {target} için ses kanalı durumunu ayarladı",
-    "voiceStatusClear": "{executor}, {target} için ses kanalı durumunu temizledi",
-    "voiceStatusDelete": "{executor} ses kanalı durumunu sildi",
-    "voiceStatusUpdate": "{executor} ses kanalı durumunu güncelledi",
-    "commandPerms": "{executor} komut yetkilerini güncelledi",
-    "serverSettings": "{executor} sunucu ayarlarını güncelledi",
     "acceptedCreatorMonetizationTerms": "{executor} içerik üretici gelir şartlarını kabul etti",
     "addedTToTheServer": "{executor} {t} kullanıcısını sunucuya ekledi",
     "addedABotT": "{executor} {t} botunu ekledi",
@@ -1658,14 +1588,10 @@
     "resetFail": "{e} Avatar/banner/biyografi sıfırlanamadı: {message}\n",
     "apiError": "{e} Hata: {message}\n",
     "canSet": "**Ayarlayabileceklerin:**\n",
-    "openForm": "Botu özelleştirmek için aşağıdaki butona bas",
-    "title": "Botu özelleştir",
     "applyFail": "Değişiklikler uygulanamadı: {message}",
     "resetFail2": "Sıfırlama başarısız: {message}"
   },
   "mut": {
-    "notFound": "**{e} `{id}` ID'li kullanıcı bulunamadı.**",
-    "none": "**{e} {user} ile ortak sunucu yok.**",
     "usage": "**Kullanımı:**\n`{prefix}mutual <kullanıcı ID veya @etiket>`\n\n**Örnek:**\n`{prefix}mutual @kullanıcı`\n`{prefix}mutual 123456789012345678`"
   },
   "help": {

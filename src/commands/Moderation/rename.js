@@ -46,7 +46,7 @@ module.exports = {
             const oldName = channel.name;
             await channel.setName(newName);
 
-            const display = new TextDisplayBuilder().setContent(`${emoji.check} Successfully renamed **\`${oldName}\`** to **\`${newName}\`**.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.renamed", { e: emoji.check, old: oldName, new: newName }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         } catch (error) {
             const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.failed.rename", { e: emoji.warn, message: error.message }));
@@ -87,7 +87,7 @@ module.exports = {
             const oldName = channel.name;
             await channel.setName(newName);
 
-            const display = new TextDisplayBuilder().setContent(`${emoji.check} Successfully renamed **\`${oldName}\`** to **\`${newName}\`**.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.renamed", { e: emoji.check, old: oldName, new: newName }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         } catch (error) {
             const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.failed.rename", { e: emoji.warn, message: error.message }));
