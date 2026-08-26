@@ -46,7 +46,7 @@ module.exports = {
     async slashExecute(interaction, client) {
         const isOwner = client.owners.includes(interaction.user.id);
         if (!interaction.member.permissions.has('ManageChannels') && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${client.emoji.warn} You need \`Manage Channels\` permissions to use this command.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.needPerm", { e: client.emoji.warn, permission: "Manage Channels" }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral
@@ -60,11 +60,11 @@ module.exports = {
         if (prize && winners && durationStr) {
             const durationMs = parseDuration(durationStr);
             if (!durationMs) {
-                const display = new TextDisplayBuilder().setContent(`${client.emoji.warn} Invalid duration suffix! Use s, m, h, or d.`);
+                const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "gw.badDuration", { e: client.emoji.warn }));
                 return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral });
             }
             if (winners < 1) {
-                const display = new TextDisplayBuilder().setContent(`${client.emoji.warn} Winners must be at least 1.`);
+                const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "gw.minWinners", { e: client.emoji.warn }));
                 return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral });
             }
 
@@ -75,11 +75,11 @@ module.exports = {
                 .addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${client.emoji.gwy} Giveaway Started`))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                    `${client.emoji.wickarrow} **Prize:** \`${prize}\`\n` +
-                    `${client.emoji.wickarrow} **Winners:** \`${winners}\`\n` +
+                    client.t(interaction.guildId, "fav.gw.prize", { arrow: client.emoji.wickarrow, value: prize }) +
+                    client.t(interaction.guildId, "fav.gw.winners", { arrow: client.emoji.wickarrow, value: winners }) +
                     `${client.emoji.wickarrow} **Host:** <@${interaction.user.id}>\n` +
                     `${client.emoji.wickarrow} **Ends:** <t:${endTimeUnix}:R> [<t:${endTimeUnix}:f>]\n\n` +
-                    `-# React with ${client.emoji.gwy} to enter!`
+                    client.t(interaction.guildId, "gw.reactHint", { e: client.emoji.gwy })
                 ));
 
             const giveawayMsg = await interaction.channel.send({
@@ -101,7 +101,7 @@ module.exports = {
                 ended: false
             });
 
-            const successDisplay = new TextDisplayBuilder().setContent(`${client.emoji.check} Giveaway started!`);
+            const successDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "gw.started", { e: client.emoji.check }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(successDisplay)], flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral });
         }
     },
@@ -111,7 +111,7 @@ module.exports = {
         const isOwner = client.owners.includes(userId);
 
         if (!message.member.permissions.has('ManageChannels') && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${client.emoji.warn} You need \`Manage Channels\` permissions to use this command.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.needPerm", { e: client.emoji.warn, permission: "Manage Channels" }));
             return message.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -136,11 +136,11 @@ module.exports = {
                 .addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${client.emoji.gwy} Giveaway Started`))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                    `${client.emoji.wickarrow} **Prize:** \`${prize}\`\n` +
+                    client.t(message.guild.id, "fav.gw.prize", { arrow: client.emoji.wickarrow, value: prize }) +
                     `${client.emoji.wickarrow} **Winners:** \`${winnersCount}\`\n` +
                     `${client.emoji.wickarrow} **Host:** <@${message.author.id}>\n` +
                     `${client.emoji.wickarrow} **Ends:** <t:${endTimeUnix}:R> [<t:${endTimeUnix}:f>]\n\n` +
-                    `-# React with ${client.emoji.gwy} to enter!`
+                    client.t(message.guild.id, "gw.reactHint", { e: client.emoji.gwy })
                 ));
 
             const channel = message.guild.channels.cache.get(message.channel.id);
@@ -171,7 +171,7 @@ module.exports = {
 
         const header = new TextDisplayBuilder().setContent(`### Giveaway System\n-# Requested by ${message.author.username} • <t:${Math.floor(Date.now() / 1000)}:t>`);
         const separator = new SeparatorBuilder();
-        const info = new TextDisplayBuilder().setContent(`Click the button below to open the giveaway setup form.`);
+        const info = new TextDisplayBuilder().setContent(client.t(message.guild.id, "gw.formHint"));
 
         const container = new ContainerBuilder()
             .addTextDisplayComponents(header)
@@ -187,7 +187,7 @@ module.exports = {
     async componentsV2(interaction, client) {
         const isOwner = client.owners.includes(interaction.user.id);
         if (!interaction.member.permissions.has('ManageChannels') && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${client.emoji.warn} You need \`Manage Channels\` permissions to use this.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.needPermThis", { e: client.emoji.warn, permission: "Manage Channels" }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral
@@ -212,7 +212,7 @@ module.exports = {
                 const winnerCount = parseInt(winnersStr);
 
                 if (!durationMs || isNaN(winnerCount) || winnerCount < 1) {
-                    const errorDisplay = new TextDisplayBuilder().setContent(`${client.emoji.cross} Invalid input provided.`);
+                    const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "gw.invalidInput", { e: client.emoji.cross }));
                     return modalSubmit.reply({
                         components: [new ContainerBuilder().addTextDisplayComponents(errorDisplay)],
                         flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral
@@ -227,11 +227,11 @@ module.exports = {
                     .addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${client.emoji.gwy} Giveaway Started`))
                     .addSeparatorComponents(new SeparatorBuilder())
                     .addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                        `${client.emoji.wickarrow} **Prize:** \`${prize}\`\n` +
+                        client.t(interaction.guildId, "fav.gw.prize", { arrow: client.emoji.wickarrow, value: prize }) +
                         `${client.emoji.wickarrow} **Winners:** \`${winnerCount}\`\n` +
                         `${client.emoji.wickarrow} **Host:** <@${interaction.user.id}>\n` +
                         `${client.emoji.wickarrow} **Ends:** <t:${endTimeUnix}:R> [<t:${endTimeUnix}:f>]\n\n` +
-                        `-# React with ${client.emoji.gwy} to enter!`
+                        client.t(interaction.guildId, "gw.reactHint", { e: client.emoji.gwy })
                     ));
 
                 const gMsg = await interaction.channel.send({

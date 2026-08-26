@@ -181,7 +181,7 @@ module.exports = {
                     const roleId = isSlash ? args[1] : args[1]?.replace(/[<@&>]/g, '');
                     const role = guild.roles.cache.get(roleId);
                     if (!role) {
-                        const display = new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a valid role.`);
+                        const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.needRole", { e: emoji.warn }));
                         const container = new ContainerBuilder().addTextDisplayComponents(display);
                         if (isSlash) return context.editReply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
                         else return context.reply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
@@ -235,7 +235,7 @@ module.exports = {
             }
 
             if (items.length === 0) {
-                const display = new TextDisplayBuilder().setContent(`${emoji.warn} No items found in this category.`);
+                const display = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.listEmpty", { e: emoji.warn }));
                 const container = new ContainerBuilder().addTextDisplayComponents(display);
                 if (isSlash) return context.editReply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
                 else return context.reply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
@@ -319,7 +319,7 @@ module.exports = {
 
         } catch (error) {
             console.error('List error:', error);
-            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.warn} An error occurred while fetching the list.`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.listError", { e: emoji.warn }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             if (isSlash) return context.editReply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
             else return context.reply({ components: [container], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [] } });
@@ -332,30 +332,30 @@ module.exports = {
             {
                 title: 'List Command',
                 items: [
-                    { cmd: 'list activedeveloper', desc: 'Lists members with the active developer badge.' },
-                    { cmd: 'list admins', desc: 'Lists administrators in the server.' },
-                    { cmd: 'list bans', desc: 'Lists banned users in the server.' },
-                    { cmd: 'list boosters', desc: 'Lists server boosters.' },
-                    { cmd: 'list bots', desc: 'Lists bots in the server.' },
-                    { cmd: 'list createdat', desc: 'Lists members by their account creation date.' }
+                    { cmd: 'list activedeveloper', desc: client.t(message.guild.id, "desc.listsMembersActiveDeveloper") },
+                    { cmd: 'list admins', desc: client.t(message.guild.id, "desc.listsAdministratorsServer") },
+                    { cmd: 'list bans', desc: client.t(message.guild.id, "desc.listsBannedUsersServer") },
+                    { cmd: 'list boosters', desc: client.t(message.guild.id, "desc.listsServerBoosters") },
+                    { cmd: 'list bots', desc: client.t(message.guild.id, "desc.listsBotsServer") },
+                    { cmd: 'list createdat', desc: client.t(message.guild.id, "desc.listsMembersAccountCreation") }
                 ]
             },
             {
                 title: 'List Command',
                 items: [
-                    { cmd: 'list early', desc: 'Lists members with the early supporter badge.' },
-                    { cmd: 'list emojis', desc: 'Lists server emojis.' },
-                    { cmd: 'list inrole', desc: 'Lists members with a specific role.' },
-                    { cmd: 'list invoice', desc: 'Lists members in a voice channel.' },
-                    { cmd: 'list joinedat', desc: 'Lists members by their join date.' },
-                    { cmd: 'list mods', desc: 'Lists moderators.' },
-                    { cmd: 'list roles', desc: 'Lists all roles in the server.' }
+                    { cmd: 'list early', desc: client.t(message.guild.id, "desc.listsMembersEarlySupporter") },
+                    { cmd: 'list emojis', desc: client.t(message.guild.id, "desc.listsServerEmojis") },
+                    { cmd: 'list inrole', desc: client.t(message.guild.id, "desc.listsMembersSpecificRole") },
+                    { cmd: 'list invoice', desc: client.t(message.guild.id, "desc.listsMembersVoiceChannel") },
+                    { cmd: 'list joinedat', desc: client.t(message.guild.id, "desc.listsMembersJoinDate") },
+                    { cmd: 'list mods', desc: client.t(message.guild.id, "desc.listsModerators") },
+                    { cmd: 'list roles', desc: client.t(message.guild.id, "desc.listsRolesServer") }
                 ]
             },
             {
                 title: 'List Command',
                 items: [
-                    { cmd: 'list users', desc: 'Lists all users in the server.' }
+                    { cmd: 'list users', desc: client.t(message.guild.id, "desc.listsUsersServer") }
                 ]
             }
         ];

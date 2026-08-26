@@ -60,7 +60,7 @@ module.exports = {
 
         if (history.length === 0) {
             const infoDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.info} No previous songs in history.**`);
+                .setContent(client.t(message.guild.id, "music.noPrevious", { e: client.emoji.info }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(infoDisplay);
@@ -85,7 +85,7 @@ module.exports = {
 
             if (!searchResult || !searchResult.tracks || searchResult.tracks.length === 0) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.cross} Could not find the previous track.**`);
+                    .setContent(client.t(message.guild.id, "music.previousNotFound", { e: client.emoji.cross }));
 
                 const container = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -114,7 +114,7 @@ module.exports = {
             await player.skip();
 
             const successDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.check} Playing previous song: [${previousTrack.title}](${previousTrack.uri})**`);
+                .setContent(client.t(message.guild.id, "music.playingPrevious", { e: client.emoji.check, title: previousTrack.title, uri: previousTrack.uri }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(successDisplay);
@@ -132,7 +132,7 @@ module.exports = {
             console.error("Error playing previous track:", error);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} Failed to play previous track.**`);
+                .setContent(client.t(message.guild.id, "music.previousFailed", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);

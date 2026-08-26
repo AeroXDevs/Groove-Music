@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { localizations } = require("../utils/i18n");
 
 module.exports = (client) => {
   const commandsPath = path.join(__dirname, "../commands");
@@ -20,10 +21,25 @@ module.exports = (client) => {
       }
 
       if (command.slashExecute || command.slashOptions) {
+        // Slash command text is localized by Discord itself, from the viewer's
+        // client language — unlike runtime replies, which follow the server's
+        // configured language. Translations are picked up from the locale files
+        // under commands.<name>.*, and any language missing a key simply falls
+        // back to the English base string.
+        const descriptionLocalizations = localizations(`commands.${command.name}.description`);
+
+        const options = (command.slashOptions || []).map((option) => {
+          const localized = localizations(`commands.${command.name}.options.${option.name}`);
+          return localized
+            ? { ...option, description_localizations: localized }
+            : option;
+        });
+
         const slashData = {
           name: command.name,
           description: command.description || "No description provided",
-          options: command.slashOptions || [],
+          ...(descriptionLocalizations && { description_localizations: descriptionLocalizations }),
+          options,
           category: command.category,
           execute: command.execute,
           slashExecute: command.slashExecute,

@@ -17,10 +17,13 @@ const {
 } = config;
 
 const moment = require("moment");
+const { t } = require("../../utils/i18n");
 
 module.exports = {
   name: "guildDelete",
   run: async (client, guild) => {
+    // Resolve the language before the cleanup below deletes the guild's row.
+    const lang = client.getLang(guild.id);
     const web = new WebhookClient({ url: guild_leave });
     const own = await guild.fetchOwner().catch(() => null);
 
@@ -46,6 +49,8 @@ module.exports = {
 
     try {
       client.db.prefixes.delete(guild.id);
+      client.db.guildlang.delete(guild.id);
+      client.langCache.delete(guild.id);
       client.db.twofourseven.delete(guild.id);
       client.db.setup.delete(guild.id);
       client.db.autorole.delete(guild.id);
@@ -83,21 +88,19 @@ module.exports = {
         const recipient = own.user;
 
         const goodbyeHeader = new TextDisplayBuilder()
-          .setContent(`### ${client.emoji.cross} Oops! ${client.user.username} was removed!`);
+          .setContent(t(lang, "evt.goodbyeHeader", { e: client.emoji.cross, bot: client.user.username }));
 
         const separator1 = new SeparatorBuilder();
 
         const infoDisplay = new TextDisplayBuilder()
           .setContent(
-            `${client.user.username} was just removed from \`${guild.name}\`\n\n` +
-            `Sorry for all and any of bad experience/(s) you had with me!\n` +
-            `Please leave a feedback or report any issue you hat at my **[Support Server](${support})** so that it can be fixed / worked on as soon as possible.`
+t(lang, "evt.removedFrom", { bot: client.user.username, guild: guild.name, support })
           );
 
         const separator2 = new SeparatorBuilder();
 
         const supportButton = new ButtonBuilder()
-          .setLabel('Support Server')
+          .setLabel(t(lang, "welcome.supportButton"))
           .setStyle(ButtonStyle.Link)
           .setURL(support);
 

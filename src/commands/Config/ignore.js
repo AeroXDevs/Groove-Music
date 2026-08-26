@@ -74,7 +74,7 @@ module.exports = {
       )
     ) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`-# **${client.emoji.warn} You must have \`Manage Channels\` permissions to use this command.**`);
+        .setContent(client.t(message.guild.id, "ign.needPerm", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -87,15 +87,15 @@ module.exports = {
 
     if (!args[0]) {
       const usageDisplay = new TextDisplayBuilder()
-        .setContent(` \`\`\`[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!\`\`\``);
+        .setContent(client.t(message.guild.id, "cfg.argHintBlock"));
 
       const separator1 = new SeparatorBuilder();
 
       const aliasesDisplay = new TextDisplayBuilder()
-        .setContent(`**Aliases:** \`\`[ignore]\`\``);
+        .setContent(client.t(message.guild.id, "own.aliasesLine", { value: "[ignore]" }));
 
       const usageInfoDisplay = new TextDisplayBuilder()
-        .setContent(`**Usage:** \`\`add/remove/list/reset\`\``);
+        .setContent(client.t(message.guild.id, "own.usageLine", { value: "add/remove/list/reset" }));
 
       const separator2 = new SeparatorBuilder();
 
@@ -123,7 +123,7 @@ module.exports = {
         message.guild.channels.cache.get(args[1]);
       if (!channel) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} Please provide a valid channel.**`);
+          .setContent(client.t(message.guild.id, "ign.needChannel", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -136,7 +136,7 @@ module.exports = {
       const data = client.db.ignorechannels.get(message.guild.id, channel.id);
       if (data) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} This channel is already in the ignore channel list.**`);
+          .setContent(client.t(message.guild.id, "ign.already", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -150,7 +150,7 @@ module.exports = {
       client.db.ignorechannels.add(message.guild.id, channel.id);
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Successfully added ${channel} to the ignore channel list.**`);
+        .setContent(client.t(message.guild.id, "ign.added", { e: client.emoji.check, channel }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);
@@ -165,7 +165,7 @@ module.exports = {
         message.guild.channels.cache.get(args[1]);
       if (!channel) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.warn} Please provide a valid channel.**`);
+          .setContent(client.t(message.guild.id, "ign.needChannel", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -180,7 +180,7 @@ module.exports = {
 
       if (!data) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} This channel is not in the ignore channel list.**`);
+          .setContent(client.t(message.guild.id, "ign.notIn", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -192,7 +192,7 @@ module.exports = {
       } else {
         client.db.ignorechannels.remove(message.guild.id, channel.id);
         const successDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.check} Successfully removed ${channel} from the ignore channel list.**`);
+          .setContent(client.t(message.guild.id, "ign.removed", { e: client.emoji.check, channel }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(successDisplay);
@@ -206,7 +206,7 @@ module.exports = {
       const data = client.db.ignorechannels.getForGuild(message.guild.id);
       if (data.length === 0) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} There are no channels in the ignore channel list.**`);
+          .setContent(client.t(message.guild.id, "ign.empty", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -221,7 +221,7 @@ module.exports = {
         .join("\n");
 
       const listDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Ignore channel list :**\n\n** ${channels}**`);
+        .setContent(client.t(message.guild.id, "ign.list", { e: client.emoji.check, channels }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(listDisplay);
@@ -234,7 +234,7 @@ module.exports = {
       const data = client.db.ignorechannels.getForGuild(message.guild.id);
       if (data.length === 0) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} There are no channels in the ignore channel list.**`);
+          .setContent(client.t(message.guild.id, "ign.empty", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -248,7 +248,7 @@ module.exports = {
       client.db.ignorechannels.deleteForGuild(message.guild.id);
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Successfully cleared the ignore channel list.**`);
+        .setContent(client.t(message.guild.id, "ign.cleared", { e: client.emoji.check }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);

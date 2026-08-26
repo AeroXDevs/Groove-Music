@@ -56,7 +56,7 @@ module.exports = {
     try {
       if (!message.member.voice.channel) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} You must be in a voice channel!**`);
+          .setContent(client.t(message.guild.id, "fav.needVoice", { e: client.emoji.cross }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -70,7 +70,7 @@ module.exports = {
       const songs = client.db.liked.get(userId);
       if (!songs || !songs.length) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} You don't have any favorite songs to play!**`);
+          .setContent(client.t(message.guild.id, "fav.noneToPlay", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -85,7 +85,7 @@ module.exports = {
 
       if (!hasAvailableNodes(client.manager)) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} The music server is currently unavailable. Please try again later.**`);
+          .setContent(client.t(message.guild.id, "fav.serverDown", { e: client.emoji.cross }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -112,7 +112,7 @@ module.exports = {
           console.error('Failed to create player:', createError);
 
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} Failed to connect to the music server. Please try again later.**`);
+            .setContent(client.t(message.guild.id, "fav.connectFail", { e: client.emoji.cross }));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -125,7 +125,7 @@ module.exports = {
       } else {
         if (player.voiceId !== message.member.voice.channel.id) {
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} You must be in the same voice channel as the bot!**`);
+            .setContent(client.t(message.guild.id, "fav.sameVoice", { e: client.emoji.cross }));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -142,7 +142,7 @@ module.exports = {
       }
 
       const loadingDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.load} Loading ${songs.length} songs from your favorites...**`);
+        .setContent(client.t(message.guild.id, "fav.loading", { e: client.emoji.load, count: songs.length }));
 
       const loadingContainer = new ContainerBuilder()
         .addTextDisplayComponents(loadingDisplay);
@@ -204,14 +204,14 @@ module.exports = {
         await player.play();
       }
 
-      let resultText = `**${client.emoji.info} Loaded ${loadedCount} songs from your favorites!**\n`;
+      let resultText = client.t(message.guild.id, "fav.loaded", { e: client.emoji.info, count: loadedCount });
       if (errorCount > 0) {
-        resultText += `**${client.emoji.warn} Failed to load ${errorCount} songs**\n`;
+        resultText += client.t(message.guild.id, "fav.loadFailed", { e: client.emoji.warn, count: errorCount });
       }
       if (player.playing && player.queue.length > loadedCount) {
-        resultText += `**${client.emoji.info} Added to queue - will play after current tracks**`;
+        resultText += client.t(message.guild.id, "fav.queued", { e: client.emoji.info });
       } else {
-        resultText += `**${client.emoji.check} Now playing your favorites!**`;
+        resultText += client.t(message.guild.id, "fav.nowPlaying", { e: client.emoji.check });
       }
 
       const resultDisplay = new TextDisplayBuilder()
@@ -229,7 +229,7 @@ module.exports = {
       console.error(err);
 
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} An error occurred while playing your favorites.**`);
+        .setContent(client.t(message.guild.id, "fav.playError", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);

@@ -1,0 +1,1847 @@
+{
+  "meta": {
+    "name": "Türkçe",
+    "flag": "🇹🇷"
+  },
+  "core": {
+    "mention": {
+      "greeting": "**{check} Selam {user}!**\n",
+      "prefix": "**{info} Bu sunucudaki prefixim **`{prefix}`\n",
+      "help": "**{info} Komutların listesi için `{prefix}help` yazabilirsin.**"
+    },
+    "blacklisted": "**{warn} Kara listeye alındın, botu kullanamazsın.**",
+    "cooldown": "**{warn} `{command}` komutunu tekrar kullanabilmen için {time} saniye beklemen gerek.**",
+    "noBotPermChannel": "**{cross} `{command}` komutunu bu kanalda çalıştırmak için `{permission}` yetkim yok.**",
+    "noBotPerm": "Bu komutu çalıştırabilmem için **`{permission}`** yetkisine ihtiyacım var.",
+    "noUserPerm": "Bu komutu kullanabilmen için **`{permission}`** yetkisine sahip olman gerek.",
+    "noBotPermSlash": "**{warn} `{command}` komutunu {channel} kanalında çalıştırmak için `{permission}` yetkim yok.**",
+    "noUserPermSlash": "**{warn} `{command}` komutunu {channel} kanalında kullanmak için `{permission}` yetkin yok.**",
+    "missingArgs": "{user}, komutu eksik kullandın.",
+    "usage": "\nKullanımı: `{usage}`",
+    "noPlayer": "**{warn} Bu sunucuda çalan bir şey yok.**",
+    "noPlayerSlash": "**{warn} Bu sunucuda aktif bir oynatıcı yok.**",
+    "notInVoice": "**{warn} Bu komutu kullanmak için bir ses kanalında olman gerek.**",
+    "notInVoiceSlash": "**{warn} Bir ses kanalında olman gerek.**",
+    "notSameVoice": "**{warn} Benimle aynı ses kanalında olman gerek.**",
+    "notSameVoiceSlash": "**{warn} Bu komutu kullanmak için {channel} kanalında olman gerek.**",
+    "notConnected": "**{warn} Bir hata oluştu. Bot sunucuya düzgün bağlanamamış görünüyor.**",
+    "commandError": "**{warn} Komut çalıştırılırken bir hata oluştu.**",
+    "unexpectedError": "**{warn} Beklenmedik bir hata oluştu.**",
+    "inputError": "**{warn} Girdiğin değer işlenemedi, tekrar dene.**",
+    "interactionError": "**{cross} Bu işlem sırasında bir hata oluştu.**",
+    "noDJ": "**{warn} Bu komutu kullanmak için DJ rolüne sahip olman gerekiyor.**",
+    "commandDisabled": "**{warn} `{command}` komutu bu sunucuda devre dışı bırakılmış.**"
+  },
+  "language": {
+    "title": "### {info} Sunucu Dili",
+    "body": "Bu sunucuda şu an **{current}** konuşuyorum.\nDeğiştirmek için aşağıdan bir dil seç.",
+    "placeholder": "Bir dil seç",
+    "changed": "**{check} Dil {language} olarak ayarlandı.** Bundan sonra bu sunucudaki tüm mesajlarım bu dilde olacak.",
+    "unchanged": "**{info} Dil zaten {language} olarak ayarlı.**",
+    "unsupported": "**{cross} `{lang}` desteklenen bir dil değil.** Kullanılabilir diller: {available}",
+    "onlyInvoker": "**{cross} Bu menüyü yalnızca komutu kullanan kişi kullanabilir.**"
+  },
+  "welcome": {
+    "header": "### {check} {bot} botunu tercih ettiğin için teşekkürler!",
+    "body": "{bot}, `{guild}` sunucusuna başarıyla eklendi.\n\nTakıldığın bir yer olursa **[Destek Sunucusu]({support})** üzerinden bildirebilirsin. Beni daha yakından tanımak istersen **[Geliştiricilere]({support})** de ulaşabilirsin.",
+    "languagePrompt": "**Başlamadan önce:** bu sunucuda hangi dili konuşmamı istediğini seç. Dilediğin zaman `language` komutuyla değiştirebilirsin.",
+    "supportButton": "Destek Sunucusu"
+  },
+  "music": {
+    "playFirst": "**{e} Önce bir şarkı çal.**",
+    "skipped": "**{e} Geçildi: [{title}]({uri})**",
+    "queueCleared": "**{e} Sıradaki bütün şarkılar silindi.**",
+    "shuffled": "**{e} Sıra karıştırıldı.**",
+    "autoplayToggled": "**{e} Otomatik çalma `{state}`.**",
+    "enabled": "açıldı",
+    "disabled": "kapatıldı",
+    "alreadyPaused": "**{e} Zaten duraklatılmış durumda.**",
+    "paused": "**{e} Duraklatıldı: [{title}]({uri})**",
+    "stopped": "**{e} Müzik durduruldu.**",
+    "replaying": "**{e} Baştan alınıyor: [{title}]({uri})**",
+    "replayFailed": "**{e} Şarkı baştan alınamadı.**",
+    "alreadyResumed": "**{e} Müzik zaten çalıyor.**",
+    "resumed": "**{e} Devam ediyor: [{title}]({uri})**",
+    "nothingPlaying": "**{e} Şu an hiçbir şey çalmıyor.**",
+    "queueEmpty": "**{e} Sıra boş.**",
+    "mustBeInVoice": "**{e} Bir ses kanalında olman gerek.**",
+    "history": {
+      "empty": "**{e} Geçmiş henüz boş.**\n**{e} Çalması biten şarkılar burada görünecek.**",
+      "title": "**{e} Son Çalınan Şarkılar**",
+      "onlyUser": "**{e} Bu butonu yalnızca {user} kullanabilir.**"
+    },
+    "grab": {
+      "sent": "**{e} Şarkı bilgisini DM'den gönderdim.**",
+      "urlButton": "Şarkı Bağlantısı",
+      "duration": "**{e} Süre:** `{value}`",
+      "author": "**{e} Sanatçı:** `{value}`"
+    },
+    "cleanup": {
+      "none": "**{e} Kanaldan ayrılan kullanıcılara ait şarkı bulunamadı.**",
+      "done": "**{e} Temizlik tamamlandı.**"
+    },
+    "noConnectPerms": "**{e} Bu komut için yetkim yetersiz. `CONNECT` ve `SPEAK` yetkilerini vermen gerek.**",
+    "joinedAndBound": "**{e} <#{voice}> kanalına katıldım, <#{text}> kanalına bağlandım.**",
+    "joinError": "**{e} Kanala katılırken bir hata oluştu.**",
+    "alreadyInVoice": "**{e} Zaten senin ses kanalındayım.**",
+    "alreadyConnected": "**{e} Zaten <#{channel}> kanalına bağlıyım.**",
+    "moved": "**{e} <#{channel}> kanalına geçtim.**",
+    "moved247": "**{e} <#{channel}> kanalına geçtim.**\n**{i} 7/24 modu bu kanala güncellendi.**",
+    "moveError": "**{e} Kanal değiştirirken bir hata oluştu.**",
+    "notInVoiceChannel": "**{e} Zaten bir ses kanalında değilim.**",
+    "left": "**{e} Ses kanalından ayrıldım.**",
+    "left247": "**{e} Ses kanalından ayrıldım.**\n**{i} 7/24 modu açık, birazdan tekrar katılacağım.**",
+    "noPrevious": "**{e} Geçmişte önceki bir şarkı yok.**",
+    "previousNotFound": "**{e} Önceki şarkı bulunamadı.**",
+    "playingPrevious": "**{e} Önceki şarkı çalınıyor: [{title}]({uri})**",
+    "previousFailed": "**{e} Önceki şarkı çalınamadı.**",
+    "nowPlayingShort": "**{e} Şu an çalıyor - {title}**",
+    "queue": {
+      "title": "### {e} Çalma Sırası",
+      "onlyUser": "**{e} Bu butonları yalnızca {user} kullanabilir.**"
+    },
+    "similar": {
+      "none": "**{e} `{engine}` üzerinde benzer şarkı bulunamadı.**",
+      "added": "**{e} Sıraya eklendi: [{title}]({uri})**",
+      "addedAll": "**{e} {count} benzer şarkının hepsi sıraya eklendi.**"
+    },
+    "forward": {
+      "usage": "**{e} Kullanımı:** `{prefix}forward [saniye]`\n**Örnek:** `{prefix}forward 30` — 30 saniye ileri sarar.",
+      "beyond": "**{e} Şarkı süresinin ötesine saramam.**\n**{i} Onun yerine sıradakine geçiyorum.**",
+      "done": "**{e} `{seconds}sn` ileri sarıldı — `{position}`**",
+      "failed": "**{e} İleri sarma başarısız oldu.**"
+    },
+    "rewind": {
+      "usage": "**{e} Kullanımı** `:` `{prefix}rewind [saniye]`\n**{d} Örnek** `:` `{prefix}rewind 30` — 30 saniye geri sarar.",
+      "done": "**{e} `{seconds}sn` geri sarıldı — `{position}`**",
+      "failed": "**{e} Geri sarma başarısız oldu.**"
+    },
+    "skipto": {
+      "invalid": "**{e} Geçerli bir sıra numarası gir.**\n**Geçerli aralık** `:` `1-{max}`",
+      "notFound": "**{e} `{position}` numaralı sırada şarkı bulunamadı.**",
+      "done": "**{e} Şuraya geçildi: `{title}`**"
+    },
+    "loop": {
+      "settings": "**{e} Tekrar Ayarları**",
+      "current": "**Şu anki mod** `:` `{mode}`",
+      "selectTitle": "**{e} Tekrar Modunu Seç**",
+      "selectBody": "**Sadece çalan şarkıyı mı yoksa tüm sırayı mı tekrarlamak istediğini seç.**",
+      "updated": "**{e} Tekrar Ayarı Güncellendi**",
+      "setTo": "**Tekrar modu şu şekilde ayarlandı** `:` `{mode}`",
+      "modeNone": "Kapalı",
+      "modeTrack": "Şarkı Tekrarı",
+      "modeQueue": "Sıra Tekrarı",
+      "onlyUser": "**{e} Bu butonları yalnızca {user} kullanabilir.**"
+    },
+    "remove": {
+      "removed": "**{e} Sıradan silindi: [{title}]({uri})**",
+      "title": "**{e} Şarkı Sil**",
+      "duration": "Süre: {value}",
+      "placeholder": "Silinecek şarkıları seç",
+      "onlyUser": "**{e} Bunu yalnızca {user} kullanabilir.**",
+      "nowEmpty": "**{e} Sıra artık boş.**",
+      "doneEmpty": "**{e} {count} şarkı silindi, sıra artık boş.**",
+      "done": "**{e} {count} şarkı silindi.**",
+      "cleared": "**{e} Sıradan {count} şarkı temizlendi.**",
+      "timedOut": "**{e} Süre doldu. Gerekirse komutu tekrar kullan.**",
+      "invalidPos": "**{e} Geçersiz sıra numarası** `:` `{value}`\n**{e} Sıradaki toplam şarkı** `:` `{total}`"
+    },
+    "seek": {
+      "invalidTime": "**{e} Zaman biçimi geçersiz. Örnek: `40`, `1:30`, `10s`, `1m`**",
+      "outOfBounds": "**{e} Şarkı süresinin dışında.**\n{blank}{arrow} Şarkı süresi: ` {duration} `",
+      "header": "{e} **Seek komutu**",
+      "usage": "{blank}{arrow} **Kullanımı:** `seek <zaman>`\n{blank}{arrow} **Örnek:** `seek 1:30`",
+      "success": "**{action}!**\n{blank}{arrow} Şarkı: [**{title}**]({uri})\n{blank}{arrow} Konum: ` {position} / {duration} `",
+      "forwarded": "İleri sarıldı",
+      "rewound": "Geri sarıldı"
+    },
+    "volume": {
+      "range": "**{e} Ses seviyesi 0 ile 100 arasında olmalı.**",
+      "noPlayer": "**{e} Oynatıcı bulunamadı.**",
+      "error": "**{e} Ses seviyesi ayarlanırken bir hata oluştu.**",
+      "current": "{blank}{arrow} **Ses seviyesi : `{value}%`**",
+      "currentPlain": "{blank}{arrow} **Ses seviyesi :** `{value}%`",
+      "usage": "**{e} Kullanımı** `:` `{prefix}volume [0-100]`\n{arrow} **__Ses seviyesi__ :** `{value}%`",
+      "header": "**Ses seviyesi**\n",
+      "updated": "{blank}{arrow} **Ses seviyesi güncellendi : `{value}%`**",
+      "updated2": "{blank}{arrow} **Ses seviyesi güncellendi :** `{value}%`"
+    },
+    "artistradio": {
+      "needArtist": "**{e} Bir sanatçı adı yazmalısın.**\nÖrnek: `{prefix}artistradio Sezen Aksu`",
+      "started": "### {e} **{artist} radyosu** başladı!\n> **{artist}** sanatçısından **{original}**, {artists} gibi benzer sanatçılardan **{similar}** şarkı sıraya eklendi.",
+      "noTracks": "Radyo için hiç şarkı bulunamadı.",
+      "unresolved": "Öneriler bulundu ama çalınabilir şarkıya dönüştürülemedi."
+    },
+    "forcefix": {
+      "vcRequired": "**{e} Ses kanalında olmalısın.**",
+      "vcBody": "Bu komutu kullanmak için bir ses kanalında olman gerek.",
+      "title": "**{e} Müzik botu onarılıyor**",
+      "body": "Onarım sürüyor, biraz bekle...",
+      "success": "Müzik botu `{action}` işlemiyle onarıldı.",
+      "failed": "Onarım başarısız oldu. Tekrar dene veya destek sunucusuna yaz."
+    },
+    "speed": {
+      "title": "**{e} Hız Ayarı**",
+      "info": "**Şu anki hız** `:` `{speed}x`\n**Aralık** `:` `0.25x - 3.0x`",
+      "invalid": "**{e} Geçersiz hız değeri.**\n**Geçerli aralık** `:` `0.25x - 3.0x`",
+      "invalidEx": "**{e} Geçersiz hız değeri.**\n**Geçerli aralık** `:` `0.25x - 3.0x`\n**Örnekler** `:` `0.5`, `1.5`, `2.0`",
+      "usage": "**{e} Geçersiz hız değeri.**\n**Kullanımı** `:` `{prefix}speed [0.25-3.0]`\n**Örnekler** `:` `{prefix}speed 0.5` (yavaş) | `{prefix}speed 1.5` (hızlı)\n**Şu anki hız** `:` `{speed}x`",
+      "set": "**{e} Çalma hızı `{speed}x` olarak ayarlandı.**",
+      "failed": "**{e} Çalma hızı değiştirilemedi.**",
+      "prompt": "**{e} İstediğin hızı mesaj olarak yaz** `:` `0.5x`, `1.5x`, `2.0x` gibi.",
+      "timedOut": "**{e} Süre doldu, hız değiştirilmedi.**"
+    },
+    "search": {
+      "usage": "**{d} Kullanımı** `:` `{prefix}search <şarkı adı>`\n**{d} Örnek** `:` `{prefix}search sezen aksu firuze`",
+      "noNode": "**{e} Kullanılabilir müzik sunucusu yok.**",
+      "noResults": "**{e} `{query}` için sonuç bulunamadı.**",
+      "added": "**{e} Sıraya eklendi: [{title}]({uri})**",
+      "addedAll": "**{e} {count} şarkının hepsi sıraya eklendi.**",
+      "noArtist": "**{e} Sanatçı bilgisi bulunamadı, tekrar aratmayı dene.**",
+      "noArtistTracks": "**{e} Bu sanatçıya ait şarkı bulunamadı.**"
+    },
+    "mood": {
+      "regionPlaceholder": "Önce bölgeni veya dilini seç...",
+      "title": "### {e} **Herkes İçin Müzik**\nBaşlamak için bir bölge seç, sana göre istasyonlar açılsın.",
+      "moodPlaceholder": "Şimdi bir {region} modu seç...",
+      "moodTitle": "**{region} Merkezi**\nBugün havan nasıl?",
+      "started": "### {e} **{label} radyosu** başladı!\n> Havana uygun **{count}** şarkı sıraya eklendi.",
+      "unresolved": "Havana uygun şarkılar bulundu ama çalınabilir sürümleri alınamadı."
+    },
+    "sleep": {
+      "noMusic": "**{e} Çalan müzik yok.**",
+      "noTimer": "**{e} Aktif bir zamanlayıcı yok.**",
+      "cancelled": "**{e} Zamanlayıcı iptal edildi.**",
+      "invalid": "**{e} Geçersiz süre.**\n\nKullan: `30m`, `1h`, `45m` (1-180 dk)",
+      "set": "**{e} Zamanlayıcı Kuruldu**",
+      "details": "**{d} Süre** `:` `{duration}dk`\n**{d} Bitiş** `:` <t:{ends}:t>\n**{d} İşlem** `:` Ses kanalından ayrıl",
+      "ended": "**{e} Süre doldu — {user} ses kanalından çıkarıldı.**",
+      "active": "**{e} Zamanlayıcı zaten çalışıyor**\n\n**{d} Kalan süre** `:` `{left}dk`\n**{d} İptal** `:` `{prefix}sleep cancel`",
+      "details2": "**{d} Süre** `:` `{duration}dk`\n**{d} Bitiş** `:` <t:{ends}:t>\n**{d} İşlem** `:` Ses kanalından ayrıl\n\nİptal: `{prefix}sleep cancel`"
+    },
+    "lyrics": {
+      "noSong": "**{e} Şu an çalan bir şarkı yok.**",
+      "searching": "**{e} Şarkı sözleri aranıyor...**",
+      "notFound": "**{e} `{author}` — `{title}` için şarkı sözü bulunamadı.**",
+      "page": "**Sayfa** `:` `{current}/{total}`",
+      "onlyUser": "**{e} Bu butonları yalnızca {user} kullanabilir.**",
+      "onlyInvoker": "**{e} Bu butonları yalnızca komutu kullanan kişi kullanabilir.**"
+    },
+    "play": {
+      "needVoice": "**{e} Önce bir ses kanalına girmen gerek.**",
+      "noPerms": "**{e} Yetkim yetersiz. `CONNECT` ve `SPEAK` yetkilerini vermen gerek.**",
+      "serverDown": "**{e} Müzik sunucusu şu an kullanılamıyor, biraz sonra tekrar dene.**",
+      "otherChannel": "**{e} Zaten başka bir ses kanalına bağlıyım.**",
+      "noResults": "**{e} \"{query}\" için sonuç bulunamadı.**",
+      "noTracks": "**{e} Hiçbir şarkı işlenemedi.**",
+      "queuedPlaylist": "**{e} `{playlist}` listesinden `{count}` şarkı sıraya eklendi.**",
+      "trackAdded": "### {e} Şarkı Eklendi",
+      "trackInfo": "[**{title}**]({uri}) — ` {author} `\n-# Sıra ` #{position} ` • Süre ` {duration} ` • Ekleyen ` {user} `",
+      "mustBeInVoice": "**{e} Bunu kullanmak için benim ses kanalımda olman gerek.**",
+      "removedFromQueue": "**{e} Sıradan silindi: [{title}]({uri})**",
+      "movedNext": "**{e} Sıranın başına alındı: [{title}]({uri})**",
+      "notInQueue": "**{e} Bu şarkı artık sırada değil.**",
+      "unreachable": "Müzik sunucusuna ulaşılamıyor. Tekrar dene veya destek sunucusuna yaz.",
+      "genericError": "Bir hata oluştu: {message}",
+      "playError": "Çalarken bir hata oluştu: {message}",
+      "trackInfoQuoted": "> [**{title}**]({uri}) — ` {author} `\n> Sıra ` #{position} ` • Süre ` {duration} ` • Ekleyen ` {user} `",
+      "usage": "**{d} Kullanımı** `:` `{prefix}play [şarkı adı/bağlantı]`\n**{d} Örnek** `:` `{prefix}play tarkan kuzu kuzu`"
+    }
+  },
+  "commands": {
+    "skip": {
+      "description": "Çalan şarkıyı anında geçer."
+    },
+    "clearqueue": {
+      "description": "Sıradaki bütün şarkıları siler."
+    },
+    "shuffle": {
+      "description": "Sırayı karıştırır."
+    },
+    "autoplay": {
+      "description": "Otomatik çalmayı açar veya kapatır."
+    },
+    "forceskip": {
+      "description": "Çalan şarkıyı zorla geçer."
+    },
+    "pause": {
+      "description": "Çalan müziği duraklatır."
+    },
+    "stop": {
+      "description": "Müziği durdurur."
+    },
+    "replay": {
+      "description": "Çalan şarkıyı baştan alır."
+    },
+    "resume": {
+      "description": "Duraklatılmış müziğe devam eder."
+    },
+    "history": {
+      "description": "Son çalınan şarkıları gösterir."
+    },
+    "grab": {
+      "description": "Çalan şarkının bilgisini DM olarak gönderir."
+    },
+    "leavecleanup": {
+      "description": "Kanaldan ayrılanların şarkılarını sıradan siler."
+    },
+    "move": {
+      "description": "Botu bulunduğun ses kanalına taşır."
+    },
+    "leave": {
+      "description": "Ses kanalından ayrılır."
+    },
+    "previous": {
+      "description": "Geçmişteki bir önceki şarkıyı çalar."
+    },
+    "join": {
+      "description": "Ses kanalına katılır."
+    },
+    "nowplaying": {
+      "description": "Çalan şarkıyı gösterir."
+    },
+    "queue": {
+      "description": "Çalma sırasını gösterir."
+    },
+    "similar": {
+      "description": "Çalan şarkıya benzer şarkılar bulur."
+    },
+    "forward": {
+      "description": "Çalan şarkıyı belirtilen saniye kadar ileri sarar.",
+      "options": {
+        "seconds": "İleri sarılacak saniye"
+      }
+    },
+    "skipto": {
+      "description": "Sıradaki belirli bir şarkıya atlar.",
+      "options": {
+        "position": "Atlanacak sıra numarası"
+      }
+    },
+    "loop": {
+      "description": "Tekrar modunu açar veya kapatır.",
+      "options": {
+        "enable": "Tekrarı açar",
+        "disable": "Tekrarı kapatır"
+      }
+    },
+    "rewind": {
+      "description": "Çalan şarkıyı belirtilen saniye kadar geri sarar.",
+      "options": {
+        "seconds": "Geri sarılacak saniye (varsayılan: 10)"
+      }
+    },
+    "remove": {
+      "description": "Sıradan şarkı siler."
+    },
+    "seek": {
+      "description": "Çalan şarkıda istenen ana atlar.",
+      "options": {
+        "time": "Atlanacak an (örn. 40, 1:30, 10s, 1m)"
+      }
+    },
+    "volume": {
+      "description": "Ses seviyesini değiştirir.",
+      "options": {
+        "amount": "Ses seviyesi (0-100)"
+      }
+    },
+    "artistradio": {
+      "description": "Benzer sanatçılardan bir radyo başlatır.",
+      "options": {
+        "artist": "Radyonun kurulacağı sanatçı"
+      }
+    },
+    "forcefix": {
+      "description": "Müzik sorunlarını zorla onarır."
+    },
+    "speed": {
+      "description": "Çalma hızını değiştirir.",
+      "options": {
+        "speed": "Çalma hızı (0.25 - 3.0)"
+      }
+    },
+    "search": {
+      "description": "Şarkı ve sanatçı arar, sıraya ekler.",
+      "options": {
+        "song": "Aramak istediğin şarkı"
+      }
+    },
+    "mood": {
+      "description": "Havana göre bir radyo başlatır."
+    },
+    "sleep": {
+      "description": "Uyku zamanlayıcısı kurar.",
+      "options": {
+        "duration": "Uyku zamanlayıcı süresi (örn. 30m, 1h) veya durdurmak için 'cancel'"
+      }
+    },
+    "lyrics": {
+      "description": "Çalan şarkının sözlerini gösterir."
+    },
+    "play": {
+      "description": "Şarkı veya çalma listesi çalar.",
+      "options": {
+        "song": "Çalınacak şarkı adı veya bağlantısı"
+      }
+    },
+    "247": {
+      "description": "Botu ses kanalında tutan 7/24 modunu açar veya kapatır.",
+      "options": {
+        "action": "7/24 modunu açar veya kapatır"
+      }
+    },
+    "audit": {
+      "description": "Sunucunun son denetim kayıtlarını gösterir."
+    },
+    "automod": {
+      "description": "AutoMod ayarları ve yönetimi.",
+      "options": {
+        "enable": "AutoMod modüllerini açar ve ayarlar",
+        "disable": "Bütün AutoMod korumalarını kapatır",
+        "whitelist": "Beyaz listedeki kullanıcı, rol ve kanalları yönetir",
+        "config": "Mevcut AutoMod ayarlarını gösterir",
+        "punishment": "Filtreler için ceza işlemlerini ayarlar",
+        "logging": "AutoMod kayıt kanalını ayarlar veya kapatır",
+        "heat": "Spam/hassasiyet ayarlarını düzenler",
+        "limits": "Etiket ve emoji sınırlarını ayarlar",
+        "reset": "Bütün AutoMod ayarlarını sıfırlar"
+      }
+    },
+    "avatar": {
+      "description": "Bir kullanıcının profil fotoğrafını indirme bağlantılarıyla gösterir.",
+      "options": {
+        "user": "Profil fotoğrafını görmek istediğin kullanıcı"
+      }
+    },
+    "ban": {
+      "description": "Bir üyeyi sunucudan yasaklar.",
+      "options": {
+        "user": "Yasaklanacak kullanıcı",
+        "reason": "Yasaklama sebebi"
+      }
+    },
+    "banner": {
+      "description": "Bir kullanıcının banner'ını indirme bağlantısıyla gösterir.",
+      "options": {
+        "user": "Banner'ını görmek istediğin kullanıcı"
+      }
+    },
+    "blacklist": {
+      "description": "Kullanıcıları kara listeye alır.",
+      "options": {
+        "add": "Bir kullanıcıyı kara listeye ekler",
+        "remove": "Bir kullanıcıyı kara listeden çıkarır",
+        "clear": "Kara listedeki herkesi çıkarır",
+        "list": "Kara listedekileri listeler"
+      }
+    },
+    "branding": {
+      "description": "Botun sunucudaki profilini düzenler (avatar, banner, biyografi, takma ad)."
+    },
+    "channelinfo": {
+      "description": "Bir kanal hakkında ayrıntılı bilgi verir.",
+      "options": {
+        "channel": "Bilgisi alınacak kanal"
+      }
+    },
+    "checkvanity": {
+      "description": "Bir özel URL'nin boş olup olmadığını kontrol eder.",
+      "options": {
+        "code": "Kontrol edilecek özel URL kodu (örn. \"groove\")"
+      }
+    },
+    "clearinvites": {
+      "description": "Sunucunun veya bir üyenin davet kayıtlarını siler.",
+      "options": {
+        "target": "Bütün davetleri veya belirli bir üyeninkini temizler",
+        "member": "Davet kaydı temizlenecek üye"
+      }
+    },
+    "filter": {
+      "description": "Botun ses filtresini ayarlar."
+    },
+    "firstmsg": {
+      "description": "Kanaldaki ilk mesajı gösterir.",
+      "options": {
+        "channel": "İlk mesajı alınacak kanal"
+      }
+    },
+    "gend": {
+      "description": "Bir çekilişi elle bitirir.",
+      "options": {
+        "giveaway": "Bitirilecek çekilişi seç"
+      }
+    },
+    "getinv": {
+      "description": "Botun bulunduğu bir sunucu için davet bağlantısı alır.",
+      "options": {
+        "server_id": "Davet alınacak sunucunun ID'si"
+      }
+    },
+    "greroll": {
+      "description": "Biten bir çekilişin kazananını yeniden çeker.",
+      "options": {
+        "giveaway": "Yeniden çekim yapılacak çekilişi seç"
+      }
+    },
+    "gstart": {
+      "description": "Çekiliş başlatır.",
+      "options": {
+        "prize": "Çekilişin ödülü",
+        "duration": "Süre (örn. 10m, 2h, 3d)",
+        "winners": "Kazanan sayısı"
+      }
+    },
+    "help": {
+      "description": "Bütün komutları kategorilere göre gösterir.",
+      "options": {
+        "command": "Belirli bir komut hakkında bilgi verir"
+      }
+    },
+    "hide": {
+      "description": "Belirtilen kanalı gizler.",
+      "options": {
+        "channel": "Gizlenecek kanal"
+      }
+    },
+    "hideall": {
+      "description": "Sunucudaki bütün yazı kanallarını gizler."
+    },
+    "ignore": {
+      "description": "Komutların yok sayılacağı kanalları ayarlar.",
+      "options": {
+        "action": "Yapılacak işlem (add/remove/list/reset)",
+        "channel": "Listeye eklenecek veya çıkarılacak kanal"
+      }
+    },
+    "invite": {
+      "description": "Botun davet bağlantısını verir."
+    },
+    "invitecodes": {
+      "description": "Bir kullanıcının oluşturduğu davet kodlarını kullanım sayılarıyla gösterir.",
+      "options": {
+        "user": "Davet kodları görülecek kullanıcı"
+      }
+    },
+    "invited": {
+      "description": "Sunucuya davet ettiğin kişileri gösterir.",
+      "options": {
+        "user": "Davet ettikleri görülecek kullanıcı"
+      }
+    },
+    "inviter": {
+      "description": "Seni veya başka birini sunucuya kimin davet ettiğini gösterir.",
+      "options": {
+        "user": "Davet edeni görülecek kullanıcı"
+      }
+    },
+    "invites": {
+      "description": "Bir üyenin davet istatistiklerini gösterir (toplam, katılan, ayrılan, sahte, tekrar katılan).",
+      "options": {
+        "user": "Davet istatistikleri görülecek kullanıcı"
+      }
+    },
+    "invitetracking": {
+      "description": "Sunucuda davet takibini açar veya kapatır.",
+      "options": {
+        "action": "Davet takibini açar veya kapatır"
+      }
+    },
+    "kick": {
+      "description": "Bir üyeyi sunucudan atar.",
+      "options": {
+        "user": "Atılacak kullanıcı",
+        "reason": "Atma sebebi"
+      }
+    },
+    "language": {
+      "description": "Botun bu sunucuda kullanacağı dili değiştirir.",
+      "options": {
+        "language": "Kullanılacak dil"
+      }
+    },
+    "lbinvites": {
+      "description": "Sunucunun davet sıralamasını gösterir.",
+      "options": {
+        "type": "Sıralama türü"
+      }
+    },
+    "leaveserver": {
+      "description": "Bulunduğu sunucudan ayrılır.",
+      "options": {
+        "guild_id": "Ayrılınacak sunucunun ID'si"
+      }
+    },
+    "like": {
+      "description": "Çalan şarkıyı favorilerine ekler."
+    },
+    "likeall": {
+      "description": "Sıradaki bütün şarkıları favorilerine ekler."
+    },
+    "list": {
+      "description": "Sunucudaki üyeleri veya kayıtları listeler.",
+      "options": {
+        "activedeveloper": "Aktif geliştirici rozeti olanları listeler",
+        "admins": "Sunucudaki yöneticileri listeler",
+        "bans": "Yasaklı kullanıcıları listeler",
+        "boosters": "Sunucu takviyecilerini listeler",
+        "bots": "Sunucudaki botları listeler",
+        "createdat": "Üyeleri hesap açılış tarihine göre listeler",
+        "early": "Erken destekçi rozeti olanları listeler",
+        "emojis": "Sunucu emojilerini listeler",
+        "inrole": "Belirli role sahip üyeleri listeler",
+        "invoice": "Bir ses kanalındaki üyeleri listeler",
+        "joinedat": "Üyeleri katılma tarihine göre listeler",
+        "mods": "Yetkilileri listeler",
+        "roles": "Sunucudaki bütün rolleri listeler",
+        "users": "Sunucudaki bütün kullanıcıları listeler"
+      }
+    },
+    "lock": {
+      "description": "Belirtilen kanalı kilitler.",
+      "options": {
+        "channel": "Kilitlenecek kanal"
+      }
+    },
+    "lockall": {
+      "description": "Sunucudaki bütün yazı kanallarını kilitler."
+    },
+    "membercount": {
+      "description": "Sunucunun ayrıntılı üye istatistiklerini gösterir."
+    },
+    "mute": {
+      "description": "Bir üyeyi susturur.",
+      "options": {
+        "user": "Susturulacak kullanıcı",
+        "duration": "Süre (örn. 10m, 2h, 3d) — varsayılan: 10m",
+        "reason": "Susturma sebebi"
+      }
+    },
+    "mutual": {
+      "description": "Botla bir kullanıcının ortak sunucularını gösterir.",
+      "options": {
+        "user": "Ortak sunucuları kontrol edilecek kullanıcı"
+      }
+    },
+    "node": {
+      "description": "Lavalink sunucu bilgisini gösterir."
+    },
+    "nopaccess": {
+      "description": "Genel prefixsiz kullanım iznini verir veya kaldırır.",
+      "options": {
+        "add": "Prefixsiz kullanım izni verir",
+        "remove": "Prefixsiz kullanım iznini kaldırır",
+        "clear": "Herkesin prefixsiz kullanım iznini kaldırır",
+        "list": "Prefixsiz kullanıma sahip olanları listeler",
+        "status": "Bir kullanıcının prefixsiz kullanım durumunu gösterir"
+      }
+    },
+    "nuke": {
+      "description": "Kanalı klonlayıp siler.",
+      "options": {
+        "channel": "Klonlanıp silinecek kanal (boş bırakılırsa bulunduğun kanal)"
+      }
+    },
+    "ping": {
+      "description": "Botun gecikme değerlerini gösterir."
+    },
+    "playliked": {
+      "description": "Favori şarkılarını çalar."
+    },
+    "profile": {
+      "description": "Kendi bot profil görselini gösterir.",
+      "options": {
+        "user": "Profilini görmek istediğin kullanıcı"
+      }
+    },
+    "purge": {
+      "description": "Kanaldaki mesajları çeşitli filtrelerle siler.",
+      "options": {
+        "all": "Bütün mesajları siler",
+        "bots": "Botların mesajlarını siler",
+        "contain": "Belirli metni içeren mesajları siler",
+        "embed": "Gömülü mesaj içerenleri siler",
+        "emoji": "Yalnızca emoji içerenleri siler",
+        "files": "Dosya ekli mesajları siler",
+        "image": "Görsel içerenleri siler",
+        "mentions": "Etiket içerenleri siler",
+        "reactions": "Mesajlardaki tepkileri temizler",
+        "user": "Belirli bir kullanıcının mesajlarını siler"
+      }
+    },
+    "reload": {
+      "description": "Komutu yeniden yükler.",
+      "options": {
+        "target": "Yeniden yüklenecek: komut adı, 'all' (komutlar) veya 'everything' (komutlar ve olaylar)"
+      }
+    },
+    "rename": {
+      "description": "Belirtilen kanalın adını değiştirir.",
+      "options": {
+        "name": "Kanalın yeni adı",
+        "channel": "Adı değişecek kanal"
+      }
+    },
+    "resetmyinvites": {
+      "description": "Bu sunucudaki kendi davet istatistiklerini sıfırlar."
+    },
+    "restart": {
+      "description": "Botu yeniden başlatır."
+    },
+    "roleinfo": {
+      "description": "Bir rol hakkında ayrıntılı bilgi verir.",
+      "options": {
+        "role": "Bilgisi alınacak rol"
+      }
+    },
+    "serverbanner": {
+      "description": "Sunucunun banner'ını indirme bağlantısıyla gösterir.",
+      "options": {
+        "guildid": "Banner'ı görülecek sunucu ID'si"
+      }
+    },
+    "servericon": {
+      "description": "Sunucunun ikonunu indirme bağlantısıyla gösterir.",
+      "options": {
+        "guildid": "İkonu görülecek sunucu ID'si"
+      }
+    },
+    "serverinfo": {
+      "description": "Sunucu hakkında ayrıntılı bilgi verir."
+    },
+    "serverlist": {
+      "description": "Botun bulunduğu sunucuları listeler."
+    },
+    "setprefix": {
+      "description": "Özel bir prefix ayarlar.",
+      "options": {
+        "setprefix": "Yeni prefix [en fazla 3 karakter]"
+      }
+    },
+    "showliked": {
+      "description": "Favori şarkılarını gösterir."
+    },
+    "source": {
+      "description": "Aramalar için tercih ettiğin müzik kaynağını ayarlar.",
+      "options": {
+        "source": "Tercih ettiğin müzik kaynağı"
+      }
+    },
+    "stats": {
+      "description": "Ayrıntılı bot istatistiklerini gösterir."
+    },
+    "support": {
+      "description": "Destek sunucusunun davet bağlantısını verir."
+    },
+    "unban": {
+      "description": "Bir kullanıcının yasağını kaldırır.",
+      "options": {
+        "user": "Yasağı kaldırılacak kullanıcı ID'si veya etiketi (ya da \"all\")",
+        "reason": "Yasak kaldırma sebebi"
+      }
+    },
+    "unhide": {
+      "description": "Belirtilen kanalı tekrar görünür yapar.",
+      "options": {
+        "channel": "Tekrar görünür yapılacak kanal"
+      }
+    },
+    "unhideall": {
+      "description": "Bütün yazı kanallarını tekrar görünür yapar."
+    },
+    "unlike": {
+      "description": "Şarkıları favorilerinden çıkarır."
+    },
+    "unlock": {
+      "description": "Belirtilen kanalın kilidini açar.",
+      "options": {
+        "channel": "Kilidi açılacak kanal"
+      }
+    },
+    "unlockall": {
+      "description": "Bütün yazı kanallarının kilidini açar."
+    },
+    "unmute": {
+      "description": "Bir üyenin susturmasını kaldırır.",
+      "options": {
+        "user": "Susturması kaldırılacak kullanıcı",
+        "reason": "Susturma kaldırma sebebi"
+      }
+    },
+    "userinfo": {
+      "description": "Bir kullanıcı hakkında ayrıntılı bilgi verir.",
+      "options": {
+        "user": "Bilgisi alınacak kullanıcı"
+      }
+    },
+    "voteskip": {
+      "description": "Şarkıyı atlamak için oylama başlat"
+    },
+    "queuestatus": {
+      "description": "Çalar ve sıra durumunu gösterir"
+    },
+    "musicsystem": {
+      "description": "Müzik istek kanalı kur",
+      "options": {
+        "action": "Aç, kapat veya durumu kontrol et",
+        "channel": "Kullanılacak kanal (belirtilmezse yenisi oluşturulur)"
+      }
+    },
+    "radio": {
+      "description": "Canlı Türk radyo istasyonlarını çalar",
+      "options": {
+        "station": "Radyo istasyonu adı veya numarası"
+      }
+    },
+    "removedupes": {
+      "description": "Sıradaki tekrar eden şarkıları siler"
+    },
+    "unshuffle": {
+      "description": "Karıştırmadan önceki sırayı geri yükler"
+    },
+    "moveme": {
+      "description": "Seni botun ses kanalına taşır"
+    },
+    "playlist": {
+      "description": "Playlist oluştur, yönet ve çal",
+      "options": {
+        "action": "Yapılacak işlem",
+        "name": "Playlist adı (en fazla 20 karakter)"
+      }
+    },
+    "defaultvolume": {
+      "description": "Sunucunun varsayılan ses seviyesini ayarla",
+      "options": {
+        "volume": "Varsayılan ses (1-150)"
+      }
+    },
+    "setdj": {
+      "description": "Müzik komutları için DJ rolünü ayarla veya kaldır",
+      "options": {
+        "action": "DJ rolünü ayarla, kaldır veya durumunu kontrol et",
+        "role": "DJ olarak ayarlanacak rol"
+      }
+    },
+    "toggle": {
+      "description": "Sunucu bazında komutları aç veya kapat",
+      "options": {
+        "action": "Komutları aç, kapat veya listele",
+        "command": "Açılıp kapatılacak komut adı"
+      }
+    },
+    "welcome": {
+      "description": "Hoş geldin ve güle güle mesajlarını yapılandır",
+      "options": {
+        "action": "Hoş geldin sistemini yapılandır",
+        "input": "Kanal etiketi veya özel mesaj metni"
+      }
+    }
+  },
+  "buttons": {
+    "home": "Başa Dön",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "close": "Kapat",
+    "queueAll": "Hepsini Sıraya Ekle",
+    "enable": "Aç",
+    "disable": "Kapat",
+    "track": "Şarkı",
+    "queue": "Sıra",
+    "back": "Geri",
+    "clearQueue": "Sırayı Temizle",
+    "songs": "Şarkılar",
+    "artists": "Sanatçılar",
+    "last": "Son",
+    "static": "Sabit",
+    "liveSync": "Canlı Takip",
+    "remove": "Sıradan Sil",
+    "playNext": "Sıranın Başına Al",
+    "confirm": "Onayla",
+    "cancel": "İptal",
+    "yes": "Evet",
+    "serverLink": "Sunucu Bağlantısı"
+  },
+  "player": {
+    "card": {
+      "author": "> - **Sanatçı:** [{author}]({uri})",
+      "duration": "> - **Süre:** `{duration}`",
+      "requester": "> - **İsteyen:** [{user}](https://discord.com/users/{id})"
+    },
+    "voiceStatus": "{e} Çalıyor: **{title}**",
+    "noPrevious": "**{e} Geçmişte önceki bir şarkı yok.**",
+    "alreadyFav": "**{e} `{title}` zaten favorilerinde.**",
+    "addedFav": "**{e} `{title}` favorilerine eklendi.**",
+    "favFailed": "**{e} Şarkı favorilere kaydedilemedi, tekrar dene.**",
+    "unknownButton": "**{e} Bilinmeyen buton işlemi.**",
+    "requestError": "**{e} İsteğin işlenirken bir hata oluştu.**",
+    "notSameVoice": "**{e} Botla aynı ses kanalında olman gerek.**",
+    "queueEnded": "**{e} Sıra bitti.**",
+    "inactivity": "Hareketsizlik nedeniyle ayrılıyorum.",
+    "trackStuck": "**{e} Şarkı takıldı.**\n**{i} Sıradakine geçiyorum...**",
+    "loadFailed": "**{e} Şarkı yüklenemedi.**\n**{i} Sıradakine geçiyorum...**",
+    "unexpected": "**{e} Beklenmedik bir hata oluştu.**\n**{i} Oynatıcı sıfırlanacak.**",
+    "ytRestricted": "**{e} YouTube kısıtladı → alternatif kaynağa geçiyorum.**",
+    "ytBlocked": "**{e} Bu şarkı çalınamadı [YouTube engelledi].**\n**{i} Geçiyorum...**",
+    "playbackError": "**{e} Oynatma hatası oluştu.**\n**{i} Şarkıyı geçiyorum...**",
+    "nowPlayingTitle": "**{e} Şu An Çalıyor**",
+    "movedChannel": "**{bot} !**\n{blank}{arrow} Başka bir kanala **taşındım**",
+    "songPaused": "{e} Şarkı duraklatıldı"
+  },
+  "mod": {
+    "needPerm": "{e} Bu komutu kullanmak için `{permission}` yetkisine sahip olman gerek.",
+    "botNeedPerm": "{e} Bende `{permission}` yetkisi yok.",
+    "needPermShort": "{e} `{permission}` yetkisine sahip olman gerek.",
+    "chan": {
+      "hidden": "{e} {channel} gizlendi.",
+      "locked": "{e} {channel} kilitlendi.",
+      "unlocked": "{e} {channel} kilidi açıldı.",
+      "visible": "{e} {channel} tekrar görünür.",
+      "alreadyHidden": "{e} {channel} zaten gizli.",
+      "alreadyLocked": "{e} {channel} zaten kilitli.",
+      "alreadyUnlocked": "{e} {channel} zaten kilitli değil.",
+      "alreadyVisible": "{e} {channel} zaten görünür."
+    },
+    "bulk": {
+      "hidden": "{e} **{count}** yazı kanalı gizlendi.",
+      "locked": "{e} **{count}** yazı kanalı kilitlendi.",
+      "unlocked": "{e} **{count}** yazı kanalının kilidi açıldı.",
+      "visible": "{e} **{count}** yazı kanalı tekrar görünür yapıldı.",
+      "allHidden": "{e} Bütün yazı kanalları zaten gizli.",
+      "allLocked": "{e} Bütün yazı kanalları zaten kilitli.",
+      "allUnlocked": "{e} Bütün yazı kanallarının kilidi zaten açık.",
+      "allVisible": "{e} Bütün yazı kanalları zaten görünür.",
+      "hiding": "{e} Bütün kanallar gizleniyor...",
+      "locking": "{e} Bütün kanallar kilitleniyor...",
+      "unhiding": "{e} Bütün kanallar tekrar görünür yapılıyor...",
+      "unlocking": "{e} Bütün kanalların kilidi açılıyor..."
+    },
+    "banned": "{e} **Üye yasaklandı.**",
+    "kicked": "{e} **Üye atıldı.**",
+    "muted": "{e} **Üye susturuldu.**",
+    "unbanned": "{e} **Üyenin yasağı kaldırıldı.**",
+    "unmuted": "{e} **Üyenin susturması kaldırıldı.**",
+    "dm": {
+      "banned": "{e} **Sunucudan yasaklandın.**",
+      "kicked": "{e} **Sunucudan atıldın.**",
+      "muted": "{e} **Susturuldun.**",
+      "unbanned": "{e} **Yasağın kaldırıldı.**",
+      "unmuted": "{e} **Susturman kaldırıldı.**"
+    },
+    "cantBanSelf": "{e} Kendini yasaklayamazsın.",
+    "cantKickSelf": "{e} Kendini atamazsın.",
+    "cantMuteSelf": "{e} Kendini susturamazsın.",
+    "cantKickOwner": "{e} Sunucu sahibini atamazsın.",
+    "cantMuteOwner": "{e} Sunucu sahibini susturamazsın.",
+    "cantMuteBot": "{e} Botları susturamazsın.",
+    "kickHigherUser": "{e} Kendinle aynı veya senden üst roldeki birini atamazsın.",
+    "muteHigherUser": "{e} Kendinle aynı veya senden üst roldeki birini susturamazsın.",
+    "kickHigherBot": "{e} Benimle aynı veya benden üst roldeki birini atamam.",
+    "muteHigherBot": "{e} Benimle aynı veya benden üst roldeki birini susturamam.",
+    "botCantBanSelf": "{e} Kendimi yasaklayamam.",
+    "botCantKickSelf": "{e} Kendimi atamam.",
+    "botCantMuteSelf": "{e} Kendimi susturamam.",
+    "botCantBan": "{e} Bu üyeyi yasaklayamam.",
+    "botCantKick": "{e} Bu üyeyi atamam.",
+    "botCantMute": "{e} Bu üyeyi susturamam.",
+    "botCantUnmute": "{e} Bu üyenin susturmasını kaldıramam.",
+    "alreadyMuted": "{e} Bu üye zaten susturulmuş.",
+    "notMuted": "{e} Bu üye susturulmuş değil.",
+    "userNotFound": "{e} Kullanıcı bulunamadı.",
+    "userNotInGuild": "{e} Bu sunucuda böyle bir kullanıcı yok.",
+    "userNotBanned": "{e} Bu kullanıcı yasak listesinde değil.",
+    "noBans": "{e} Bu sunucuda yasaklı kullanıcı yok.",
+    "channelNotFound": "{e} Kanal bulunamadı.",
+    "needTextChannel": "{e} Geçerli bir yazı kanalı belirtmen gerek.",
+    "needUser": "{e} Geçerli bir kullanıcı, etiket veya ID gir.",
+    "needSearchText": "{e} Aranacak metni yazman gerek.",
+    "needChannelName": "{e} Kanal için yeni bir isim yazman gerek.",
+    "invalidDuration": "{e} Süre biçimi geçersiz. Örnek: 10s, 5m, 2h, 1d",
+    "invalidDurationMax": "{e} Geçersiz süre (en fazla 28 gün). Örnek: 10m, 2h, 1d",
+    "durationTooLong": "{e} Süre 28 günü geçemez.",
+    "purge": {
+      "tooOld": "{e} 14 günden eski mesajlar silinemez.",
+      "noMatch": "{e} Ölçütlere uyan mesaj bulunamadı.",
+      "done": "{e} **{count}** mesaj silindi.",
+      "reactions": "{e} **{count}** mesajdaki tepkiler temizlendi.",
+      "apiLimit": "{e} API sınırına takıldım, silme durdu. **{count}** mesaj silindi.",
+      "helpTitle": "Temizleme komutu — Sayfa {page}/2",
+      "all": "Kanaldaki bütün mesajları siler.",
+      "bots": "Botların gönderdiği mesajları siler.",
+      "contain": "Belirli bir metni içeren mesajları siler.",
+      "embed": "İçinde gömülü mesaj olanları siler.",
+      "emoji": "Yalnızca emoji içeren mesajları siler.",
+      "files": "Dosya ekli mesajları siler.",
+      "image": "Görsel içeren mesajları siler.",
+      "mentions": "Etiket içeren mesajları siler.",
+      "reactions2": "Mesajları silmeden tepkilerini temizler.",
+      "user": "Belirli bir kullanıcının mesajlarını siler.",
+      "tooOldNote": "\n-# {arrow} 14 günden eski mesajlar silinemez."
+    },
+    "snipe": {
+      "none": "{e} Bu kanalda geri getirilecek silinmiş mesaj yok."
+    },
+    "nuke": {
+      "confirm": "{e} {channel} kanalını sıfırlamak istediğine emin misin?",
+      "textOnly": "{e} Yalnızca yazı kanallarını sıfırlayabilirim.",
+      "running": "{e} Kanal sıfırlanıyor...",
+      "cancelled": "{e} Sıfırlama iptal edildi.",
+      "timedOut": "{e} Onay süresi doldu, sıfırlama yapılmadı.",
+      "failed": "{e} Kanal sıfırlanamadı: `{message}`"
+    },
+    "banConfirm": "{e} **Yasaklama onayı**",
+    "unbanAllConfirm": "{e} **Tüm yasakları kaldırma onayı**",
+    "banCancelled": "{e} Yasaklama iptal edildi.",
+    "unbanAllCancelled": "{e} Yasak kaldırma iptal edildi.",
+    "notForYou": "{e} Bu senin için değil.",
+    "confirmTimedOut": "{e} Onay süresi doldu.",
+    "operationCancelled": "{e} **İşlem iptal edildi.**",
+    "sessionTimedOut": "{e} **Oturum zaman aşımına uğradı.**",
+    "taskTimedOut": "{e} **İşlem zaman aşımına uğradı.**",
+    "error": "{e} **Hata:** {message}",
+    "unbannedCount": "{e} **{count}** kullanıcının yasağı kaldırıldı.",
+    "role": {
+      "created": "{e} {role} rolü oluşturuldu.",
+      "updated": "{e} {role} rolü güncellendi.",
+      "creationCancelled": "{e} **Rol oluşturma iptal edildi.**",
+      "editCancelled": "{e} **Rol düzenleme iptal edildi.**",
+      "adding": "{e} {role} rolü **{count}** üyeye veriliyor...",
+      "continue": "**Devam etmek istiyor musun?**",
+      "cancelled": "Aktif rol işlemi iptal edildi.",
+      "permPlaceholder": "Yetkileri seç...",
+      "hoisted": "Ayrı gösterilsin mi? (Evet/Hayır)",
+      "mentionable": "Etiketlenebilir mi? (Evet/Hayır)",
+      "massTitle": "### Toplu rol işlemi tamamlandı.",
+      "massBody": "> {role} rolünün toplu ataması **` {time}sn `** içinde tamamlandı.\n\n> ~ {check} **Başarılı :** ` {ok} `\n> ~ {cross} **Başarısız :** ` {fail} `"
+    },
+    "failed": {
+      "ban": "{e} Yasaklama başarısız: {message}",
+      "kick": "{e} Atma başarısız: {message}",
+      "mute": "{e} Susturma başarısız: {message}",
+      "unban": "{e} Yasak kaldırma başarısız: {message}",
+      "unmute": "{e} Susturma kaldırma başarısız: {message}",
+      "hide": "{e} Kanal gizlenemedi: {message}",
+      "unhide": "{e} Kanal görünür yapılamadı: {message}",
+      "lock": "{e} Kanal kilitlenemedi: {message}",
+      "unlock": "{e} Kanal kilidi açılamadı: {message}",
+      "hideAll": "{e} Kanallar gizlenemedi: {message}",
+      "unhideAll": "{e} Kanallar görünür yapılamadı: {message}",
+      "lockAll": "{e} Kanallar kilitlenemedi: {message}",
+      "unlockAll": "{e} Kanal kilitleri açılamadı: {message}",
+      "purge": "{e} Mesajlar silinemedi: {message}",
+      "rename": "{e} Kanal adı değiştirilemedi: {message}"
+    },
+    "banConfirmBody": " \n\n*Bu üyeyi yasaklamak istediğine emin misin?*",
+    "label": {
+      "target": "Hedef",
+      "moderator": "Yetkili",
+      "server": "Sunucu",
+      "duration": "Süre",
+      "reason": "Sebep",
+      "totalBans": "Toplam yasak",
+      "usage": "Kullanımı",
+      "example": "Örnek"
+    },
+    "unbanAllBody": "*Herkesin yasağını kaldırmak istediğine emin misin?*",
+    "header": {
+      "ban": "{e} **Yasaklama**\n-# İsteyen: {user} • <t:{ts}:t>",
+      "kick": "{e} **Atma**\n-# İsteyen: {user} • <t:{ts}:t>",
+      "mute": "{e} **Susturma**\n-# İsteyen: {user} • <t:{ts}:t>",
+      "unban": "{e} **Yasak kaldırma**\n-# İsteyen: {user} • <t:{ts}:t>",
+      "unmute": "{e} **Susturma kaldırma**\n-# İsteyen: {user} • <t:{ts}:t>"
+    },
+    "needPermThis": "{e} Bunu kullanmak için `{permission}` yetkisine sahip olman gerek.",
+    "renamed": "{e} **`{old}`** → **`{new}`** olarak yeniden adlandırıldı."
+  },
+  "ui": {
+    "section": {
+      "aboutServer": "Sunucu Hakkında",
+      "acknowledgement": "Yetki Durumu",
+      "activities": "Etkinlikler",
+      "boosts": "Takviyeler",
+      "channels": "Kanallar",
+      "content": "İçerik",
+      "description": "Açıklama",
+      "emojis": "Emojiler",
+      "extras": "Ek Bilgiler",
+      "features": "Özellikler",
+      "general": "Genel",
+      "keyPerms": "Önemli Yetkiler",
+      "members": "Üyeler",
+      "messageDetails": "Mesaj Bilgileri",
+      "presence": "Durum",
+      "roles": "Roller",
+      "serverInfo": "Sunucu Bilgisi",
+      "settings": "Ayarlar",
+      "userStatus": "Kullanıcı Durumu",
+      "voiceSettings": "Ses Ayarları"
+    },
+    "label": {
+      "accountCreated": "Hesap açılışı",
+      "animatedEmojis": "Hareketli emoji",
+      "bitrate": "Bit hızı",
+      "boostLevel": "Takviye seviyesi",
+      "boostCount": "Takviye sayısı",
+      "boosterRole": "Takviyeci rolü",
+      "boosters": "Takviyeciler",
+      "boosting": "Takviye ediyor",
+      "bots": "Botlar",
+      "categories": "Kategoriler",
+      "category": "Kategori",
+      "color": "Renk",
+      "connected": "Bağlı",
+      "contentFilter": "İçerik filtresi",
+      "created": "Oluşturulma",
+      "custom": "Özel",
+      "device": "Cihaz",
+      "hoisted": "Ayrı gösteriliyor",
+      "humans": "İnsanlar",
+      "id": "ID",
+      "inVc": "Ses kanalında",
+      "isBot": "Bot mu",
+      "mfaLevel": "MFA seviyesi",
+      "managed": "Yönetilen",
+      "members": "Üyeler",
+      "mention": "Etiket",
+      "mentionable": "Etiketlenebilir",
+      "nsfw": "NSFW",
+      "name": "İsim",
+      "nickname": "Takma ad",
+      "position": "Sıra",
+      "region": "Bölge",
+      "regularEmojis": "Normal emoji",
+      "sentAt": "Gönderilme",
+      "sentBy": "Gönderen",
+      "serverJoined": "Sunucuya katılma",
+      "slowmode": "Yavaş mod",
+      "stageChannels": "Sahne kanalları",
+      "status": "Durum",
+      "stickers": "Çıkartmalar",
+      "target": "Hedef",
+      "textChannels": "Yazı kanalları",
+      "topRole": "En üst rol",
+      "topic": "Konu",
+      "total": "Toplam",
+      "totalMembers": "Toplam üye",
+      "totalRoles": "Toplam rol",
+      "type": "Tür",
+      "userLimit": "Kullanıcı sınırı",
+      "username": "Kullanıcı adı",
+      "vanity": "Özel URL",
+      "verificationLevel": "Doğrulama seviyesi",
+      "voiceChannels": "Ses kanalları"
+    },
+    "auditFailed": "{e} **Denetim kayıtları alınamadı.**",
+    "noUserData": "{e} Kullanıcı bilgisi alınamadı.",
+    "channelNotFound": "{e} **Böyle bir kanal bulunamadı.**",
+    "channelError": "{e} Kanal bilgisi alınırken bir hata oluştu.",
+    "roleNotFound": "{e} **Böyle bir rol bulunamadı.**",
+    "roleError": "{e} Rol bilgisi alınırken bir hata oluştu.",
+    "userNotFound": "{e} **Böyle bir kullanıcı bulunamadı.**",
+    "userNotInGuild": "{e} Bu sunucuda böyle bir kullanıcı yok.",
+    "needTextChannel": "{e} **Geçerli bir yazı kanalı belirtmen gerek.**",
+    "noMessages": "{e} **Bu kanalda hiç mesaj yok.**",
+    "firstmsgError": "{e} **İlk mesaj alınırken bir hata oluştu.**",
+    "needVanity": "{e} **Kontrol edilecek özel URL veya davet bağlantısı gir.**",
+    "vanityError": "{e} **Özel URL kontrol edilirken bir hata oluştu.**",
+    "listError": "{e} Liste alınırken bir hata oluştu.",
+    "listEmpty": "{e} Bu kategoride hiç kayıt yok.",
+    "needRole": "{e} Geçerli bir rol belirtmen gerek.",
+    "timer": {
+      "max": "{e} Zamanlayıcılar yeniden başlatmada silindiği için en fazla 24 saat kurabiliyorum.",
+      "needDuration": "{e} Bir süre girmen gerek. Biçim: `{prefix}timer <süre> [etiket]`"
+    }
+  },
+  "owner": {
+    "reload": {
+      "done": "{e} **Komut yeniden yüklendi.**",
+      "systemDone": "{e} **Sistem yeniden yüklendi.**",
+      "notFound": "{e} **Komut bulunamadı.**",
+      "globalFail": "{e} **Genel yeniden yükleme başarısız.**",
+      "error": "{e} **Yeniden yükleme hatası**"
+    },
+    "dbWiped": "{e} **Veritabanı temizlendi**: Bütün kullanıcı profilleri ve ekip ayarları silindi.",
+    "teamReset": "{e} **Ekip sıfırlandı**: Bütün rütbeler, rozetler ve yetkiler temizlendi.",
+    "inviteFor": "{e} **{guild} için davet:**\n{invite}",
+    "allowedUser": "{e} **{user}** için **{item}** izni verildi.",
+    "allowedRank": "{e} Bütün **{rank}** üyeleri için **{item}** izni verildi.",
+    "deniedUser": "{e} **{user}** için **{item}** engellendi.",
+    "deniedRank": "{e} Bütün **{rank}** üyeleri için **{item}** engellendi.",
+    "rankSet": "{e} **{user}** kullanıcısının rütbesi **{rank}** yapıldı.",
+    "removedFromTeam": "{e} **{user}** ekipten çıkarıldı.",
+    "badgeAdded": "{e} **{user}** kullanıcısına **{badge}** rozeti verildi.",
+    "badgeRemoved": "{e} **{user}** kullanıcısından **{badge}** rozeti alındı.",
+    "itemRemoved": "{e} **{user}** kullanıcısından **{item}** kaldırıldı.",
+    "hasBadge": "{e} **{user}** zaten **{badge}** rozetine sahip.",
+    "noBadge": "{e} **{user}** kullanıcısında **{badge}** rozeti yok.",
+    "noRankBadge": "{e} **{user}** kullanıcısında **{item}** rütbesi/rozeti yok.",
+    "noTeam": "{e} Hiç ekip üyesi yok.",
+    "ownerRankLocked": "{e} **Owner** rütbesi yalnızca config.json'daki sahiplerde olabilir.",
+    "needName": "{e} Bir isim yazman gerek.",
+    "needUser": "{e} Bir kullanıcı belirtmen gerek.",
+    "needUserOrRank": "{e} Geçerli bir kullanıcı veya rütbe belirt.",
+    "needValidRank": "{e} Geçerli bir rütbe belirt: {ranks}",
+    "ranksNotRemovable": "{e} Rütbeler kaldırılamaz, yalnızca kullanıcılar.",
+    "specifyAllow": "{e} İzin verilecek komutu veya rozeti belirt.",
+    "specifyDeny": "{e} Engellenecek komutu veya rozeti belirt.",
+    "noTeamData": "{e} Bu kullanıcının ekip kaydı yok.",
+    "userNotFound": "{e} Kullanıcı bulunamadı.",
+    "error": "{e} **Hata:** {message}"
+  },
+  "trk": {
+    "clearedUser": "{e} **[{user}](https://discord.com/users/{id}) için davet kayıtları temizlendi.**",
+    "errMembers": "{e} **Davet edilen üyeler alınırken bir hata oluştu.**",
+    "errLeaderboard": "{e} **Sıralama alınırken bir hata oluştu.**",
+    "errClearing": "{e} **Davet kayıtları temizlenirken bir hata oluştu.**",
+    "errCodesPerms": "{e} **Davet kodları alınamadı. Yeterli yetkim olduğundan emin ol.**",
+    "errCodes": "{e} **Davet kodları alınırken bir hata oluştu.**",
+    "errInviter": "{e} **Davet eden bilgisi alınırken bir hata oluştu.**",
+    "errReset": "{e} **Davet istatistiklerin sıfırlanırken bir hata oluştu.**",
+    "errStats": "{e} Davet istatistikleri alınırken bir hata oluştu.",
+    "noInviter": "{e} **Davet eden bilgisi alınamadı.**",
+    "userNotFound": "{e} **Böyle bir kullanıcı bulunamadı.**",
+    "userNotFoundHint": "{e} Kullanıcı bulunamadı. Geçerli bir kullanıcı etiketle veya ID'sini gir.",
+    "noneInvited": "{e} **{user} henüz kimseyi davet etmemiş.**",
+    "noGuildData": "{e} **Bu sunucu için davet kaydı yok.**",
+    "noRecordTag": "{e} **{user} için davet kaydı bulunamadı.**",
+    "noRecordsUser": "{e} **[{user}](https://discord.com/users/{id}) için davet kaydı yok.**",
+    "noRecordsGuild": "{e} **Bu sunucuda hiç davet kaydı yok.**",
+    "noRecordsOwn": "{e} **Bu sunucuda hiç davet kaydın yok.**",
+    "noActiveCodes": "{e} **[{user}](https://discord.com/users/{id}) için aktif davet kodu yok.**",
+    "botsNoStats": "{e} Botların davet istatistiği olmaz.",
+    "botsNoInviter": "{e} Botları kimse davet etmez.",
+    "invalidUsage": "{e} **Hatalı kullanım.**\n\n**Kullanımı:**\n`{prefix}clearinvites all` — bütün davet kayıtlarını siler\n`{prefix}clearinvites @üye` — belirli bir üyenin kaydını siler"
+  },
+  "gw": {
+    "started": "{e} Çekiliş başladı.",
+    "noActiveId": "{e} Bu ID ile aktif çekiliş bulunamadı.",
+    "noEndedId": "{e} Bu ID ile bitmiş çekiliş bulunamadı.",
+    "invalidInput": "{e} Geçersiz giriş.",
+    "noActive": "{e} Bu kanalda aktif çekiliş yok.",
+    "noEnded": "{e} Bu kanalda bitmiş çekiliş yok.",
+    "pickActive": "{e} Birden fazla aktif çekiliş var, birini seç:",
+    "pickEnded": "{e} Birden fazla bitmiş çekiliş var, birini seç:",
+    "badDuration": "{e} Geçersiz süre eki. s, m, h veya d kullan.",
+    "minWinners": "{e} Kazanan sayısı en az 1 olmalı.",
+    "formHint": "Çekiliş formunu açmak için aşağıdaki butona bas.",
+    "reactHint": "-# Katılmak için {e} ile tepki ver.",
+    "noEntries": "Çekilişe kimse katılmadı.",
+    "noEntriesBang": "Çekilişe kimse katılmadı.",
+    "notEnded": "Çekiliş henüz bitmedi.",
+    "congrats": "{e} Tebrikler {winners}, {host} tarafından düzenlenen **`{prize}`** çekilişini kazandın!",
+    "congratsReroll": "{e} Tebrikler <@{winner}>, **`{prize}`** ödülünün yeni kazananı sensin!",
+    "endedNoJoin": "**`{prize}`** çekilişi bitti ama katılan olmadı."
+  },
+  "cfg": {
+    "needVoice": "Bu komutu kullanmak için bir ses kanalında olman gerek.",
+    "needSameVoice": "Bu komutu kullanmak için benimle aynı ses kanalında olman gerek.",
+    "needVoiceShort": "Bunu kullanmak için bir ses kanalında olman gerek.",
+    "err247Update": "7/24 modu güncellenirken bir hata oluştu, tekrar dene.",
+    "err247Load": "7/24 ayarları yüklenemedi, birazdan tekrar dene.",
+    "argHintBlock": " ```[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```",
+    "prefix": {
+      "updated": "**{e} Prefix `{value}` olarak güncellendi.**",
+      "provide": "**{e} Yeni bir prefix yaz.**",
+      "tooLong": "**{e} Prefix 3 karakteri geçemez.**",
+      "errorDetail": "**{e} Prefix güncellenirken bir hata oluştu:**\n```\n{message}```"
+    },
+    "source": {
+      "set": "**{e} Tercih ettiğin müzik kaynağı `{value}` olarak ayarlandı.**",
+      "saveError": "**{e} Tercihin kaydedilemedi, tekrar dene.**",
+      "loadError": "**{e} Kaynak menüsü yüklenemedi, tekrar dene.**"
+    },
+    "247": {
+      "error": "### {e} **Bir hata oluştu**",
+      "diffVoice": "### {e} **Farklı ses kanalı**",
+      "notVoice": "### {e} **Ses kanalında değilsin**",
+      "timedOut": "-# 7/24 ayar menüsünün süresi doldu.",
+      "actionBy": "-# İşlemi yapan: {user}"
+    }
+  },
+  "info": {
+    "noBio": "Henüz bir biyografi yok.",
+    "noDescription": "Açıklama yok",
+    "noCommands": "Komut bulunamadı",
+    "supportServer": "Destek Sunucusu",
+    "bioTooLong": "{e} Biyografi 100 karakteri geçemez.",
+    "bioCleared": "{e} Biyografin temizlendi.",
+    "uptime": "{blank}{arrow} **{uptime}** süredir çevrimiçiyim",
+    "totals": "{blank}{arrow} **__{servers}__** sunucuda toplam **__{users}__** kullanıcı",
+    "aliases": "{arrow} **Takma adlar :** {value}\n",
+    "bio": {
+      "help": "> ** `{prefix}bio set <metin>` **\n╰ Profil biyografini ayarlar.\n\n> ** `{prefix}bio clear` **\n╰ Profil biyografini temizler."
+    },
+    "inviteBot": "**{e} {bot} botunu sunucuna ekle.**",
+    "support": {
+      "missing": "**{e} Destek sunucusu bağlantısı ayarlanmamış.**",
+      "join": "**{e} Yardım, duyurular ve topluluk için destek sunucumuza katıl.**",
+      "error": "**{e} Hata: {message}**"
+    },
+    "bioSet": "{e} Biyografin `{value}` olarak ayarlandı.",
+    "requestedBy": "-# İsteyen: {user}"
+  },
+  "am": {
+    "reset": "AutoMod ayarları sıfırlandı.",
+    "channelHint": "*Ayarlamak için bir kanal etiketle, kapatmak için aşağıdaki butonu kullan.*",
+    "idHint": "*ID'yi doğrudan da yazabilirsin.*",
+    "enabled": "**AutoMod şu an açık.**\n",
+    "helpTitle": "### {e} AutoMod Yardım Menüsü [{page}/{total}]",
+    "label": {
+      "logChannel": "Kayıt kanalı",
+      "globalAction": "Genel işlem",
+      "maxEmojis": "En fazla emoji",
+      "maxMentions": "En fazla etiket",
+      "capsEmoji": "Büyük harf/emoji",
+      "invites": "Davetler",
+      "links": "Bağlantılar",
+      "mentions": "Etiketler",
+      "messages": "Mesajlar"
+    },
+    "none": "Yok",
+    "confirmDisableAll": "{blank}{arrow} Bütün korumaları kapatmak istediğine emin misin?",
+    "allDisabled": "{e} Bütün AutoMod modülleri kapatıldı.",
+    "logDisabled": "{e} AutoMod kayıt tutma kapatıldı.",
+    "logSetTo": "{e} AutoMod kayıt kanalı {channel} olarak ayarlandı.",
+    "punishUpdated": "{e} Seçili filtrelerin cezası **{value}** olarak güncellendi.",
+    "whitelistAdded": "{e} **{value}** beyaz listeye eklendi.",
+    "whitelistEmpty": "{e} Beyaz listede hiç kullanıcı, rol veya kanal yok.",
+    "whitelistHint": "{blank}{arrow} Beyaz listeye eklemek için bir **rol**, **kanal** veya **kullanıcı** etiketle.\n\n",
+    "selectFilterFirst": "{e} Önce en az bir filtre seç.",
+    "needTextChannel": "{e} Geçerli bir yazı kanalı belirt (Yazı, Duyuru veya Konu).",
+    "alreadyDisabled": "AutoMod zaten kapalı.",
+    "notInitialized": "AutoMod sistemi başlatılmamış. Botu yeniden başlat veya geliştiriciye yaz.",
+    "error": "Bir hata oluştu: {message}",
+    "maxSet": "En fazla **{type}** sayısı **{value}** olarak ayarlandı.",
+    "enableFirst": "Önce `automod enable` ile AutoMod'u açman gerek.",
+    "needManageServer": "Bu komutu kullanmak için `Sunucuyu Yönet` yetkisine sahip olman gerek.",
+    "selectFilters": "Filtreleri seç",
+    "selectModules": "Açılıp kapatılacak modülleri seç...",
+    "whitelistRemoved": "**{value}** beyaz listeden çıkarıldı.",
+    "whitelistAdded2": "**{value}** beyaz listeye eklendi.",
+    "selectPunish": "Bir ceza seç"
+  },
+  "evt": {
+    "removedFrom": "{bot}, `{guild}` sunucusundan çıkarıldı.\n\nYaşadığın olumsuz deneyimler için kusura bakma. Görüşlerini veya karşılaştığın sorunları **[Destek Sunucusu]({support})** üzerinden iletirsen en kısa sürede ilgilenilir.",
+    "noPrefixExpired": "**{e} Genel prefixsiz kullanım iznin sona erdi.**\n\nArtık komutları prefixsiz kullanamazsın.\nErişimin devam etmesini istiyorsan bot sahibiyle iletişime geç.",
+    "goodbyeHeader": "### {e} Görüşürüz! {bot} sunucudan çıkarıldı."
+  },
+  "vc": {
+    "deafened": "{target} kullanıcısının sesi {channel} kanalında kapatıldı.",
+    "deafenedAll": "{channel} kanalındaki herkesin sesi kapatıldı.",
+    "undeafened": "{target} kullanıcısının sesi {channel} kanalında açıldı.",
+    "undeafenedAll": "{channel} kanalındaki herkesin sesi açıldı.",
+    "kicked": "{target}, {channel} kanalından atıldı.",
+    "kickedAll": "{channel} kanalındaki herkes atıldı.",
+    "locked": "{channel} kilitlendi.",
+    "unlocked": "{channel} kilidi açıldı.",
+    "private": "{channel} gizli yapıldı.",
+    "public": "{channel} herkese açık yapıldı.",
+    "moved": "{target}, {dest} kanalına taşındı.",
+    "movedAll": "{channel} kanalındaki herkes {dest} kanalına taşındı.",
+    "muted": "{target} susturuldu.",
+    "mutedAll": "Herkes susturuldu.",
+    "unmuted": "{target} susturması kaldırıldı.",
+    "unmutedAll": "Herkesin susturması kaldırıldı.",
+    "pulled": "{target}, {channel} kanalına çekildi.",
+    "pulledAll": "{source} kanalındaki herkes {channel} kanalına çekildi.",
+    "error": "Bir hata oluştu: {message}",
+    "argHint": "``` <> : zorunlu | [] : isteğe bağlı```",
+    "title": "### {e} Ses Komutları [{count}]",
+    "requestedBy": "-# İsteyen: {user}",
+    "footer": "\n-# Sayfa {page}/{total} | İsteyen: {user}",
+    "vEveryoneIsAlreadyDeafened": "Zaten herkesin sesi kapalı.",
+    "vEveryoneIsAlreadyMuted": "Zaten herkes susturulmuş.",
+    "vNoOneIsDeafened": "Sesi kapalı kimse yok.",
+    "vNoOneIsMuted": "Susturulmuş kimse yok.",
+    "vProvideAValidVoice": "Geçerli bir ses kanalı belirt.",
+    "vProvideTheDestinationChannel": "Hedef kanalı belirt.",
+    "vUserIsNotIn": "Kullanıcı bir ses kanalında değil.",
+    "vYouMustBeIn": "Bir ses kanalında olman gerek.",
+    "vYouNeedDeafenMembers": "`Deafen Members` yetkisine sahip olman gerek.",
+    "vYouNeedManageChannels": "`Manage Channels` yetkisine sahip olman gerek.",
+    "vYouNeedMoveMembers": "`Move Members` yetkisine sahip olman gerek.",
+    "vYouNeedMuteMembers": "`Mute Members` yetkisine sahip olman gerek.",
+    "vPullsAllUsersFrom": "Belirtilen kanaldaki herkesi kendi kanalına çeker.",
+    "alreadyMuted": "{target} zaten susturulmuş.",
+    "notMuted": "{target} susturulmuş değil.",
+    "alreadyDeaf": "{target} kullanıcısının sesi zaten kapalı.",
+    "notDeaf": "{target} kullanıcısının sesi kapalı değil.",
+    "needBotPerm": "Bu işlem için `{permission}` yetkisine ihtiyacım var."
+  },
+  "desc": {
+    "configureEnableAutomodModules": "AutoMod modüllerini ayarlar ve açar.",
+    "disableAutomodProtections": "Bütün AutoMod korumalarını kapatır.",
+    "viewCurrentAutomodConfiguration": "Mevcut AutoMod ayarlarını gösterir.",
+    "setupCustomPunishmentsFilters": "Filtreler için özel ceza ayarlar.",
+    "setDisableLoggingChannel": "Kayıt kanalını ayarlar veya kapatır.",
+    "adjustSensitivityheatEachFilter": "Her filtrenin hassasiyetini ayarlar.",
+    "setMaxAllowedEmojismentions": "İzin verilen en fazla emoji/etiket sayısını ayarlar.",
+    "whitelistRoleUserChannel": "Bir rolü, kullanıcıyı veya kanalı beyaz listeye ekler.",
+    "removeItemWhitelist": "Beyaz listeden bir kayıt siler.",
+    "showWhitelistedUsersroleschannels": "Beyaz listedeki herkesi gösterir.",
+    "resetAutomodSettingsDefault": "Bütün AutoMod ayarlarını sıfırlar.",
+    "basicAccessRead": "Temel okuma erişimi.",
+    "allowChattingChannels": "Kanallarda sohbet etmeye izin verir.",
+    "allowSendingEmbeds": "Gömülü mesaj göndermeye izin verir.",
+    "allowUploadingFiles": "Dosya yüklemeye izin verir.",
+    "allowReactingEmojis": "Emojiyle tepki vermeye izin verir.",
+    "useEmojisOtherServers": "Başka sunucuların emojilerini kullanır.",
+    "joinVoiceChannels": "Ses kanallarına katılır.",
+    "speakVoiceChannels": "Ses kanallarında konuşur.",
+    "fullControlDangerous": "Tam yetki. Dikkatli ol!",
+    "editGuildSettingsemojis": "Sunucu ayarlarını ve emojileri düzenler.",
+    "editCreateRoles": "Rol oluşturur veya düzenler.",
+    "kickBadMembers": "Üyeleri sunucudan atar.",
+    "banBadMembers": "Üyeleri yasaklar.",
+    "mutePeopleVoice": "Seste susturur.",
+    "movePeopleVoice": "Seste taşır.",
+    "listsMembersActiveDeveloper": "Aktif geliştirici rozeti olan üyeleri listeler.",
+    "listsAdministratorsServer": "Sunucudaki yöneticileri listeler.",
+    "listsBannedUsersServer": "Yasaklı kullanıcıları listeler.",
+    "listsServerBoosters": "Sunucu takviyecilerini listeler.",
+    "listsBotsServer": "Sunucudaki botları listeler.",
+    "listsMembersAccountCreation": "Üyeleri hesap açılış tarihine göre listeler.",
+    "listsMembersEarlySupporter": "Erken destekçi rozeti olan üyeleri listeler.",
+    "listsServerEmojis": "Sunucu emojilerini listeler.",
+    "listsMembersSpecificRole": "Belirli bir role sahip üyeleri listeler.",
+    "listsMembersVoiceChannel": "Bir ses kanalındaki üyeleri listeler.",
+    "listsMembersJoinDate": "Üyeleri katılma tarihine göre listeler.",
+    "listsModerators": "Yetkilileri listeler.",
+    "listsRolesServer": "Sunucudaki bütün rolleri listeler.",
+    "listsUsersServer": "Sunucudaki bütün kullanıcıları listeler.",
+    "deafensUserVoiceChannel": "Bir kullanıcının sesini kapatır.",
+    "deafensUsersCurrentVoice": "Kanaldaki herkesin sesini kapatır.",
+    "kicksUserVoiceChannel": "Bir kullanıcıyı ses kanalından atar.",
+    "kicksUsersCurrentVoice": "Kanaldaki herkesi atar.",
+    "locksCurrentVoiceChannel": "Bulunduğun ses kanalını kilitler.",
+    "movesSpecificUserAnother": "Bir kullanıcıyı başka ses kanalına taşır.",
+    "movesUsersCurrentChannel": "Kanaldaki herkesi başka kanala taşır.",
+    "mutesUserVoiceChannel": "Bir kullanıcıyı seste susturur.",
+    "mutesUsersCurrentVoice": "Kanaldaki herkesi susturur.",
+    "makesCurrentVoiceChannel": "Ses kanalını gizli yapar.",
+    "pullsUserIntoCurrent": "Bir kullanıcıyı kendi kanalına çeker.",
+    "pullsUsersSpecifiedVoice": "Belirtilen kanaldaki herkesi çeker.",
+    "undeafensUserVoiceChannel": "Bir kullanıcının sesini açar.",
+    "undeafensUsersCurrentVoice": "Kanaldaki herkesin sesini açar.",
+    "unlocksCurrentVoiceChannel": "Ses kanalının kilidini açar.",
+    "unmutesUserVoiceChannel": "Bir kullanıcının susturmasını kaldırır.",
+    "unmutesUsersCurrentVoice": "Kanaldaki herkesin susturmasını kaldırır.",
+    "makesCurrentVoiceChannelX": "Ses kanalını herkese açar."
+  },
+  "amm": {
+    "actionTitle": "**AutoMod işlemi**\n",
+    "notifyTitle": "**AutoMod bildirimi**\n",
+    "violationTitle": "**AutoMod ihlal ayrıntıları**\n",
+    "yourMessage": "**Mesajın:**\n",
+    "content": "**İçerik:**\n",
+    "row": {
+      "user": "{blank}{arrow} Kullanıcı: {value}\n",
+      "reason": "{blank}{arrow} Sebep: **{value}**",
+      "action": "{blank}{arrow} İşlem: **{value}**\n",
+      "channel": "{blank}{arrow} Kanal: {channel} (`{id}`)",
+      "userTag": "{blank}{arrow} Kullanıcı: **{tag}** (`{id}`)",
+      "dmed": "{blank}{arrow} DM gönderildi: **{value}**\n\n",
+      "reasonCode": "{blank}{arrow} Sebep: **`{value}`**\n\n"
+    },
+    "noContent": "İçerik yok"
+  },
+  "nop": {
+    "hasUntil": "**{e} {user} prefixsiz kullanıma sahip, bitiş <t:{ts}:R>.**",
+    "hasPermanent": "**{e} {user} kalıcı prefixsiz kullanıma sahip.**",
+    "granted": "**{e} {user} kullanıcısına kalıcı prefixsiz kullanım verildi.**",
+    "updatedPerm": "**{e} {user} kullanıcısının prefixsiz kullanımı kalıcıya çevrildi.**",
+    "removed": "**{e} {user} prefixsiz kullanımdan çıkarıldı.**",
+    "notHas": "**{e} {user} prefixsiz kullanıma sahip değil.**",
+    "expired": "**{e} {user} kullanıcısının prefixsiz kullanımı sona ermiş.**",
+    "none": "**{e} Prefixsiz kullanıma sahip kimse yok.**",
+    "thisNotHas": "**{e} Bu kullanıcının prefixsiz kullanımı yok.**",
+    "badDuration": "**{e} Süre biçimi geçersiz.**\n",
+    "listTitle": "**Prefixsiz kullanıcılar [{count}]**",
+    "usage": "**Kullanımı:**\n`{prefix}nop add @kullanıcı [süre]` — prefixsiz kullanım izni verir\n  **Süre:** `24h/hrs`, `10d/day`, `2w/week`, `1m` (ay), `1y/yr`, `p/perm/permanent`\n`{prefix}nop remove @kullanıcı` — izni kaldırır\n`{prefix}nop remove all` — herkesin iznini kaldırır\n`{prefix}nop list` — izni olanları listeler\n`{prefix}nop status @kullanıcı` — bir kullanıcının durumunu gösterir",
+    "durationExamples": "**Örnekler:**\n`24h` veya `24hrs` — 24 saat\n`10d` veya `10day` — 10 gün\n`2w` veya `2week` — 2 hafta\n`1m` — 1 ay\n`1y` veya `1yr` — 1 yıl\n`permanent`, `perm` veya `p` — kalıcı"
+  },
+  "own": {
+    "needUser": "**Geçerli bir kullanıcı belirt.**",
+    "needUserOrAll": "**Geçerli bir kullanıcı belirt ya da herkesi kaldırmak için 'all' yaz.**",
+    "pageFooter": "-# Sayfa {page}/{total} | İsteyen: {user}",
+    "requestedBy": "-# İsteyen: {user}",
+    "restartIdle": "**{e} Bot hiçbir yerde çalmıyor.**\n**{i} Yeniden başlatmak istediğine emin misin?**",
+    "restartActive": "**{e} Bot şu an `{count}` sunucuda aktif.**\n**{i} Yeniden başlatmak istediğine emin misin?**",
+    "argHintBlock": "```<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```",
+    "argHintBlock2": "```[] = isteğe bağlı\n<> = zorunlu\nKomutu yazarken bu işaretleri kullanma!```",
+    "team": {
+      "help": "> ** `{prefix}team show` **\n╰ Ekip üyelerini ve rütbelerini gösterir.\n\n> ** `{prefix}team add <kullanıcı> <rütbe>` **\n╰ Kullanıcının ana rütbesini ayarlar.\n\n> ** `{prefix}team remove <kullanıcı> [rütbe]` **\n╰ Kullanıcıyı ekipten veya bir rütbeden çıkarır.\n\n> ** `{prefix}team deny <kullanıcı/rütbe> <komut/rozet>` **\n╰ Bir komutu engeller veya rozeti kaldırır.\n\n> ** `{prefix}team allow <kullanıcı/rütbe> <komut/rozet>` **\n╰ Bir komuta izin verir veya rozet ekler.\n\n> ** `{prefix}team clear [all]` **\n╰ Ekip verisini sıfırlar [all: profilleri de siler]."
+    },
+    "badge": {
+      "help": "> ** `{prefix}badge add <kullanıcı> <ad>` **\n╰ Rozet ekler veya ana rütbe ayarlar.\n\n> ** `{prefix}badge remove <kullanıcı> <ad>` **\n╰ Rozeti kaldırır veya ana rütbeyi sıfırlar.\n\n> ** `{prefix}badge show <kullanıcı>` **\n╰ Kullanıcının bütün rozet ve rütbelerini gösterir.\n\n> ** `{prefix}badge list` **\n╰ Özel durumu olan bütün kullanıcıları listeler."
+    },
+    "node": {
+      "status": "**{bot} {status}**\n"
+    },
+    "needGuildId": "**{e} Bir sunucu ID'si girmen gerek.**",
+    "needTarget": "**{e} Bir hedef belirt: `<komut|all|everything>`**",
+    "aliasesLine": "**Takma adlar:** ``{value}``",
+    "usageLine": "**Kullanımı:** ``{value}``"
+  },
+  "bl": {
+    "added": "**{e} {user} kara listeye eklendi.**",
+    "title": "**{e} Kara listedeki kullanıcılar**",
+    "removed": "**{e} {user} kara listeden çıkarıldı.**",
+    "empty": "**{e} Kara listede kimse yok.**",
+    "already": "**{e} Bu kullanıcı zaten kara listede.**",
+    "notIn": "**{e} Bu kullanıcı kara listede değil.**",
+    "removedAllLine": "**{e} Kara listedeki `{count}` kullanıcının hepsi çıkarıldı.**"
+  },
+  "fav": {
+    "added": "**{e} Favorilerine eklendi: [{title}]({uri})**",
+    "already": "**{e} Bu şarkı zaten favorilerinde.**",
+    "saveError": "**{e} Favorilere kaydedilirken bir hata oluştu.**",
+    "removeError": "**{e} Favorilerden çıkarılırken bir hata oluştu.**",
+    "addAllError": "**{e} Şarkılar favorilere eklenirken bir hata oluştu.**",
+    "noQueue": "**{e} Favorilere eklenecek bir sıra yok.**",
+    "emptyQueue": "**{e} Sırada hiç şarkı yok.**",
+    "none": "**{e} Hiç favori şarkın yok.**",
+    "noneLeft": "**{e} Favorilerinde şarkı kalmadı.**",
+    "noneToPlay": "**{e} Çalınacak favori şarkın yok.**",
+    "removeTitle": "**{e} Favorilerden Çıkar**",
+    "removed": "**{e} {count} favori çıkarıldı.**",
+    "removedEmpty": "**{e} {count} favori çıkarıldı, listen artık boş.**",
+    "cleared": "**{e} {count} favorinin hepsi silindi.**",
+    "onlyUser": "**{e} Bunu yalnızca {user} kullanabilir.**",
+    "timedOut": "**{e} Süre doldu. Gerekirse komutu tekrar kullan.**",
+    "nowPlaying": "**{e} Favorilerin çalıyor.**",
+    "playError": "**{e} Favorilerin çalınırken bir hata oluştu.**",
+    "connectFail": "**{e} Müzik sunucusuna bağlanılamadı, birazdan tekrar dene.**",
+    "serverDown": "**{e} Müzik sunucusu şu an kullanılamıyor, birazdan tekrar dene.**",
+    "needVoice": "**{e} Bir ses kanalında olman gerek.**",
+    "sameVoice": "**{e} Botla aynı ses kanalında olman gerek.**",
+    "queued": "**{e} Sıraya eklendi, mevcut şarkılardan sonra çalacak.**",
+    "loaded": "**{e} Favorilerinden {count} şarkı yüklendi.**\n",
+    "loading": "**{e} Favorilerinden {count} şarkı yükleniyor...**",
+    "loadFailed": "**{e} {count} şarkı yüklenemedi.**\n",
+    "durationRow": "Süre: {value}",
+    "listTitle": "**{e} Favorilerine eklediğin şarkılar :**",
+    "fetchError": "**{e} Favorilerin alınırken bir hata oluştu.**",
+    "noneYet": "**{e} Henüz hiç favori şarkın yok.**",
+    "gw": {
+      "prize": "{arrow} **Ödül:** `{value}`\n",
+      "winners": "{arrow} **Kazanan sayısı:** `{value}`\n"
+    },
+    "addedCount": "**{e} `{count}` şarkı favorilerine eklendi.**\n",
+    "alreadyCount": "**{e} `{count}` şarkı zaten favorilerindeydi.**\n",
+    "countLabel": "**Favoriler:** `{count} şarkı`\n",
+    "selectRemove": "Çıkarılacak favorileri seç",
+    "pageOf": "{page} / {total}"
+  },
+  "role": {
+    "rAddsARoleTo": "Bir kullanıcıya rol verir.",
+    "rRemovesARoleFrom": "Bir kullanıcıdan rol alır.",
+    "rCreatesANewRole": "Yeni bir rol oluşturur.",
+    "rDeletesARole": "Bir rolü siler.",
+    "rRenamesARole": "Bir rolün adını değiştirir.",
+    "rChangesTheColorOf": "Bir rolün rengini değiştirir.",
+    "rSetsAnIconFor": "Bir role ikon ayarlar.",
+    "rGivesATemporaryRole": "Bir kullanıcıya geçici rol verir.",
+    "rEditAnExistingRole": "Var olan bir rolü sihirbazla düzenler.",
+    "rEditsAnExistingRole": "Var olan bir rolü sihirbazla düzenler.",
+    "rCancelTheActiveRole": "Sunucudaki aktif rol işlemini iptal eder.",
+    "rGiveTheRoleTo": "Rolü bütün botlara verir.",
+    "rUserAlreadyHasThis": "Kullanıcıda bu rol zaten var.",
+    "rUserDoesNotHave": "Kullanıcıda bu rol yok.",
+    "rYouCannotManageThis": "Bu rolü yönetemezsin.",
+    "rICannotManageThis": "Bu rolü yönetemem.",
+    "rPleaseProvideAValid": "Geçerli bir **hex renk kodu** gir (örn. `#ff0000` veya `ff0000`).",
+    "rNoActiveRoleTask": "Aktif bir rol işlemi yok.",
+    "rAnActiveRoleTask": "Bu sunucuda zaten bir rol işlemi çalışıyor.",
+    "rNoMembersFoundTo": "Bu rolün verileceği üye bulunamadı.",
+    "rICanOnlySet": "Geçici rolleri en fazla 24 saat için ayarlayabiliyorum (kalıcı değil).",
+    "rThisServerNeedsTo": "Rol ikonu için sunucunun **2. seviye** veya üstü olması gerek.",
+    "rEditDetails": "Ayrıntıları düzenle",
+    "rEditRoleDetails": "Rol ayrıntılarını düzenle",
+    "rEditRoleForm": "Rol düzenleme formu",
+    "rRoleDetailsForm": "Rol bilgileri formu",
+    "rFinishCreate": "Bitir ve oluştur",
+    "rSaveChanges": "Değişiklikleri kaydet",
+    "rRoleName": "Rol adı",
+    "rModifyPermissions": "Yetkileri düzenle...",
+    "rHexColorEmptyFor": "Hex renk (boş bırakılırsa renksiz)",
+    "rDefaultColourless": "Varsayılan / renksiz",
+    "rColourless": "Renksiz",
+    "added": "{role} rolü {target} kullanıcısına verildi.",
+    "removed": "{role} rolü {target} kullanıcısından alındı.",
+    "addFailed": "Rol verilemedi: {message}",
+    "removeFailed": "Rol alınamadı: {message}",
+    "deleted": "**{name}** rolü silindi.",
+    "deleteFailed": "Rol silinemedi: {message}",
+    "renamed": "Rolün adı **{name}** olarak değiştirildi.",
+    "renameFailed": "Rol adı değiştirilemedi: {message}",
+    "colorFailed": "Rol rengi değiştirilemedi: {message}",
+    "iconSet": "{role} rolünün ikonu ayarlandı.",
+    "iconFailed": "Rol ikonu ayarlanamadı: {message}",
+    "createWizard": "### {e} Rol Oluşturma Sihirbazı",
+    "editWizard": "### {e} Rol Düzenleme Sihirbazı: {name}",
+    "cmdTitle": "### {e} Rol Komutları [{count}]",
+    "pageFooter": "\n-# Sayfa {page}/{total} | İsteyen: {user}",
+    "requestedBy": "-# İsteyen: {user}",
+    "argHint": "``` <> : zorunlu | [] : isteğe bağlı```",
+    "wiz": {
+      "name": "> **İsim :** ",
+      "color": "> **Renk :** ",
+      "hoisted": "> **Ayrı gösterim :** ",
+      "mentionable": "> **Etiketlenebilir :** ",
+      "permissions": "> **Yetkiler :** "
+    },
+    "auditCreate": "Rol {user} tarafından sihirbazla oluşturuldu",
+    "auditEdit": "Rol {user} tarafından sihirbazla düzenlendi",
+    "auditDelete": "Rol {user} tarafından silindi",
+    "colorChangedTo": "{role} rolünün rengi `{color}` yapıldı.",
+    "needEmojiOrUrl": "Geçerli bir **özel emoji** veya **görsel bağlantısı** gir. Standart emojiler ve metin adları desteklenmiyor."
+  },
+  "aud": {
+    "noPerm": "{e} **`View Audit Log` yetkim yok.**",
+    "acceptedCreatorMonetizationTerms": "{executor} içerik üretici gelir şartlarını kabul etti",
+    "addedTToTheServer": "{executor} {t} kullanıcısını sunucuya ekledi",
+    "addedABotT": "{executor} {t} botunu ekledi",
+    "addedIntegrationT": "{executor} {t} entegrasyonunu ekledi",
+    "bannedT": "{executor} {t} kullanıcısını yasakladı",
+    "bulkDeletedMessages": "{executor} toplu mesaj sildi",
+    "clearedVoiceChannelStatusForT": "{executor} {t} kanalının ses durumunu temizledi",
+    "createdAnInvite": "{executor} bir davet oluşturdu",
+    "createdAutomodRuleT": "{executor} {t} automod kuralını oluşturdu",
+    "createdChannelT": "{executor} {t} kanalını oluşturdu",
+    "createdEmojiT": "{executor} {t} emojisini oluşturdu",
+    "createdEventT": "{executor} {t} etkinliğini oluşturdu",
+    "createdHomeSettings": "{executor} ana sayfa ayarlarını oluşturdu",
+    "createdOnboardingPrompt": "{executor} karşılama adımı oluşturdu",
+    "createdOnboarding": "{executor} karşılama akışını oluşturdu",
+    "createdPermissionsForT": "{executor} {t} için yetki oluşturdu",
+    "createdRoleT": "{executor} {t} rolünü oluşturdu",
+    "createdStickerT": "{executor} {t} çıkartmasını oluşturdu",
+    "createdThreadT": "{executor} {t} konusunu oluşturdu",
+    "createdWebhookT": "{executor} {t} webhook'unu oluşturdu",
+    "deletedAnInvite": "{executor} bir daveti sildi",
+    "deletedAutomodRuleT": "{executor} {t} automod kuralını sildi",
+    "deletedEmojiT": "{executor} {t} emojisini sildi",
+    "deletedEventT": "{executor} {t} etkinliğini sildi",
+    "deletedOnboardingPrompt": "{executor} karşılama adımını sildi",
+    "deletedPermissionsForT": "{executor} {t} için yetkileri sildi",
+    "deletedRoleT": "{executor} {t} rolünü sildi",
+    "deletedStickerT": "{executor} {t} çıkartmasını sildi",
+    "deletedThreadT": "{executor} {t} konusunu sildi",
+    "deletedVoiceChannelStatus": "{executor} ses kanalı durumunu sildi",
+    "deletedWebhookT": "{executor} {t} webhook'unu sildi",
+    "disconnectedMembers": "{executor} üyelerin bağlantısını kesti",
+    "endedAStage": "{executor} bir sahneyi bitirdi",
+    "kickedT": "{executor} {t} kullanıcısını attı",
+    "movedMembers": "{executor} üyeleri taşıdı",
+    "pinnedAMessage": "{executor} bir mesajı sabitledi",
+    "prunedMembers": "{executor} üyeleri temizledi",
+    "removedT": "{executor} {t} kaldırdı",
+    "removedIntegrationT": "{executor} {t} entegrasyonunu kaldırdı",
+    "requestedCreatorMonetization": "{executor} içerik üretici geliri talep etti",
+    "setVoiceChannelStatusForT": "{executor} {t} kanalının ses durumunu ayarladı",
+    "startedAStage": "{executor} bir sahne başlattı",
+    "unbannedT": "{executor} {t} kullanıcısının yasağını kaldırdı",
+    "unpinnedAMessage": "{executor} bir mesajın sabitlemesini kaldırdı",
+    "updatedT": "{executor} {t} kullanıcısını güncelledi",
+    "updatedAStage": "{executor} bir sahneyi güncelledi",
+    "updatedAnInvite": "{executor} bir daveti güncelledi",
+    "updatedAutomodRuleT": "{executor} {t} automod kuralını güncelledi",
+    "updatedChannelT": "{executor} {t} kanalını güncelledi",
+    "updatedCommandPermissions": "{executor} komut yetkilerini güncelledi",
+    "updatedEmojiT": "{executor} {t} emojisini güncelledi",
+    "updatedEventT": "{executor} {t} etkinliğini güncelledi",
+    "updatedHomeSettings": "{executor} ana sayfa ayarlarını güncelledi",
+    "updatedIntegrationT": "{executor} {t} entegrasyonunu güncelledi",
+    "updatedOnboardingPrompt": "{executor} karşılama adımını güncelledi",
+    "updatedOnboarding": "{executor} karşılama akışını güncelledi",
+    "updatedPermissionsForT": "{executor} {t} için yetkileri güncelledi",
+    "updatedRoleT": "{executor} {t} rolünü güncelledi",
+    "updatedRolesForT": "{executor} {t} kullanıcısının rollerini güncelledi",
+    "updatedServerSettings": "{executor} sunucu ayarlarını güncelledi",
+    "updatedStickerT": "{executor} {t} çıkartmasını güncelledi",
+    "updatedThreadT": "{executor} {t} konusunu güncelledi",
+    "updatedVoiceChannelStatus": "{executor} ses kanalı durumunu güncelledi",
+    "updatedWebhookT": "{executor} {t} webhook'unu güncelledi",
+    "automodBlocked": "{executor} automod'u bir mesajı engelledi",
+    "automodFlagged": "{executor} automod'u bir mesajı işaretledi",
+    "automodTimedOut": "{executor} automod'u {t} kullanıcısını susturdu"
+  },
+  "ign": {
+    "added": "**{e} {channel} yok sayılan kanallar listesine eklendi.**",
+    "removed": "**{e} {channel} yok sayılan kanallar listesinden çıkarıldı.**",
+    "cleared": "**{e} Yok sayılan kanallar listesi temizlendi.**",
+    "list": "**{e} Yok sayılan kanallar :**\n\n** {channels}**",
+    "empty": "**{e} Yok sayılan kanal listesi boş.**",
+    "already": "**{e} Bu kanal zaten listede.**",
+    "notIn": "**{e} Bu kanal listede değil.**",
+    "needChannel": "**{e} Geçerli bir kanal belirt.**",
+    "needPerm": "-# **{e} Bu komutu kullanmak için `Manage Channels` yetkisine sahip olman gerek.**"
+  },
+  "srv": {
+    "title": "**{e} {bot} sunucu listesi**",
+    "none": "**{e} Hiç sunucu bulunamadı.**",
+    "onlyUser": "**{e} Bu butonu yalnızca {user} kullanabilir.**"
+  },
+  "brand": {
+    "onlyUser": "{e} Bunu yalnızca {user} kullanabilir.",
+    "fillOne": "{e} En az bir alanı doldurman gerek.",
+    "resetFail": "{e} Avatar/banner/biyografi sıfırlanamadı: {message}\n",
+    "apiError": "{e} Hata: {message}\n",
+    "canSet": "**Ayarlayabileceklerin:**\n",
+    "applyFail": "Değişiklikler uygulanamadı: {message}",
+    "resetFail2": "Sıfırlama başarısız: {message}",
+    "openFormLine": "Botun sunucu profilini düzenlemek için aşağıdaki butona bas.\n\n"
+  },
+  "mut": {
+    "usage": "**Kullanımı:**\n`{prefix}mutual <kullanıcı ID veya @etiket>`\n\n**Örnek:**\n`{prefix}mutual @kullanıcı`\n`{prefix}mutual 123456789012345678`"
+  },
+  "help": {
+    "notFound": "**{e} `{command}` diye bir komut yok.**",
+    "notYours": "**{e} Bu menüyü kullanamazsın.**",
+    "intro": "**{bot}**, sunucun için çok yönlü bir yardımcı: **YT Music**, **Spotify**, **Apple Music** ve daha fazlasından yüksek kaliteli müzik çalar. Gelişmiş **moderasyon**, **yardımcı araçlar**, **davet takibi** ve fazlasıyla sunucunu bir adım öteye taşır."
+  },
+  "flt": {
+    "noSong": "**{e} Şu an çalan bir şarkı yok.**",
+    "current": "**{e} Aktif filtre** `:` `{value}`",
+    "notYours": "**{e} Bu senin oturumun değil. Kendi menün için `{prefix}filter` yaz.**",
+    "placeholder": "Uygulanacak filtreyi seç",
+    "currentAlt": "**{e} Aktif filtre `:`** `{value}`"
+  },
+  "vcx": {
+    "need247Channel": "Bot 7/24 modunda. Botun bulunduğu ses kanalına katılman gerek."
+  },
+  "radio": {
+    "title": "### {e} Canlı Radyo İstasyonları",
+    "body": "**{count} istasyon** hazır — aşağıdan birini seç ve hemen dinlemeye başla.\n\n**Popüler:** {popular}\n\n-# **İpucu:** `{prefix}radio <isim>` yazarak da direkt çalabilirsin.",
+    "selectPlaceholder": "Bir radyo istasyonu seç...",
+    "liveStream": "Canlı yayın",
+    "playing": "**{e} {emoji} Şu an çalıyor: {name}**\n-# Canlı radyo yayını başlatıldı",
+    "loadFailed": "**{e} İstasyon yüklenemedi: {name}**",
+    "invalidNumber": "**{e} Geçersiz istasyon numarası.** 0 ile {max} arasında bir numara gir.",
+    "notFound": "**{e} \"{query}\" ile eşleşen istasyon bulunamadı.**",
+    "joinFirst": "**{e} Önce bir ses kanalına katıl!**"
+  },
+  "removedupes": {
+    "none": "**{e} Sırada tekrar eden şarkı bulunamadı.**",
+    "done": "**{e} {count} tekrar silindi — {remaining} şarkı kaldı.**"
+  },
+  "unshuffle": {
+    "noShuffle": "**{e} Geri alınacak bir karıştırma yok.** Önce sırayı karıştırman gerekiyor.",
+    "done": "**{e} Eski sıra geri yüklendi — {count} şarkı.**"
+  },
+  "moveme": {
+    "botNotInVoice": "**{e} Şu anda hiçbir ses kanalında değilim.**",
+    "alreadyHere": "**{e} Zaten <#{channel}> kanalındasın.**",
+    "channelFull": "**{e} <#{channel}> kanalı dolu.**",
+    "moved": "**{e} <#{channel}> kanalına taşındın.**",
+    "noPermission": "**{e} Üyeleri taşıma iznim yok. **Üyeleri Taşı** izni gerekiyor.**"
+  },
+  "playlist": {
+    "usage": "**{e} Playlist Komutları**\n`{prefix}playlist create <isim>` — Mevcut sıradan oluştur\n`{prefix}playlist play <isim>` — Yükle ve çal\n`{prefix}playlist list` — Tüm playlistleri göster\n`{prefix}playlist show <isim>` — Şarkıları göster\n`{prefix}playlist delete <isim>` — Sil\n`{prefix}playlist addcurrent <isim>` — Mevcut şarkıyı ekle\n`{prefix}playlist addqueue <isim>` — Tüm sırayı ekle",
+    "needName": "**{e} Lütfen bir playlist ismi gir.**",
+    "nameTooLong": "**{e} Playlist ismi en fazla {max} karakter olabilir.**",
+    "alreadyExists": "**{e} `{name}` adında bir playlist zaten var.**",
+    "maxReached": "**{e} En fazla {max} playlist oluşturabilirsin.**",
+    "created": "**{e} `{name}` playlisti {count} şarkı ile oluşturuldu.**",
+    "notFound": "**{e} `{name}` adında playlist bulunamadı.**",
+    "empty": "**{e} `{name}` playlisti boş.**",
+    "loading": "**{e} `{name}` playlisti yükleniyor ({count} şarkı)...**",
+    "loaded": "**{e} `{name}` playlistinden {count} şarkı yüklendi.**",
+    "noPlaylists": "**{e} Henüz kayıtlı playlistin yok.**",
+    "tracks": "şarkı",
+    "listAll": "**{e} Playlistlerin ({count})**\n{list}",
+    "details": "**{e} Playlist: {name}** ({count} şarkı)\n{list}",
+    "deleted": "**{e} `{name}` playlisti silindi.**",
+    "trackAdded": "**{e} `{title}` şarkısı `{name}` playlistine eklendi.**",
+    "queueAdded": "**{e} {count} şarkı `{name}` playlistine eklendi.**"
+  },
+  "defaultvolume": {
+    "current": "**{e} Bu sunucunun varsayılan ses seviyesi `%{volume}`.**",
+    "invalid": "**{e} Lütfen 1 ile 150 arasında geçerli bir değer gir.**",
+    "set": "**{e} Varsayılan ses seviyesi `%{volume}` olarak ayarlandı.**"
+  },
+  "voteskip": {
+    "skippedFew": "**{e} [{title}]({uri}) atlandı** (oy için yeterli dinleyici yok)",
+    "started": "**{e} {user} `{title}` şarkısını atlamak istiyor**\nOylar: `{current}/{needed}` — oy vermek için aşağıya tıkla!",
+    "voteButton": "{current}/{needed} Atla",
+    "mustBeInVoice": "**{e} Oy vermek için ses kanalında olman gerek.**",
+    "passed": "**{e} Oylama geçti! `{title}` atlandı ({current}/{needed} oy)**",
+    "failed": "**{e} Oylama başarısız — yeterli oy toplanamadı ({current}/{needed}).**"
+  },
+  "queuestatus": {
+    "title": "Çalar Durumu",
+    "nowPlaying": "Şu An Çalıyor",
+    "by": "sanatçı:",
+    "requestedBy": "isteyen:",
+    "volume": "Ses",
+    "loop": "Döngü",
+    "autoplay": "Otomatik Çalma",
+    "state": "Durum",
+    "paused": "Duraklatıldı",
+    "playing": "Çalıyor",
+    "upNext": "Sıradaki",
+    "tracksLabel": "şarkı",
+    "more": "daha",
+    "queueEmpty": "Sıra boş — müziğin devam etmesi için şarkı ekle!",
+    "loopOff": "Kapalı",
+    "loopTrack": "Şarkı",
+    "loopQueue": "Sıra",
+    "radioMode": "Radyo"
+  },
+  "musicsystem": {
+    "usage": "**{e} Müzik Sistemi Kurulumu**\n`{prefix}musicsystem enable [#kanal]` — Müzik istek kanalı oluştur/ayarla\n`{prefix}musicsystem disable` — Müzik istek kanalını kapat\n`{prefix}musicsystem status` — Mevcut durumu göster",
+    "notSetup": "**{e} Müzik istek kanalı henüz ayarlanmamış.**\nOluşturmak için `{prefix}musicsystem enable` yaz.",
+    "currentStatus": "**{e} Müzik istek kanalı: <#{channel}>**",
+    "disabled": "**{e} Müzik istek kanalı kapatıldı.**",
+    "invalidChannel": "**{e} Geçerli bir metin kanalı belirt.**",
+    "channelName": "müzik-istekleri",
+    "channelTopic": "{bot} ile müzik çalmak için şarkı adı veya URL yaz",
+    "createFailed": "**{e} Kanal oluşturulamadı: {message}**",
+    "sendFailed": "**{e} Kurulum mesajı gönderilemedi: {message}**",
+    "enabled": "**{e} Müzik istek kanalı <#{channel}> olarak ayarlandı!**\nKullanıcılar şarkı adı veya URL yazarak müzik çalabilir.",
+    "needVoice": "**{e} Bunu kullanmak için bir ses kanalında olman gerek.**",
+    "sameVoice": "**{e} Botla aynı ses kanalında olman gerek.**",
+    "embed": {
+      "title": "### {e} Müzik İstek Kanalı",
+      "body": "**{e} Müzik çalmak için aşağıya şarkı adı veya URL yaz.**\nÇalmayı kontrol etmek için butonları kullan."
+    }
+  },
+  "setdj": {
+    "usage": "**{e} DJ Rolü Ayarları**\n`{prefix}setdj set <@rol>` — DJ rolünü ayarla\n`{prefix}setdj remove` — DJ rolünü kaldır\n`{prefix}setdj status` — Mevcut DJ rolünü göster",
+    "notSet": "**{e} DJ rolü yapılandırılmamış.** Tüm kullanıcılar DJ komutlarını kullanabilir.",
+    "currentRole": "**{e} Mevcut DJ rolü: <@&{role}>**",
+    "removed": "**{e} DJ rolü kaldırıldı.** Artık tüm kullanıcılar DJ komutlarını kullanabilir.",
+    "noRole": "**{e} Lütfen bir rol etiketle veya rol ID'si gir.**",
+    "invalidRole": "**{e} Bu rol bulunamadı.**",
+    "set": "**{e} DJ rolü <@&{role}> olarak ayarlandı!** Sadece bu role sahip olanlar (veya Sunucu Yönetimi yetkisi olanlar) DJ komutlarını kullanabilir."
+  },
+  "toggle": {
+    "usage": "**{e} Komut Açma/Kapama**\n`{prefix}toggle disable <komut>` — Bir komutu kapat\n`{prefix}toggle enable <komut>` — Bir komutu tekrar aç\n`{prefix}toggle list` — Kapatılmış komutları göster",
+    "noneDisabled": "**{e} Bu sunucuda kapatılmış komut yok.**",
+    "list": "**{e} Kapatılmış komutlar:** {commands}",
+    "noCommand": "**{e} Lütfen bir komut adı belirt.**",
+    "protected": "**{e} `{command}` komutu kapatılamaz.**",
+    "notFound": "**{e} `{command}` komutu bulunamadı.**",
+    "alreadyDisabled": "**{e} `{command}` zaten kapalı.**",
+    "disabled": "**{e} `{command}` bu sunucuda kapatıldı.**",
+    "alreadyEnabled": "**{e} `{command}` zaten açık.**",
+    "enabled": "**{e} `{command}` bu sunucuda tekrar açıldı.**"
+  },
+  "welcome": {
+    "usage": "**{e} Hoş Geldin Sistemi**\n`{prefix}welcome enable` — Hoş geldin mesajlarını aç\n`{prefix}welcome disable` — Hoş geldin mesajlarını kapat\n`{prefix}welcome channel <#kanal>` — Hoş geldin kanalını ayarla\n`{prefix}welcome message <metin>` — Hoş geldin mesajını ayarla\n`{prefix}welcome goodbye <metin>` — Güle güle mesajını ayarla\n`{prefix}welcome status` — Mevcut ayarları göster\n`{prefix}welcome test` — Test mesajı gönder",
+    "status": "**{e} Hoş Geldin Sistemi**\n> **Durum:** `{enabled}`\n> **Kanal:** {channel}\n> **Hoş Geldin:** `{message}`\n> **Güle Güle:** `{goodbye}`",
+    "enabled": "**{e} Hoş geldin sistemi açıldı!**",
+    "disabled": "**{e} Hoş geldin sistemi kapatıldı.**",
+    "noChannel": "**{e} Lütfen bir metin kanalı etiketle.**",
+    "invalidChannel": "**{e} Geçerli bir metin kanalı belirt.**",
+    "channelSet": "**{e} Hoş geldin kanalı <#{channel}> olarak ayarlandı.**",
+    "messageSet": "**{e} Hoş geldin mesajı güncellendi!**",
+    "goodbyeSet": "**{e} Güle güle mesajı güncellendi!**",
+    "testSent": "**{e} Test mesajları <#{channel}> kanalına gönderildi.**",
+    "notConfigured": "Ayarlanmamış",
+    "defaultMsg": "**{server} sunucusuna hoş geldin, {user}!** #{membercount}. üyesin.",
+    "defaultBye": "**{username}**, **{server}** sunucusundan ayrıldı. Artık {membercount} üyeyiz.",
+    "variables": "**{e} Kullanılabilir değişkenler:**\n`{user}` — Etiket\n`{username}` — Kullanıcı adı\n`{tag}` — Etiket (tag)\n`{server}` — Sunucu adı\n`{membercount}` — Üye sayısı"
+  }
+}

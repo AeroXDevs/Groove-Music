@@ -46,7 +46,7 @@ module.exports = {
 
             if (inviterCount === 0 && invitedCount === 0) {
                 const display = new TextDisplayBuilder()
-                    .setContent(`${client.emoji.warn} **You don't have any invite records in this server.**`);
+                    .setContent(client.t(message.guild.id, "trk.noRecordsOwn", { e: client.emoji.warn }));
 
                 return message.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -90,7 +90,7 @@ module.exports = {
             console.error('Error in resetmyinvites command:', error);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`${client.emoji.warn} **An error occurred while resetting your invite statistics.**`);
+                .setContent(client.t(message.guild.id, "trk.errReset", { e: client.emoji.warn }));
 
             return message.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(errorDisplay)],

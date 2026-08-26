@@ -61,7 +61,7 @@ module.exports = {
 
     const statusDisplay = new TextDisplayBuilder()
       .setContent(
-        `**${client.emoji.check} Autoplay has been \`${newStatus ? "Enabled" : "Disabled"}\`.**`
+        client.t(message.guild.id, "music.autoplayToggled", { e: client.emoji.check, state: client.t(message.guild.id, newStatus ? "music.enabled" : "music.disabled") })
       );
 
     const container = new ContainerBuilder()

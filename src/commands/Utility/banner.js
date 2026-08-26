@@ -74,7 +74,7 @@ module.exports = {
             user = await client.users.fetch(userId, { force: true });
         } catch (error) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`${client.emoji.cross} Could not fetch user data.`);
+                .setContent(client.t(message.guild.id, "ui.noUserData", { e: client.emoji.cross }));
 
             const errorContainer = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);

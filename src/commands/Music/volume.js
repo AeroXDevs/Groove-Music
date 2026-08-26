@@ -37,7 +37,7 @@ module.exports = {
   async slashExecute(interaction, client) {
     const player = client.manager.players.get(interaction.guild.id);
     if (!player.queue.current) {
-      const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.warn} Play a song first.**`);
+      const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.playFirst", { e: client.emoji.warn }));
       const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
       return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
     }
@@ -46,8 +46,8 @@ module.exports = {
     if (volume === null) {
       const volumeDisplay = new TextDisplayBuilder()
         .setContent(
-          `**Volume !**\n` +
-          `${client.emoji.blank}${client.emoji.wickarrow} **Current Volume : \`${player.volume}%\`**`
+          client.t(interaction.guildId, "music.volume.header") +
+          client.t(interaction.guildId, "music.volume.current", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: player.volume })
         );
 
       const container = new ContainerBuilder()
@@ -57,7 +57,7 @@ module.exports = {
     }
 
     if (volume < 0 || volume > 100) {
-      const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} Volume must be between 0 and 100.**`);
+      const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.volume.range", { e: client.emoji.cross }));
       const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
       return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
     }
@@ -66,8 +66,8 @@ module.exports = {
 
     const successDisplay = new TextDisplayBuilder()
       .setContent(
-        `**Volume !**\n` +
-        `${client.emoji.blank}${client.emoji.wickarrow} **Volume Updated : \`${volume}%\`**`
+        client.t(interaction.guildId, "music.volume.header") +
+        client.t(interaction.guildId, "music.volume.updated", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: volume })
       );
 
     const container = new ContainerBuilder()
@@ -81,7 +81,7 @@ module.exports = {
 
     if (!player.queue.current) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} Play a song first.**`);
+        .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -98,8 +98,7 @@ module.exports = {
       if (isNaN(volume) || volume < 0 || volume > 100) {
         const errorDisplay = new TextDisplayBuilder()
           .setContent(
-            `**${client.emoji.cross} Usage** \`:\` \`${prefix}volume [0-100]\`\n` +
-            `${client.emoji.wickarrow} **__Current Volume__ :** \`${player.volume}%\``
+client.t(message.guild.id, "music.volume.usage", { e: client.emoji.cross, arrow: client.emoji.wickarrow, prefix, value: player.volume })
           );
 
         const container = new ContainerBuilder()
@@ -116,8 +115,8 @@ module.exports = {
 
       const successDisplay = new TextDisplayBuilder()
         .setContent(
-          `**Volume !**\n` +
-          `${client.emoji.blank}${client.emoji.wickarrow} **Volume Updated :** \`${volume}%\``
+          client.t(message.guild.id, "music.volume.header") +
+          client.t(message.guild.id, "music.volume.updated2", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: volume })
         );
 
       const container = new ContainerBuilder()
@@ -132,8 +131,8 @@ module.exports = {
     const createVolumeContainer = (currentVol) => {
       const volumeDisplay = new TextDisplayBuilder()
         .setContent(
-          `**Volume !**\n` +
-          `${client.emoji.blank}${client.emoji.wickarrow} **Current Volume :** \`${currentVol}%\``
+          client.t(message.guild.id, "music.volume.header") +
+          client.t(message.guild.id, "music.volume.currentPlain", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: currentVol })
         );
 
       const buttons = new ActionRowBuilder().addComponents(
@@ -169,7 +168,7 @@ module.exports = {
         const currentPlayer = client.manager.players.get(message.guild.id);
         if (!currentPlayer) {
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} Player not found.**`);
+            .setContent(client.t(message.guild.id, "music.volume.noPlayer", { e: client.emoji.cross }));
 
           const errorContainer = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -204,7 +203,7 @@ module.exports = {
         console.error("Volume control error:", error);
 
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} An error occurred while adjusting volume.**`);
+          .setContent(client.t(message.guild.id, "music.volume.error", { e: client.emoji.cross }));
 
         const errorContainer = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -223,8 +222,8 @@ module.exports = {
 
         const volumeDisplay = new TextDisplayBuilder()
           .setContent(
-            `**Volume !**\n` +
-            `${client.emoji.blank}${client.emoji.wickarrow} **Current Volume : \`${finalVolume}%\`**`
+            client.t(message.guild.id, "music.volume.header") +
+            client.t(message.guild.id, "music.volume.current", { blank: client.emoji.blank, arrow: client.emoji.wickarrow, value: finalVolume })
           );
 
         const finalContainer = new ContainerBuilder()

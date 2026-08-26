@@ -36,7 +36,7 @@ module.exports = {
   async slashExecute(interaction, client) {
     const player = client.manager.players.get(interaction.guild.id);
     if (!player.queue.current) {
-      const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.warn} Play a song first.**`);
+      const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.playFirst", { e: client.emoji.warn }));
       const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
       return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
     }
@@ -57,7 +57,7 @@ module.exports = {
     }
 
     if (!time || isNaN(time)) {
-      const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.warn} Invalid time format. Examples: \`40\`, \`1:30\`, \`10s\`, \`1m\`**`);
+      const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.seek.invalidTime", { e: client.emoji.warn }));
       const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
       return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
     }
@@ -68,18 +68,16 @@ module.exports = {
 
     if (time <= duration) {
       await player.shoukaku.seekTo(time);
-      const action = time > position ? "Forwarded" : "Rewound";
+      const action = client.t(interaction.guildId, time > position ? "music.seek.forwarded" : "music.seek.rewound");
       const successDisplay = new TextDisplayBuilder()
         .setContent(
-          `**Successfully ${action}!**\n` +
-          `${emoji.blank}${emoji.wickarrow} Track: [**${song.title.substring(0, 45)}**](${song.uri})\n` +
-          `${emoji.blank}${emoji.wickarrow} Position: \` ${convertTime(time)} / ${convertTime(duration)} \``
+          client.t(interaction.guildId, "music.seek.success", { action, blank: emoji.blank, arrow: emoji.wickarrow, title: song.title.substring(0, 45), uri: song.uri, position: convertTime(time), duration: convertTime(duration) })
         );
       const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
       return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
     } else {
       const warnDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} Out of Bounds**\n${emoji.blank}${emoji.wickarrow} Song Duration: \` ${convertTime(duration)} \``);
+        .setContent(client.t(interaction.guildId, "music.seek.outOfBounds", { e: client.emoji.warn, blank: emoji.blank, arrow: emoji.wickarrow, duration: convertTime(duration) }));
       const container = new ContainerBuilder().addTextDisplayComponents(warnDisplay);
       return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
     }
@@ -88,8 +86,8 @@ module.exports = {
   async execute(message, args, client) {
     if (!args.length) {
       const author = message.author || message.user;
-      const header = new TextDisplayBuilder().setContent(`${emoji.info} **Seek Command !**`);
-      const usage = new TextDisplayBuilder().setContent(`${emoji.blank}${emoji.wickarrow} **Usage:** \`seek <time>\`\n${emoji.blank}${emoji.wickarrow} **Example:** \`seek 1:30\``);
+      const header = new TextDisplayBuilder().setContent(client.t(message.guild.id, "music.seek.header", { e: emoji.info }));
+      const usage = new TextDisplayBuilder().setContent(client.t(message.guild.id, "music.seek.usage", { blank: emoji.blank, arrow: emoji.wickarrow }));
       const container = new ContainerBuilder()
         .addTextDisplayComponents(header)
         .addSeparatorComponents(new SeparatorBuilder())
@@ -104,7 +102,7 @@ module.exports = {
 
     if (!player.queue.current) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} Play a song first.**`);
+        .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -132,7 +130,7 @@ module.exports = {
 
     if (!time || isNaN(time)) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} Invalid time format. Examples: \`40\`, \`1:30\`, \`10s\`, \`1m\`**`);
+        .setContent(client.t(message.guild.id, "music.seek.invalidTime", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -149,13 +147,11 @@ module.exports = {
 
     if (time <= duration) {
       await player.shoukaku.seekTo(time);
-      const action = time > position ? "Forwarded" : "Rewound";
+      const action = client.t(message.guild.id, time > position ? "music.seek.forwarded" : "music.seek.rewound");
 
       const successDisplay = new TextDisplayBuilder()
         .setContent(
-          `**Successfully ${action}!**\n` +
-          `${emoji.blank}${emoji.wickarrow} Track: [**${song.title.substring(0, 45)}**](${song.uri})\n` +
-          `${emoji.blank}${emoji.wickarrow} Position: \` ${convertTime(time)} / ${convertTime(duration)} \``
+          client.t(message.guild.id, "music.seek.success", { action, blank: emoji.blank, arrow: emoji.wickarrow, title: song.title.substring(0, 45), uri: song.uri, position: convertTime(time), duration: convertTime(duration) })
         );
 
       const container = new ContainerBuilder()

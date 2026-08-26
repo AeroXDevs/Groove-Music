@@ -18,7 +18,7 @@ module.exports = {
         const display = new TextDisplayBuilder()
             .setContent(
                 `**Groove's Users !**\n` +
-                `${emoji.blank}${emoji.wickarrow} Total of **__${totalUsers}__** users in **__${totalServers}__** servers`
+                client.t(message.guild.id, "info.totals", { blank: emoji.blank, arrow: emoji.wickarrow, users: totalUsers, servers: totalServers })
             );
 
         const container = new ContainerBuilder()

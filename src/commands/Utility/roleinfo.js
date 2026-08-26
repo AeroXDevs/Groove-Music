@@ -56,7 +56,7 @@ module.exports = {
         }
 
         if (!role) {
-            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Could not find that role.**`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.roleNotFound", { e: emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             const options = { components: [container], flags: MessageFlags.IsComponentsV2 };
             return isSlash ? context.editReply(options) : context.reply(options);
@@ -70,12 +70,12 @@ module.exports = {
             container.addSeparatorComponents(new SeparatorBuilder());
 
             const generalContent =
-                `${emoji.hastag} **__General__**\n` +
-                `> **Name :** ${role.name}\n` +
-                `> **ID :** ${role.id}\n` +
-                `> **Color :**  ${role.hexColor.toUpperCase()}\n` +
-                `> **Position :** ${role.position}\n` +
-                `> **Created :** <t:${createdAt}:R>`;
+                `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.general")}__**\n` +
+                `> **${client.t(context.guild.id, "ui.label.name")} :** ${role.name}\n` +
+                `> **${client.t(context.guild.id, "ui.label.id")} :** ${role.id}\n` +
+                `> **${client.t(context.guild.id, "ui.label.color")} :**  ${role.hexColor.toUpperCase()}\n` +
+                `> **${client.t(context.guild.id, "ui.label.position")} :** ${role.position}\n` +
+                `> **${client.t(context.guild.id, "ui.label.created")} :** <t:${createdAt}:R>`;
 
             const roleIcon = role.iconURL({ size: 256 });
             if (roleIcon) {
@@ -88,11 +88,11 @@ module.exports = {
             }
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                `${emoji.hastag} **__Settings__**\n` +
-                `> **Hoisted :** ${role.hoist ? "Yes" : "No"}\n` +
-                `> **Mentionable :** ${role.mentionable ? "Yes" : "No"}\n` +
-                `> **Managed :** ${role.managed ? "Yes" : "No"}\n` +
-                `> **Members :** ${role.members.size}`
+                `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.settings")}__**\n` +
+                `> **${client.t(context.guild.id, "ui.label.hoisted")} :** ${role.hoist ? "Yes" : "No"}\n` +
+                `> **${client.t(context.guild.id, "ui.label.mentionable")} :** ${role.mentionable ? "Yes" : "No"}\n` +
+                `> **${client.t(context.guild.id, "ui.label.managed")} :** ${role.managed ? "Yes" : "No"}\n` +
+                `> **${client.t(context.guild.id, "ui.label.members")} :** ${role.members.size}`
             ));
 
             const keyPermissions = [
@@ -116,7 +116,7 @@ module.exports = {
             if (rolePerms.length > 0) {
                 const permsDisplay = rolePerms.map(p => `**${p}**`).join(", ");
                 container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                    `${emoji.hastag} **__Key Perms__**\n` +
+                    `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.keyPerms")}__**\n` +
                     `> ${permsDisplay}`
                 ));
             }
@@ -132,7 +132,7 @@ module.exports = {
 
         } catch (error) {
             console.error("Error in roleinfo command:", error);
-            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.warn} An error occurred while fetching role information.`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.roleError", { e: emoji.warn }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             const errOptions = { components: [container], flags: MessageFlags.IsComponentsV2 };
             if (isSlash) return context.editReply(errOptions);

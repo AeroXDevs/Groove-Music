@@ -77,15 +77,15 @@ function getCleanThumbnail(thumbnailUrl) {
   return thumbnailUrl;
 }
 
-function buildNowPlayingContainer(client, track, paused) {
+function buildNowPlayingContainer(client, guildId, track, paused) {
   const titleDisplay = new TextDisplayBuilder()
     .setContent(`### [${truncateTitle(track.title)}](${track.uri || track.url})`);
 
   const infoDisplay = new TextDisplayBuilder()
     .setContent(
-      `> - **Author:** [${cleanAuthorName(track.author)}](${track.uri || track.url})\n` +
-      `> - **Duration:** \`${formatDuration(track.length || track.duration || 0)}\`\n` +
-      `> - **Requester:** [${track.requester?.username}](https://discord.com/users/${track.requester?.id})`
+client.t(guildId, "player.card.author", { author: cleanAuthorName(track.author), uri: track.uri || track.url }) + "\n" +
+      client.t(guildId, "player.card.duration", { duration: formatDuration(track.length || track.duration || 0) }) + "\n" +
+      client.t(guildId, "player.card.requester", { user: track.requester?.username, id: track.requester?.id })
     );
 
   const section = new SectionBuilder()
@@ -116,7 +116,7 @@ async function sendNowPlaying(client, player, track) {
       return null;
     }
 
-    const container = buildNowPlayingContainer(client, track, player.paused || false);
+    const container = buildNowPlayingContainer(client, player.guildId, track, player.paused || false);
 
     try {
       const message = await channel.send({
@@ -146,7 +146,7 @@ async function updateNowPlayingButtons(client, player, paused) {
       return;
     }
 
-    const container = buildNowPlayingContainer(client, track, paused);
+    const container = buildNowPlayingContainer(client, player.guildId, track, paused);
 
     await nowPlayingMsg.edit({
       components: [container],
@@ -209,7 +209,7 @@ async function handleButtonInteraction(interaction, player, client) {
 
         if (history.length === 0) {
           const display = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.info} No previous track found in history.**`);
+            .setContent(client.t(player.guildId, "player.noPrevious", { e: client.emoji.info }));
           const container = new ContainerBuilder()
             .addTextDisplayComponents(display);
           return interaction.reply({
@@ -250,7 +250,7 @@ async function handleButtonInteraction(interaction, player, client) {
 
           if (alreadyLiked) {
             const display = new TextDisplayBuilder()
-              .setContent(`**${client.emoji.info} \`${currentLikeTrack.title}\` is already in your favourite list.**`);
+              .setContent(client.t(player.guildId, "player.alreadyFav", { e: client.emoji.info, title: currentLikeTrack.title }));
             const container = new ContainerBuilder()
               .addTextDisplayComponents(display);
             return interaction.reply({
@@ -270,7 +270,7 @@ async function handleButtonInteraction(interaction, player, client) {
             client.db.liked.set(interaction.user.id, songs);
 
             const display = new TextDisplayBuilder()
-              .setContent(`**${client.emoji.check} Added \`${currentLikeTrack.title}\` to your favourite list.**`);
+              .setContent(client.t(player.guildId, "player.addedFav", { e: client.emoji.check, title: currentLikeTrack.title }));
             const container = new ContainerBuilder()
               .addTextDisplayComponents(display);
             return interaction.reply({
@@ -281,7 +281,7 @@ async function handleButtonInteraction(interaction, player, client) {
         } catch (dbError) {
           console.error('[Like Button] Error:', dbError);
           const display = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} Failed to save song to favorites. Please try again.**`);
+            .setContent(client.t(player.guildId, "player.favFailed", { e: client.emoji.cross }));
           const container = new ContainerBuilder()
             .addTextDisplayComponents(display);
           return interaction.reply({
@@ -294,7 +294,7 @@ async function handleButtonInteraction(interaction, player, client) {
 
       default:
         const unknownDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} Unknown button interaction.**`);
+          .setContent(client.t(player.guildId, "player.unknownButton", { e: client.emoji.cross }));
 
         const unknownContainer = new ContainerBuilder()
           .addTextDisplayComponents(unknownDisplay);
@@ -307,7 +307,7 @@ async function handleButtonInteraction(interaction, player, client) {
     }
   } catch (error) {
     const display = new TextDisplayBuilder()
-      .setContent(`**${client.emoji.cross} An error occurred while processing your request.**`);
+      .setContent(client.t(player.guildId, "player.requestError", { e: client.emoji.cross }));
     const container = new ContainerBuilder()
       .addTextDisplayComponents(display);
     if (!interaction.replied && !interaction.deferred) {
@@ -342,7 +342,7 @@ function setupMessageCollector(client, player, message) {
       try {
         if (!interaction.member?.voice?.channelId || interaction.member.voice.channelId !== player.voiceId) {
           const display = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.warn} You must be in the same voice channel as the bot.**`);
+            .setContent(client.t(player.guildId, "player.notSameVoice", { e: client.emoji.warn }));
           const container = new ContainerBuilder()
             .addTextDisplayComponents(display);
           return interaction.reply({
@@ -356,7 +356,7 @@ function setupMessageCollector(client, player, message) {
       } catch (interactionError) {
         if (!interaction.replied && !interaction.deferred) {
           const display = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} An error occurred while processing your request.**`);
+            .setContent(client.t(player.guildId, "player.requestError", { e: client.emoji.cross }));
           const container = new ContainerBuilder()
             .addTextDisplayComponents(display);
           await interaction.reply({
@@ -386,7 +386,7 @@ async function updateVoiceStatus(client, player, track) {
 
     await client.rest
       .put(`/channels/${player.voiceId}/voice-status`, {
-        body: { status: `${client.emoji.dance} Playing **${track.title}**` },
+        body: { status: client.t(player.guildId, "player.voiceStatus", { e: client.emoji.dance, title: track.title }) },
       })
       .catch((err) => {
         console.error('[VoiceStatus] Failed to update:', err.message || err);

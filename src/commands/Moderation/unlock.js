@@ -29,14 +29,14 @@ module.exports = {
     async slashExecute(interaction, client) {
         const isOwner = client.owners.includes(interaction.user.id);
         if (!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Manage Channels\` permissions.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.needPermShort", { e: emoji.warn, permission: "Manage Channels" }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         const channel = interaction.options.getChannel('channel') || interaction.channel;
 
         if (channel.type !== ChannelType.GuildText) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a valid text channel.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.needTextChannel", { e: emoji.warn }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -44,7 +44,7 @@ module.exports = {
             const isUnlocked = channel.permissionsFor(interaction.guild.roles.everyone).has(PermissionFlagsBits.SendMessages);
 
             if (isUnlocked) {
-                const display = new TextDisplayBuilder().setContent(`${emoji.warn} ${channel} is already unlocked.`);
+                const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.chan.alreadyUnlocked", { e: emoji.warn, channel }));
                 return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
             }
 
@@ -52,10 +52,10 @@ module.exports = {
                 SendMessages: null
             });
 
-            const display = new TextDisplayBuilder().setContent(`${emoji.check} ${channel} has been unlocked.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.chan.unlocked", { e: emoji.check, channel }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         } catch (error) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} Failed to unlock channel: ${error.message}`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.failed.unlock", { e: emoji.warn, message: error.message }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
     },
@@ -63,7 +63,7 @@ module.exports = {
     async execute(message, args, client) {
         const isOwner = client.owners.includes(message.author.id);
         if (!message.member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Manage Channels\` permissions.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.needPermShort", { e: emoji.warn, permission: "Manage Channels" }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -72,7 +72,7 @@ module.exports = {
             const channelId = args[0].replace(/[<#>]/g, '');
             channel = message.guild.channels.cache.get(channelId);
             if (!channel || channel.type !== ChannelType.GuildText) {
-                const display = new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a valid text channel.`);
+                const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.needTextChannel", { e: emoji.warn }));
                 return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
             }
         }
@@ -81,7 +81,7 @@ module.exports = {
             const isUnlocked = channel.permissionsFor(message.guild.roles.everyone).has(PermissionFlagsBits.SendMessages);
 
             if (isUnlocked) {
-                const display = new TextDisplayBuilder().setContent(`${emoji.warn} ${channel} is already unlocked.`);
+                const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.chan.alreadyUnlocked", { e: emoji.warn, channel }));
                 return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
             }
 
@@ -89,10 +89,10 @@ module.exports = {
                 SendMessages: null
             });
 
-            const display = new TextDisplayBuilder().setContent(`${emoji.check} ${channel} has been unlocked.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.chan.unlocked", { e: emoji.check, channel }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         } catch (error) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} Failed to unlock channel: ${error.message}`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.failed.unlock", { e: emoji.warn, message: error.message }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
     }

@@ -61,7 +61,7 @@ module.exports = {
                     targetUser = await message.guild.members.fetch(userMention).then(m => m.user);
                 } catch (error) {
                     const display = new TextDisplayBuilder()
-                        .setContent(`${client.emoji.warn} **Could not find that user.**`);
+                        .setContent(client.t(message.guild.id, "trk.userNotFound", { e: client.emoji.warn }));
 
                     return message.reply({
                         components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -73,7 +73,7 @@ module.exports = {
 
             if (targetUser.bot) {
                 const display = new TextDisplayBuilder()
-                    .setContent(`${client.emoji.warn} Bots don't have inviters.`);
+                    .setContent(client.t(message.guild.id, "trk.botsNoInviter", { e: client.emoji.warn }));
 
                 return message.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -86,7 +86,7 @@ module.exports = {
 
             if (!inviteRecord || !inviteRecord.inviterId || inviteRecord.isLeft === 1) {
                 const display = new TextDisplayBuilder()
-                    .setContent(`${client.emoji.warn} **No invite record found for ${targetUser.tag}.**`);
+                    .setContent(client.t(message.guild.id, "trk.noRecordTag", { e: client.emoji.warn, user: targetUser.tag }));
 
                 return message.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -100,7 +100,7 @@ module.exports = {
                 inviter = await client.users.fetch(inviteRecord.inviterId);
             } catch (error) {
                 const display = new TextDisplayBuilder()
-                    .setContent(`${client.emoji.warn} **Could not fetch inviter information.**`);
+                    .setContent(client.t(message.guild.id, "trk.noInviter", { e: client.emoji.warn }));
 
                 return message.reply({
                     components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -141,7 +141,7 @@ module.exports = {
             console.error('Error in inviter command:', error);
 
             const display = new TextDisplayBuilder()
-                .setContent(`${client.emoji.warn} **An error occurred while fetching inviter information.**`);
+                .setContent(client.t(message.guild.id, "trk.errInviter", { e: client.emoji.warn }));
 
             return message.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],

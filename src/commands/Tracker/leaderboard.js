@@ -109,7 +109,7 @@ module.exports = {
 
             if (!leaderboard || leaderboard.length === 0) {
                 const infoDisplay = new TextDisplayBuilder()
-                    .setContent(`${client.emoji.info} **No invite data found for this server!**`);
+                    .setContent(client.t(message.guild.id, "trk.noGuildData", { e: client.emoji.info }));
 
                 const container = new ContainerBuilder()
                     .addTextDisplayComponents(infoDisplay);
@@ -232,7 +232,7 @@ module.exports = {
             console.error('Error in leaderboard command:', error);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`${client.emoji.cross} **An error occurred while fetching the leaderboard.**`);
+                .setContent(client.t(message.guild.id, "trk.errLeaderboard", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);

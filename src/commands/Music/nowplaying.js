@@ -58,7 +58,7 @@ module.exports = {
 
     if (!player.queue.current) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} Nothing is playing right now.**`);
+        .setContent(client.t(message.guild.id, "music.nothingPlaying", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -89,7 +89,7 @@ module.exports = {
 
     const createContainer = (prog) => {
       const headerDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Now playing - ${track.title}**`);
+        .setContent(client.t(message.guild.id, "music.nowPlayingShort", { e: client.emoji.check, title: track.title }));
 
       const separator1 = new SeparatorBuilder();
 

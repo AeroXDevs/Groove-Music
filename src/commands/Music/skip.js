@@ -53,7 +53,7 @@ module.exports = {
 
     if (!player.queue.current) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} Play a song first.**`);
+        .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -69,7 +69,7 @@ module.exports = {
 
     const successDisplay = new TextDisplayBuilder()
       .setContent(
-        `**${client.emoji.check} Skipped [${currentTrack.title}](${currentTrack.uri})**`
+        client.t(message.guild.id, "music.skipped", { e: client.emoji.check, title: currentTrack.title, uri: currentTrack.uri })
       );
 
     const container = new ContainerBuilder()

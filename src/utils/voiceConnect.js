@@ -30,7 +30,7 @@ module.exports = {
 
             if (player.connected && player.voiceId !== message.member.voice.channel.id) {
                 if (is247) {
-                    throw new Error('Bot is in 24/7 mode. Please join the bot\'s voice channel');
+                    throw new Error(client.t(message.guild.id, "vcx.need247Channel"));
                 } else {
                     await player.setVoiceChannel(message.member.voice.channel.id);
                     return true;

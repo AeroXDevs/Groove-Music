@@ -24,14 +24,11 @@ module.exports = {
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} Badge Command`));
             container.addSeparatorComponents(new SeparatorBuilder());
 
-            const helpContent = `> ** \`${prefix}badge add <user> <name>\` **\n╰ Adds a badge or sets a primary rank.\n\n` +
-                `> ** \`${prefix}badge remove <user> <name>\` **\n╰ Removes a badge or resets a primary rank.\n\n` +
-                `> ** \`${prefix}badge show <user>\` **\n╰ Displays all badges and ranks for a user.\n\n` +
-                `> ** \`${prefix}badge list\` **\n╰ Lists all users with any special status.`;
+            const helpContent = client.t(message.guild.id, "own.badge.help", { prefix });
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(helpContent));
             container.addSeparatorComponents(new SeparatorBuilder());
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName || user.username}`));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "own.requestedBy", { user: user.displayName || user.username })));
 
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -79,13 +76,13 @@ module.exports = {
 
         const targetId = args[1]?.replace(/[<@!>]/g, '');
         if (!targetId) {
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a user.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.needUser", { e: emoji.warn })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
         const targetUser = await client.users.fetch(targetId).catch(() => null);
         if (!targetUser) {
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} User not found.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.userNotFound", { e: emoji.warn })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -106,14 +103,14 @@ module.exports = {
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
             container.addSeparatorComponents(new SeparatorBuilder());
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName || user.username}`));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "own.requestedBy", { user: user.displayName || user.username })));
 
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
         const badgeName = args.slice(2).join(' ');
         if (!badgeName) {
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a name.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.needName", { e: emoji.warn })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -125,24 +122,24 @@ module.exports = {
 
         if (action === 'add') {
             if (profile.badges.includes(badgeName)) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} **${targetUser.username}** already has the **${badgeName}** badge.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.hasBadge", { e: emoji.warn, user: targetUser.username, badge: badgeName })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
             profile.badges.push(badgeName);
             client.db.profiles.set(targetUser.id, profile);
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Success! Added badge **${badgeName}** for **${targetUser.username}**.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.badgeAdded", { e: emoji.check, badge: badgeName, user: targetUser.username })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
 
         } else if (action === 'remove') {
             const idx = profile.badges.indexOf(badgeName);
             if (idx === -1) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} **${targetUser.username}** does not have the **${badgeName}** badge.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.noBadge", { e: emoji.warn, user: targetUser.username, badge: badgeName })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
 
             profile.badges.splice(idx, 1);
             client.db.profiles.set(targetUser.id, profile);
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Success! Removed badge **${badgeName}** from **${targetUser.username}**.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.badgeRemoved", { e: emoji.check, badge: badgeName, user: targetUser.username })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
     }

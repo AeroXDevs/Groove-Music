@@ -77,7 +77,7 @@ module.exports = {
 
         const usage = (cmd, use, desc, aliases) => {
             const container = new ContainerBuilder();
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`\`\`\` <> : Required | [] : Optional\`\`\``));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "role.argHint")));
             container.addSeparatorComponents(new SeparatorBuilder());
 
             const content = `> **\`${usedPrefix}role ${cmd} ${use}\`**\n\n` +
@@ -86,7 +86,7 @@ module.exports = {
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
             container.addSeparatorComponents(new SeparatorBuilder());
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${author.displayName}`));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "role.requestedBy", { user: author.displayName })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         };
 
@@ -94,39 +94,39 @@ module.exports = {
             case 'add': {
                 const target = await getMember(subArgs[0]);
                 const role = getRole(subArgs.slice(1).join(' '));
-                if (!target || !role) return usage('add', '<user> <role>', 'Adds a role to a user.', 'None');
+                if (!target || !role) return usage('add', '<user> <role>', client.t(message.guild.id, "role.rAddsARoleTo"), 'None');
 
-                if (target.roles.cache.has(role.id)) return error('User already has this role.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (target.roles.cache.has(role.id)) return error(client.t(message.guild.id, "role.rUserAlreadyHasThis"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 await target.roles.add(role).catch(err => {
-                    return error(`Failed to add role: ${err.message}`);
+                    return error(client.t(message.guild.id, "role.addFailed", { message: err.message }));
                 });
-                return success(`Added ${role} to ${target}.`);
+                return success(client.t(message.guild.id, "role.added", { role, target }));
             }
             case 'remove': {
                 const target = await getMember(subArgs[0]);
                 const role = getRole(subArgs.slice(1).join(' '));
-                if (!target || !role) return usage('remove', '<user> <role>', 'Removes a role from a user.', 'None');
+                if (!target || !role) return usage('remove', '<user> <role>', client.t(message.guild.id, "role.rRemovesARoleFrom"), 'None');
 
-                if (!target.roles.cache.has(role.id)) return error('User does not have this role.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (!target.roles.cache.has(role.id)) return error(client.t(message.guild.id, "role.rUserDoesNotHave"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 await target.roles.remove(role).catch(err => {
-                    return error(`Failed to remove role: ${err.message}`);
+                    return error(client.t(message.guild.id, "role.removeFailed", { message: err.message }));
                 });
-                return success(`Removed ${role} from ${target}.`);
+                return success(client.t(message.guild.id, "role.removed", { role, target }));
             }
             case 'all':
             case 'bots':
             case 'humans': {
                 const role = getRole(subArgs.join(' '));
                 if (!role) return usage(subcommand, '<role>', `Adds a role to all ${subcommand === 'all' ? 'members' : subcommand}.`, 'None');
-                if (activeTasks.has(guild.id)) return error('An active role task is already running in this server.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (activeTasks.has(guild.id)) return error(client.t(message.guild.id, "role.rAnActiveRoleTask"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 const members = (await guild.members.fetch()).filter(m => {
                     if (subcommand === 'bots') return m.user.bot;
@@ -134,17 +134,17 @@ module.exports = {
                     return true;
                 }).filter(m => !m.roles.cache.has(role.id));
 
-                if (members.size === 0) return error('No members found to add this role to.');
+                if (members.size === 0) return error(client.t(message.guild.id, "role.rNoMembersFoundTo"));
 
                 const estimatedTime = members.size * 1;
                 const confirmContainer = new ContainerBuilder();
-                confirmContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(`**Do you want to continue ?**`));
+                confirmContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.continue")));
                 confirmContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(
                     `~ \` ${members.size} Users \` in \` ${estimatedTime}s \``
                 ));
 
                 const confirmButtons = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder().setCustomId('confirm_yes').setLabel('Yes').setStyle(ButtonStyle.Success),
+                    new ButtonBuilder().setCustomId('confirm_yes').setLabel(client.t(message.guild.id, "buttons.yes")).setStyle(ButtonStyle.Success),
                     new ButtonBuilder().setCustomId('confirm_no').setLabel('No').setStyle(ButtonStyle.Danger)
                 );
 
@@ -163,7 +163,7 @@ module.exports = {
 
                 collector.on('collect', async (int) => {
                     if (int.customId === 'confirm_no') {
-                        const cancelDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Operation cancelled.**`);
+                        const cancelDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.operationCancelled", { e: emoji.cross }));
                         const cancelContainer = new ContainerBuilder().addTextDisplayComponents(cancelDisplay);
                         return int.update({
                             components: [cancelContainer],
@@ -176,7 +176,7 @@ module.exports = {
                         try {
                             activeTasks.set(guild.id, true);
 
-                            const progressDisplay = new TextDisplayBuilder().setContent(`${emoji.load} Adding ${role} to **${members.size}** members...`);
+                            const progressDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.adding", { e: emoji.load, role, count: members.size }));
                             const progressContainer = new ContainerBuilder().addTextDisplayComponents(progressDisplay);
 
                             await int.update({
@@ -205,11 +205,9 @@ module.exports = {
                             const timeTaken = ((endTime - startTime) / 1000).toFixed(2);
 
                             const endContainer = new ContainerBuilder();
-                            endContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### Mass Role task completed!`));
+                            endContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.massTitle")));
                             endContainer.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                                `> Role ${role}'s mass assignment has been successfully completed in **\` ${timeTaken}s \`**!\n\n` +
-                                `> ~ ${emoji.check} **Successful Users :** \` ${successCount} \`\n` +
-                                `> ~ ${emoji.cross} **Unsuccessful Users :** \` ${failCount} \``
+                                client.t(message.guild.id, "mod.role.massBody", { role, time: timeTaken, check: emoji.check, cross: emoji.cross, ok: successCount, fail: failCount })
                             ));
 
                             return int.editReply({
@@ -219,7 +217,7 @@ module.exports = {
                             }).catch(() => { });
                         } catch (err) {
                             activeTasks.delete(guild.id);
-                            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Error:** ${err.message}`);
+                            const errorDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.error", { e: emoji.cross, message: err.message }));
                             const errorContainer = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
                             return int.editReply({
                                 components: [errorContainer],
@@ -232,15 +230,15 @@ module.exports = {
 
                 collector.on('end', (collected, reason) => {
                     if (reason === 'time' && !activeTasks.has(guild.id)) {
-                        confirmMsg.edit({ content: `${emoji.cross} **Task timed out.**`, components: [] }).catch(() => { });
+                        confirmMsg.edit({ content: client.t(message.guild.id, "mod.taskTimedOut", { e: emoji.cross }), components: [] }).catch(() => { });
                     }
                 });
                 return;
             }
             case 'taskcancel': {
-                if (!activeTasks.has(guild.id)) return error('No active role task found.');
+                if (!activeTasks.has(guild.id)) return error(client.t(message.guild.id, "role.rNoActiveRoleTask"));
                 activeTasks.delete(guild.id);
-                return success('Successfully cancelled the active role task.');
+                return success(client.t(message.guild.id, "mod.role.cancelled"));
             }
             case 'create': {
                 let name = subArgs.join(' ') || 'New Role';
@@ -250,45 +248,45 @@ module.exports = {
                 let selectedPerms = [];
 
                 const permsList = [
-                    { label: 'Read Messages', value: 'ViewChannel', desc: 'Basic access to read.' },
-                    { label: 'Send Messages', value: 'SendMessages', desc: 'Allow chatting in channels.' },
-                    { label: 'Embed Links', value: 'EmbedLinks', desc: 'Allow sending embeds.' },
-                    { label: 'Attach Files', value: 'AttachFiles', desc: 'Allow uploading files.' },
-                    { label: 'Add Reactions', value: 'AddReactions', desc: 'Allow reacting with emojis.' },
-                    { label: 'Use External Emojis', value: 'UseExternalEmojis', desc: 'Use emojis from other servers.' },
-                    { label: 'Connect (Voice)', value: 'Connect', desc: 'Join voice channels.' },
-                    { label: 'Speak (Voice)', value: 'Speak', desc: 'Speak in voice channels.' },
-                    { label: 'Administrator', value: 'Administrator', desc: 'Full control. Dangerous!' },
-                    { label: 'Manage Server', value: 'ManageGuild', desc: 'Edit guild settings/emojis.' },
-                    { label: 'Manage Roles', value: 'ManageRoles', desc: 'Edit or create roles.' },
+                    { label: 'Read Messages', value: 'ViewChannel', desc: client.t(message.guild.id, "desc.basicAccessRead") },
+                    { label: 'Send Messages', value: 'SendMessages', desc: client.t(message.guild.id, "desc.allowChattingChannels") },
+                    { label: 'Embed Links', value: 'EmbedLinks', desc: client.t(message.guild.id, "desc.allowSendingEmbeds") },
+                    { label: 'Attach Files', value: 'AttachFiles', desc: client.t(message.guild.id, "desc.allowUploadingFiles") },
+                    { label: 'Add Reactions', value: 'AddReactions', desc: client.t(message.guild.id, "desc.allowReactingEmojis") },
+                    { label: 'Use External Emojis', value: 'UseExternalEmojis', desc: client.t(message.guild.id, "desc.useEmojisOtherServers") },
+                    { label: 'Connect (Voice)', value: 'Connect', desc: client.t(message.guild.id, "desc.joinVoiceChannels") },
+                    { label: 'Speak (Voice)', value: 'Speak', desc: client.t(message.guild.id, "desc.speakVoiceChannels") },
+                    { label: 'Administrator', value: 'Administrator', desc: client.t(message.guild.id, "desc.fullControlDangerous") },
+                    { label: 'Manage Server', value: 'ManageGuild', desc: client.t(message.guild.id, "desc.editGuildSettingsemojis") },
+                    { label: 'Manage Roles', value: 'ManageRoles', desc: client.t(message.guild.id, "desc.editCreateRoles") },
                     { label: 'Manage Messages', value: 'ManageMessages', desc: 'Delete anyone\'s messages.' },
-                    { label: 'Kick Members', value: 'KickMembers', desc: 'Kick bad members.' },
-                    { label: 'Ban Members', value: 'BanMembers', desc: 'Ban bad members.' },
-                    { label: 'Mute Members', value: 'MuteMembers', desc: 'Mute people in voice.' },
-                    { label: 'Move Members', value: 'MoveMembers', desc: 'Move people in voice.' }
+                    { label: 'Kick Members', value: 'KickMembers', desc: client.t(message.guild.id, "desc.kickBadMembers") },
+                    { label: 'Ban Members', value: 'BanMembers', desc: client.t(message.guild.id, "desc.banBadMembers") },
+                    { label: 'Mute Members', value: 'MuteMembers', desc: client.t(message.guild.id, "desc.mutePeopleVoice") },
+                    { label: 'Move Members', value: 'MoveMembers', desc: client.t(message.guild.id, "desc.movePeopleVoice") }
                 ];
 
                 const createSetupUI = () => {
                     const container = new ContainerBuilder();
-                    container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} Role Creation Wizard`));
+                    container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "role.createWizard", { e: emoji.info })));
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                        `> **Name :** \` ${name} \` \n` +
-                        `> **Color :** \` ${color === '#000000' || !color ? 'Colourless' : color.toUpperCase()} \` \n` +
-                        `> **Hoisted :** \` ${hoist ? 'Yes' : 'No'} \` \n` +
-                        `> **Mentionable :** \` ${mentionable ? 'Yes' : 'No'} \` \n` +
-                        `> **Permissions :** ${selectedPerms.length > 0 ? selectedPerms.map(p => `\` ${p} \``).join(', ') : '\` Default \`'}`
+                        client.t(message.guild.id, "role.wiz.name") + `\` ${name} \` \n` +
+                        client.t(message.guild.id, "role.wiz.color") + `\` ${color === '#000000' || !color ? client.t(message.guild.id, "role.rColourless") : color.toUpperCase()} \` \n` +
+                        client.t(message.guild.id, "role.wiz.hoisted") + `\` ${hoist ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
+                        client.t(message.guild.id, "role.wiz.mentionable") + `\` ${mentionable ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
+                        client.t(message.guild.id, "role.wiz.permissions") + `${selectedPerms.length > 0 ? selectedPerms.map(p => `\` ${p} \``).join(', ') : '\` Default \`'}`
                     ));
 
                     const buttons = new ActionRowBuilder().addComponents(
-                        new ButtonBuilder().setCustomId('edit_form').setLabel('Edit Role Form').setStyle(ButtonStyle.Secondary),
-                        new ButtonBuilder().setCustomId('confirm_create').setLabel('Finish & Create').setStyle(ButtonStyle.Primary),
-                        new ButtonBuilder().setCustomId('cancel_create').setLabel('Cancel').setStyle(ButtonStyle.Danger)
+                        new ButtonBuilder().setCustomId('edit_form').setLabel(client.t(message.guild.id, "role.rEditRoleForm")).setStyle(ButtonStyle.Secondary),
+                        new ButtonBuilder().setCustomId('confirm_create').setLabel(client.t(message.guild.id, "role.rFinishCreate")).setStyle(ButtonStyle.Primary),
+                        new ButtonBuilder().setCustomId('cancel_create').setLabel(client.t(message.guild.id, "buttons.cancel")).setStyle(ButtonStyle.Danger)
                     );
 
                     const select = new ActionRowBuilder().addComponents(
                         new StringSelectMenuBuilder()
                             .setCustomId('select_perms')
-                            .setPlaceholder('Select Permissions...')
+                            .setPlaceholder(client.t(message.guild.id, "mod.role.permPlaceholder"))
                             .setMinValues(0)
                             .setMaxValues(permsList.length)
                             .addOptions(permsList.map(p => ({
@@ -313,18 +311,18 @@ module.exports = {
                     if (i.customId === 'edit_form') {
                         const modal = new ModalBuilder()
                             .setCustomId('role_modal')
-                            .setTitle('Role Details Form');
+                            .setTitle(client.t(message.guild.id, "role.rRoleDetailsForm"));
 
                         const nameInput = new TextInputBuilder()
                             .setCustomId('role_form_name')
-                            .setLabel('Role Name')
+                            .setLabel(client.t(message.guild.id, "role.rRoleName"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(name)
                             .setRequired(true);
 
                         const colorInput = new TextInputBuilder()
                             .setCustomId('role_form_color')
-                            .setLabel('Hex Color (Empty for Colourless)')
+                            .setLabel(client.t(message.guild.id, "role.rHexColorEmptyFor"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(color === '#000000' ? '' : color)
                             .setPlaceholder('e.g. #ff0000')
@@ -332,17 +330,17 @@ module.exports = {
 
                         const hoistInput = new TextInputBuilder()
                             .setCustomId('role_form_hoist')
-                            .setLabel('Hoisted? (Yes/No)')
+                            .setLabel(client.t(message.guild.id, "mod.role.hoisted"))
                             .setStyle(TextInputStyle.Short)
-                            .setValue(hoist ? 'Yes' : 'No')
+                            .setValue(hoist ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setPlaceholder('e.g. Yes')
                             .setRequired(true);
 
                         const mentionInput = new TextInputBuilder()
                             .setCustomId('role_form_mention')
-                            .setLabel('Mentionable? (Yes/No)')
+                            .setLabel(client.t(message.guild.id, "mod.role.mentionable"))
                             .setStyle(TextInputStyle.Short)
-                            .setValue(mentionable ? 'Yes' : 'No')
+                            .setValue(mentionable ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setPlaceholder('e.g. No')
                             .setRequired(true);
 
@@ -380,7 +378,7 @@ module.exports = {
 
                     if (i.customId === 'cancel_create') {
                         collector.stop();
-                        const cancelDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Role creation cancelled.**`);
+                        const cancelDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.creationCancelled", { e: emoji.cross }));
                         return i.update({
                             components: [new ContainerBuilder().addTextDisplayComponents(cancelDisplay)],
                             flags: MessageFlags.IsComponentsV2,
@@ -403,15 +401,15 @@ module.exports = {
                                 hoist,
                                 mentionable,
                                 permissions: permsBitfield,
-                                reason: `Role created by ${message.author.tag} via advance wizard`
+                                reason: client.t(message.guild.id, "role.auditCreate", { user: message.author.tag })
                             });
 
-                            const successDisplay = new TextDisplayBuilder().setContent(`${emoji.check} Successfully created role ${newRole}!`);
+                            const successDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.created", { e: emoji.check, role: newRole }));
                             const summary = new TextDisplayBuilder().setContent(
-                                `> **Name :** ${newRole.name}\n` +
-                                `> **Permissions :** \` ${selectedPerms.length} assigned \` \n` +
-                                `> **Hoisted :** \` ${hoist ? 'Yes' : 'No'} \` \n` +
-                                `> **Mentionable :** \` ${mentionable ? 'Yes' : 'No'} \``
+                                client.t(message.guild.id, "role.wiz.name") + `${newRole.name}\n` +
+                                client.t(message.guild.id, "role.wiz.permissions") + `\` ${selectedPerms.length} assigned \` \n` +
+                                client.t(message.guild.id, "role.wiz.hoisted") + `\` ${hoist ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
+                                client.t(message.guild.id, "role.wiz.mentionable") + `\` ${mentionable ? client.t(message.guild.id, "buttons.yes") : 'No'} \``
                             );
 
                             return i.update({
@@ -421,7 +419,7 @@ module.exports = {
                             }).catch(() => { });
                         } catch (err) {
                             return i.update({
-                                components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} **Error:** ${err.message}`))],
+                                components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.error", { e: emoji.cross, message: err.message })))],
                                 flags: MessageFlags.IsComponentsV2
                             }).catch(() => { });
                         }
@@ -430,17 +428,17 @@ module.exports = {
 
                 collector.on('end', (collected, reason) => {
                     if (reason === 'time') {
-                        msg.edit({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} **Session timed out.**`))], flags: MessageFlags.IsComponentsV2 }).catch(() => { });
+                        msg.edit({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.sessionTimedOut", { e: emoji.cross })))], flags: MessageFlags.IsComponentsV2 }).catch(() => { });
                     }
                 });
                 return;
             }
             case 'edit': {
                 const targetRole = getRole(subArgs.join(' '));
-                if (!targetRole) return usage('edit', '<role>', 'Edits an existing role using a wizard.', 'None');
+                if (!targetRole) return usage('edit', '<role>', client.t(message.guild.id, "role.rEditsAnExistingRole"), 'None');
 
-                if (targetRole.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (targetRole.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (targetRole.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (targetRole.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 let name = targetRole.name;
                 let color = targetRole.hexColor === '#000000' ? '#000000' : targetRole.hexColor;
@@ -449,22 +447,22 @@ module.exports = {
 
 
                 const permsList = [
-                    { label: 'Read Messages', value: 'ViewChannel', desc: 'Basic access to read.' },
-                    { label: 'Send Messages', value: 'SendMessages', desc: 'Allow chatting in channels.' },
-                    { label: 'Embed Links', value: 'EmbedLinks', desc: 'Allow sending embeds.' },
-                    { label: 'Attach Files', value: 'AttachFiles', desc: 'Allow uploading files.' },
-                    { label: 'Add Reactions', value: 'AddReactions', desc: 'Allow reacting with emojis.' },
-                    { label: 'Use External Emojis', value: 'UseExternalEmojis', desc: 'Use emojis from other servers.' },
-                    { label: 'Connect (Voice)', value: 'Connect', desc: 'Join voice channels.' },
-                    { label: 'Speak (Voice)', value: 'Speak', desc: 'Speak in voice channels.' },
-                    { label: 'Administrator', value: 'Administrator', desc: 'Full control. Dangerous!' },
-                    { label: 'Manage Server', value: 'ManageGuild', desc: 'Edit guild settings/emojis.' },
-                    { label: 'Manage Roles', value: 'ManageRoles', desc: 'Edit or create roles.' },
+                    { label: 'Read Messages', value: 'ViewChannel', desc: client.t(message.guild.id, "desc.basicAccessRead") },
+                    { label: 'Send Messages', value: 'SendMessages', desc: client.t(message.guild.id, "desc.allowChattingChannels") },
+                    { label: 'Embed Links', value: 'EmbedLinks', desc: client.t(message.guild.id, "desc.allowSendingEmbeds") },
+                    { label: 'Attach Files', value: 'AttachFiles', desc: client.t(message.guild.id, "desc.allowUploadingFiles") },
+                    { label: 'Add Reactions', value: 'AddReactions', desc: client.t(message.guild.id, "desc.allowReactingEmojis") },
+                    { label: 'Use External Emojis', value: 'UseExternalEmojis', desc: client.t(message.guild.id, "desc.useEmojisOtherServers") },
+                    { label: 'Connect (Voice)', value: 'Connect', desc: client.t(message.guild.id, "desc.joinVoiceChannels") },
+                    { label: 'Speak (Voice)', value: 'Speak', desc: client.t(message.guild.id, "desc.speakVoiceChannels") },
+                    { label: 'Administrator', value: 'Administrator', desc: client.t(message.guild.id, "desc.fullControlDangerous") },
+                    { label: 'Manage Server', value: 'ManageGuild', desc: client.t(message.guild.id, "desc.editGuildSettingsemojis") },
+                    { label: 'Manage Roles', value: 'ManageRoles', desc: client.t(message.guild.id, "desc.editCreateRoles") },
                     { label: 'Manage Messages', value: 'ManageMessages', desc: 'Delete anyone\'s messages.' },
-                    { label: 'Kick Members', value: 'KickMembers', desc: 'Kick bad members.' },
-                    { label: 'Ban Members', value: 'BanMembers', desc: 'Ban bad members.' },
-                    { label: 'Mute Members', value: 'MuteMembers', desc: 'Mute people in voice.' },
-                    { label: 'Move Members', value: 'MoveMembers', desc: 'Move people in voice.' }
+                    { label: 'Kick Members', value: 'KickMembers', desc: client.t(message.guild.id, "desc.kickBadMembers") },
+                    { label: 'Ban Members', value: 'BanMembers', desc: client.t(message.guild.id, "desc.banBadMembers") },
+                    { label: 'Mute Members', value: 'MuteMembers', desc: client.t(message.guild.id, "desc.mutePeopleVoice") },
+                    { label: 'Move Members', value: 'MoveMembers', desc: client.t(message.guild.id, "desc.movePeopleVoice") }
                 ];
 
                 let selectedPerms = permsList
@@ -473,25 +471,25 @@ module.exports = {
 
                 const editSetupUI = () => {
                     const container = new ContainerBuilder();
-                    container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} Role Edit Wizard: ${targetRole.name}`));
+                    container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "role.editWizard", { e: emoji.info, name: targetRole.name })));
                     container.addTextDisplayComponents(new TextDisplayBuilder().setContent(
-                        `> **Name :** \` ${name} \` \n` +
-                        `> **Color :** \` ${color === '#000000' || !color ? 'Default / Colourless' : color.toUpperCase()} \` \n` +
-                        `> **Hoisted :** \` ${hoist ? 'Yes' : 'No'} \` \n` +
-                        `> **Mentionable :** \` ${mentionable ? 'Yes' : 'No'} \` \n` +
-                        `> **Permissions :** ${selectedPerms.length > 0 ? selectedPerms.map(p => `\` ${p} \``).join(', ') : '\` Default \`'}`
+                        client.t(message.guild.id, "role.wiz.name") + `\` ${name} \` \n` +
+                        client.t(message.guild.id, "role.wiz.color") + `\` ${color === '#000000' || !color ? client.t(message.guild.id, "role.rDefaultColourless") : color.toUpperCase()} \` \n` +
+                        client.t(message.guild.id, "role.wiz.hoisted") + `\` ${hoist ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
+                        client.t(message.guild.id, "role.wiz.mentionable") + `\` ${mentionable ? client.t(message.guild.id, "buttons.yes") : 'No'} \` \n` +
+                        client.t(message.guild.id, "role.wiz.permissions") + `${selectedPerms.length > 0 ? selectedPerms.map(p => `\` ${p} \``).join(', ') : '\` Default \`'}`
                     ));
 
                     const buttons = new ActionRowBuilder().addComponents(
-                        new ButtonBuilder().setCustomId('edit_form').setLabel('Edit Details').setStyle(ButtonStyle.Secondary),
-                        new ButtonBuilder().setCustomId('confirm_edit').setLabel('Save Changes').setStyle(ButtonStyle.Success),
-                        new ButtonBuilder().setCustomId('cancel_edit').setLabel('Cancel').setStyle(ButtonStyle.Danger)
+                        new ButtonBuilder().setCustomId('edit_form').setLabel(client.t(message.guild.id, "role.rEditDetails")).setStyle(ButtonStyle.Secondary),
+                        new ButtonBuilder().setCustomId('confirm_edit').setLabel(client.t(message.guild.id, "role.rSaveChanges")).setStyle(ButtonStyle.Success),
+                        new ButtonBuilder().setCustomId('cancel_edit').setLabel(client.t(message.guild.id, "buttons.cancel")).setStyle(ButtonStyle.Danger)
                     );
 
                     const select = new ActionRowBuilder().addComponents(
                         new StringSelectMenuBuilder()
                             .setCustomId('select_perms')
-                            .setPlaceholder('Modify Permissions...')
+                            .setPlaceholder(client.t(message.guild.id, "role.rModifyPermissions"))
                             .setMinValues(0)
                             .setMaxValues(permsList.length)
                             .addOptions(permsList.map(p => ({
@@ -516,18 +514,18 @@ module.exports = {
                     if (i.customId === 'edit_form') {
                         const modal = new ModalBuilder()
                             .setCustomId('role_edit_modal')
-                            .setTitle('Edit Role Details');
+                            .setTitle(client.t(message.guild.id, "role.rEditRoleDetails"));
 
                         const nameInput = new TextInputBuilder()
                             .setCustomId('role_form_name')
-                            .setLabel('Role Name')
+                            .setLabel(client.t(message.guild.id, "role.rRoleName"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(name)
                             .setRequired(true);
 
                         const colorInput = new TextInputBuilder()
                             .setCustomId('role_form_color')
-                            .setLabel('Hex Color (Empty for Colourless)')
+                            .setLabel(client.t(message.guild.id, "role.rHexColorEmptyFor"))
                             .setStyle(TextInputStyle.Short)
                             .setValue(color === '#000000' ? '' : color)
                             .setPlaceholder('e.g. #ff0000')
@@ -535,16 +533,16 @@ module.exports = {
 
                         const hoistInput = new TextInputBuilder()
                             .setCustomId('role_form_hoist')
-                            .setLabel('Hoisted? (Yes/No)')
+                            .setLabel(client.t(message.guild.id, "mod.role.hoisted"))
                             .setStyle(TextInputStyle.Short)
-                            .setValue(hoist ? 'Yes' : 'No')
+                            .setValue(hoist ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setRequired(true);
 
                         const mentionInput = new TextInputBuilder()
                             .setCustomId('role_form_mention')
-                            .setLabel('Mentionable? (Yes/No)')
+                            .setLabel(client.t(message.guild.id, "mod.role.mentionable"))
                             .setStyle(TextInputStyle.Short)
-                            .setValue(mentionable ? 'Yes' : 'No')
+                            .setValue(mentionable ? client.t(message.guild.id, "buttons.yes") : 'No')
                             .setRequired(true);
 
                         modal.addComponents(
@@ -580,7 +578,7 @@ module.exports = {
 
                     if (i.customId === 'cancel_edit') {
                         collector.stop();
-                        const cancelDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Role edit cancelled.**`);
+                        const cancelDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.editCancelled", { e: emoji.cross }));
                         return i.update({
                             components: [new ContainerBuilder().addTextDisplayComponents(cancelDisplay)],
                             flags: MessageFlags.IsComponentsV2,
@@ -603,10 +601,10 @@ module.exports = {
                                 hoist,
                                 mentionable,
                                 permissions: permsBitfield,
-                                reason: `Role edited by ${message.author.tag} via wizard`
+                                reason: client.t(message.guild.id, "role.auditEdit", { user: message.author.tag })
                             });
 
-                            const successDisplay = new TextDisplayBuilder().setContent(`${emoji.check} Successfully updated role ${targetRole}!`);
+                            const successDisplay = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.role.updated", { e: emoji.check, role: targetRole }));
                             return i.update({
                                 components: [new ContainerBuilder().addTextDisplayComponents(successDisplay)],
                                 flags: MessageFlags.IsComponentsV2,
@@ -614,7 +612,7 @@ module.exports = {
                             }).catch(() => { });
                         } catch (err) {
                             return i.update({
-                                components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} **Error:** ${err.message}`))],
+                                components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.error", { e: emoji.cross, message: err.message })))],
                                 flags: MessageFlags.IsComponentsV2
                             }).catch(() => { });
                         }
@@ -623,71 +621,71 @@ module.exports = {
 
                 collector.on('end', (collected, reason) => {
                     if (reason === 'time') {
-                        msg.edit({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} **Session timed out.**`))], flags: MessageFlags.IsComponentsV2 }).catch(() => { });
+                        msg.edit({ components: [new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.sessionTimedOut", { e: emoji.cross })))], flags: MessageFlags.IsComponentsV2 }).catch(() => { });
                     }
                 });
                 return;
             }
             case 'delete': {
                 const role = getRole(subArgs.join(' '));
-                if (!role) return usage('delete', '<role>', 'Deletes a role.', 'None');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (!role) return usage('delete', '<role>', client.t(message.guild.id, "role.rDeletesARole"), 'None');
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
-                await role.delete(`Role deleted by ${message.author.tag}`).catch(err => {
-                    return error(`Failed to delete role: ${err.message}`);
+                await role.delete(client.t(message.guild.id, "role.auditDelete", { user: message.author.tag })).catch(err => {
+                    return error(client.t(message.guild.id, "role.deleteFailed", { message: err.message }));
                 });
-                return success(`Deleted role **${role.name}**.`);
+                return success(client.t(message.guild.id, "role.deleted", { name: role.name }));
             }
             case 'rename': {
                 const role = getRole(subArgs[0]);
                 const newName = subArgs.slice(1).join(' ');
-                if (!role || !newName) return usage('rename', '<role> <new name>', 'Renames a role.', 'None');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (!role || !newName) return usage('rename', '<role> <new name>', client.t(message.guild.id, "role.rRenamesARole"), 'None');
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 await role.setName(newName).catch(err => {
-                    return error(`Failed to rename role: ${err.message}`);
+                    return error(client.t(message.guild.id, "role.renameFailed", { message: err.message }));
                 });
-                return success(`Renamed role to **${newName}**.`);
+                return success(client.t(message.guild.id, "role.renamed", { name: newName }));
             }
             case 'colour':
             case 'color': {
-                if (subArgs.length < 2) return usage('colour', '<role> <hex>', 'Changes the color of a role.', 'color');
+                if (subArgs.length < 2) return usage('colour', '<role> <hex>', client.t(message.guild.id, "role.rChangesTheColorOf"), 'color');
 
                 const colorArg = subArgs[subArgs.length - 1];
                 const roleArg = subArgs.slice(0, subArgs.length - 1).join(' ');
                 const role = getRole(roleArg);
 
-                if (!role) return error('Please provide a valid role.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (!role) return error(client.t(message.guild.id, "role.rPleaseProvideAValid"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 let finalColor = colorArg;
                 if (!finalColor.startsWith('#')) finalColor = `#${finalColor}`;
 
                 const hexRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
                 if (!hexRegex.test(finalColor)) {
-                    return error('Please provide a valid **Hex Color Code** (e.g., `#ff0000` or `ff0000`).');
+                    return error(client.t(message.guild.id, "role.rPleaseProvideAValid"));
                 }
 
                 await role.edit({ colors: finalColor }).catch(err => {
-                    return error(`Failed to change role color: ${err.message}`);
+                    return error(client.t(message.guild.id, "role.colorFailed", { message: err.message }));
                 });
-                return success(`Successfully changed the color of ${role} to \`${finalColor}\`.`);
+                return success(client.t(message.guild.id, "role.colorChangedTo", { role, color: finalColor }));
             }
             case 'icon': {
-                if (guild.premiumTier < 2) return error('This server needs to be **Level 2** or higher to use role icons.');
+                if (guild.premiumTier < 2) return error(client.t(message.guild.id, "role.rThisServerNeedsTo"));
 
-                if (subArgs.length < 2) return usage('icon', '<role> <emoji/url>', 'Sets an icon for a role.', 'None');
+                if (subArgs.length < 2) return usage('icon', '<role> <emoji/url>', client.t(message.guild.id, "role.rSetsAnIconFor"), 'None');
 
                 const icon = subArgs[subArgs.length - 1];
                 const roleArg = subArgs.slice(0, -1).join(' ');
                 const role = getRole(roleArg);
 
-                if (!role) return error('Please provide a valid role.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (!role) return error(client.t(message.guild.id, "role.rPleaseProvideAValid"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 let finalIcon = icon;
                 const customEmoji = icon.match(/<?(?:a)?:(?:\w+):(\d+)>?/);
@@ -699,26 +697,26 @@ module.exports = {
                 }
 
                 await role.setIcon(finalIcon).catch(err => {
-                    return error(`Failed to set role icon: ${err.message}`);
+                    return error(client.t(message.guild.id, "role.iconFailed", { message: err.message }));
                 });
-                return success(`Successfully set the icon for ${role}.`);
+                return success(client.t(message.guild.id, "role.iconSet", { role }));
             }
             case 'temp': {
                 const target = await getMember(subArgs[0]);
                 const durationStr = subArgs[1];
                 const role = getRole(subArgs.slice(2).join(' '));
-                if (!target || !durationStr || !role) return usage('temp', '<user> <duration> <role>', 'Gives a temporary role to a user.', 'None');
+                if (!target || !durationStr || !role) return usage('temp', '<user> <duration> <role>', client.t(message.guild.id, "role.rGivesATemporaryRole"), 'None');
 
                 const ms = parseDuration(durationStr);
                 if (!ms) return error('Invalid duration format! Use \`s, m, h, d\`.');
-                if (ms > 86400000) return error('I can only set temporary roles for up to 24 hours (non-persistent).');
+                if (ms > 86400000) return error(client.t(message.guild.id, "role.rICanOnlySet"));
 
-                if (target.roles.cache.has(role.id)) return error('User already has this role.');
-                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error('You cannot manage this role.');
-                if (role.position >= guild.members.me.roles.highest.position) return error('I cannot manage this role.');
+                if (target.roles.cache.has(role.id)) return error(client.t(message.guild.id, "role.rUserAlreadyHasThis"));
+                if (role.position >= message.member.roles.highest.position && message.author.id !== guild.ownerId) return error(client.t(message.guild.id, "role.rYouCannotManageThis"));
+                if (role.position >= guild.members.me.roles.highest.position) return error(client.t(message.guild.id, "role.rICannotManageThis"));
 
                 await target.roles.add(role).catch(err => {
-                    return error(`Failed to add role: ${err.message}`);
+                    return error(client.t(message.guild.id, "role.addFailed", { message: err.message }));
                 });
 
                 success(`Gave ${role} to ${target} for **${durationStr}**.`);
@@ -742,23 +740,23 @@ module.exports = {
         const pages = [
             {
                 items: [
-                    { cmd: 'role add', desc: 'Adds a role to a user.' },
-                    { cmd: 'role all', desc: 'Give the role to all members.' },
-                    { cmd: 'role bots', desc: 'Give the role to all bot members.' },
-                    { cmd: 'role colour', desc: 'Changes the color of a role.' },
-                    { cmd: 'role create', desc: 'Creates a new role.' },
-                    { cmd: 'role humans', desc: 'Give the role to all human members.' }
+                    { cmd: 'role add', desc: client.t(message.guild.id, "role.rAddsARoleTo") },
+                    { cmd: 'role all', desc: client.t(message.guild.id, "role.rGiveTheRoleTo") },
+                    { cmd: 'role bots', desc: client.t(message.guild.id, "role.rGiveTheRoleTo") },
+                    { cmd: 'role colour', desc: client.t(message.guild.id, "role.rChangesTheColorOf") },
+                    { cmd: 'role create', desc: client.t(message.guild.id, "role.rCreatesANewRole") },
+                    { cmd: 'role humans', desc: client.t(message.guild.id, "role.rGiveTheRoleTo") }
                 ]
             },
             {
                 items: [
-                    { cmd: 'role delete', desc: 'Deletes a role.' },
-                    { cmd: 'role icon', desc: 'Sets an icon for a role.' },
-                    { cmd: 'role remove', desc: 'Removes a role from a user.' },
-                    { cmd: 'role rename', desc: 'Renames a role.' },
-                    { cmd: 'role edit', desc: 'Edit an existing role using a wizard.' },
-                    { cmd: 'role taskcancel', desc: 'Cancel the active role task for this server.' },
-                    { cmd: 'role temp', desc: 'Gives a temporary role to a user.' }
+                    { cmd: 'role delete', desc: client.t(message.guild.id, "role.rDeletesARole") },
+                    { cmd: 'role icon', desc: client.t(message.guild.id, "role.rSetsAnIconFor") },
+                    { cmd: 'role remove', desc: client.t(message.guild.id, "role.rRemovesARoleFrom") },
+                    { cmd: 'role rename', desc: client.t(message.guild.id, "role.rRenamesARole") },
+                    { cmd: 'role edit', desc: client.t(message.guild.id, "role.rEditAnExistingRole") },
+                    { cmd: 'role taskcancel', desc: client.t(message.guild.id, "role.rCancelTheActiveRole") },
+                    { cmd: 'role temp', desc: client.t(message.guild.id, "role.rGivesATemporaryRole") }
                 ]
             }
         ];
@@ -770,7 +768,7 @@ module.exports = {
             const page = pages[pageIdx];
             const container = new ContainerBuilder();
 
-            const header = new TextDisplayBuilder().setContent(`### ${emoji.info} Role Command [${totalCommands}]`);
+            const header = new TextDisplayBuilder().setContent(client.t(message.guild.id, "role.cmdTitle", { e: emoji.info, count: totalCommands }));
             container.addTextDisplayComponents(header);
             container.addSeparatorComponents(new SeparatorBuilder());
 
@@ -778,7 +776,7 @@ module.exports = {
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
             container.addSeparatorComponents(new SeparatorBuilder());
 
-            const footer = new TextDisplayBuilder().setContent(`\n-# Page ${pageIdx + 1}/${pages.length} | Requested by ${author.displayName}`);
+            const footer = new TextDisplayBuilder().setContent(client.t(message.guild.id, "role.pageFooter", { page: pageIdx + 1, total: pages.length, user: author.displayName }));
             container.addTextDisplayComponents(footer);
 
             return container;
@@ -786,10 +784,10 @@ module.exports = {
 
         const getButtons = () => {
             return new ActionRowBuilder().addComponents(
-                new ButtonBuilder().setCustomId('home').setLabel('Home').setStyle(ButtonStyle.Secondary),
-                new ButtonBuilder().setCustomId('prev').setLabel('Previous').setStyle(ButtonStyle.Secondary),
-                new ButtonBuilder().setCustomId('next').setLabel('Next').setStyle(ButtonStyle.Secondary),
-                new ButtonBuilder().setCustomId('close').setLabel('Close').setStyle(ButtonStyle.Danger)
+                new ButtonBuilder().setCustomId('home').setLabel(client.t(message.guild.id, "buttons.home")).setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder().setCustomId('prev').setLabel(client.t(message.guild.id, "buttons.previous")).setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder().setCustomId('next').setLabel(client.t(message.guild.id, "buttons.next")).setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder().setCustomId('close').setLabel(client.t(message.guild.id, "buttons.close")).setStyle(ButtonStyle.Danger)
             );
         };
 

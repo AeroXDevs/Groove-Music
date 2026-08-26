@@ -45,7 +45,7 @@ module.exports = {
     async slashExecute(interaction, client) {
         const isOwner = client.owners.includes(interaction.user.id);
         if (!interaction.member.permissions.has(PermissionFlagsBits.ModerateMembers) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Moderate Members\` permissions to use this command.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.needPerm", { e: emoji.warn, permission: "Moderate Members" }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -53,7 +53,7 @@ module.exports = {
         }
 
         if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ModerateMembers)) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} I don't have \`Moderate Members\` permissions.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.botNeedPerm", { e: emoji.warn, permission: "Moderate Members" }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -66,7 +66,7 @@ module.exports = {
         const reason = interaction.options.getString('reason');
 
         if (!targetMember) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} User not found in this server.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.userNotInGuild", { e: emoji.warn }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -75,7 +75,7 @@ module.exports = {
 
         const durationMs = parseDuration(durationStr);
         if (!durationMs) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} Invalid duration format. Use: 10s, 5m, 2h, 1d`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.invalidDuration", { e: emoji.warn }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -83,7 +83,7 @@ module.exports = {
         }
 
         if (durationMs > 2419200000) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} Duration cannot exceed 28 days.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.durationTooLong", { e: emoji.warn }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
@@ -91,30 +91,30 @@ module.exports = {
         }
 
         if (targetMember.isCommunicationDisabled()) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} This member is already muted.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.alreadyMuted", { e: emoji.warn }));
             return interaction.reply({
                 components: [new ContainerBuilder().addTextDisplayComponents(display)],
                 flags: MessageFlags.IsComponentsV2
             });
         }
 
-        if (targetMember.id === interaction.user.id) return interaction.reply({ content: `${emoji.warn} You cannot mute yourself.`, ephemeral: true });
-        if (targetMember.id === client.user.id) return interaction.reply({ content: `${emoji.warn} I cannot mute myself.`, ephemeral: true });
-        if (targetMember.user.bot) return interaction.reply({ content: `${emoji.warn} You cannot mute a bot.`, ephemeral: true });
-        if (targetMember.id === interaction.guild.ownerId) return interaction.reply({ content: `${emoji.warn} You cannot mute the server owner.`, ephemeral: true });
+        if (targetMember.id === interaction.user.id) return interaction.reply({ content: client.t(interaction.guildId, "mod.cantMuteSelf", { e: emoji.warn }), ephemeral: true });
+        if (targetMember.id === client.user.id) return interaction.reply({ content: client.t(interaction.guildId, "mod.botCantMuteSelf", { e: emoji.warn }), ephemeral: true });
+        if (targetMember.user.bot) return interaction.reply({ content: client.t(interaction.guildId, "mod.cantMuteBot", { e: emoji.warn }), ephemeral: true });
+        if (targetMember.id === interaction.guild.ownerId) return interaction.reply({ content: client.t(interaction.guildId, "mod.cantMuteOwner", { e: emoji.warn }), ephemeral: true });
 
         if (interaction.member.roles.highest.position <= targetMember.roles.highest.position && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You cannot mute a member with equal or higher role than you.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.muteHigherUser", { e: emoji.warn }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         if (interaction.guild.members.me.roles.highest.position <= targetMember.roles.highest.position) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} I cannot mute a member with equal or higher role than me.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.muteHigherBot", { e: emoji.warn }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         if (!targetMember.moderatable) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} I cannot mute this member.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.botCantMute", { e: emoji.warn }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -123,16 +123,16 @@ module.exports = {
             const section = new SectionBuilder()
                 .addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(
-                        `${emoji.blank}${emoji.wickarrow} **Server:** \` ${interaction.guild.name} \` \n` +
-                        `${emoji.blank}${emoji.wickarrow} **Moderator:** [\`${interaction.user.displayName}\`](https://discord.com/users/${interaction.user.id})\n` +
-                        `${emoji.blank}${emoji.wickarrow} **Duration:** \`${durationStr}\`` +
-                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **Reason:** \`${reason}\`` : '')
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.server")}:** \` ${interaction.guild.name} \` \n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.moderator")}:** [\`${interaction.user.displayName}\`](https://discord.com/users/${interaction.user.id})\n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.duration")}:** \`${durationStr}\`` +
+                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.reason")}:** \`${reason}\`` : '')
                     )
                 )
                 .setThumbnailAccessory(new ThumbnailBuilder().setURL(targetUser.displayAvatarURL({ extension: 'png', size: 512 })));
 
             const dmContainer = new ContainerBuilder()
-                .addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} **You have been Muted !**`))
+                .addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.dm.muted", { e: emoji.warn })))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addSectionComponents(section);
 
@@ -145,23 +145,23 @@ module.exports = {
             const section = new SectionBuilder()
                 .addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(
-                        `${emoji.blank}${emoji.wickarrow} **Target:** [\`${targetUser.displayName}\`](https://discord.com/users/${targetUser.id})\n` +
-                        `${emoji.blank}${emoji.wickarrow} **Moderator:** [\`${interaction.user.displayName}\`](https://discord.com/users/${interaction.user.id})\n` +
-                        `${emoji.blank}${emoji.wickarrow} **Duration:** \`${durationStr}\`` +
-                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **Reason:** \`${reason}\`` : '') +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.target")}:** [\`${targetUser.displayName}\`](https://discord.com/users/${targetUser.id})\n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.moderator")}:** [\`${interaction.user.displayName}\`](https://discord.com/users/${interaction.user.id})\n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.duration")}:** \`${durationStr}\`` +
+                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **${client.t(interaction.guildId, "mod.label.reason")}:** \`${reason}\`` : '') +
                         `\n${emoji.blank}${emoji.wickarrow} **DMed:** ${dmSent ? emoji.check : emoji.cross}`
                     )
                 )
                 .setThumbnailAccessory(new ThumbnailBuilder().setURL(targetUser.displayAvatarURL({ extension: 'png', size: 512 })));
 
             const successContainer = new ContainerBuilder()
-                .addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} **Member Muted !**`))
+                .addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.muted", { e: emoji.check })))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addSectionComponents(section);
 
             return interaction.reply({ components: [successContainer], flags: MessageFlags.IsComponentsV2 });
         } catch (error) {
-            return interaction.reply({ content: `${emoji.warn} Failed to mute: ${error.message}`, components: [] });
+            return interaction.reply({ content: client.t(interaction.guildId, "mod.failed.mute", { e: emoji.warn, message: error.message }), components: [] });
         }
     },
 
@@ -170,13 +170,13 @@ module.exports = {
         const isOwner = client.owners.includes(userId);
 
         if (!message.member.permissions.has(PermissionFlagsBits.ModerateMembers) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Moderate Members\` permissions to use this command.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.needPerm", { e: emoji.warn, permission: "Moderate Members" }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         if (args.length < 1) {
-            const header = new TextDisplayBuilder().setContent(`${emoji.info} **Mute Command !**\n-# Requested by ${message.author.username} • <t:${Math.floor(Date.now() / 1000)}:t>`);
-            const usage = new TextDisplayBuilder().setContent(`${emoji.blank}${emoji.wickarrow} **Usage:** \`mute <user> [duration] [reason]\`\n${emoji.blank}${emoji.wickarrow} **Example:** \`mute @user 10m Spamming\``);
+            const header = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.header.mute", { e: emoji.info, user: message.author.username, ts: Math.floor(Date.now() / 1000) }));
+            const usage = new TextDisplayBuilder().setContent(`${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.usage")}:** \`mute <user> [duration] [reason]\`\n${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.example")}:** \`mute @user 10m Spamming\``);
             const container = new ContainerBuilder().addTextDisplayComponents(header).addSeparatorComponents(new SeparatorBuilder()).addTextDisplayComponents(usage);
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -201,7 +201,7 @@ module.exports = {
         }
 
         if (!targetMember) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} User not found in this server.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.userNotInGuild", { e: emoji.warn }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -218,34 +218,34 @@ module.exports = {
 
         const durationMs = parseDuration(durationStr);
         if (!durationMs || durationMs > 2419200000) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} Invalid duration (max 28d). Use: 10m, 2h, 1d`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.invalidDurationMax", { e: emoji.warn }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         if (targetMember.isCommunicationDisabled()) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} This member is already muted.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.alreadyMuted", { e: emoji.warn }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         const reason = args.slice(reasonStartIndex).join(' ');
 
-        if (targetMember.id === message.author.id) return message.reply(`${emoji.warn} You cannot mute yourself.`);
-        if (targetMember.id === client.user.id) return message.reply(`${emoji.warn} I cannot mute myself.`);
-        if (targetMember.user.bot) return message.reply(`${emoji.warn} You cannot mute a bot.`);
-        if (targetMember.id === message.guild.ownerId) return message.reply(`${emoji.warn} You cannot mute the server owner.`);
+        if (targetMember.id === message.author.id) return message.reply(client.t(message.guild.id, "mod.cantMuteSelf", { e: emoji.warn }));
+        if (targetMember.id === client.user.id) return message.reply(client.t(message.guild.id, "mod.botCantMuteSelf", { e: emoji.warn }));
+        if (targetMember.user.bot) return message.reply(client.t(message.guild.id, "mod.cantMuteBot", { e: emoji.warn }));
+        if (targetMember.id === message.guild.ownerId) return message.reply(client.t(message.guild.id, "mod.cantMuteOwner", { e: emoji.warn }));
 
         if (message.member.roles.highest.position <= targetMember.roles.highest.position && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You cannot mute a member with equal or higher role than you.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.muteHigherUser", { e: emoji.warn }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         if (message.guild.members.me.roles.highest.position <= targetMember.roles.highest.position) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} I cannot mute a member with equal or higher role than me.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.muteHigherBot", { e: emoji.warn }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
         if (!targetMember.moderatable) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} I cannot mute this member.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.botCantMute", { e: emoji.warn }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -254,16 +254,16 @@ module.exports = {
             const section = new SectionBuilder()
                 .addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(
-                        `${emoji.blank}${emoji.wickarrow} **Server:** \` ${message.guild.name} \` \n` +
-                        `${emoji.blank}${emoji.wickarrow} **Moderator:** [\`${message.author.displayName}\`](https://discord.com/users/${message.author.id})\n` +
-                        `${emoji.blank}${emoji.wickarrow} **Duration:** \`${durationStr}\`` +
-                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **Reason:** \`${reason}\`` : '')
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.server")}:** \` ${message.guild.name} \` \n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.moderator")}:** [\`${message.author.displayName}\`](https://discord.com/users/${message.author.id})\n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.duration")}:** \`${durationStr}\`` +
+                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.reason")}:** \`${reason}\`` : '')
                     )
                 )
                 .setThumbnailAccessory(new ThumbnailBuilder().setURL(targetMember.user.displayAvatarURL({ extension: 'png', size: 512 })));
 
             const dmContainer = new ContainerBuilder()
-                .addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} **You have been Muted !**`))
+                .addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.dm.muted", { e: emoji.warn })))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addSectionComponents(section);
 
@@ -276,23 +276,23 @@ module.exports = {
             const section = new SectionBuilder()
                 .addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(
-                        `${emoji.blank}${emoji.wickarrow} **Target:** [\`${targetMember.user.displayName}\`](https://discord.com/users/${targetMember.user.id})\n` +
-                        `${emoji.blank}${emoji.wickarrow} **Moderator:** [\`${message.author.displayName}\`](https://discord.com/users/${message.author.id})\n` +
-                        `${emoji.blank}${emoji.wickarrow} **Duration:** \`${durationStr}\`` +
-                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **Reason:** \`${reason}\`` : '') +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.target")}:** [\`${targetMember.user.displayName}\`](https://discord.com/users/${targetMember.user.id})\n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.moderator")}:** [\`${message.author.displayName}\`](https://discord.com/users/${message.author.id})\n` +
+                        `${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.duration")}:** \`${durationStr}\`` +
+                        (reason ? `\n${emoji.blank}${emoji.wickarrow} **${client.t(message.guild.id, "mod.label.reason")}:** \`${reason}\`` : '') +
                         `\n${emoji.blank}${emoji.wickarrow} **DMed:** ${dmSent ? emoji.check : emoji.cross}`
                     )
                 )
                 .setThumbnailAccessory(new ThumbnailBuilder().setURL(targetMember.user.displayAvatarURL({ extension: 'png', size: 512 })));
 
             const successContainer = new ContainerBuilder()
-                .addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} **Member Muted !**`))
+                .addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.muted", { e: emoji.check })))
                 .addSeparatorComponents(new SeparatorBuilder())
                 .addSectionComponents(section);
 
             return message.reply({ components: [successContainer], flags: MessageFlags.IsComponentsV2 });
         } catch (error) {
-            return message.reply({ content: `${emoji.warn} Failed to mute: ${error.message}`, components: [] });
+            return message.reply({ content: client.t(message.guild.id, "mod.failed.mute", { e: emoji.warn, message: error.message }), components: [] });
         }
     }
 };

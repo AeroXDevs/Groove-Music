@@ -160,7 +160,7 @@ module.exports = {
         const textChannel = client.channels.cache.get(player.textId);
         if (textChannel) {
           const display = new TextDisplayBuilder()
-            .setContent(`**Groove !**\n${client.emoji.blank}${client.emoji.wickarrow} **M__oved__** to another channel`);
+            .setContent(client.t(player.guildId, "player.movedChannel", { bot: client.user.username, blank: client.emoji.blank, arrow: client.emoji.wickarrow }));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(display);
@@ -196,7 +196,7 @@ module.exports = {
 
         await client.rest
           .put(`/channels/${player.voiceId}/voice-status`, {
-            body: { status: `${client.emoji.pause} Song Paused` },
+            body: { status: client.t(player.guildId, "player.songPaused", { e: client.emoji.pause }) },
           })
           .catch(() => null);
 

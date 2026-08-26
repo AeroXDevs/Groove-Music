@@ -79,6 +79,13 @@ const tables = [
         `
     },
     {
+        name: 'guildlang',
+        schema: `
+            guildId TEXT PRIMARY KEY,
+            lang TEXT DEFAULT 'en'
+        `
+    },
+    {
         name: 'rankPermissions',
         schema: `
             rank TEXT PRIMARY KEY,
@@ -202,6 +209,48 @@ const tables = [
         `
     },
     {
+        name: 'savedqueues',
+        schema: `
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            userId TEXT,
+            name TEXT,
+            tracks TEXT DEFAULT '[]',
+            createdAt INTEGER,
+            UNIQUE(userId, name)
+        `
+    },
+    {
+        name: 'defaultvolume',
+        schema: `
+            guildId TEXT PRIMARY KEY,
+            volume INTEGER DEFAULT 80
+        `
+    },
+    {
+        name: 'djrole',
+        schema: `
+            guildId TEXT PRIMARY KEY,
+            roleId TEXT
+        `
+    },
+    {
+        name: 'toggles',
+        schema: `
+            guildId TEXT PRIMARY KEY,
+            commands TEXT DEFAULT '[]'
+        `
+    },
+    {
+        name: 'welcome',
+        schema: `
+            guildId TEXT PRIMARY KEY,
+            enabled INTEGER DEFAULT 0,
+            channelId TEXT,
+            welcomeMsg TEXT,
+            goodbyeMsg TEXT
+        `
+    },
+    {
         name: 'automod',
         schema: `
             guildId TEXT PRIMARY KEY,
@@ -282,7 +331,13 @@ const indexes = [
     'CREATE INDEX IF NOT EXISTS idx_invite_logs_userId ON invite_logs(userId)',
     'CREATE INDEX IF NOT EXISTS idx_giveaways_guildId ON giveaways(guildId)',
     'CREATE INDEX IF NOT EXISTS idx_giveaways_ended ON giveaways(ended)',
-    'CREATE INDEX IF NOT EXISTS idx_invites_guildId_userId ON invites(guildId, userId)'
+    'CREATE INDEX IF NOT EXISTS idx_invites_guildId_userId ON invites(guildId, userId)',
+    'CREATE INDEX IF NOT EXISTS idx_savedqueues_userId ON savedqueues(userId)',
+    'CREATE INDEX IF NOT EXISTS idx_savedqueues_userId_name ON savedqueues(userId, name)',
+    'CREATE INDEX IF NOT EXISTS idx_defaultvolume_guildId ON defaultvolume(guildId)',
+    'CREATE INDEX IF NOT EXISTS idx_djrole_guildId ON djrole(guildId)',
+    'CREATE INDEX IF NOT EXISTS idx_toggles_guildId ON toggles(guildId)',
+    'CREATE INDEX IF NOT EXISTS idx_welcome_guildId ON welcome(guildId)'
 ];
 
 indexes.forEach(index => {
@@ -828,6 +883,103 @@ managers.automod = {
             });
             db.prepare(`INSERT INTO automod (${keys.join(', ')}) VALUES (${keys.map(() => '?').join(', ')})`).run(...vals);
         }
+    }
+};
+
+managers.guildlang = {
+    get: (guildId) => {
+        const row = db.prepare('SELECT lang FROM guildlang WHERE guildId = ?').get(guildId);
+        return row ? row.lang : null;
+    },
+    set: (guildId, lang) => {
+        db.prepare(
+            'INSERT INTO guildlang (guildId, lang) VALUES (?, ?) ON CONFLICT(guildId) DO UPDATE SET lang = excluded.lang'
+        ).run(guildId, lang);
+    },
+    delete: (guildId) => {
+        db.prepare('DELETE FROM guildlang WHERE guildId = ?').run(guildId);
+    },
+    getAll: () => db.prepare('SELECT * FROM guildlang').all()
+};
+
+managers.savedqueues = {
+    getAll: (userId) => {
+        return db.prepare('SELECT * FROM savedqueues WHERE userId = ?').all(userId).map(row => ({
+            ...row,
+            tracks: deserialize(row.tracks)
+        }));
+    },
+    get: (userId, name) => {
+        const row = db.prepare('SELECT * FROM savedqueues WHERE userId = ? AND name = ?').get(userId, name);
+        if (!row) return null;
+        return { ...row, tracks: deserialize(row.tracks) };
+    },
+    create: (userId, name, tracks = []) => {
+        db.prepare('INSERT INTO savedqueues (userId, name, tracks, createdAt) VALUES (?, ?, ?, ?)').run(
+            userId, name, serialize(tracks), Date.now()
+        );
+    },
+    update: (userId, name, tracks) => {
+        db.prepare('UPDATE savedqueues SET tracks = ? WHERE userId = ? AND name = ?').run(
+            serialize(tracks), userId, name
+        );
+    },
+    delete: (userId, name) => {
+        db.prepare('DELETE FROM savedqueues WHERE userId = ? AND name = ?').run(userId, name);
+    },
+    count: (userId) => {
+        const row = db.prepare('SELECT COUNT(*) as count FROM savedqueues WHERE userId = ?').get(userId);
+        return row ? row.count : 0;
+    }
+};
+
+managers.defaultvolume = {
+    get: (guildId) => {
+        const row = db.prepare('SELECT volume FROM defaultvolume WHERE guildId = ?').get(guildId);
+        return row ? row.volume : null;
+    },
+    set: (guildId, volume) => {
+        db.prepare('INSERT OR REPLACE INTO defaultvolume (guildId, volume) VALUES (?, ?)').run(guildId, volume);
+    },
+    delete: (guildId) => {
+        db.prepare('DELETE FROM defaultvolume WHERE guildId = ?').run(guildId);
+    }
+};
+
+managers.djrole = createManager('djrole', 'guildId');
+managers.toggles = createManager('toggles', 'guildId');
+managers.welcome = {
+    get: (guildId) => {
+        const row = db.prepare('SELECT * FROM welcome WHERE guildId = ?').get(guildId);
+        if (!row) return null;
+        return { ...row, enabled: !!row.enabled };
+    },
+    set: (guildId, data) => {
+        const exists = db.prepare('SELECT 1 FROM welcome WHERE guildId = ?').get(guildId);
+        if (exists) {
+            const updates = [];
+            const params = [];
+            for (const key in data) {
+                if (key === 'guildId') continue;
+                updates.push(`${key} = ?`);
+                let val = data[key];
+                if (typeof val === 'boolean') val = val ? 1 : 0;
+                params.push(val);
+            }
+            params.push(guildId);
+            db.prepare(`UPDATE welcome SET ${updates.join(', ')} WHERE guildId = ?`).run(...params);
+        } else {
+            const keys = ['guildId', ...Object.keys(data).filter(k => k !== 'guildId')];
+            const vals = keys.map(k => {
+                let v = k === 'guildId' ? guildId : data[k];
+                if (typeof v === 'boolean') v = v ? 1 : 0;
+                return v;
+            });
+            db.prepare(`INSERT INTO welcome (${keys.join(', ')}) VALUES (${keys.map(() => '?').join(', ')})`).run(...vals);
+        }
+    },
+    delete: (guildId) => {
+        db.prepare('DELETE FROM welcome WHERE guildId = ?').run(guildId);
     }
 };
 

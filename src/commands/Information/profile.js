@@ -76,7 +76,7 @@ module.exports = {
         const dbRank = profileData?.rank ?? "User";
         const rank = dbRank;
 
-        const bio = profileData?.bio ?? "No bio is set.";
+        const bio = profileData?.bio ?? client.t(message.guild.id, "info.noBio");
         const hasNp = !!npData && (!npData.expiresAt || new Date(npData.expiresAt).getTime() > Date.now());
 
         let avatarImg;

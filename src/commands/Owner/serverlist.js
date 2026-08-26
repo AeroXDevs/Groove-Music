@@ -30,7 +30,7 @@ module.exports = {
 
     if (guilds.length === 0) {
       const infoDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.info} No servers found.**`);
+        .setContent(client.t(interaction.guildId, "srv.none", { e: client.emoji.info }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(infoDisplay);
@@ -55,7 +55,7 @@ module.exports = {
       });
 
       const headerDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} ${client.user.username} Server List**`);
+        .setContent(client.t(interaction.guildId, "srv.title", { e: client.emoji.check, bot: client.user.username }));
 
       const separator = new SeparatorBuilder();
 
@@ -103,7 +103,7 @@ module.exports = {
           if (i.user.id === interaction.user.id) return true;
 
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} Only ${interaction.user.tag} can use this button.**`);
+            .setContent(client.t(interaction.guildId, "srv.onlyUser", { e: client.emoji.cross, user: interaction.user.tag }));
 
           const errorContainer = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -156,7 +156,7 @@ module.exports = {
 
     if (guilds.length === 0) {
       const infoDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.info} No servers found.**`);
+        .setContent(client.t(message.guild.id, "srv.none", { e: client.emoji.info }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(infoDisplay);
@@ -181,7 +181,7 @@ module.exports = {
       });
 
       const headerDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} ${message.client.user.username} Server List**`);
+        .setContent(client.t(message.guild.id, "srv.title", { e: client.emoji.check, bot: message.client.user.username }));
 
       const separator = new SeparatorBuilder();
 
@@ -229,7 +229,7 @@ module.exports = {
           if (i.user.id === message.author.id) return true;
 
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} Only ${message.author.tag} can use this button.**`);
+            .setContent(client.t(message.guild.id, "srv.onlyUser", { e: client.emoji.cross, user: message.author.tag }));
 
           const errorContainer = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);

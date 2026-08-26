@@ -153,7 +153,7 @@ module.exports = {
 
             if (!foundCommand) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${emoji.cross} Command \`${commandName}\` not found.**`);
+                    .setContent(client.t(interaction.guildId, "help.notFound", { e: emoji.cross, command: commandName }));
 
                 const errorContainer = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -171,7 +171,7 @@ module.exports = {
                 return foundCommand.execute(interaction, parts.slice(1), client, '/');
             }
 
-            let displayDescription = foundCommand.description || 'No description available';
+            let displayDescription = foundCommand.description || client.t(interaction.guildId, "info.noDescription");
             let displayName = foundCommand.name;
             let displayUsage = foundCommand.usage;
             let displayExample = foundCommand.example;
@@ -232,8 +232,8 @@ module.exports = {
 
             const content = `> **\`${usageStr}\`**\n\n` +
                 `${client.emoji.arrowright} ${displayDescription}\n` +
-                `${client.emoji.arrowright} **Category :** ${commandCategory}\n` +
-                (aliases !== 'None' ? `${client.emoji.arrowright} **Aliases :** ${aliases}\n` : '') +
+                `${client.emoji.arrowright} **${client.t(interaction.guildId, "ui.label.category")} :** ${commandCategory}\n` +
+                (aliases !== 'None' ? client.t(interaction.guildId, "info.aliases", { arrow: client.emoji.arrowright, value: aliases }) : '') +
                 `${client.emoji.arrowright} **Example :** \`${exampleStr}\``;
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
@@ -288,7 +288,7 @@ module.exports = {
 
         const separator = new SeparatorBuilder();
 
-        const descriptionText = `**${botName}** is your ultimate multi-purpose companion, offering high-fidelity music from **YT Music**,**Spotify**,**Apple Music** and more. Featuring advanced **Moderation**, **Utility**, **Invites**, and more—all designed to elevate your server experience to the next level.`;
+        const descriptionText = client.t(interaction.guildId, "help.intro", { bot: botName });
 
         const descriptionDisplay = new TextDisplayBuilder()
             .setContent(descriptionText);
@@ -348,7 +348,7 @@ module.exports = {
         collector.on('collect', async i => {
             if (i.user.id !== interaction.user.id) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${emoji.cross} You can't use this menu.**`);
+                    .setContent(client.t(interaction.guildId, "help.notYours", { e: emoji.cross }));
 
                 const errorContainer = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -380,7 +380,7 @@ module.exports = {
 
             const commandsText = commandsList.length > 0
                 ? commandsList.map(cmd => `\`${cmd.name}\``).join(' , ')
-                : 'No commands found';
+                : client.t(interaction.guildId, "info.noCommands");
 
             const commandsDisplay = new TextDisplayBuilder()
                 .setContent(commandsText);
@@ -458,7 +458,7 @@ module.exports = {
 
             if (!foundCommand) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${emoji.cross} Command \`${commandName}\` not found.**`);
+                    .setContent(client.t(message.guild.id, "help.notFound", { e: emoji.cross, command: commandName }));
 
                 const errorContainer = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -484,7 +484,7 @@ module.exports = {
                 return foundCommand.execute(message, args.slice(1), message.client, serverPrefix);
             }
 
-            let displayDescription = foundCommand.description || 'No description available';
+            let displayDescription = foundCommand.description || client.t(message.guild.id, "info.noDescription");
             let displayName = foundCommand.name;
             let displayUsage = foundCommand.usage;
             let displayExample = foundCommand.example;
@@ -545,8 +545,8 @@ module.exports = {
 
             const content = `> **\`${usageStr}\`**\n\n` +
                 `${emoji.arrowright} ${displayDescription}\n` +
-                `${emoji.arrowright} **Category :** ${commandCategory}\n` +
-                (aliases !== 'None' ? `${emoji.arrowright} **Aliases :** ${aliases}\n` : '') +
+                `${emoji.arrowright} **${client.t(message.guild.id, "ui.label.category")} :** ${commandCategory}\n` +
+                (aliases !== 'None' ? client.t(message.guild.id, "info.aliases", { arrow: emoji.arrowright, value: aliases }) : '') +
                 `${emoji.arrowright} **Example :** \`${exampleStr}\``;
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
@@ -600,7 +600,7 @@ module.exports = {
 
         const separator = new SeparatorBuilder();
 
-        const descriptionText = `**${botName}** is your ultimate multi-purpose companion, offering high-fidelity music from **YT Music**,**Spotify**,**Apple Music** and more. Featuring advanced **Moderation**, **Utility**, **Invites**, and more—all designed to elevate your server experience to the next level.`;
+        const descriptionText = client.t(message.guild.id, "help.intro", { bot: botName });
 
         const descriptionDisplay = new TextDisplayBuilder()
             .setContent(descriptionText);
@@ -660,7 +660,7 @@ module.exports = {
         collector.on('collect', async interaction => {
             if (interaction.user.id !== message.author.id) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${emoji.cross} You can't use this menu.**`);
+                    .setContent(client.t(message.guild.id, "help.notYours", { e: emoji.cross }));
 
                 const errorContainer = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -692,7 +692,7 @@ module.exports = {
 
             const commandsText = commandsList.length > 0
                 ? commandsList.map(cmd => `\`${cmd.name}\``).join(' , ')
-                : 'No commands found';
+                : client.t(message.guild.id, "info.noCommands");
 
             const commandsDisplay = new TextDisplayBuilder()
                 .setContent(commandsText);

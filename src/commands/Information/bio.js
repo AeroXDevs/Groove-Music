@@ -25,25 +25,25 @@ module.exports = {
                 container.addSeparatorComponents(new SeparatorBuilder());
                 container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`> **\`${prefix}bio set <text>\`**\n\n${emoji.arrowright} Sets your profile bio.`));
                 container.addSeparatorComponents(new SeparatorBuilder());
-                container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName || user.username}`));
+                container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "info.requestedBy", { user: user.displayName || user.username })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
             if (bioText.length > 100) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.cross} Bio cannot exceed 100 characters.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "info.bioTooLong", { e: emoji.cross })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
             const profile = client.db.profiles.get(user.id) || {};
             profile.bio = bioText;
             client.db.profiles.set(user.id, profile);
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Your bio has been set to \`${bioText}\``));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "info.bioSet", { e: emoji.check, value: bioText })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
         if (sub === 'clear') {
             const profile = client.db.profiles.get(user.id) || {};
-            profile.bio = "No bio is set.";
+            profile.bio = client.t(message.guild.id, "info.noBio");
             client.db.profiles.set(user.id, profile);
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Your bio has been cleared.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "info.bioCleared", { e: emoji.check })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -51,12 +51,11 @@ module.exports = {
         container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} Bio Command [2]`));
         container.addSeparatorComponents(new SeparatorBuilder());
 
-        const helpContent = `> ** \`${prefix}bio set <text>\` **\n╰ Sets your profile bio.\n\n` +
-            `> ** \`${prefix}bio clear\` **\n╰ Clears your profile bio.`;
+        const helpContent = client.t(message.guild.id, "info.bio.help", { prefix });
 
         container.addTextDisplayComponents(new TextDisplayBuilder().setContent(helpContent));
         container.addSeparatorComponents(new SeparatorBuilder());
-        container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName || user.username}`));
+        container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "info.requestedBy", { user: user.displayName || user.username })));
 
         return message.reply({
             components: [container],

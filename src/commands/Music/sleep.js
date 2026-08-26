@@ -37,7 +37,7 @@ module.exports = {
     async slashExecute(interaction, client) {
         const player = client.manager.players.get(interaction.guild.id);
         if (!player.queue.current) {
-            const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} No music playing.**`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.sleep.noMusic", { e: client.emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -47,29 +47,29 @@ module.exports = {
 
         if (input === "cancel") {
             if (!existingTimer) {
-                const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} No active timer.**`);
+                const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.sleep.noTimer", { e: client.emoji.cross }));
                 const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
                 return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
             clearTimeout(existingTimer.timeout);
             player.data.delete("sleepTimer");
-            const successDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.check} Timer cancelled.**`);
+            const successDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.sleep.cancelled", { e: client.emoji.check }));
             const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
         const duration = parseDuration(input);
         if (!duration || duration < 1 || duration > 180) {
-            const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} Invalid duration**\n\nUse: \`30m\`, \`1h\`, \`45m\` (1-180 min)`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.sleep.invalid", { e: client.emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
         const endTime = Date.now() + (duration * 60 * 1000);
-        const headerDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.check} Timer Set**`);
+        const headerDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.sleep.set", { e: client.emoji.check }));
         const separator = new SeparatorBuilder();
         const infoDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.dot} Duration** \`:\` \`${duration}m\`\n**${client.emoji.dot} Ends** \`:\` <t:${Math.floor(endTime / 1000)}:t>\n**${client.emoji.dot} Action** \`:\` Disconnect from VC`);
+            .setContent(client.t(interaction.guildId, "music.sleep.details", { d: client.emoji.dot, duration, ends: Math.floor(endTime / 1000) }));
         const container = new ContainerBuilder().addTextDisplayComponents(headerDisplay).addSeparatorComponents(separator).addTextDisplayComponents(infoDisplay);
 
         await interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
@@ -82,7 +82,7 @@ module.exports = {
                     await member.voice.disconnect("Sleep timer ended");
                     const textChannel = client.channels.cache.get(player.textId);
                     if (textChannel) {
-                        const sleepDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.info} Timer ended - ${interaction.user} disconnected.**`);
+                        const sleepDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.sleep.ended", { e: client.emoji.info, user: interaction.user }));
                         const sleepContainer = new ContainerBuilder().addTextDisplayComponents(sleepDisplay);
                         textChannel.send({ components: [sleepContainer], flags: MessageFlags.IsComponentsV2 }).catch(() => null);
                     }
@@ -99,7 +99,7 @@ module.exports = {
 
         if (!player.queue.current) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} No music playing.**`);
+                .setContent(client.t(message.guild.id, "music.sleep.noMusic", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
@@ -117,9 +117,7 @@ module.exports = {
 
             const infoDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**${client.emoji.info} Timer already active**\n\n` +
-                    `**${client.emoji.dot} Time left** \`:\` \`${timeLeft}m\`\n` +
-                    `**${client.emoji.dot} Cancel** \`:\` \`${prefix}sleep cancel\``
+client.t(message.guild.id, "music.sleep.active", { e: client.emoji.info, d: client.emoji.dot, left: timeLeft, prefix })
                 );
 
             const container = new ContainerBuilder()
@@ -135,7 +133,7 @@ module.exports = {
         if (args[0] === "cancel") {
             if (!existingTimer) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.cross} No active timer.**`);
+                    .setContent(client.t(message.guild.id, "music.sleep.noTimer", { e: client.emoji.cross }));
 
                 const container = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -153,7 +151,7 @@ module.exports = {
             player.data.delete("sleepTimer");
 
             const successDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.check} Timer cancelled.**`);
+                .setContent(client.t(message.guild.id, "music.sleep.cancelled", { e: client.emoji.check }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(successDisplay);
@@ -188,8 +186,7 @@ module.exports = {
         if (!duration || duration < 1 || duration > 180) {
             const errorDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**${client.emoji.cross} Invalid duration**\n\n` +
-                    `Use: \`30m\`, \`1h\`, \`45m\` (1-180 min)`
+client.t(message.guild.id, "music.sleep.invalid", { e: client.emoji.cross })
                 );
 
             const container = new ContainerBuilder()
@@ -204,16 +201,13 @@ module.exports = {
         const endTime = Date.now() + (duration * 60 * 1000);
 
         const headerDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.check} Timer Set**`);
+            .setContent(client.t(message.guild.id, "music.sleep.set", { e: client.emoji.check }));
 
         const separator = new SeparatorBuilder();
 
         const infoDisplay = new TextDisplayBuilder()
             .setContent(
-                `**${client.emoji.dot} Duration** \`:\` \`${duration}m\`\n` +
-                `**${client.emoji.dot} Ends** \`:\` <t:${Math.floor(endTime / 1000)}:t>\n` +
-                `**${client.emoji.dot} Action** \`:\` Disconnect from VC\n\n` +
-                `Cancel: \`${prefix}sleep cancel\``
+client.t(message.guild.id, "music.sleep.details2", { d: client.emoji.dot, duration, ends: Math.floor(endTime / 1000), prefix })
             );
 
         const container = new ContainerBuilder()
@@ -238,7 +232,7 @@ module.exports = {
                     const textChannel = client.channels.cache.get(player.textId);
                     if (textChannel) {
                         const sleepDisplay = new TextDisplayBuilder()
-                            .setContent(`**${client.emoji.info} Timer ended - ${message.author} disconnected.**`);
+                            .setContent(client.t(message.guild.id, "music.sleep.ended", { e: client.emoji.info, user: message.author }));
 
                         const sleepContainer = new ContainerBuilder()
                             .addTextDisplayComponents(sleepDisplay);

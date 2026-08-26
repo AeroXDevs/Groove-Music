@@ -75,7 +75,7 @@ module.exports = {
 
         if (!player.queue.current) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} Play a song first.**`);
+                .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
@@ -90,20 +90,20 @@ module.exports = {
 
         const createStep1Container = () => {
             const headerDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.info} Loop Settings**`);
+                .setContent(client.t(message.guild.id, "music.loop.settings", { e: client.emoji.info }));
             const separator = new SeparatorBuilder();
             const statusDisplay = new TextDisplayBuilder()
-                .setContent(`**Current Mode** \`:\` \`${currentLoop === "none" ? "Disabled" : currentLoop === "track" ? "Track Loop" : "Queue Loop"}\``);
+                .setContent(client.t(message.guild.id, "music.loop.current", { mode: client.t(message.guild.id, currentLoop === "none" ? "music.loop.modeNone" : currentLoop === "track" ? "music.loop.modeTrack" : "music.loop.modeQueue") }));
 
             const row = new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
                     .setCustomId('loop_enable_prompt')
-                    .setLabel('Enable')
+                    .setLabel(client.t(message.guild.id, "buttons.enable"))
                     .setStyle(ButtonStyle.Success)
                     .setDisabled(currentLoop !== 'none'),
                 new ButtonBuilder()
                     .setCustomId('loop_off')
-                    .setLabel('Disable')
+                    .setLabel(client.t(message.guild.id, "buttons.disable"))
                     .setStyle(ButtonStyle.Danger)
                     .setDisabled(currentLoop === 'none')
             );
@@ -118,23 +118,23 @@ module.exports = {
 
         const createStep2Container = () => {
             const headerDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.info} Select Loop Mode**`);
+                .setContent(client.t(message.guild.id, "music.loop.selectTitle", { e: client.emoji.info }));
             const separator = new SeparatorBuilder();
             const statusDisplay = new TextDisplayBuilder()
-                .setContent(`**Please choose whether you want to loop the current track or the entire queue.**`);
+                .setContent(client.t(message.guild.id, "music.loop.selectBody"));
 
             const row = new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
                     .setCustomId('loop_track')
-                    .setLabel('Track')
+                    .setLabel(client.t(message.guild.id, "buttons.track"))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('loop_queue')
-                    .setLabel('Queue')
+                    .setLabel(client.t(message.guild.id, "buttons.queue"))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('loop_back')
-                    .setLabel('Back')
+                    .setLabel(client.t(message.guild.id, "buttons.back"))
                     .setStyle(ButtonStyle.Secondary)
             );
 
@@ -148,10 +148,10 @@ module.exports = {
 
         const createFinalContainer = (mode) => {
             const headerDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.check} Loop Updated**`);
+                .setContent(client.t(message.guild.id, "music.loop.updated", { e: client.emoji.check }));
             const separator = new SeparatorBuilder();
             const statusDisplay = new TextDisplayBuilder()
-                .setContent(`**Loop mode has been set to** \`:\` \`${mode === "none" ? "Disabled" : mode === "track" ? "Track Loop" : "Queue Loop"}\``);
+                .setContent(client.t(message.guild.id, "music.loop.setTo", { mode: client.t(message.guild.id, mode === "none" ? "music.loop.modeNone" : mode === "track" ? "music.loop.modeTrack" : "music.loop.modeQueue") }));
 
             return new ContainerBuilder()
                 .addTextDisplayComponents(headerDisplay)
@@ -195,7 +195,7 @@ module.exports = {
                 filter: (i) => {
                     if (i.user.id === message.author.id) return true;
                     const errorDisplay = new TextDisplayBuilder()
-                        .setContent(`**${client.emoji.cross} Only ${message.author.tag} can use these buttons.**`);
+                        .setContent(client.t(message.guild.id, "music.loop.onlyUser", { e: client.emoji.cross, user: message.author.tag }));
                     const errorContainer = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
                     i.reply({ components: [errorContainer], flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2 });
                     return false;

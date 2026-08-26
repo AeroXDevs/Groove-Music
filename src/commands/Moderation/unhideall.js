@@ -20,7 +20,7 @@ module.exports = {
     async slashExecute(interaction, client) {
         const isOwner = client.owners.includes(interaction.user.id);
         if (!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Manage Channels\` permissions.`);
+            const display = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "mod.needPermShort", { e: emoji.warn, permission: "Manage Channels" }));
             return interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -30,7 +30,7 @@ module.exports = {
     async execute(message, args, client) {
         const isOwner = client.owners.includes(message.author.id);
         if (!message.member.permissions.has(PermissionFlagsBits.ManageChannels) && !isOwner) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} You need \`Manage Channels\` permissions.`);
+            const display = new TextDisplayBuilder().setContent(client.t(message.guild.id, "mod.needPermShort", { e: emoji.warn, permission: "Manage Channels" }));
             return message.reply({ components: [new ContainerBuilder().addTextDisplayComponents(display)], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -40,8 +40,8 @@ module.exports = {
     async executeLogic(context, client, isSlash) {
         const guild = context.guild;
 
-        if (isSlash) await context.reply({ content: `${emoji.load} Unhiding all channels...` });
-        else var waitMsg = await context.reply({ content: `${emoji.load} Unhiding all channels...` });
+        if (isSlash) await context.reply({ content: client.t(guild.id, "mod.bulk.unhiding", { e: emoji.load }) });
+        else var waitMsg = await context.reply({ content: client.t(guild.id, "mod.bulk.unhiding", { e: emoji.load }) });
 
         try {
             const channels = guild.channels.cache.filter(c =>
@@ -50,7 +50,7 @@ module.exports = {
             );
 
             if (channels.size === 0) {
-                const display = new TextDisplayBuilder().setContent(`${emoji.warn} All text channels are already visible.`);
+                const display = new TextDisplayBuilder().setContent(client.t(guild.id, "mod.bulk.allVisible", { e: emoji.warn }));
                 const container = new ContainerBuilder().addTextDisplayComponents(display);
                 if (isSlash) return context.editReply({ components: [container], flags: MessageFlags.IsComponentsV2 });
                 return waitMsg.edit({ components: [container], flags: MessageFlags.IsComponentsV2 });
@@ -64,7 +64,7 @@ module.exports = {
                 count++;
             }
 
-            const display = new TextDisplayBuilder().setContent(`${emoji.check} Made **${count}** text channels visible.`);
+            const display = new TextDisplayBuilder().setContent(client.t(guild.id, "mod.bulk.visible", { e: emoji.check, count }));
             const container = new ContainerBuilder().addTextDisplayComponents(display);
 
             if (isSlash) {
@@ -73,7 +73,7 @@ module.exports = {
                 return waitMsg.edit({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
         } catch (error) {
-            const display = new TextDisplayBuilder().setContent(`${emoji.warn} Failed to unhide all channels: ${error.message}`);
+            const display = new TextDisplayBuilder().setContent(client.t(guild.id, "mod.failed.unhideAll", { e: emoji.warn, message: error.message }));
             const container = new ContainerBuilder().addTextDisplayComponents(display);
             if (isSlash) return context.editReply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             return waitMsg.edit({ components: [container], flags: MessageFlags.IsComponentsV2 });

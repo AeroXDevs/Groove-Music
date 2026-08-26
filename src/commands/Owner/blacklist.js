@@ -72,7 +72,7 @@ module.exports = {
 
       if (blacklistedUsers.length === 0) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} No users are currently blacklisted.**`);
+          .setContent(client.t(interaction.guildId, "bl.empty", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -100,7 +100,7 @@ module.exports = {
         );
 
         const headerDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.check} Blacklisted Users**`);
+          .setContent(client.t(interaction.guildId, "bl.title", { e: client.emoji.check }));
 
         const separator = new SeparatorBuilder();
 
@@ -179,7 +179,7 @@ module.exports = {
     } else if (subcommand === "add") {
       if (!user) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**Provide me a valid user**`);
+          .setContent(client.t(interaction.guildId, "own.needUser", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -194,7 +194,7 @@ module.exports = {
 
       if (existing) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} This user is already blacklisted.**`);
+          .setContent(client.t(interaction.guildId, "bl.already", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -208,7 +208,7 @@ module.exports = {
       client.db.blacklist.set(user.id, { developer: interaction.user.id });
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Added ${user} to blacklist.**`);
+        .setContent(client.t(interaction.guildId, "bl.added", { e: client.emoji.check, user }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);
@@ -220,7 +220,7 @@ module.exports = {
     } else if (subcommand === "remove") {
       if (!user) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**Provide me a valid user**`);
+          .setContent(client.t(interaction.guildId, "own.needUser", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -235,7 +235,7 @@ module.exports = {
 
       if (!blData) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} This user is not blacklisted.**`);
+          .setContent(client.t(interaction.guildId, "bl.notIn", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -249,7 +249,7 @@ module.exports = {
       client.db.blacklist.delete(user.id);
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Successfully removed ${user} from my blacklist.**`);
+        .setContent(client.t(interaction.guildId, "bl.removed", { e: client.emoji.check, user }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);
@@ -263,7 +263,7 @@ module.exports = {
 
       if (blacklistedUsers.length === 0) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} No users are currently blacklisted.**`);
+          .setContent(client.t(interaction.guildId, "bl.empty", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -278,7 +278,7 @@ module.exports = {
       blacklistedUsers.forEach(u => client.db.blacklist.delete(u.userId));
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Successfully removed all \`${count}\` users from the blacklist.**`);
+        .setContent(client.t(interaction.guildId, "bl.removedAllLine", { e: client.emoji.check, count }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);
@@ -296,15 +296,15 @@ module.exports = {
 
     if (!args[0]) {
       const helpHeader = new TextDisplayBuilder()
-        .setContent(`\`\`\`[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!)\`\`\``);
+        .setContent(client.t(message.guild.id, "own.argHintBlock2"));
 
       const separator1 = new SeparatorBuilder();
 
       const aliasesDisplay = new TextDisplayBuilder()
-        .setContent(`**Aliases:** \`\`[bl]\`\``);
+        .setContent(client.t(message.guild.id, "own.aliasesLine", { value: "[bl]" }));
 
       const usageDisplay = new TextDisplayBuilder()
-        .setContent(`**Usage:** \`\`add/remove/list\`\``);
+        .setContent(client.t(message.guild.id, "own.usageLine", { value: "add/remove/list" }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(helpHeader)
@@ -325,7 +325,7 @@ module.exports = {
 
       if (blacklistedUsers.length === 0) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} No users are currently blacklisted.**`);
+          .setContent(client.t(message.guild.id, "bl.empty", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -353,7 +353,7 @@ module.exports = {
         );
 
         const headerDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.check} Blacklisted Users**`);
+          .setContent(client.t(message.guild.id, "bl.title", { e: client.emoji.check }));
 
         const separator = new SeparatorBuilder();
 
@@ -435,7 +435,7 @@ module.exports = {
 
       if (!user) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**Provide me a valid user**`);
+          .setContent(client.t(message.guild.id, "own.needUser", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -450,7 +450,7 @@ module.exports = {
 
       if (existing) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} This user is already blacklisted.**`);
+          .setContent(client.t(message.guild.id, "bl.already", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -464,7 +464,7 @@ module.exports = {
       client.db.blacklist.set(user.id, { developer: message.author.id });
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Added ${user} to blacklist.**`);
+        .setContent(client.t(message.guild.id, "bl.added", { e: client.emoji.check, user }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);
@@ -479,7 +479,7 @@ module.exports = {
 
         if (blacklistedUsers.length === 0) {
           const infoDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.info} No users are currently blacklisted.**`);
+            .setContent(client.t(message.guild.id, "bl.empty", { e: client.emoji.info }));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(infoDisplay);
@@ -494,7 +494,7 @@ module.exports = {
         blacklistedUsers.forEach(u => client.db.blacklist.delete(u.userId));
 
         const successDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.check} Successfully removed all \`${count}\` users from the blacklist.**`);
+          .setContent(client.t(message.guild.id, "bl.removedAllLine", { e: client.emoji.check, count }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(successDisplay);
@@ -510,7 +510,7 @@ module.exports = {
 
       if (!user) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**Provide me a valid user or use 'all' to remove everyone**`);
+          .setContent(client.t(message.guild.id, "own.needUserOrAll", { e: client.emoji.warn }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -525,7 +525,7 @@ module.exports = {
 
       if (!blData) {
         const infoDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} This user is not blacklisted.**`);
+          .setContent(client.t(message.guild.id, "bl.notIn", { e: client.emoji.info }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(infoDisplay);
@@ -539,7 +539,7 @@ module.exports = {
       client.db.blacklist.delete(user.id);
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Successfully removed ${user} from my blacklist.**`);
+        .setContent(client.t(message.guild.id, "bl.removed", { e: client.emoji.check, user }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);

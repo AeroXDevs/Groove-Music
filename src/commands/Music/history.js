@@ -65,8 +65,7 @@ module.exports = {
         if (history.length === 0) {
             const infoDisplay = new TextDisplayBuilder()
                 .setContent(
-                    `**${client.emoji.info} No songs in history yet.**\n` +
-                    `**${client.emoji.info} Songs will appear here after they finish playing.**`
+                    client.t(message.guild.id, "music.history.empty", { e: client.emoji.info })
                 );
 
             const container = new ContainerBuilder()
@@ -99,7 +98,7 @@ module.exports = {
             });
 
             const headerDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.info} Recently Played Songs**`);
+                .setContent(client.t(message.guild.id, "music.history.title", { e: client.emoji.info }));
 
             const separator = new SeparatorBuilder();
 
@@ -118,19 +117,19 @@ module.exports = {
             const row = new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
                     .setCustomId('home')
-                    .setLabel('Home')
+                    .setLabel(client.t(message.guild.id, "buttons.home"))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('prev')
-                    .setLabel('Previous')
+                    .setLabel(client.t(message.guild.id, "buttons.previous"))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('next')
-                    .setLabel('Next')
+                    .setLabel(client.t(message.guild.id, "buttons.next"))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('close')
-                    .setLabel('Close')
+                    .setLabel(client.t(message.guild.id, "buttons.close"))
                     .setStyle(ButtonStyle.Danger)
             );
             components.push(row);
@@ -147,7 +146,7 @@ module.exports = {
                     if (i.user.id === message.author.id) return true;
 
                     const errorDisplay = new TextDisplayBuilder()
-                        .setContent(`**${client.emoji.cross} Only ${message.author.tag} can use this button.**`);
+                        .setContent(client.t(message.guild.id, "music.history.onlyUser", { e: client.emoji.cross, user: message.author.tag }));
 
                     const errorContainer = new ContainerBuilder()
                         .addTextDisplayComponents(errorDisplay);

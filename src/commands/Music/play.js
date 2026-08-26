@@ -109,7 +109,7 @@ module.exports = {
 
     if (!interaction.member?.voice?.channel) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} You need to be in a voice channel first.**`);
+        .setContent(client.t(interaction.guildId, "music.play.needVoice", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -127,7 +127,7 @@ module.exports = {
       PermissionsBitField.Flags.Speak,
     ])) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} I don't have enough permissions! Please give me \`CONNECT\` and \`SPEAK\`.**`);
+        .setContent(client.t(interaction.guildId, "music.play.noPerms", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -143,7 +143,7 @@ module.exports = {
 
       if (!hasAvailableNodes(client.manager)) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} The music server is currently unavailable. Please try again later.**`);
+          .setContent(client.t(interaction.guildId, "music.play.serverDown", { e: client.emoji.cross }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -168,7 +168,7 @@ module.exports = {
             guildId: interaction.guild.id,
             voiceId: channel.id,
             textId: interaction.channel.id,
-            volume: 80,
+            volume: require("../../utils/playerUtils").getDefaultVolume(client, message.guild.id),
             deaf: true,
           });
 
@@ -188,7 +188,7 @@ module.exports = {
       } else {
         if (player.voiceId !== channel.id) {
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.warn} I'm already connected to a different voice channel.**`);
+            .setContent(client.t(interaction.guildId, "music.play.otherChannel", { e: client.emoji.warn }));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -233,7 +233,7 @@ module.exports = {
 
       if (!searchResult || !searchResult.tracks || !searchResult.tracks.length) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} No results found for "${query}"**`);
+          .setContent(client.t(interaction.guildId, "music.play.noResults", { e: client.emoji.cross, query }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -276,7 +276,7 @@ module.exports = {
         }
 
         const successDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.check} Queued \`${searchResult.tracks.length}\` tracks from \`${searchResult.playlistName}\`**`);
+          .setContent(client.t(interaction.guildId, "music.play.queuedPlaylist", { e: client.emoji.check, count: searchResult.tracks.length, playlist: searchResult.playlistName }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(successDisplay);
@@ -351,12 +351,11 @@ module.exports = {
       };
 
       const titleDisplay = new TextDisplayBuilder()
-        .setContent(`### ${client.emoji.check} Track Added`);
+        .setContent(client.t(interaction.guildId, "music.play.trackAdded", { e: client.emoji.check }));
 
       const infoDisplay = new TextDisplayBuilder()
         .setContent(
-          `[**${truncateTitle(track.title, 25)}**](${track.uri}) by \` ${cleanAuthorName(track.author)} \`\n` +
-          `-# Position \` #${position} \` • Duration \` ${convertTime(track.length)} \` • By \` ${interaction.user.username} \``
+client.t(interaction.guildId, "music.play.trackInfo", { title: truncateTitle(track.title, 25), uri: track.uri, author: cleanAuthorName(track.author), position, duration: convertTime(track.length), user: interaction.user.username })
         );
 
       const section = new SectionBuilder()
@@ -377,12 +376,12 @@ module.exports = {
       if (position > 0) {
         const removeButton = new ButtonBuilder()
           .setCustomId(`remove_${track.identifier}_${position}`)
-          .setLabel('Remove')
+          .setLabel(client.t(interaction.guildId, "buttons.remove"))
           .setStyle(ButtonStyle.Danger);
 
         const playNextButton = new ButtonBuilder()
           .setCustomId(`playnext_${track.identifier}_${position}`)
-          .setLabel('Play Next')
+          .setLabel(client.t(interaction.guildId, "buttons.playNext"))
           .setStyle(ButtonStyle.Success)
           .setDisabled(position === 1);
 
@@ -426,7 +425,7 @@ module.exports = {
 
         collector.on('collect', async (buttonInteraction) => {
           if (!buttonInteraction.member.voice.channel || buttonInteraction.member.voice.channel.id !== player.voiceId) {
-            return buttonInteraction.reply({ content: `**${client.emoji.warn} You must be in my voice channel to use this.**`, ephemeral: true });
+            return buttonInteraction.reply({ content: client.t(interaction.guildId, "music.play.mustBeInVoice", { e: client.emoji.warn }), ephemeral: true });
           }
 
           const parts = buttonInteraction.customId.split('_');
@@ -446,7 +445,7 @@ module.exports = {
                 player.queue.splice(trackIndex, 1);
 
                 const updatedDisplay = new TextDisplayBuilder()
-                  .setContent(`**${client.emoji.check} Removed [${truncateTitle(removedTrack.title, 25)}](${removedTrack.uri}) from queue.**`);
+                  .setContent(client.t(interaction.guildId, "music.play.removedFromQueue", { e: client.emoji.check, title: truncateTitle(removedTrack.title, 25), uri: removedTrack.uri }));
 
                 const updatedContainer = new ContainerBuilder()
                   .addTextDisplayComponents(updatedDisplay);
@@ -460,7 +459,7 @@ module.exports = {
 
                 buttonInteraction.message.actionTaken = true;
               } else {
-                await buttonInteraction.reply({ content: `**${client.emoji.cross} This track is no longer in the queue.**`, ephemeral: true });
+                await buttonInteraction.reply({ content: client.t(interaction.guildId, "music.play.notInQueue", { e: client.emoji.cross }), ephemeral: true });
               }
             } catch (err) {
               console.error('Error removing track:', err);
@@ -478,7 +477,7 @@ module.exports = {
                 player.queue.unshift(trackToMove);
 
                 const updatedDisplay = new TextDisplayBuilder()
-                  .setContent(`**${client.emoji.check} Moved [${truncateTitle(trackToMove.title, 25)}](${trackToMove.uri}) to next in queue.**`);
+                  .setContent(client.t(interaction.guildId, "music.play.movedNext", { e: client.emoji.check, title: truncateTitle(trackToMove.title, 25), uri: trackToMove.uri }));
 
                 const updatedContainer = new ContainerBuilder()
                   .addTextDisplayComponents(updatedDisplay);
@@ -492,7 +491,7 @@ module.exports = {
 
                 buttonInteraction.message.actionTaken = true;
               } else {
-                await buttonInteraction.reply({ content: `**${client.emoji.cross} This track is no longer in the queue.**`, ephemeral: true });
+                await buttonInteraction.reply({ content: client.t(interaction.guildId, "music.play.notInQueue", { e: client.emoji.cross }), ephemeral: true });
               }
             } catch (err) {
               console.error('Error moving track:', err);
@@ -503,7 +502,7 @@ module.exports = {
         collector.on('end', () => {
           if (replyMsg && !replyMsg.deleted && !replyMsg.actionTaken) {
             const finalTitleDisplay = new TextDisplayBuilder()
-              .setContent(`### ${client.emoji.check} Track Added`);
+              .setContent(client.t(interaction.guildId, "music.play.trackAdded", { e: client.emoji.check }));
 
             const finalInfoDisplay = new TextDisplayBuilder()
               .setContent(
@@ -539,9 +538,9 @@ module.exports = {
 
       let errorMessage = error.message;
       if (error.code === 'UND_ERR_CONNECT_TIMEOUT' || error.message.includes('fetch failed')) {
-        errorMessage = "The music server is currently unreachable. Please try again or contact support.";
+        errorMessage = client.t(interaction.guildId, "music.play.unreachable");
       } else {
-        errorMessage = `An error occurred: ${error.message}`;
+        errorMessage = client.t(interaction.guildId, "music.play.genericError", { message: error.message });
       }
 
       const errorDisplay = new TextDisplayBuilder()
@@ -621,8 +620,7 @@ module.exports = {
     if (!query) {
       const usageDisplay = new TextDisplayBuilder()
         .setContent(
-          `**${client.emoji.dot} Usage** \`:\` \`${prefix}play [Song Name/URL]\`\n` +
-          `**${client.emoji.dot} Example** \`:\` \`${prefix}play imagine dragons believer\``
+client.t(message.guild.id, "music.play.usage", { d: client.emoji.dot, prefix })
         );
 
       const container = new ContainerBuilder()
@@ -637,7 +635,7 @@ module.exports = {
     const channel = message.member.voice.channel;
     if (!channel) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} You need to be in a voice channel first.**`);
+        .setContent(client.t(message.guild.id, "music.play.needVoice", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -662,7 +660,7 @@ module.exports = {
       ])
     ) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} I don't have enough permissions! Please give me \`CONNECT\` and \`SPEAK\`.**`);
+        .setContent(client.t(message.guild.id, "music.play.noPerms", { e: client.emoji.warn }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -687,7 +685,7 @@ module.exports = {
 
       if (!hasAvailableNodes(client.manager)) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} The music server is currently unavailable. Please try again later.**`);
+          .setContent(client.t(message.guild.id, "music.play.serverDown", { e: client.emoji.cross }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -711,7 +709,7 @@ module.exports = {
             guildId: message.guild.id,
             voiceId: channel.id,
             textId: message.channel.id,
-            volume: 80,
+            volume: require("../../utils/playerUtils").getDefaultVolume(client, message.guild.id),
             deaf: true,
           });
 
@@ -742,7 +740,7 @@ module.exports = {
                 guildId: message.guild.id,
                 voiceId: channel.id,
                 textId: message.channel.id,
-                volume: 80,
+                volume: require("../../utils/playerUtils").getDefaultVolume(client, message.guild.id),
                 deaf: true,
               });
 
@@ -769,7 +767,7 @@ module.exports = {
       } else {
         if (player.voiceId !== channel.id) {
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.warn} I'm already connected to a different voice channel.**`);
+            .setContent(client.t(message.guild.id, "music.play.otherChannel", { e: client.emoji.warn }));
 
           const container = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);
@@ -819,7 +817,7 @@ module.exports = {
 
       if (!searchResult || !searchResult.tracks || !searchResult.tracks.length) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} No result was found for "${query}"**`);
+          .setContent(client.t(message.guild.id, "music.play.noResults", { e: client.emoji.cross, query }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -847,7 +845,7 @@ module.exports = {
 
       if (addedTracks.length === 0) {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} No tracks could be processed**`);
+          .setContent(client.t(message.guild.id, "music.play.noTracks", { e: client.emoji.cross }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -898,7 +896,7 @@ module.exports = {
 
       if (searchResult.type === "PLAYLIST") {
         const successDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.check} Queued \`${addedTracks.length}\` tracks from \`${searchResult.playlistName}\`**`);
+          .setContent(client.t(message.guild.id, "music.play.queuedPlaylist", { e: client.emoji.check, count: addedTracks.length, playlist: searchResult.playlistName }));
 
         const container = new ContainerBuilder()
           .addTextDisplayComponents(successDisplay);
@@ -955,12 +953,11 @@ module.exports = {
         };
 
         const titleDisplay = new TextDisplayBuilder()
-          .setContent(`### ${client.emoji.check} Track Added`);
+          .setContent(client.t(message.guild.id, "music.play.trackAdded", { e: client.emoji.check }));
 
         const infoDisplay = new TextDisplayBuilder()
           .setContent(
-            `> [**${truncateTitle(track.track.title, 25)}**](${track.track.uri}) by \` ${cleanAuthorName(track.track.author)} \`\n` +
-            `> Position \` #${track.position} \` • Duration \` ${convertTime(track.track.length)} \` • By \` ${message.author.username} \``
+client.t(message.guild.id, "music.play.trackInfoQuoted", { title: truncateTitle(track.track.title, 25), uri: track.track.uri, author: cleanAuthorName(track.track.author), position: track.position, duration: convertTime(track.track.length), user: message.author.username })
           );
 
         const section = new SectionBuilder()
@@ -981,12 +978,12 @@ module.exports = {
         if (track.position > 0) {
           const removeButton = new ButtonBuilder()
             .setCustomId(`remove_${track.track.identifier}_${track.position}`)
-            .setLabel('Remove')
+            .setLabel(client.t(message.guild.id, "buttons.remove"))
             .setStyle(ButtonStyle.Danger);
 
           const playNextButton = new ButtonBuilder()
             .setCustomId(`playnext_${track.track.identifier}_${track.position}`)
-            .setLabel('Play Next')
+            .setLabel(client.t(message.guild.id, "buttons.playNext"))
             .setStyle(ButtonStyle.Success)
             .setDisabled(track.position === 1);
 
@@ -1018,7 +1015,7 @@ module.exports = {
 
           collector.on('collect', async (interaction) => {
             if (!interaction.member.voice.channel || interaction.member.voice.channel.id !== player.voiceId) {
-              return interaction.reply({ content: `**${client.emoji.warn} You must be in my voice channel to use this.**`, ephemeral: true });
+              return interaction.reply({ content: client.t(message.guild.id, "music.play.mustBeInVoice", { e: client.emoji.warn }), ephemeral: true });
             }
 
             const parts = interaction.customId.split('_');
@@ -1038,7 +1035,7 @@ module.exports = {
                   player.queue.splice(trackIndex, 1);
 
                   const updatedDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.check} Removed [${truncateTitle(removedTrack.title, 25)}](${removedTrack.uri}) from queue.**`);
+                    .setContent(client.t(message.guild.id, "music.play.removedFromQueue", { e: client.emoji.check, title: truncateTitle(removedTrack.title, 25), uri: removedTrack.uri }));
 
                   const updatedContainer = new ContainerBuilder()
                     .addTextDisplayComponents(updatedDisplay);
@@ -1052,7 +1049,7 @@ module.exports = {
 
                   interaction.message.actionTaken = true;
                 } else {
-                  await interaction.reply({ content: `**${client.emoji.cross} This track is no longer in the queue.**`, ephemeral: true });
+                  await interaction.reply({ content: client.t(message.guild.id, "music.play.notInQueue", { e: client.emoji.cross }), ephemeral: true });
                 }
               } catch (err) {
                 console.error('Error removing track:', err);
@@ -1070,7 +1067,7 @@ module.exports = {
                   player.queue.unshift(trackToMove);
 
                   const updatedDisplay = new TextDisplayBuilder()
-                    .setContent(`**${client.emoji.check} Moved [${truncateTitle(trackToMove.title, 25)}](${trackToMove.uri}) to next in queue.**`);
+                    .setContent(client.t(message.guild.id, "music.play.movedNext", { e: client.emoji.check, title: truncateTitle(trackToMove.title, 25), uri: trackToMove.uri }));
 
                   const updatedContainer = new ContainerBuilder()
                     .addTextDisplayComponents(updatedDisplay);
@@ -1084,7 +1081,7 @@ module.exports = {
 
                   interaction.message.actionTaken = true;
                 } else {
-                  await interaction.reply({ content: `**${client.emoji.cross} This track is no longer in the queue.**`, ephemeral: true });
+                  await interaction.reply({ content: client.t(message.guild.id, "music.play.notInQueue", { e: client.emoji.cross }), ephemeral: true });
                 }
               } catch (err) {
                 console.error('Error moving track:', err);
@@ -1095,7 +1092,7 @@ module.exports = {
           collector.on('end', () => {
             if (replyMsg && !replyMsg.deleted && !replyMsg.actionTaken) {
               const finalTitleDisplay = new TextDisplayBuilder()
-                .setContent(`### ${client.emoji.check} Track Added`);
+                .setContent(client.t(message.guild.id, "music.play.trackAdded", { e: client.emoji.check }));
 
               const finalInfoDisplay = new TextDisplayBuilder()
                 .setContent(
@@ -1131,9 +1128,9 @@ module.exports = {
 
       let errorMessage = error.message;
       if (error.code === 'UND_ERR_CONNECT_TIMEOUT' || error.message.includes('fetch failed')) {
-        errorMessage = "The music server is currently unreachable. Please try again or contact support.";
+        errorMessage = client.t(message.guild.id, "music.play.unreachable");
       } else {
-        errorMessage = `An error occurred while playing: ${error.message}`;
+        errorMessage = client.t(message.guild.id, "music.play.playError", { message: error.message });
       }
 
       const errorDisplay = new TextDisplayBuilder()

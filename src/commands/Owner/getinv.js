@@ -33,9 +33,9 @@ module.exports = {
         const display = new TextDisplayBuilder();
 
         if (result.success) {
-            display.setContent(`${emoji.check} **Invite for ${result.guildName}:**\n${result.invite}`);
+            display.setContent(client.t(interaction.guildId, "owner.inviteFor", { e: emoji.check, guild: result.guildName, invite: result.invite }));
         } else {
-            display.setContent(`${emoji.cross} **Error:** ${result.error}`);
+            display.setContent(client.t(interaction.guildId, "owner.error", { e: emoji.cross, message: result.error }));
         }
 
         container.addTextDisplayComponents(display);
@@ -56,9 +56,9 @@ module.exports = {
         const display = new TextDisplayBuilder();
 
         if (result.success) {
-            display.setContent(`${emoji.check} **Invite for ${result.guildName}:**\n${result.invite}`);
+            display.setContent(client.t(message.guild.id, "owner.inviteFor", { e: emoji.check, guild: result.guildName, invite: result.invite }));
         } else {
-            display.setContent(`${emoji.cross} **Error:** ${result.error}`);
+            display.setContent(client.t(message.guild.id, "owner.error", { e: emoji.cross, message: result.error }));
         }
 
         container.addTextDisplayComponents(display);

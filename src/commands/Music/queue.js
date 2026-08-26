@@ -61,7 +61,7 @@ module.exports = {
 
     if (!player.queue.current) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} Nothing is playing right now.**`);
+        .setContent(client.t(message.guild.id, "music.nothingPlaying", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -92,7 +92,7 @@ module.exports = {
       const queueList = queue.slice(start, start + multiple);
 
       const headerDisplay = new TextDisplayBuilder()
-        .setContent(`### ${client.emoji.info} Music Queue`);
+        .setContent(client.t(message.guild.id, "music.queue.title", { e: client.emoji.info }));
 
       const separator1 = new SeparatorBuilder();
 
@@ -125,19 +125,19 @@ module.exports = {
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId("home")
-        .setLabel("Home")
+        .setLabel(client.t(message.guild.id, "buttons.home"))
         .setStyle(ButtonStyle.Secondary),
       new ButtonBuilder()
         .setCustomId("previous")
-        .setLabel("Previous")
+        .setLabel(client.t(message.guild.id, "buttons.previous"))
         .setStyle(ButtonStyle.Secondary),
       new ButtonBuilder()
         .setCustomId("next")
-        .setLabel("Next")
+        .setLabel(client.t(message.guild.id, "buttons.next"))
         .setStyle(ButtonStyle.Secondary),
       new ButtonBuilder()
         .setCustomId("close")
-        .setLabel("Close")
+        .setLabel(client.t(message.guild.id, "buttons.close"))
         .setStyle(ButtonStyle.Secondary)
     );
 
@@ -157,7 +157,7 @@ module.exports = {
           if (b.user.id === message.author.id) return true;
 
           const errorDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.cross} Only ${message.author.tag} can use these buttons!**`);
+            .setContent(client.t(message.guild.id, "music.queue.onlyUser", { e: client.emoji.cross, user: message.author.tag }));
 
           const errorContainer = new ContainerBuilder()
             .addTextDisplayComponents(errorDisplay);

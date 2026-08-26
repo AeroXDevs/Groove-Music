@@ -57,7 +57,7 @@ module.exports = {
 
         if (!player.queue.current) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} Nothing is playing right now.**`);
+                .setContent(client.t(message.guild.id, "music.nothingPlaying", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
@@ -72,7 +72,7 @@ module.exports = {
 
         if (queue.length === 0) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.info} The queue is empty.**`);
+                .setContent(client.t(message.guild.id, "music.queueEmpty", { e: client.emoji.info }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
@@ -86,7 +86,7 @@ module.exports = {
         const voiceChannel = message.member.voice.channel;
         if (!voiceChannel) {
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.cross} You need to be in a voice channel!**`);
+                .setContent(client.t(message.guild.id, "music.mustBeInVoice", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);
@@ -119,7 +119,7 @@ module.exports = {
 
         if (removedTracks.length === 0) {
             const infoDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.info} No songs found from users who left the voice channel.**`);
+                .setContent(client.t(message.guild.id, "music.cleanup.none", { e: client.emoji.info }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(infoDisplay);
@@ -131,7 +131,7 @@ module.exports = {
         }
 
         const headerDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.check} Leave Cleanup Complete**`);
+            .setContent(client.t(message.guild.id, "music.cleanup.done", { e: client.emoji.check }));
 
         const separator = new SeparatorBuilder();
 

@@ -63,7 +63,7 @@ module.exports = {
                     targetUser = await message.guild.members.fetch(userMention).then(m => m.user);
                 } catch (error) {
                     const display = new TextDisplayBuilder()
-                        .setContent(`${client.emoji.warn} **Could not find that user.**`);
+                        .setContent(client.t(message.guild.id, "trk.userNotFound", { e: client.emoji.warn }));
 
                     return message.reply({
                         components: [new ContainerBuilder().addTextDisplayComponents(display)],
@@ -93,7 +93,7 @@ module.exports = {
 
             if (!uniqueMembers || uniqueMembers.length === 0) {
                 const infoDisplay = new TextDisplayBuilder()
-                    .setContent(`${client.emoji.info} **${targetUser.displayName} hasn't invited anyone yet!**`);
+                    .setContent(client.t(message.guild.id, "trk.noneInvited", { e: client.emoji.info, user: targetUser.displayName }));
 
                 const container = new ContainerBuilder()
                     .addTextDisplayComponents(infoDisplay);
@@ -207,7 +207,7 @@ module.exports = {
             console.error('Error in invited command:', error);
 
             const errorDisplay = new TextDisplayBuilder()
-                .setContent(`${client.emoji.cross} **An error occurred while fetching invited members.**`);
+                .setContent(client.t(message.guild.id, "trk.errMembers", { e: client.emoji.cross }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(errorDisplay);

@@ -58,7 +58,7 @@ module.exports = {
 
     if (!player.queue.current) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} Play a song first.**`);
+        .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -69,10 +69,12 @@ module.exports = {
       });
     }
 
+    const beforeShuffle = [...player.queue];
     await player.queue.shuffle();
+    player.data.set("beforeShuffle", beforeShuffle);
 
     const successDisplay = new TextDisplayBuilder()
-      .setContent(`**${client.emoji.check} Shuffled the queue.**`);
+      .setContent(client.t(message.guild.id, "music.shuffled", { e: client.emoji.check }));
 
     const container = new ContainerBuilder()
       .addTextDisplayComponents(successDisplay);

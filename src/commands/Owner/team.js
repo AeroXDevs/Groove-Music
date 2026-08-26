@@ -34,16 +34,11 @@ module.exports = {
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`### ${emoji.info} Team Command [7]`));
             container.addSeparatorComponents(new SeparatorBuilder());
 
-            const helpContent = `> ** \`${prefix}team show\` **\n╰ Shows all current team members and their ranks.\n\n` +
-                `> ** \`${prefix}team add <user> <rank>\` **\n╰ Sets a user's primary rank.\n\n` +
-                `> ** \`${prefix}team remove <user> [rank]\` **\n╰ Removes a user from the team or a specific rank.\n\n` +
-                `> ** \`${prefix}team deny <user/rank> <command/badge>\` **\n╰ Denies a command or removes a rank badge.\n\n` +
-                `> ** \`${prefix}team allow <user/rank> <command/badge>\` **\n╰ Allows a command or adds a rank badge.\n\n` +
-                `> ** \`${prefix}team clear [all]\` **\n╰ Resets team data [all: wipes profiles too].`;
+            const helpContent = client.t(message.guild.id, "own.team.help", { prefix });
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(helpContent));
             container.addSeparatorComponents(new SeparatorBuilder());
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName || user.username}`));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "own.requestedBy", { user: user.displayName || user.username })));
 
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -55,12 +50,12 @@ module.exports = {
             if (mode === 'all') {
                 client.db.profiles.deleteMany();
                 client.db.rankPermissions.deleteMany();
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} **Database Wiped**: All user profiles and team settings have been deleted.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.dbWiped", { e: emoji.check })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             } else {
                 client.db.profiles.deleteMany("UPDATE profiles SET rank = 'User', badges = '[]', allowedCommands = '[]', deniedCommands = '[]'");
                 client.db.rankPermissions.deleteMany();
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} **Team Reset**: All team ranks, badges, and permissions have been cleared across all users.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.teamReset", { e: emoji.check })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
         }
@@ -118,13 +113,13 @@ module.exports = {
             }
 
             if (!fullContent) {
-                const errContainer = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} No team members found.`));
+                const errContainer = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.noTeam", { e: emoji.warn })));
                 return message.reply({ components: [errContainer], flags: MessageFlags.IsComponentsV2 });
             }
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(fullContent.trim()));
             container.addSeparatorComponents(new SeparatorBuilder());
-            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(`-# Requested by ${user.displayName || user.username}`));
+            container.addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "own.requestedBy", { user: user.displayName || user.username })));
 
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
@@ -139,7 +134,7 @@ module.exports = {
 
         if (targetRank) targetType = 'rank';
         else if (!targetUser) {
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} Please provide a valid User or Rank.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.needUserOrRank", { e: emoji.warn })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
         }
 
@@ -150,11 +145,11 @@ module.exports = {
             }
             const rankName = getRankName(args[2]);
             if (!rankName) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} Please specify a valid rank: ${validRanks.join(', ')}`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.needValidRank", { e: emoji.warn, ranks: validRanks.join(', ') })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
             if (rankName === 'Owner' && !client.config?.ownerID?.includes(targetUser.id)) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} Only hardcoded owners (from config.json) can hold the **Owner** rank.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.ownerRankLocked", { e: emoji.warn })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
 
@@ -173,12 +168,12 @@ module.exports = {
             profile.rank = rankName;
             client.db.profiles.set(targetUser.id, profile);
 
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Success! **${targetUser.username}** rank set to **${rankName}**.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.rankSet", { e: emoji.check, user: targetUser.username, rank: rankName })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
 
         } else if (action === 'remove') {
             if (targetType === 'rank') {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} Ranks cannot be removed, only users.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.ranksNotRemovable", { e: emoji.warn })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
 
@@ -189,12 +184,12 @@ module.exports = {
 
             if (!itemToRemove) {
                 client.db.profiles.set(targetUser.id, { rank: 'User', badges: [], deniedCommands: [], allowedCommands: [] });
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Success! **${targetUser.username}** removed from the team.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.removedFromTeam", { e: emoji.check, user: targetUser.username })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
 
             if (!profile) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} This user has no team data.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.noTeamData", { e: emoji.warn })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
 
@@ -209,18 +204,18 @@ module.exports = {
             if (profile.badges.length !== originalLength) changed = true;
 
             if (!changed) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} **${targetUser.username}** does not hold the **${itemToRemove}** rank/badge.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.noRankBadge", { e: emoji.warn, user: targetUser.username, item: itemToRemove })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
 
             client.db.profiles.set(targetUser.id, profile);
-            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Success! Removed **${itemToRemove}** from **${targetUser.username}**.`));
+            const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.itemRemoved", { e: emoji.check, item: itemToRemove, user: targetUser.username })));
             return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
 
         } else if (action === 'allow') {
             const item = args[2];
             if (!item) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} Specify a command or rank badge to allow.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.specifyAllow", { e: emoji.warn })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
 
@@ -242,7 +237,7 @@ module.exports = {
                     }
                 }
                 client.db.profiles.set(targetUser.id, profile);
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Allowed **${item}** for **${targetUser.username}**.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.allowedUser", { e: emoji.check, item, user: targetUser.username })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             } else {
                 const rankPerm = client.db.rankPermissions.get(targetRank);
@@ -251,14 +246,14 @@ module.exports = {
                     rankPerm.allowedCommands.push(item.toLowerCase());
                 }
                 client.db.rankPermissions.set(targetRank, rankPerm);
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Allowed **${item}** for all **${targetRank}** members.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.allowedRank", { e: emoji.check, item, rank: targetRank })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
 
         } else if (action === 'deny') {
             const item = args[2];
             if (!item) {
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.warn} Specify a command or rank badge to deny.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.specifyDeny", { e: emoji.warn })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
 
@@ -278,7 +273,7 @@ module.exports = {
                     }
                 }
                 client.db.profiles.set(targetUser.id, profile);
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Denied **${item}** for **${targetUser.username}**.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.deniedUser", { e: emoji.check, item, user: targetUser.username })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             } else {
                 const rankPerm = client.db.rankPermissions.get(targetRank);
@@ -287,7 +282,7 @@ module.exports = {
                     rankPerm.deniedCommands.push(item.toLowerCase());
                 }
                 client.db.rankPermissions.set(targetRank, rankPerm);
-                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`${emoji.check} Denied **${item}** for all **${targetRank}** members.`));
+                const container = new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(client.t(message.guild.id, "owner.deniedRank", { e: emoji.check, item, rank: targetRank })));
                 return message.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
             }
         }

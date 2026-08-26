@@ -60,7 +60,7 @@ module.exports = {
 
         if (!player.queue.current) {
             const warnDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.warn} There is no song currently playing.**`);
+                .setContent(client.t(message.guild.id, "flt.noSong", { e: client.emoji.warn }));
 
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(warnDisplay);
@@ -74,7 +74,7 @@ module.exports = {
         const row4 = new ActionRowBuilder().addComponents(
             new StringSelectMenuBuilder()
                 .setCustomId("disable_h")
-                .setPlaceholder(`Select a filter to apply`)
+                .setPlaceholder(client.t(message.guild.id, "flt.placeholder"))
                 .addOptions([
                     { label: "Reset Filters", value: "clear", emoji: client.emoji.warn },
                     { label: "8D Audio", value: "8d_but", emoji: client.emoji.check },
@@ -96,7 +96,7 @@ module.exports = {
         const currentFilter = player.currentFilter || "None";
 
         const statusDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.info} Current Filter** \`:\` \`${currentFilter}\``);
+            .setContent(client.t(message.guild.id, "flt.current", { e: client.emoji.info, value: currentFilter }));
 
         const statusContainer = new ContainerBuilder()
             .addTextDisplayComponents(statusDisplay);
@@ -111,7 +111,7 @@ module.exports = {
                 if (message.author.id === i.user.id) return true;
                 else {
                     const errorDisplay = new TextDisplayBuilder()
-                        .setContent(`**${client.emoji.warn} That's not your session run. Use \`${prefix}filter\` to create your own.**`);
+                        .setContent(client.t(message.guild.id, "flt.notYours", { e: client.emoji.warn, prefix }));
 
                     const errorContainer = new ContainerBuilder()
                         .addTextDisplayComponents(errorDisplay);
@@ -184,7 +184,7 @@ module.exports = {
             player.currentFilter = filterName;
 
             const updatedDisplay = new TextDisplayBuilder()
-                .setContent(`**${client.emoji.info} Current Filter \`:\`** \`${filterName}\``);
+                .setContent(client.t(message.guild.id, "flt.currentAlt", { e: client.emoji.info, value: filterName }));
 
             const updatedContainer = new ContainerBuilder()
                 .addTextDisplayComponents(updatedDisplay);

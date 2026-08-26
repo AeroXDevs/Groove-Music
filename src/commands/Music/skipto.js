@@ -32,7 +32,7 @@ module.exports = {
   async slashExecute(interaction, client) {
     const player = client.manager.players.get(interaction.guild.id);
     if (!player.queue.current) {
-      const errorDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.cross} Play a song first!**`);
+      const errorDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.playFirst", { e: client.emoji.cross }));
       const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
       return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
     }
@@ -40,7 +40,7 @@ module.exports = {
     const position = interaction.options.getInteger("position");
     if (position < 1 || position > player.queue.length) {
       const warnDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.warn} Please provide a valid position**\n**Valid range** \`:\` \`1-${player.queue.length}\``);
+        .setContent(client.t(interaction.guildId, "music.skipto.invalid", { e: client.emoji.warn, max: player.queue.length }));
       const container = new ContainerBuilder().addTextDisplayComponents(warnDisplay);
       return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
     }
@@ -50,7 +50,7 @@ module.exports = {
     if (queueIndex > 0) player.queue.splice(0, queueIndex);
     await player.skip();
 
-    const successDisplay = new TextDisplayBuilder().setContent(`**${client.emoji.check} Skipped to \`${targetSong.title}\`**`);
+    const successDisplay = new TextDisplayBuilder().setContent(client.t(interaction.guildId, "music.skipto.done", { e: client.emoji.check, title: targetSong.title }));
     const container = new ContainerBuilder().addTextDisplayComponents(successDisplay);
     return interaction.reply({ components: [container], flags: MessageFlags.IsComponentsV2 });
   },
@@ -60,7 +60,7 @@ module.exports = {
 
     if (!player.queue.current) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} Play a song first!**`);
+        .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -76,8 +76,7 @@ module.exports = {
     if (isNaN(position) || position < 1 || position > player.queue.length) {
       const warnDisplay = new TextDisplayBuilder()
         .setContent(
-          `**${client.emoji.warn} Please provide a valid position**\n` +
-          `**Valid range** \`:\` \`1-${player.queue.length}\``
+          client.t(message.guild.id, "music.skipto.invalid", { e: client.emoji.warn, max: player.queue.length })
         );
 
       const container = new ContainerBuilder()
@@ -95,7 +94,7 @@ module.exports = {
 
     if (!targetSong) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} Could not find song at position \`${position}\`**`);
+        .setContent(client.t(message.guild.id, "music.skipto.notFound", { e: client.emoji.cross, position }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -113,7 +112,7 @@ module.exports = {
     await player.skip();
 
     const successDisplay = new TextDisplayBuilder()
-      .setContent(`**${client.emoji.check} Skipped to \`${targetSong.title}\`**`);
+      .setContent(client.t(message.guild.id, "music.skipto.done", { e: client.emoji.check, title: targetSong.title }));
 
     const container = new ContainerBuilder()
       .addTextDisplayComponents(successDisplay);

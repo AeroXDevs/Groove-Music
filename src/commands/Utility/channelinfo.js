@@ -58,7 +58,7 @@ module.exports = {
         }
 
         if (!channel) {
-            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.cross} **Could not find that channel.**`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.channelNotFound", { e: emoji.cross }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             const options = { components: [container], flags: MessageFlags.IsComponentsV2 };
             return isSlash ? context.editReply(options) : context.reply(options);
@@ -88,35 +88,35 @@ module.exports = {
 
 
             let generalContent =
-                `${emoji.hastag} **__General__**\n` +
-                `> **Name :** ${channel.name}\n` +
-                `> **ID :** ${channel.id}\n` +
-                `> **Mention :** <#${channel.id}>\n` +
-                `> **Type :** ${channelTypes[channel.type] || "Unknown"}\n` +
-                `> **Category :** ${channel.parent ? channel.parent.name : "None"}\n` +
-                `> **Created :** <t:${createdAt}:R>\n` +
-                `> **Position :** ${channel.position}`;
+                `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.general")}__**\n` +
+                `> **${client.t(context.guild.id, "ui.label.name")} :** ${channel.name}\n` +
+                `> **${client.t(context.guild.id, "ui.label.id")} :** ${channel.id}\n` +
+                `> **${client.t(context.guild.id, "ui.label.mention")} :** <#${channel.id}>\n` +
+                `> **${client.t(context.guild.id, "ui.label.type")} :** ${channelTypes[channel.type] || "Unknown"}\n` +
+                `> **${client.t(context.guild.id, "ui.label.category")} :** ${channel.parent ? channel.parent.name : "None"}\n` +
+                `> **${client.t(context.guild.id, "ui.label.created")} :** <t:${createdAt}:R>\n` +
+                `> **${client.t(context.guild.id, "ui.label.position")} :** ${channel.position}`;
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(generalContent));
 
             let settingsContent =
-                `${emoji.hastag} **__Settings__**\n` +
-                `> **NSFW :** ${channel.nsfw ? "Yes" : "No"}`;
+                `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.settings")}__**\n` +
+                `> **${client.t(context.guild.id, "ui.label.nsfw")} :** ${channel.nsfw ? "Yes" : "No"}`;
 
             if (channel.type === ChannelType.GuildText || channel.type === ChannelType.GuildAnnouncement) {
-                settingsContent += `\n> **Topic :** ${channel.topic || "None"}`;
-                settingsContent += `\n> **Slowmode :** ${channel.rateLimitPerUser ? `${channel.rateLimitPerUser}s` : "None"}`;
+                settingsContent += `\n> **${client.t(context.guild.id, "ui.label.topic")} :** ${channel.topic || "None"}`;
+                settingsContent += `\n> **${client.t(context.guild.id, "ui.label.slowmode")} :** ${channel.rateLimitPerUser ? `${channel.rateLimitPerUser}s` : "None"}`;
             }
 
             container.addTextDisplayComponents(new TextDisplayBuilder().setContent(settingsContent));
 
             if (channel.type === ChannelType.GuildVoice || channel.type === ChannelType.GuildStageVoice) {
                 let voiceContent =
-                    `${emoji.hastag} **__Voice Settings__**\n` +
-                    `> **Bitrate :** ${channel.bitrate / 1000}kbps\n` +
-                    `> **User Limit :** ${channel.userLimit === 0 ? "Unlimited" : channel.userLimit}\n` +
-                    `> **Region :** ${channel.rtcRegion || "Auto"}\n` +
-                    `> **Connected :** ${channel.members.size} Users`;
+                    `${emoji.hastag} **__${client.t(context.guild.id, "ui.section.voiceSettings")}__**\n` +
+                    `> **${client.t(context.guild.id, "ui.label.bitrate")} :** ${channel.bitrate / 1000}kbps\n` +
+                    `> **${client.t(context.guild.id, "ui.label.userLimit")} :** ${channel.userLimit === 0 ? "Unlimited" : channel.userLimit}\n` +
+                    `> **${client.t(context.guild.id, "ui.label.region")} :** ${channel.rtcRegion || "Auto"}\n` +
+                    `> **${client.t(context.guild.id, "ui.label.connected")} :** ${channel.members.size} Users`;
 
                 container.addTextDisplayComponents(new TextDisplayBuilder().setContent(voiceContent));
             }
@@ -132,7 +132,7 @@ module.exports = {
 
         } catch (error) {
             console.error("Error in channelinfo command:", error);
-            const errorDisplay = new TextDisplayBuilder().setContent(`${emoji.warn} An error occurred while fetching channel information.`);
+            const errorDisplay = new TextDisplayBuilder().setContent(client.t(context.guild.id, "ui.channelError", { e: emoji.warn }));
             const container = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
             const errOptions = { components: [container], flags: MessageFlags.IsComponentsV2 };
             if (isSlash) return context.editReply(errOptions);

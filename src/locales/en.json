@@ -1,0 +1,1847 @@
+{
+  "meta": {
+    "name": "English",
+    "flag": "🇬🇧"
+  },
+  "core": {
+    "mention": {
+      "greeting": "**{check} Hey {user}!**\n",
+      "prefix": "**{info} My prefix for this server is **`{prefix}`\n",
+      "help": "**{info} Type `{prefix}help` for a list of commands.**"
+    },
+    "blacklisted": "**{warn} You have been blacklisted from using the bot!**",
+    "cooldown": "**{warn} Please wait {time}s before using `{command}` command again.**",
+    "noBotPermChannel": "**{cross} I don't have `{permission}` permission in this channel to execute the `{command}` command.**",
+    "noBotPerm": "I need the **`{permission}`** permission(s) to execute this command.",
+    "noUserPerm": "You need the **`{permission}`** permission(s) to use this command.",
+    "noBotPermSlash": "**{warn} I don't have `{permission}` permission in {channel} to execute this `{command}` command.**",
+    "noUserPermSlash": "**{warn} You don't have `{permission}` permission in {channel} to execute this `{command}` command.**",
+    "missingArgs": "You didn't provide any arguments, {user}!",
+    "usage": "\nUsage: `{usage}`",
+    "noPlayer": "**{warn} There is no music player active in this server.**",
+    "noPlayerSlash": "**{warn} There is no player for this guild.**",
+    "notInVoice": "**{warn} You must be in a voice channel to use this command.**",
+    "notInVoiceSlash": "**{warn} You must be in a voice channel.**",
+    "notSameVoice": "**{warn} You must be in the same voice channel as me.**",
+    "notSameVoiceSlash": "**{warn} You must be in the same {channel} to use this command.**",
+    "notConnected": "**{warn} An error occurred. It seems the bot is not properly connected to the guild.**",
+    "commandError": "**{warn} An error occurred while executing this command!**",
+    "unexpectedError": "**{warn} An unexpected error occurred.**",
+    "inputError": "**{warn} There was an error processing your input. Please try again.**",
+    "interactionError": "**{cross} An error occurred while processing this interaction.**",
+    "noDJ": "**{warn} You need the DJ role to use this command.**",
+    "commandDisabled": "**{warn} The `{command}` command is disabled on this server.**"
+  },
+  "language": {
+    "title": "### {info} Server Language",
+    "body": "The bot currently speaks **{current}** on this server.\nPick a language below to change it.",
+    "placeholder": "Select a language",
+    "changed": "**{check} Language set to {language}.** All bot messages on this server will now use it.",
+    "unchanged": "**{info} The language is already set to {language}.**",
+    "unsupported": "**{cross} `{lang}` isn't a supported language.** Available: {available}",
+    "onlyInvoker": "**{cross} Only the person who ran the command can use this menu.**"
+  },
+  "welcome": {
+    "header": "### {check} Thank you for choosing {bot}!",
+    "body": "{bot} has been successfully added to `{guild}`\n\nYou can report any issues at my **[Support Server]({support})** following the needed steps. You can also reach out to my **[Developers]({support})** if you want to know more about me.",
+    "languagePrompt": "**Before you start:** pick the language you want me to speak on this server. You can change it any time with the `language` command.",
+    "supportButton": "Support Server"
+  },
+  "music": {
+    "playFirst": "**{e} Play a song first.**",
+    "skipped": "**{e} Skipped [{title}]({uri})**",
+    "queueCleared": "**{e} Removed all songs from the queue.**",
+    "shuffled": "**{e} Shuffled the queue.**",
+    "autoplayToggled": "**{e} Autoplay has been `{state}`.**",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "alreadyPaused": "**{e} The player is already paused.**",
+    "paused": "**{e} Paused [{title}]({uri})**",
+    "stopped": "**{e} Stopped the music**",
+    "replaying": "**{e} Replaying [{title}]({uri})**",
+    "replayFailed": "**{e} Failed to replay the track.**",
+    "alreadyResumed": "**{e} The player is already resumed.**",
+    "resumed": "**{e} Resumed [{title}]({uri})**",
+    "nothingPlaying": "**{e} Nothing is playing right now.**",
+    "queueEmpty": "**{e} The queue is empty.**",
+    "mustBeInVoice": "**{e} You need to be in a voice channel!**",
+    "history": {
+      "empty": "**{e} No songs in history yet.**\n**{e} Songs will appear here after they finish playing.**",
+      "title": "**{e} Recently Played Songs**",
+      "onlyUser": "**{e} Only {user} can use this button.**"
+    },
+    "grab": {
+      "sent": "**{e} Sent current song info to your DM.**",
+      "urlButton": "Song URL",
+      "duration": "**{e} Duration:** `{value}`",
+      "author": "**{e} Author:** `{value}`"
+    },
+    "cleanup": {
+      "none": "**{e} No songs found from users who left the voice channel.**",
+      "done": "**{e} Leave Cleanup Complete**"
+    },
+    "noConnectPerms": "**{e} I don't have enough permissions to execute this command! Please give me permission `CONNECT` or `SPEAK`.**",
+    "joinedAndBound": "**{e} Joined <#{voice}> and bound to <#{text}>**",
+    "joinError": "**{e} An error occurred while joining the channel.**",
+    "alreadyInVoice": "**{e} I am already in your voice channel.**",
+    "alreadyConnected": "**{e} I'm already connected to <#{channel}>**",
+    "moved": "**{e} Moved to <#{channel}>**",
+    "moved247": "**{e} Moved to <#{channel}>**\n**{i} Updated 247 mode to this channel**",
+    "moveError": "**{e} An error occurred while moving.**",
+    "notInVoiceChannel": "**{e} I'm not in any voice channel!**",
+    "left": "**{e} Left the voice channel.**",
+    "left247": "**{e} Left the voice channel.**\n**{i} 247 mode is active - I'll rejoin automatically.**",
+    "noPrevious": "**{e} No previous songs in history.**",
+    "previousNotFound": "**{e} Could not find the previous track.**",
+    "playingPrevious": "**{e} Playing previous song: [{title}]({uri})**",
+    "previousFailed": "**{e} Failed to play previous track.**",
+    "nowPlayingShort": "**{e} Now playing - {title}**",
+    "queue": {
+      "title": "### {e} Music Queue",
+      "onlyUser": "**{e} Only {user} can use these buttons!**"
+    },
+    "similar": {
+      "none": "**{e} No similar songs found using `{engine}`**",
+      "added": "**{e} Added [{title}]({uri}) to queue.**",
+      "addedAll": "**{e} Added all {count} similar tracks to queue.**"
+    },
+    "forward": {
+      "usage": "**{e} Usage:** `{prefix}forward [seconds]`\n**Example:** `{prefix}forward 30` - Fastforward 30 seconds",
+      "beyond": "**{e} Cannot fast forward beyond the song duration.**\n**{i} Skipping to next song instead...**",
+      "done": "**{e} Fast forwarded `{seconds}s` to `{position}`**",
+      "failed": "**{e} Failed to fast forward the track.**"
+    },
+    "rewind": {
+      "usage": "**{e} Usage** `:` `{prefix}rewind [seconds]`\n**{d} Example** `:` `{prefix}rewind 30` - Rewind 30 seconds",
+      "done": "**{e} Rewound `{seconds}s` to `{position}`**",
+      "failed": "**{e} Failed to rewind the track.**"
+    },
+    "skipto": {
+      "invalid": "**{e} Please provide a valid position**\n**Valid range** `:` `1-{max}`",
+      "notFound": "**{e} Could not find song at position `{position}`**",
+      "done": "**{e} Skipped to `{title}`**"
+    },
+    "loop": {
+      "settings": "**{e} Loop Settings**",
+      "current": "**Current Mode** `:` `{mode}`",
+      "selectTitle": "**{e} Select Loop Mode**",
+      "selectBody": "**Please choose whether you want to loop the current track or the entire queue.**",
+      "updated": "**{e} Loop Updated**",
+      "setTo": "**Loop mode has been set to** `:` `{mode}`",
+      "modeNone": "Disabled",
+      "modeTrack": "Track Loop",
+      "modeQueue": "Queue Loop",
+      "onlyUser": "**{e} Only {user} can use these buttons.**"
+    },
+    "remove": {
+      "removed": "**{e} Removed [{title}]({uri})**",
+      "title": "**{e} Remove Tracks**",
+      "duration": "Duration: {value}",
+      "placeholder": "Select tracks to remove",
+      "onlyUser": "**{e} Only {user} can use this!**",
+      "nowEmpty": "**{e} The queue is now empty.**",
+      "doneEmpty": "**{e} Removed {count} track(s). The queue is now empty!**",
+      "done": "**{e} Removed {count} track(s)**",
+      "cleared": "**{e} Cleared {count} tracks from the queue**",
+      "timedOut": "**{e} Session timed out. Use the command again if needed.**",
+      "invalidPos": "**{e} Invalid position** `:` `{value}`\n**{e} Total songs in queue** `:` `{total}`"
+    },
+    "seek": {
+      "invalidTime": "**{e} Invalid time format. Examples: `40`, `1:30`, `10s`, `1m`**",
+      "outOfBounds": "**{e} Out of Bounds**\n{blank}{arrow} Song Duration: ` {duration} `",
+      "header": "{e} **Seek Command !**",
+      "usage": "{blank}{arrow} **Usage:** `seek <time>`\n{blank}{arrow} **Example:** `seek 1:30`",
+      "success": "**Successfully {action}!**\n{blank}{arrow} Track: [**{title}**]({uri})\n{blank}{arrow} Position: ` {position} / {duration} `",
+      "forwarded": "Forwarded",
+      "rewound": "Rewound"
+    },
+    "volume": {
+      "range": "**{e} Volume must be between 0 and 100.**",
+      "noPlayer": "**{e} Player not found.**",
+      "error": "**{e} An error occurred while adjusting volume.**",
+      "current": "{blank}{arrow} **Current Volume : `{value}%`**",
+      "currentPlain": "{blank}{arrow} **Current Volume :** `{value}%`",
+      "usage": "**{e} Usage** `:` `{prefix}volume [0-100]`\n{arrow} **__Current Volume__ :** `{value}%`",
+      "header": "**Volume !**\n",
+      "updated": "{blank}{arrow} **Volume Updated : `{value}%`**",
+      "updated2": "{blank}{arrow} **Volume Updated :** `{value}%`"
+    },
+    "artistradio": {
+      "needArtist": "**{e} Please provide an artist name.**\nExample: `{prefix}artistradio Imagine Dragons`",
+      "started": "### {e} **{artist} Radio** Started!\n> Queued **{original}** tracks from **{artist}** and **{similar}** from similar artists like {artists}.",
+      "noTracks": "Could not find any tracks for the radio.",
+      "unresolved": "Found recommendations but could not resolve them to playable tracks."
+    },
+    "forcefix": {
+      "vcRequired": "**{e} Voice Channel Required**",
+      "vcBody": "You need to be in a voice channel to use this command.",
+      "title": "**{e} Force Fixing Music Bot**",
+      "body": "Please wait while the music bot is being fixed...",
+      "success": "Music bot has been force fixed using `{action}` action!",
+      "failed": "Failed to fix music bot. Please try again or contact support."
+    },
+    "speed": {
+      "title": "**{e} Speed Control**",
+      "info": "**Current speed** `:` `{speed}x`\n**Range** `:` `0.25x - 3.0x`",
+      "invalid": "**{e} Invalid speed value**\n**Valid range** `:` `0.25x - 3.0x`",
+      "invalidEx": "**{e} Invalid speed value**\n**Valid range** `:` `0.25x - 3.0x`\n**Examples** `:` `0.5`, `1.5`, `2.0`",
+      "usage": "**{e} Invalid speed value**\n**Usage** `:` `{prefix}speed [0.25-3.0]`\n**Examples** `:` `{prefix}speed 0.5` (slow) | `{prefix}speed 1.5` (fast)\n**Current speed** `:` `{speed}x`",
+      "set": "**{e} Playback speed set to `{speed}x`**",
+      "failed": "**{e} Failed to change playback speed.**",
+      "prompt": "**{e} Send a message with your desired speed** `:` `0.5x`, `1.5x`, `2.0x`, etc.",
+      "timedOut": "**{e} Speed change timed out.**"
+    },
+    "search": {
+      "usage": "**{d} Usage** `:` `{prefix}search <song name>`\n**{d} Example** `:` `{prefix}search imagine dragons believer`",
+      "noNode": "**{e} No music node available**",
+      "noResults": "**{e} No results found for `{query}`**",
+      "added": "**{e} Added [{title}]({uri}) to queue.**",
+      "addedAll": "**{e} Added all {count} tracks to queue.**",
+      "noArtist": "**{e} Artist data not found. Please try searching again.**",
+      "noArtistTracks": "**{e} No tracks found for this artist.**"
+    },
+    "mood": {
+      "regionPlaceholder": "First, select your specific region/language...",
+      "title": "### {e} **Music for Everyone**\nSelect a region to get started with custom vibe stations!",
+      "moodPlaceholder": "Now, choose a {region} mood...",
+      "moodTitle": "**{region} Center**\nWhat's your vibe today?",
+      "started": "### {e} **{label} Radio** Started!\n> Queued **{count}** tracks matching your vibe.",
+      "unresolved": "Found mood tracks but could not resolve them to playable versions."
+    },
+    "sleep": {
+      "noMusic": "**{e} No music playing.**",
+      "noTimer": "**{e} No active timer.**",
+      "cancelled": "**{e} Timer cancelled.**",
+      "invalid": "**{e} Invalid duration**\n\nUse: `30m`, `1h`, `45m` (1-180 min)",
+      "set": "**{e} Timer Set**",
+      "details": "**{d} Duration** `:` `{duration}m`\n**{d} Ends** `:` <t:{ends}:t>\n**{d} Action** `:` Disconnect from VC",
+      "ended": "**{e} Timer ended - {user} disconnected.**",
+      "active": "**{e} Timer already active**\n\n**{d} Time left** `:` `{left}m`\n**{d} Cancel** `:` `{prefix}sleep cancel`",
+      "details2": "**{d} Duration** `:` `{duration}m`\n**{d} Ends** `:` <t:{ends}:t>\n**{d} Action** `:` Disconnect from VC\n\nCancel: `{prefix}sleep cancel`"
+    },
+    "lyrics": {
+      "noSong": "**{e} No song is currently playing.**",
+      "searching": "**{e} Searching for lyrics...**",
+      "notFound": "**{e} No lyrics found for `{title}` by `{author}`**",
+      "page": "**Page** `:` `{current}/{total}`",
+      "onlyUser": "**{e} Only {user} can use these buttons.**",
+      "onlyInvoker": "**{e} Only the command user can use these buttons.**"
+    },
+    "play": {
+      "needVoice": "**{e} You need to be in a voice channel first.**",
+      "noPerms": "**{e} I don't have enough permissions! Please give me `CONNECT` and `SPEAK`.**",
+      "serverDown": "**{e} The music server is currently unavailable. Please try again later.**",
+      "otherChannel": "**{e} I'm already connected to a different voice channel.**",
+      "noResults": "**{e} No results found for \"{query}\"**",
+      "noTracks": "**{e} No tracks could be processed**",
+      "queuedPlaylist": "**{e} Queued `{count}` tracks from `{playlist}`**",
+      "trackAdded": "### {e} Track Added",
+      "trackInfo": "[**{title}**]({uri}) by ` {author} `\n-# Position ` #{position} ` • Duration ` {duration} ` • By ` {user} `",
+      "mustBeInVoice": "**{e} You must be in my voice channel to use this.**",
+      "removedFromQueue": "**{e} Removed [{title}]({uri}) from queue.**",
+      "movedNext": "**{e} Moved [{title}]({uri}) to next in queue.**",
+      "notInQueue": "**{e} This track is no longer in the queue.**",
+      "unreachable": "The music server is currently unreachable. Please try again or contact support.",
+      "genericError": "An error occurred: {message}",
+      "playError": "An error occurred while playing: {message}",
+      "trackInfoQuoted": "> [**{title}**]({uri}) by ` {author} `\n> Position ` #{position} ` • Duration ` {duration} ` • By ` {user} `",
+      "usage": "**{d} Usage** `:` `{prefix}play [Song Name/URL]`\n**{d} Example** `:` `{prefix}play imagine dragons believer`"
+    }
+  },
+  "commands": {
+    "skip": {
+      "description": "Skip the current song instantly."
+    },
+    "clearqueue": {
+      "description": "Removes all songs in the music queue."
+    },
+    "shuffle": {
+      "description": "Shuffle queue"
+    },
+    "autoplay": {
+      "description": "Toggle autoplay mode"
+    },
+    "forceskip": {
+      "description": "To force skip the current playing song."
+    },
+    "pause": {
+      "description": "Pause the currently playing music"
+    },
+    "stop": {
+      "description": "Stops the music"
+    },
+    "replay": {
+      "description": "Replay the current song from the beginning"
+    },
+    "resume": {
+      "description": "Resume currently playing music"
+    },
+    "history": {
+      "description": "Show the history of recently played songs"
+    },
+    "grab": {
+      "description": "Grabs and sends you the song that is currently playing."
+    },
+    "leavecleanup": {
+      "description": "Removes absent user's songs from the queue"
+    },
+    "move": {
+      "description": "Move the bot to your current voice channel"
+    },
+    "leave": {
+      "description": "Leave voice channel"
+    },
+    "previous": {
+      "description": "Play the previous song from history"
+    },
+    "join": {
+      "description": "Join voice channel"
+    },
+    "nowplaying": {
+      "description": "Show the current playing song"
+    },
+    "queue": {
+      "description": "Show the server queue"
+    },
+    "similar": {
+      "description": "Get songs similar to currently playing track"
+    },
+    "forward": {
+      "description": "Fast forward the current song by specified seconds",
+      "options": {
+        "seconds": "Seconds to fast-forward"
+      }
+    },
+    "skipto": {
+      "description": "Skip to a specific song in the queue",
+      "options": {
+        "position": "Position in queue to skip to"
+      }
+    },
+    "loop": {
+      "description": "Toggle music loop",
+      "options": {
+        "enable": "Enable music loop",
+        "disable": "Disable music loop"
+      }
+    },
+    "rewind": {
+      "description": "Rewind the current song by specified seconds",
+      "options": {
+        "seconds": "Number of seconds to rewind (default: 10)"
+      }
+    },
+    "remove": {
+      "description": "Remove tracks from the queue"
+    },
+    "seek": {
+      "description": "Seek the currently playing song",
+      "options": {
+        "time": "Time to seek to (e.g. 40, 1:30, 10s, 1m)"
+      }
+    },
+    "volume": {
+      "description": "Change volume of currently playing music",
+      "options": {
+        "amount": "Volume amount (0-100)"
+      }
+    },
+    "artistradio": {
+      "description": "Starts a radio based on similar artists from Last.fm",
+      "options": {
+        "artist": "The artist to base the radio on"
+      }
+    },
+    "forcefix": {
+      "description": "Force fix music bot issues (not playing/not joining VC)"
+    },
+    "speed": {
+      "description": "Change the playback speed of the current song",
+      "options": {
+        "speed": "Playback speed (0.25 - 3.0)"
+      }
+    },
+    "search": {
+      "description": "Search for songs and artists and add them to queue",
+      "options": {
+        "song": "The song you want to search for"
+      }
+    },
+    "mood": {
+      "description": "Play music based on your mood or genre"
+    },
+    "sleep": {
+      "description": "Set a sleep timer to stop the music",
+      "options": {
+        "duration": "Duration for the sleep timer (e.g. 30m, 1h) or 'cancel' to stop it"
+      }
+    },
+    "lyrics": {
+      "description": "Display lyrics for the currently playing song"
+    },
+    "play": {
+      "description": "Plays a song or playlist.",
+      "options": {
+        "song": "Song name or URL to play"
+      }
+    },
+    "247": {
+      "description": "Enable or disable 24/7 mode to keep the bot in voice channel",
+      "options": {
+        "action": "Enable or disable 24/7 mode"
+      }
+    },
+    "audit": {
+      "description": "View recent server audit logs"
+    },
+    "automod": {
+      "description": "AutoMod configuration and management",
+      "options": {
+        "enable": "Enable and configure specific AutoMod modules",
+        "disable": "Disable all AutoMod protections",
+        "whitelist": "Manage whitelisted users, roles, and channels",
+        "config": "View current AutoMod configuration settings",
+        "punishment": "Configure punishment actions for different filters",
+        "logging": "Set or disable the AutoMod logging channel",
+        "heat": "Adjust anti-spam/heat sensitivity settings",
+        "limits": "Configure mention and emoji limits",
+        "reset": "Reset all AutoMod settings to default"
+      }
+    },
+    "avatar": {
+      "description": "Displays a user's avatar with download links.",
+      "options": {
+        "user": "The user whose avatar you want to see"
+      }
+    },
+    "ban": {
+      "description": "Ban a member from the server",
+      "options": {
+        "user": "The user to ban",
+        "reason": "Reason for banning"
+      }
+    },
+    "banner": {
+      "description": "Displays a user's banner with download link.",
+      "options": {
+        "user": "The user whose banner you want to see"
+      }
+    },
+    "blacklist": {
+      "description": "Blacklist users",
+      "options": {
+        "add": "Add a user to the blacklist",
+        "remove": "Remove a user from the blacklist",
+        "clear": "Remove all users from the blacklist",
+        "list": "List all blacklisted users"
+      }
+    },
+    "branding": {
+      "description": "Customize the bot's server profile (avatar, banner, bio, nickname)."
+    },
+    "channelinfo": {
+      "description": "Get detailed information about a channel",
+      "options": {
+        "channel": "The channel to get information about"
+      }
+    },
+    "checkvanity": {
+      "description": "Check if a vanity URL is available or taken",
+      "options": {
+        "code": "The vanity code to check (e.g. \"groove\")"
+      }
+    },
+    "clearinvites": {
+      "description": "Clear invite tracking data for this server or a specific member",
+      "options": {
+        "target": "Clear all invites or for a specific member",
+        "member": "The member to clear invite data for"
+      }
+    },
+    "filter": {
+      "description": "Sets the bot's sound filter."
+    },
+    "firstmsg": {
+      "description": "Get the first message sent in the channel",
+      "options": {
+        "channel": "The channel to get the first message from"
+      }
+    },
+    "gend": {
+      "description": "End a giveaway manually.",
+      "options": {
+        "giveaway": "Select the giveaway to end"
+      }
+    },
+    "getinv": {
+      "description": "Get an invite link for a server where the bot is present",
+      "options": {
+        "server_id": "The ID of the server to get an invite for"
+      }
+    },
+    "greroll": {
+      "description": "Reroll a winner for an ended giveaway.",
+      "options": {
+        "giveaway": "Select the giveaway to reroll"
+      }
+    },
+    "gstart": {
+      "description": "Start a giveaway.",
+      "options": {
+        "prize": "The prize for the giveaway",
+        "duration": "The duration (e.g. 10m, 2h, 3d)",
+        "winners": "The number of winners"
+      }
+    },
+    "help": {
+      "description": "Shows all commands with categories",
+      "options": {
+        "command": "Shows about a specific command"
+      }
+    },
+    "hide": {
+      "description": "Hides the specified channel",
+      "options": {
+        "channel": "The channel to hide"
+      }
+    },
+    "hideall": {
+      "description": "Hides all text channels in the server"
+    },
+    "ignore": {
+      "description": "Ignorechannel",
+      "options": {
+        "action": "Action to perform (add/remove/list/reset)",
+        "channel": "Channel to add or remove from ignore list"
+      }
+    },
+    "invite": {
+      "description": "Get the bot's invite link"
+    },
+    "invitecodes": {
+      "description": "Show all invite codes created by a user with their usage counts",
+      "options": {
+        "user": "The user to check invite codes for"
+      }
+    },
+    "invited": {
+      "description": "Shows all the people you invited to the server",
+      "options": {
+        "user": "The user to check invited members for"
+      }
+    },
+    "inviter": {
+      "description": "Shows who invited you or another user to the server",
+      "options": {
+        "user": "The user to check the inviter for"
+      }
+    },
+    "invites": {
+      "description": "Displays the invite statistics of a member including total invites, joins, left, fake, and rejoins.",
+      "options": {
+        "user": "The user to check invite stats for"
+      }
+    },
+    "invitetracking": {
+      "description": "Enable or disable invite tracking for this server",
+      "options": {
+        "action": "Enable or disable invite tracking"
+      }
+    },
+    "kick": {
+      "description": "Kick a member from the server",
+      "options": {
+        "user": "The user to kick",
+        "reason": "Reason for kicking"
+      }
+    },
+    "language": {
+      "description": "Change the bot's language for this server.",
+      "options": {
+        "language": "The language to use"
+      }
+    },
+    "lbinvites": {
+      "description": "Shows the invite leaderboard for this server",
+      "options": {
+        "type": "Type of leaderboard"
+      }
+    },
+    "leaveserver": {
+      "description": "Leave server",
+      "options": {
+        "guild_id": "The ID of the guild to leave"
+      }
+    },
+    "like": {
+      "description": "Add current song to your favorites"
+    },
+    "likeall": {
+      "description": "Add all songs from the current queue to your favorites"
+    },
+    "list": {
+      "description": "Lists various members or items in the server",
+      "options": {
+        "activedeveloper": "Lists members with the active developer badge",
+        "admins": "Lists administrators in the server",
+        "bans": "Lists banned users in the server",
+        "boosters": "Lists server boosters",
+        "bots": "Lists bots in the server",
+        "createdat": "Lists members by their account creation date",
+        "early": "Lists members with the early supporter badge",
+        "emojis": "Lists server emojis",
+        "inrole": "Lists members with a specific role",
+        "invoice": "Lists members in a voice channel",
+        "joinedat": "Lists members by their join date",
+        "mods": "Lists moderators",
+        "roles": "Lists all roles in the server",
+        "users": "Lists all users in the server"
+      }
+    },
+    "lock": {
+      "description": "Locks the specified channel",
+      "options": {
+        "channel": "The channel to lock"
+      }
+    },
+    "lockall": {
+      "description": "Locks all text channels in the server"
+    },
+    "membercount": {
+      "description": "Displays detailed server member statistics."
+    },
+    "mute": {
+      "description": "Timeout a member in the server",
+      "options": {
+        "user": "The user to mute",
+        "duration": "Duration (e.g. 10m, 2h, 3d) - Default: 10m",
+        "reason": "Reason for muting"
+      }
+    },
+    "mutual": {
+      "description": "Show mutual servers between the bot and a user|bot",
+      "options": {
+        "user": "User to check mutual servers with"
+      }
+    },
+    "node": {
+      "description": "Shows Node information."
+    },
+    "nopaccess": {
+      "description": "Add/remove global no-prefix access",
+      "options": {
+        "add": "Add a user to global no-prefix access",
+        "remove": "Remove a user from global no-prefix access",
+        "clear": "Remove all users from global no-prefix access",
+        "list": "List all users with global no-prefix access",
+        "status": "Check a user's global no-prefix access status"
+      }
+    },
+    "nuke": {
+      "description": "Clones and deletes the channel",
+      "options": {
+        "channel": "The channel to clone and delete (defaults to current)"
+      }
+    },
+    "ping": {
+      "description": "Displays the bot's various latencies."
+    },
+    "playliked": {
+      "description": "Play your favorite songs"
+    },
+    "profile": {
+      "description": "Displays your custom bot profile image.",
+      "options": {
+        "user": "The user whose profile you want to see"
+      }
+    },
+    "purge": {
+      "description": "Purge messages from the channel with various filters",
+      "options": {
+        "all": "Purge all messages",
+        "bots": "Purge messages sent by bots",
+        "contain": "Purge messages containing specific text",
+        "embed": "Purge messages containing embeds",
+        "emoji": "Purge messages containing only emojis",
+        "files": "Purge messages containing attachments",
+        "image": "Purge messages containing images",
+        "mentions": "Purge messages containing mentions",
+        "reactions": "Clear reactions from messages",
+        "user": "Purge messages from a specific user"
+      }
+    },
+    "reload": {
+      "description": "Reloads command",
+      "options": {
+        "target": "What to reload: command name, 'all' (commands), or 'everything' (commands & events)"
+      }
+    },
+    "rename": {
+      "description": "Renames a specified channel",
+      "options": {
+        "name": "The new name for the channel",
+        "channel": "The channel to rename"
+      }
+    },
+    "resetmyinvites": {
+      "description": "Reset your own invite statistics in this server"
+    },
+    "restart": {
+      "description": "Restart the bot"
+    },
+    "roleinfo": {
+      "description": "Get detailed information about a role",
+      "options": {
+        "role": "The role to get information about"
+      }
+    },
+    "serverbanner": {
+      "description": "Displays the server's banner with download link.",
+      "options": {
+        "guildid": "The guild ID to view banner from"
+      }
+    },
+    "servericon": {
+      "description": "Displays the server's icon with download link.",
+      "options": {
+        "guildid": "The guild ID to view icon from"
+      }
+    },
+    "serverinfo": {
+      "description": "Get detailed information about the server"
+    },
+    "serverlist": {
+      "description": "Listing Of Servers"
+    },
+    "setprefix": {
+      "description": "Sets a custom prefix.",
+      "options": {
+        "setprefix": "Set new prefix [max 3 characters]"
+      }
+    },
+    "showliked": {
+      "description": "Show your favorite songs"
+    },
+    "source": {
+      "description": "Set your preferred music source for searches",
+      "options": {
+        "source": "Choose your preferred music source"
+      }
+    },
+    "stats": {
+      "description": "Show detailed bot statistics"
+    },
+    "support": {
+      "description": "Get the support server invite link"
+    },
+    "unban": {
+      "description": "Unban a user from the server",
+      "options": {
+        "user": "The user ID or tag to unban (or \"all\")",
+        "reason": "Reason for unbanning"
+      }
+    },
+    "unhide": {
+      "description": "Unhides the specified channel",
+      "options": {
+        "channel": "The channel to unhide"
+      }
+    },
+    "unhideall": {
+      "description": "Unhides all text channels in the server"
+    },
+    "unlike": {
+      "description": "Remove songs from your favorites"
+    },
+    "unlock": {
+      "description": "Unlocks the specified channel",
+      "options": {
+        "channel": "The channel to unlock"
+      }
+    },
+    "unlockall": {
+      "description": "Unlocks all text channels in the server"
+    },
+    "unmute": {
+      "description": "Remove timeout from a member",
+      "options": {
+        "user": "The user to unmute",
+        "reason": "Reason for unmuting"
+      }
+    },
+    "userinfo": {
+      "description": "Get detailed information about a user",
+      "options": {
+        "user": "The user to get information about"
+      }
+    },
+    "voteskip": {
+      "description": "Start a vote to skip the current song"
+    },
+    "queuestatus": {
+      "description": "Show detailed player and queue status"
+    },
+    "musicsystem": {
+      "description": "Set up a dedicated music request channel",
+      "options": {
+        "action": "Enable, disable, or check status",
+        "channel": "Channel to use (creates one if not specified)"
+      }
+    },
+    "radio": {
+      "description": "Play live Turkish radio stations",
+      "options": {
+        "station": "Radio station name or number"
+      }
+    },
+    "removedupes": {
+      "description": "Remove duplicate tracks from the queue"
+    },
+    "unshuffle": {
+      "description": "Restore the original queue order before shuffle"
+    },
+    "moveme": {
+      "description": "Move yourself to the bot's voice channel"
+    },
+    "playlist": {
+      "description": "Create, manage and play saved playlists",
+      "options": {
+        "action": "Action to perform",
+        "name": "Playlist name (max 20 characters)"
+      }
+    },
+    "defaultvolume": {
+      "description": "Set the default volume for this server",
+      "options": {
+        "volume": "Default volume (1-150)"
+      }
+    },
+    "setdj": {
+      "description": "Set or remove the DJ role for music commands",
+      "options": {
+        "action": "Set, remove, or check DJ role status",
+        "role": "The role to set as DJ"
+      }
+    },
+    "toggle": {
+      "description": "Enable or disable commands per server",
+      "options": {
+        "action": "Enable, disable, or list toggled commands",
+        "command": "The command name to toggle"
+      }
+    },
+    "welcome": {
+      "description": "Configure welcome and goodbye messages",
+      "options": {
+        "action": "Configure welcome system",
+        "input": "Channel mention or custom message text"
+      }
+    }
+  },
+  "buttons": {
+    "home": "Home",
+    "previous": "Previous",
+    "next": "Next",
+    "close": "Close",
+    "queueAll": "Queue All",
+    "enable": "Enable",
+    "disable": "Disable",
+    "track": "Track",
+    "queue": "Queue",
+    "back": "Back",
+    "clearQueue": "Clear Queue",
+    "songs": "Songs",
+    "artists": "Artists",
+    "last": "Last",
+    "static": "Static",
+    "liveSync": "Live Sync",
+    "remove": "Remove",
+    "playNext": "Play Next",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "serverLink": "Server Link"
+  },
+  "player": {
+    "card": {
+      "author": "> - **Author:** [{author}]({uri})",
+      "duration": "> - **Duration:** `{duration}`",
+      "requester": "> - **Requester:** [{user}](https://discord.com/users/{id})"
+    },
+    "voiceStatus": "{e} Playing **{title}**",
+    "noPrevious": "**{e} No previous track found in history.**",
+    "alreadyFav": "**{e} `{title}` is already in your favourite list.**",
+    "addedFav": "**{e} Added `{title}` to your favourite list.**",
+    "favFailed": "**{e} Failed to save song to favorites. Please try again.**",
+    "unknownButton": "**{e} Unknown button interaction.**",
+    "requestError": "**{e} An error occurred while processing your request.**",
+    "notSameVoice": "**{e} You must be in the same voice channel as the bot.**",
+    "queueEnded": "**{e} Queue Ended**",
+    "inactivity": "Disconnecting due to inactivity.",
+    "trackStuck": "**{e} Track got stuck.**\n**{i} Skipping to next track...**",
+    "loadFailed": "**{e} Failed to load track.**\n**{i} Skipping to next track...**",
+    "unexpected": "**{e} An unexpected error occurred.**\n**{i} The player will be reset.**",
+    "ytRestricted": "**{e} YouTube restricted → using alternative source!**",
+    "ytBlocked": "**{e} Couldn't play this track [YouTube blocked].**\n**{i} Skipping...**",
+    "playbackError": "**{e} Playback error occurred.**\n**{i} Skipping track...**",
+    "nowPlayingTitle": "**{e} Now Playing**",
+    "movedChannel": "**{bot} !**\n{blank}{arrow} **M__oved__** to another channel",
+    "songPaused": "{e} Song Paused"
+  },
+  "mod": {
+    "needPerm": "{e} You need `{permission}` permissions to use this command.",
+    "botNeedPerm": "{e} I don't have `{permission}` permissions.",
+    "needPermShort": "{e} You need `{permission}` permissions.",
+    "chan": {
+      "hidden": "{e} {channel} has been hidden.",
+      "locked": "{e} {channel} has been locked.",
+      "unlocked": "{e} {channel} has been unlocked.",
+      "visible": "{e} {channel} is now visible.",
+      "alreadyHidden": "{e} {channel} is already hidden.",
+      "alreadyLocked": "{e} {channel} is already locked.",
+      "alreadyUnlocked": "{e} {channel} is already unlocked.",
+      "alreadyVisible": "{e} {channel} is already visible."
+    },
+    "bulk": {
+      "hidden": "{e} Hidden **{count}** text channels.",
+      "locked": "{e} Locked **{count}** text channels.",
+      "unlocked": "{e} Unlocked **{count}** text channels.",
+      "visible": "{e} Made **{count}** text channels visible.",
+      "allHidden": "{e} All text channels are already hidden.",
+      "allLocked": "{e} All text channels are already locked.",
+      "allUnlocked": "{e} All text channels are already unlocked.",
+      "allVisible": "{e} All text channels are already visible.",
+      "hiding": "{e} Hiding all channels...",
+      "locking": "{e} Locking all channels...",
+      "unhiding": "{e} Unhiding all channels...",
+      "unlocking": "{e} Unlocking all channels..."
+    },
+    "banned": "{e} **Member Banned !**",
+    "kicked": "{e} **Member Kicked !**",
+    "muted": "{e} **Member Muted !**",
+    "unbanned": "{e} **Member Unbanned !**",
+    "unmuted": "{e} **Member Unmuted !**",
+    "dm": {
+      "banned": "{e} **You have been Banned !**",
+      "kicked": "{e} **You have been Kicked !**",
+      "muted": "{e} **You have been Muted !**",
+      "unbanned": "{e} **You have been Unbanned !**",
+      "unmuted": "{e} **You have been Unmuted !**"
+    },
+    "cantBanSelf": "{e} You cannot ban yourself.",
+    "cantKickSelf": "{e} You cannot kick yourself.",
+    "cantMuteSelf": "{e} You cannot mute yourself.",
+    "cantKickOwner": "{e} You cannot kick the server owner.",
+    "cantMuteOwner": "{e} You cannot mute the server owner.",
+    "cantMuteBot": "{e} You cannot mute a bot.",
+    "kickHigherUser": "{e} You cannot kick a member with equal or higher role than you.",
+    "muteHigherUser": "{e} You cannot mute a member with equal or higher role than you.",
+    "kickHigherBot": "{e} I cannot kick a member with equal or higher role than me.",
+    "muteHigherBot": "{e} I cannot mute a member with equal or higher role than me.",
+    "botCantBanSelf": "{e} I cannot ban myself.",
+    "botCantKickSelf": "{e} I cannot kick myself.",
+    "botCantMuteSelf": "{e} I cannot mute myself.",
+    "botCantBan": "{e} I cannot ban this member.",
+    "botCantKick": "{e} I cannot kick this member.",
+    "botCantMute": "{e} I cannot mute this member.",
+    "botCantUnmute": "{e} I cannot unmute this member.",
+    "alreadyMuted": "{e} This member is already muted.",
+    "notMuted": "{e} This member is not muted.",
+    "userNotFound": "{e} User not found.",
+    "userNotInGuild": "{e} User not found in this server.",
+    "userNotBanned": "{e} User not found in the ban list.",
+    "noBans": "{e} There are no banned users in this server.",
+    "channelNotFound": "{e} Channel not found.",
+    "needTextChannel": "{e} Please provide a valid text channel.",
+    "needUser": "{e} Please provide a valid user, tag, or ID.",
+    "needSearchText": "{e} Please provide text to search for.",
+    "needChannelName": "{e} Please provide a new name for the channel.",
+    "invalidDuration": "{e} Invalid duration format. Use: 10s, 5m, 2h, 1d",
+    "invalidDurationMax": "{e} Invalid duration (max 28d). Use: 10m, 2h, 1d",
+    "durationTooLong": "{e} Duration cannot exceed 28 days.",
+    "purge": {
+      "tooOld": "{e} Cannot purge messages older than 14 days.",
+      "noMatch": "{e} No messages found matching the criteria.",
+      "done": "{e} Successfully purged **{count}** messages.",
+      "reactions": "{e} Cleared reactions from **{count}** messages.",
+      "apiLimit": "{e} API Limit hit! Stopped purging. Deleted **{count}** messages.",
+      "helpTitle": "Purge Command - Page {page}/2",
+      "all": "Clears all messages in the channel.",
+      "bots": "Clears messages sent by bots.",
+      "contain": "Clears messages that contain a specific text string.",
+      "embed": "Clears messages with embeds.",
+      "emoji": "Clears messages that contain only emojis.",
+      "files": "Clears messages with attachments.",
+      "image": "Clears messages that contain images.",
+      "mentions": "Clears messages with mentions.",
+      "reactions2": "Clears messages reactions without deleting.",
+      "user": "Clears messages from a specific user.",
+      "tooOldNote": "\n-# {arrow} Cannot purge messages older than 14 days."
+    },
+    "snipe": {
+      "none": "{e} There are no deleted messages to snipe in this channel."
+    },
+    "nuke": {
+      "confirm": "{e} Are you sure you want to nuke {channel}?",
+      "textOnly": "{e} I can only nuke text channels.",
+      "running": "{e} Executing nuke...",
+      "cancelled": "{e} Nuke cancelled.",
+      "timedOut": "{e} Nuke confirmation timed out.",
+      "failed": "{e} Failed to nuke the channel: `{message}`"
+    },
+    "banConfirm": "{e} **Ban Confirmation !**",
+    "unbanAllConfirm": "{e} **Unban All Confirmation !**",
+    "banCancelled": "{e} Ban action cancelled.",
+    "unbanAllCancelled": "{e} Unban all action cancelled.",
+    "notForYou": "{e} This is not for you.",
+    "confirmTimedOut": "{e} This confirmation has timed out.",
+    "operationCancelled": "{e} **Operation cancelled.**",
+    "sessionTimedOut": "{e} **Session timed out.**",
+    "taskTimedOut": "{e} **Task timed out.**",
+    "error": "{e} **Error:** {message}",
+    "unbannedCount": "{e} Successfully unbanned **{count}** users.",
+    "role": {
+      "created": "{e} Successfully created role {role}!",
+      "updated": "{e} Successfully updated role {role}!",
+      "creationCancelled": "{e} **Role creation cancelled.**",
+      "editCancelled": "{e} **Role edit cancelled.**",
+      "adding": "{e} Adding {role} to **{count}** members...",
+      "continue": "**Do you want to continue ?**",
+      "cancelled": "Successfully cancelled the active role task.",
+      "permPlaceholder": "Select Permissions...",
+      "hoisted": "Hoisted? (Yes/No)",
+      "mentionable": "Mentionable? (Yes/No)",
+      "massTitle": "### Mass Role task completed!",
+      "massBody": "> Role {role}'s mass assignment has been successfully completed in **` {time}s `**!\n\n> ~ {check} **Successful Users :** ` {ok} `\n> ~ {cross} **Unsuccessful Users :** ` {fail} `"
+    },
+    "failed": {
+      "ban": "{e} Failed to ban: {message}",
+      "kick": "{e} Failed to kick: {message}",
+      "mute": "{e} Failed to mute: {message}",
+      "unban": "{e} Failed to unban: {message}",
+      "unmute": "{e} Failed to unmute: {message}",
+      "hide": "{e} Failed to hide channel: {message}",
+      "unhide": "{e} Failed to unhide channel: {message}",
+      "lock": "{e} Failed to lock channel: {message}",
+      "unlock": "{e} Failed to unlock channel: {message}",
+      "hideAll": "{e} Failed to hide all channels: {message}",
+      "unhideAll": "{e} Failed to unhide all channels: {message}",
+      "lockAll": "{e} Failed to lock all channels: {message}",
+      "unlockAll": "{e} Failed to unlock all channels: {message}",
+      "purge": "{e} Failed to purge messages: {message}",
+      "rename": "{e} Failed to rename channel: {message}"
+    },
+    "banConfirmBody": " \n\n*Are you sure you want to ban this member?*",
+    "label": {
+      "target": "Target",
+      "moderator": "Moderator",
+      "server": "Server",
+      "duration": "Duration",
+      "reason": "Reason",
+      "totalBans": "Total Bans",
+      "usage": "Usage",
+      "example": "Example"
+    },
+    "unbanAllBody": "*Are you sure you want to unban everyone?*",
+    "header": {
+      "ban": "{e} **Ban Command !**\n-# Requested by {user} • <t:{ts}:t>",
+      "kick": "{e} **Kick Command !**\n-# Requested by {user} • <t:{ts}:t>",
+      "mute": "{e} **Mute Command !**\n-# Requested by {user} • <t:{ts}:t>",
+      "unban": "{e} **Unban Command !**\n-# Requested by {user} • <t:{ts}:t>",
+      "unmute": "{e} **Unmute Command !**\n-# Requested by {user} • <t:{ts}:t>"
+    },
+    "needPermThis": "{e} You need `{permission}` permissions to use this.",
+    "renamed": "{e} Successfully renamed **`{old}`** to **`{new}`**"
+  },
+  "ui": {
+    "section": {
+      "aboutServer": "About Server",
+      "acknowledgement": "Acknowledgement",
+      "activities": "Activities",
+      "boosts": "Boosts",
+      "channels": "Channels",
+      "content": "Content",
+      "description": "Description",
+      "emojis": "Emojis",
+      "extras": "Extras",
+      "features": "Features",
+      "general": "General",
+      "keyPerms": "Key Perms",
+      "members": "Members",
+      "messageDetails": "Message Details",
+      "presence": "Presence",
+      "roles": "Roles",
+      "serverInfo": "Server Info",
+      "settings": "Settings",
+      "userStatus": "User Status",
+      "voiceSettings": "Voice Settings"
+    },
+    "label": {
+      "accountCreated": "Account Created",
+      "animatedEmojis": "Animated emojis",
+      "bitrate": "Bitrate",
+      "boostLevel": "Boost Level",
+      "boostCount": "Boost count",
+      "boosterRole": "Booster Role",
+      "boosters": "Boosters",
+      "boosting": "Boosting",
+      "bots": "Bots",
+      "categories": "Categories",
+      "category": "Category",
+      "color": "Color",
+      "connected": "Connected",
+      "contentFilter": "Content Filter",
+      "created": "Created",
+      "custom": "Custom",
+      "device": "Device",
+      "hoisted": "Hoisted",
+      "humans": "Humans",
+      "id": "ID",
+      "inVc": "In VC",
+      "isBot": "Is Bot",
+      "mfaLevel": "MFA Level",
+      "managed": "Managed",
+      "members": "Members",
+      "mention": "Mention",
+      "mentionable": "Mentionable",
+      "nsfw": "NSFW",
+      "name": "Name",
+      "nickname": "Nickname",
+      "position": "Position",
+      "region": "Region",
+      "regularEmojis": "Regular emojis",
+      "sentAt": "Sent at",
+      "sentBy": "Sent by",
+      "serverJoined": "Server Joined",
+      "slowmode": "Slowmode",
+      "stageChannels": "Stage Channels",
+      "status": "Status",
+      "stickers": "Stickers",
+      "target": "Target",
+      "textChannels": "Text Channels",
+      "topRole": "Top Role",
+      "topic": "Topic",
+      "total": "Total",
+      "totalMembers": "Total Members",
+      "totalRoles": "Total Roles",
+      "type": "Type",
+      "userLimit": "User Limit",
+      "username": "Username",
+      "vanity": "Vanity",
+      "verificationLevel": "Verification Level",
+      "voiceChannels": "Voice Channels"
+    },
+    "auditFailed": "{e} **Failed to fetch audit logs.**",
+    "noUserData": "{e} Could not fetch user data.",
+    "channelNotFound": "{e} **Could not find that channel.**",
+    "channelError": "{e} An error occurred while fetching channel information.",
+    "roleNotFound": "{e} **Could not find that role.**",
+    "roleError": "{e} An error occurred while fetching role information.",
+    "userNotFound": "{e} **Could not find that user.**",
+    "userNotInGuild": "{e} User not found in this server.",
+    "needTextChannel": "{e} **Please provide a valid text channel.**",
+    "noMessages": "{e} **No messages found in this channel.**",
+    "firstmsgError": "{e} **An error occurred while fetching the first message.**",
+    "needVanity": "{e} **Please provide a vanity code or invite link to check.**",
+    "vanityError": "{e} **An error occurred while checking vanity availability.**",
+    "listError": "{e} An error occurred while fetching the list.",
+    "listEmpty": "{e} No items found in this category.",
+    "needRole": "{e} Please provide a valid role.",
+    "timer": {
+      "max": "{e} I can only set timers for up to 24 hours as they don't persist after restarts.",
+      "needDuration": "{e} Please provide a duration! Format: `{prefix}timer <duration> [label]`"
+    }
+  },
+  "owner": {
+    "reload": {
+      "done": "{e} **Command Reloaded!**",
+      "systemDone": "{e} **System Reload Successful!**",
+      "notFound": "{e} **Command Not Found**",
+      "globalFail": "{e} **Global Reload Failed**",
+      "error": "{e} **Reload Error**"
+    },
+    "dbWiped": "{e} **Database Wiped**: All user profiles and team settings have been deleted.",
+    "teamReset": "{e} **Team Reset**: All team ranks, badges, and permissions have been cleared across all users.",
+    "inviteFor": "{e} **Invite for {guild}:**\n{invite}",
+    "allowedUser": "{e} Allowed **{item}** for **{user}**.",
+    "allowedRank": "{e} Allowed **{item}** for all **{rank}** members.",
+    "deniedUser": "{e} Denied **{item}** for **{user}**.",
+    "deniedRank": "{e} Denied **{item}** for all **{rank}** members.",
+    "rankSet": "{e} Success! **{user}** rank set to **{rank}**.",
+    "removedFromTeam": "{e} Success! **{user}** removed from the team.",
+    "badgeAdded": "{e} Success! Added badge **{badge}** for **{user}**.",
+    "badgeRemoved": "{e} Success! Removed badge **{badge}** from **{user}**.",
+    "itemRemoved": "{e} Success! Removed **{item}** from **{user}**.",
+    "hasBadge": "{e} **{user}** already has the **{badge}** badge.",
+    "noBadge": "{e} **{user}** does not have the **{badge}** badge.",
+    "noRankBadge": "{e} **{user}** does not hold the **{item}** rank/badge.",
+    "noTeam": "{e} No team members found.",
+    "ownerRankLocked": "{e} Only hardcoded owners (from config.json) can hold the **Owner** rank.",
+    "needName": "{e} Please provide a name.",
+    "needUser": "{e} Please provide a user.",
+    "needUserOrRank": "{e} Please provide a valid User or Rank.",
+    "needValidRank": "{e} Please specify a valid rank: {ranks}",
+    "ranksNotRemovable": "{e} Ranks cannot be removed, only users.",
+    "specifyAllow": "{e} Specify a command or rank badge to allow.",
+    "specifyDeny": "{e} Specify a command or rank badge to deny.",
+    "noTeamData": "{e} This user has no team data.",
+    "userNotFound": "{e} User not found.",
+    "error": "{e} **Error:** {message}"
+  },
+  "trk": {
+    "clearedUser": "{e} **Successfully cleared invite data for [{user}](https://discord.com/users/{id}).**",
+    "errMembers": "{e} **An error occurred while fetching invited members.**",
+    "errLeaderboard": "{e} **An error occurred while fetching the leaderboard.**",
+    "errClearing": "{e} **An error occurred while clearing invite data.**",
+    "errCodesPerms": "{e} **An error occurred while fetching invite codes. Make sure I have enough permissions.**",
+    "errCodes": "{e} **An error occurred while fetching invite codes.**",
+    "errInviter": "{e} **An error occurred while fetching inviter information.**",
+    "errReset": "{e} **An error occurred while resetting your invite statistics.**",
+    "errStats": "{e} An error occurred while fetching invite statistics.",
+    "noInviter": "{e} **Could not fetch inviter information.**",
+    "userNotFound": "{e} **Could not find that user.**",
+    "userNotFoundHint": "{e} Could not find that user. Please mention a valid user or use their ID.",
+    "noneInvited": "{e} **{user} hasn't invited anyone yet!**",
+    "noGuildData": "{e} **No invite data found for this server!**",
+    "noRecordTag": "{e} **No invite record found for {user}.**",
+    "noRecordsUser": "{e} **No invite records found for [{user}](https://discord.com/users/{id}).**",
+    "noRecordsGuild": "{e} **No invite records found in this server.**",
+    "noRecordsOwn": "{e} **You don't have any invite records in this server.**",
+    "noActiveCodes": "{e} **[{user}](https://discord.com/users/{id}) has no active invite codes.**",
+    "botsNoStats": "{e} Bots cannot have invite statistics.",
+    "botsNoInviter": "{e} Bots don't have inviters.",
+    "invalidUsage": "{e} **Invalid usage!**\n\n**Usage:**\n`{prefix}clearinvites all` - Clear all invite data\n`{prefix}clearinvites @member` - Clear data for a specific member"
+  },
+  "gw": {
+    "started": "{e} Giveaway started!",
+    "noActiveId": "{e} Active giveaway not found with that ID.",
+    "noEndedId": "{e} Ended giveaway not found with that ID.",
+    "invalidInput": "{e} Invalid input provided.",
+    "noActive": "{e} No active giveaways found in this channel.",
+    "noEnded": "{e} No ended giveaways found in this channel.",
+    "pickActive": "{e} Multiple active giveaways found. Please select one:",
+    "pickEnded": "{e} Multiple ended giveaways found. Please select one:",
+    "badDuration": "{e} Invalid duration suffix! Use s, m, h, or d.",
+    "minWinners": "{e} Winners must be at least 1.",
+    "formHint": "Click the button below to open the giveaway setup form.",
+    "reactHint": "-# React with {e} to enter!",
+    "noEntries": "No one entered the giveaway.",
+    "noEntriesBang": "No one entered the giveaway!",
+    "notEnded": "The giveaway hasn't ended yet!",
+    "congrats": "{e} Congratulations {winners}, You won **`{prize}`** hosted by {host}!",
+    "congratsReroll": "{e} Congratulations <@{winner}>, You are the new winner of **`{prize}`**!",
+    "endedNoJoin": "The giveaway for **`{prize}`** has ended, but no one joined."
+  },
+  "cfg": {
+    "needVoice": "You need to be in a voice channel to use this command.",
+    "needSameVoice": "You need to be in the same voice channel as me to use this command.",
+    "needVoiceShort": "You need to be in a voice channel to use this.",
+    "err247Update": "An error occurred while updating 24/7 mode. Please try again.",
+    "err247Load": "An error occurred while loading 247 settings. Please try again later.",
+    "argHintBlock": " ```[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!```",
+    "prefix": {
+      "updated": "**{e} Prefix updated to `{value}`**",
+      "provide": "**{e} Provide a new prefix.**",
+      "tooLong": "**{e} Prefix can't exceed 3 characters.**",
+      "errorDetail": "**{e} An error occurred while updating the prefix:**\n```\n{message}```"
+    },
+    "source": {
+      "set": "**{e} Your preferred music source has been set to `{value}`**",
+      "saveError": "**{e} An error occurred while saving your preference. Please try again.**",
+      "loadError": "**{e} An error occurred while loading the source menu. Please try again.**"
+    },
+    "247": {
+      "error": "### {e} **Error Occurred**",
+      "diffVoice": "### {e} **Different Voice Channel**",
+      "notVoice": "### {e} **Not in Voice Channel**",
+      "timedOut": "-# 247 settings menu timed out!",
+      "actionBy": "-# Action Performed by {user}"
+    }
+  },
+  "info": {
+    "noBio": "No bio is set.",
+    "noDescription": "No description available",
+    "noCommands": "No commands found",
+    "supportServer": "Support Server",
+    "bioTooLong": "{e} Bio cannot exceed 100 characters.",
+    "bioCleared": "{e} Your bio has been cleared.",
+    "uptime": "{blank}{arrow} I have been online for **{uptime}**",
+    "totals": "{blank}{arrow} Total of **__{users}__** users in **__{servers}__** servers",
+    "aliases": "{arrow} **Aliases :** {value}\n",
+    "bio": {
+      "help": "> ** `{prefix}bio set <text>` **\n╰ Sets your profile bio.\n\n> ** `{prefix}bio clear` **\n╰ Clears your profile bio."
+    },
+    "inviteBot": "**{e} Invite {bot} to your server.**",
+    "support": {
+      "missing": "**{e} Support server link is not configured.**",
+      "join": "**{e} Join our support server for help, updates, and community!**",
+      "error": "**{e} Error: {message}**"
+    },
+    "bioSet": "{e} Your bio has been set to `{value}`",
+    "requestedBy": "-# Requested by {user}"
+  },
+  "am": {
+    "reset": "AutoMod configuration has been reset.",
+    "channelHint": "*Mention a channel to set it, or use the button below to disable.*",
+    "idHint": "*You can also send the ID directly.*",
+    "enabled": "**AutoMod is currently Enabled !**\n",
+    "helpTitle": "### {e} AutoMod Help Menu [{page}/{total}]",
+    "label": {
+      "logChannel": "Log Channel",
+      "globalAction": "Global Action",
+      "maxEmojis": "Max Emojis",
+      "maxMentions": "Max Mentions",
+      "capsEmoji": "Caps/Emoji",
+      "invites": "Invites",
+      "links": "Links",
+      "mentions": "Mentions",
+      "messages": "Messages"
+    },
+    "none": "None",
+    "confirmDisableAll": "{blank}{arrow} Are you sure you want to disable all protections?",
+    "allDisabled": "{e} All AutoMod modules have been disabled.",
+    "logDisabled": "{e} AutoMod logging disabled.",
+    "logSetTo": "{e} AutoMod logging has been set to {channel}.",
+    "punishUpdated": "{e} Updated punishment for selected filters to **{value}**.",
+    "whitelistAdded": "{e} Added **{value}** to whitelist.",
+    "whitelistEmpty": "{e} No users, roles, or channels are currently whitelisted.",
+    "whitelistHint": "{blank}{arrow} Mention a **Role**, **Channel**, or **User** to add to the whitelist.\n\n",
+    "selectFilterFirst": "{e} Please select at least one filter first!",
+    "needTextChannel": "{e} Please provide a valid text-based channel (Text, Announcement, or Thread).",
+    "alreadyDisabled": "AutoMod is already disabled.",
+    "notInitialized": "AutoMod system is not initialized. Please restart the bot or contact the developer.",
+    "error": "An error occurred: {message}",
+    "maxSet": "Successfully set max **{type}s** to **{value}**.",
+    "enableFirst": "Please enable AutoMod first using `automod enable`.",
+    "needManageServer": "You need `Manage Server` permission to use this command.",
+    "selectFilters": "Select filters",
+    "selectModules": "Select modules to toggle...",
+    "whitelistRemoved": "Removed **{value}** from whitelist.",
+    "whitelistAdded2": "Added **{value}** to whitelist.",
+    "selectPunish": "Select a punishment"
+  },
+  "evt": {
+    "removedFrom": "{bot} was just removed from `{guild}`\n\nSorry for all and any of bad experience/(s) you had with me!\nPlease leave a feedback or report any issue you hat at my **[Support Server]({support})** so that it can be fixed / worked on as soon as possible.",
+    "noPrefixExpired": "**{e} Your Global No-Prefix Access has expired.**\n\nYou no longer have permission to use commands without a prefix.\nIf you need continued access, please contact the bot owner.",
+    "goodbyeHeader": "### {e} Oops! {bot} was removed!"
+  },
+  "vc": {
+    "deafened": "Deafened {target} in {channel}.",
+    "deafenedAll": "Deafened everyone in {channel}.",
+    "undeafened": "Undeafened {target} in {channel}.",
+    "undeafenedAll": "Undeafened everyone in {channel}.",
+    "kicked": "Kicked {target} from {channel}.",
+    "kickedAll": "Kicked all users from {channel}.",
+    "locked": "Locked {channel}.",
+    "unlocked": "Unlocked {channel}.",
+    "private": "Made {channel} private.",
+    "public": "Made {channel} public.",
+    "moved": "Moved {target} to {dest}.",
+    "movedAll": "Moved everyone from {channel} to {dest}.",
+    "muted": "Muted {target}.",
+    "mutedAll": "Muted everyone.",
+    "unmuted": "Unmuted {target}.",
+    "unmutedAll": "Unmuted everyone.",
+    "pulled": "Pulled {target} into {channel}.",
+    "pulledAll": "Pulled everyone from {source} into {channel}.",
+    "error": "An error occurred: {message}",
+    "argHint": "``` <> : Required | [] : Optional```",
+    "title": "### {e} Voice Command [{count}]",
+    "requestedBy": "-# Requested by {user}",
+    "footer": "\n-# Page {page}/{total} | Requested by {user}",
+    "vEveryoneIsAlreadyDeafened": "Everyone is already deafened.",
+    "vEveryoneIsAlreadyMuted": "Everyone is already muted.",
+    "vNoOneIsDeafened": "No one is deafened.",
+    "vNoOneIsMuted": "No one is muted.",
+    "vProvideAValidVoice": "Provide a valid voice channel.",
+    "vProvideTheDestinationChannel": "Provide the destination channel.",
+    "vUserIsNotIn": "User is not in a voice channel.",
+    "vYouMustBeIn": "You must be in a voice channel.",
+    "vYouNeedDeafenMembers": "You need `Deafen Members` permission.",
+    "vYouNeedManageChannels": "You need `Manage Channels` permission.",
+    "vYouNeedMoveMembers": "You need `Move Members` permission.",
+    "vYouNeedMuteMembers": "You need `Mute Members` permission.",
+    "vPullsAllUsersFrom": "Pulls all users from a specified voice channel into yours.",
+    "alreadyMuted": "{target} is already muted.",
+    "notMuted": "{target} is not muted.",
+    "alreadyDeaf": "{target} is already deafened.",
+    "notDeaf": "{target} is not deafened.",
+    "needBotPerm": "I need `{permission}` permission to perform this action."
+  },
+  "desc": {
+    "configureEnableAutomodModules": "Configure and enable AutoMod modules.",
+    "disableAutomodProtections": "Disable all AutoMod protections.",
+    "viewCurrentAutomodConfiguration": "View current AutoMod configuration.",
+    "setupCustomPunishmentsFilters": "Setup custom punishments for filters.",
+    "setDisableLoggingChannel": "Set or disable the logging channel.",
+    "adjustSensitivityheatEachFilter": "Adjust sensitivity/heat for each filter.",
+    "setMaxAllowedEmojismentions": "Set max allowed emojis/mentions limit.",
+    "whitelistRoleUserChannel": "Whitelist a role, user, or channel.",
+    "removeItemWhitelist": "Remove an item from the whitelist.",
+    "showWhitelistedUsersroleschannels": "Show all whitelisted users/roles/channels.",
+    "resetAutomodSettingsDefault": "Reset all AutoMod settings to default.",
+    "basicAccessRead": "Basic access to read.",
+    "allowChattingChannels": "Allow chatting in channels.",
+    "allowSendingEmbeds": "Allow sending embeds.",
+    "allowUploadingFiles": "Allow uploading files.",
+    "allowReactingEmojis": "Allow reacting with emojis.",
+    "useEmojisOtherServers": "Use emojis from other servers.",
+    "joinVoiceChannels": "Join voice channels.",
+    "speakVoiceChannels": "Speak in voice channels.",
+    "fullControlDangerous": "Full control. Dangerous!",
+    "editGuildSettingsemojis": "Edit guild settings/emojis.",
+    "editCreateRoles": "Edit or create roles.",
+    "kickBadMembers": "Kick bad members.",
+    "banBadMembers": "Ban bad members.",
+    "mutePeopleVoice": "Mute people in voice.",
+    "movePeopleVoice": "Move people in voice.",
+    "listsMembersActiveDeveloper": "Lists members with the active developer badge.",
+    "listsAdministratorsServer": "Lists administrators in the server.",
+    "listsBannedUsersServer": "Lists banned users in the server.",
+    "listsServerBoosters": "Lists server boosters.",
+    "listsBotsServer": "Lists bots in the server.",
+    "listsMembersAccountCreation": "Lists members by their account creation date.",
+    "listsMembersEarlySupporter": "Lists members with the early supporter badge.",
+    "listsServerEmojis": "Lists server emojis.",
+    "listsMembersSpecificRole": "Lists members with a specific role.",
+    "listsMembersVoiceChannel": "Lists members in a voice channel.",
+    "listsMembersJoinDate": "Lists members by their join date.",
+    "listsModerators": "Lists moderators.",
+    "listsRolesServer": "Lists all roles in the server.",
+    "listsUsersServer": "Lists all users in the server.",
+    "deafensUserVoiceChannel": "Deafens a user in their voice channel.",
+    "deafensUsersCurrentVoice": "Deafens all users in your current voice channel.",
+    "kicksUserVoiceChannel": "Kicks a user from their voice channel.",
+    "kicksUsersCurrentVoice": "Kicks all users from the current voice channel.",
+    "locksCurrentVoiceChannel": "Locks the current voice channel.",
+    "movesSpecificUserAnother": "Moves a specific user to another voice channel.",
+    "movesUsersCurrentChannel": "Moves users from the current channel to another.",
+    "mutesUserVoiceChannel": "Mutes a user in their voice channel.",
+    "mutesUsersCurrentVoice": "Mutes all users in your current voice channel.",
+    "makesCurrentVoiceChannel": "Makes the current voice channel private.",
+    "pullsUserIntoCurrent": "Pulls a user into your current voice channel.",
+    "pullsUsersSpecifiedVoice": "Pulls all users from a specified voice channel.",
+    "undeafensUserVoiceChannel": "Undeafens a user in their voice channel.",
+    "undeafensUsersCurrentVoice": "Undeafens all users in your current voice channel.",
+    "unlocksCurrentVoiceChannel": "Unlocks the current voice channel.",
+    "unmutesUserVoiceChannel": "Unmutes a user in their voice channel.",
+    "unmutesUsersCurrentVoice": "Unmutes all users in your current voice channel.",
+    "makesCurrentVoiceChannelX": "Makes the current voice channel public."
+  },
+  "amm": {
+    "actionTitle": "**AutoMod Action !**\n",
+    "notifyTitle": "**AutoMod Notification !**\n",
+    "violationTitle": "**AutoMod Violation Details !**\n",
+    "yourMessage": "**Your Message:**\n",
+    "content": "**Content:**\n",
+    "row": {
+      "user": "{blank}{arrow} User: {value}\n",
+      "reason": "{blank}{arrow} Reason: **{value}**",
+      "action": "{blank}{arrow} Action: **{value}**\n",
+      "channel": "{blank}{arrow} Channel: {channel} (`{id}`)",
+      "userTag": "{blank}{arrow} User: **{tag}** (`{id}`)",
+      "dmed": "{blank}{arrow} DMed: **{value}**\n\n",
+      "reasonCode": "{blank}{arrow} Reason: **`{value}`**\n\n"
+    },
+    "noContent": "No content"
+  },
+  "nop": {
+    "hasUntil": "**{e} {user} has No Prefix Access, Expiring <t:{ts}:R>.**",
+    "hasPermanent": "**{e} {user} has Permanent No Prefix Access.**",
+    "granted": "**{e} Granted {user} No Prefix Access for permanent.**",
+    "updatedPerm": "**{e} Updated {user}'s No Prefix Access To Permanent.**",
+    "removed": "**{e} Successfully removed {user} from No Prefix Access.**",
+    "notHas": "**{e} {user} does not have No Prefix Access.**",
+    "expired": "**{e} {user}'s No Prefix Access has expired.**",
+    "none": "**{e} There are no users with No Prefix Access.**",
+    "thisNotHas": "**{e} This user doesn't have No Prefix Access.**",
+    "badDuration": "**{e} Invalid duration format.**\n",
+    "listTitle": "**No Prefix Users [{count}]**",
+    "usage": "**Usage:**\n`{prefix}nop add @user [duration]` - Give global no-prefix access\n  **Duration:** `24h/hrs`, `10d/day`, `2w/week`, `1m` (month), `1y/yr`, `p/perm/permanent`\n`{prefix}nop remove @user` - Remove global no-prefix access\n`{prefix}nop remove all` - Remove all users\n`{prefix}nop list` - List users with global access\n`{prefix}nop status @user` - Check user's no-prefix status",
+    "durationExamples": "**Examples:**\n`24h` or `24hrs` - 24 hours\n`10d` or `10day` - 10 days\n`2w` or `2week` - 2 weeks\n`1m` - 1 month\n`1y` or `1yr` - 1 year\n`permanent` or `perm` or `p` - Permanent"
+  },
+  "own": {
+    "needUser": "**Provide me a valid user**",
+    "needUserOrAll": "**Provide me a valid user or use 'all' to remove everyone**",
+    "pageFooter": "-# Page {page}/{total} | Requested by {user}",
+    "requestedBy": "-# Requested by {user}",
+    "restartIdle": "**{e} The bot is not playing anywhere.**\n**{i} Are you sure you want to restart?**",
+    "restartActive": "**{e} The bot is currently active in `{count}` servers.**\n**{i} Are you sure you want to restart?**",
+    "argHintBlock": "```<> = Required Argument\nDo NOT type these when using commands!```",
+    "argHintBlock2": "```[] = Optional Argument\n<> = Required Argument\nDo NOT type these when using commands!)```",
+    "team": {
+      "help": "> ** `{prefix}team show` **\n╰ Shows all current team members and their ranks.\n\n> ** `{prefix}team add <user> <rank>` **\n╰ Sets a user's primary rank.\n\n> ** `{prefix}team remove <user> [rank]` **\n╰ Removes a user from the team or a specific rank.\n\n> ** `{prefix}team deny <user/rank> <command/badge>` **\n╰ Denies a command or removes a rank badge.\n\n> ** `{prefix}team allow <user/rank> <command/badge>` **\n╰ Allows a command or adds a rank badge.\n\n> ** `{prefix}team clear [all]` **\n╰ Resets team data [all: wipes profiles too]."
+    },
+    "badge": {
+      "help": "> ** `{prefix}badge add <user> <name>` **\n╰ Adds a badge or sets a primary rank.\n\n> ** `{prefix}badge remove <user> <name>` **\n╰ Removes a badge or resets a primary rank.\n\n> ** `{prefix}badge show <user>` **\n╰ Displays all badges and ranks for a user.\n\n> ** `{prefix}badge list` **\n╰ Lists all users with any special status."
+    },
+    "node": {
+      "status": "**{bot} is {status}**\n"
+    },
+    "needGuildId": "**{e} Please provide a guild ID.**",
+    "needTarget": "**{e} Please provide a target: `<command|all|everything>`**",
+    "aliasesLine": "**Aliases:** ``{value}``",
+    "usageLine": "**Usage:** ``{value}``"
+  },
+  "bl": {
+    "added": "**{e} Added {user} to blacklist.**",
+    "title": "**{e} Blacklisted Users**",
+    "removed": "**{e} Successfully removed {user} from my blacklist.**",
+    "empty": "**{e} No users are currently blacklisted.**",
+    "already": "**{e} This user is already blacklisted.**",
+    "notIn": "**{e} This user is not blacklisted.**",
+    "removedAllLine": "**{e} Successfully removed all `{count}` users from the blacklist.**"
+  },
+  "fav": {
+    "added": "**{e} Added [{title}]({uri}) to your favorites!**",
+    "already": "**{e} This song is already in your favorites!**",
+    "saveError": "**{e} An error occurred while saving to favorites.**",
+    "removeError": "**{e} An error occurred while removing from favorites.**",
+    "addAllError": "**{e} An error occurred while adding songs to favorites!**",
+    "noQueue": "**{e} There is no queue to add to favorites!**",
+    "emptyQueue": "**{e} There are no songs in the queue!**",
+    "none": "**{e} You don't have any favorite songs!**",
+    "noneLeft": "**{e} You don't have any favorite songs left!**",
+    "noneToPlay": "**{e} You don't have any favorite songs to play!**",
+    "removeTitle": "**{e} Remove Favorites**",
+    "removed": "**{e} Removed {count} favorite(s)**",
+    "removedEmpty": "**{e} Removed {count} favorite(s). Your favorites list is now empty!**",
+    "cleared": "**{e} Cleared all {count} favorites**",
+    "onlyUser": "**{e} Only {user} can use this!**",
+    "timedOut": "**{e} Session timed out. Use the command again if needed.**",
+    "nowPlaying": "**{e} Now playing your favorites!**",
+    "playError": "**{e} An error occurred while playing your favorites.**",
+    "connectFail": "**{e} Failed to connect to the music server. Please try again later.**",
+    "serverDown": "**{e} The music server is currently unavailable. Please try again later.**",
+    "needVoice": "**{e} You must be in a voice channel!**",
+    "sameVoice": "**{e} You must be in the same voice channel as the bot!**",
+    "queued": "**{e} Added to queue - will play after current tracks**",
+    "loaded": "**{e} Loaded {count} songs from your favorites!**\n",
+    "loading": "**{e} Loading {count} songs from your favorites...**",
+    "loadFailed": "**{e} Failed to load {count} songs**\n",
+    "durationRow": "Duration: {value}",
+    "listTitle": "**{e} Tracks you added to liked songs :**",
+    "fetchError": "**{e} An error occurred while fetching your favorites.**",
+    "noneYet": "**{e} You don't have any favorite songs yet!**",
+    "gw": {
+      "prize": "{arrow} **Prize:** `{value}`\n",
+      "winners": "{arrow} **Winners:** `{value}`\n"
+    },
+    "addedCount": "**{e} Added `{count}` songs to your favorites.**\n",
+    "alreadyCount": "**{e} `{count}` songs were already in your favorites.**\n",
+    "countLabel": "**Favorites:** `{count} tracks`\n",
+    "selectRemove": "Select favorites to remove",
+    "pageOf": "{page} of {total}"
+  },
+  "role": {
+    "rAddsARoleTo": "Adds a role to a user.",
+    "rRemovesARoleFrom": "Removes a role from a user.",
+    "rCreatesANewRole": "Creates a new role.",
+    "rDeletesARole": "Deletes a role.",
+    "rRenamesARole": "Renames a role.",
+    "rChangesTheColorOf": "Changes the color of a role.",
+    "rSetsAnIconFor": "Sets an icon for a role.",
+    "rGivesATemporaryRole": "Gives a temporary role to a user.",
+    "rEditAnExistingRole": "Edit an existing role using a wizard.",
+    "rEditsAnExistingRole": "Edits an existing role using a wizard.",
+    "rCancelTheActiveRole": "Cancel the active role task for this server.",
+    "rGiveTheRoleTo": "Give the role to all bot members.",
+    "rUserAlreadyHasThis": "User already has this role.",
+    "rUserDoesNotHave": "User does not have this role.",
+    "rYouCannotManageThis": "You cannot manage this role.",
+    "rICannotManageThis": "I cannot manage this role.",
+    "rPleaseProvideAValid": "Please provide a valid **Hex Color Code** (e.g., `#ff0000` or `ff0000`).",
+    "rNoActiveRoleTask": "No active role task found.",
+    "rAnActiveRoleTask": "An active role task is already running in this server.",
+    "rNoMembersFoundTo": "No members found to add this role to.",
+    "rICanOnlySet": "I can only set temporary roles for up to 24 hours (non-persistent).",
+    "rThisServerNeedsTo": "This server needs to be **Level 2** or higher to use role icons.",
+    "rEditDetails": "Edit Details",
+    "rEditRoleDetails": "Edit Role Details",
+    "rEditRoleForm": "Edit Role Form",
+    "rRoleDetailsForm": "Role Details Form",
+    "rFinishCreate": "Finish & Create",
+    "rSaveChanges": "Save Changes",
+    "rRoleName": "Role Name",
+    "rModifyPermissions": "Modify Permissions...",
+    "rHexColorEmptyFor": "Hex Color (Empty for Colourless)",
+    "rDefaultColourless": "Default / Colourless",
+    "rColourless": "Colourless",
+    "added": "Added {role} to {target}.",
+    "removed": "Removed {role} from {target}.",
+    "addFailed": "Failed to add role: {message}",
+    "removeFailed": "Failed to remove role: {message}",
+    "deleted": "Deleted role **{name}**.",
+    "deleteFailed": "Failed to delete role: {message}",
+    "renamed": "Renamed role to **{name}**.",
+    "renameFailed": "Failed to rename role: {message}",
+    "colorFailed": "Failed to change role color: {message}",
+    "iconSet": "Successfully set the icon for {role}.",
+    "iconFailed": "Failed to set role icon: {message}",
+    "createWizard": "### {e} Role Creation Wizard",
+    "editWizard": "### {e} Role Edit Wizard: {name}",
+    "cmdTitle": "### {e} Role Command [{count}]",
+    "pageFooter": "\n-# Page {page}/{total} | Requested by {user}",
+    "requestedBy": "-# Requested by {user}",
+    "argHint": "``` <> : Required | [] : Optional```",
+    "wiz": {
+      "name": "> **Name :** ",
+      "color": "> **Color :** ",
+      "hoisted": "> **Hoisted :** ",
+      "mentionable": "> **Mentionable :** ",
+      "permissions": "> **Permissions :** "
+    },
+    "auditCreate": "Role created by {user} via advance wizard",
+    "auditEdit": "Role edited by {user} via wizard",
+    "auditDelete": "Role deleted by {user}",
+    "colorChangedTo": "Successfully changed the color of {role} to `{color}`.",
+    "needEmojiOrUrl": "Please provide a valid **custom emoji** or an **image URL**. Standard emojis or text names are not supported."
+  },
+  "aud": {
+    "noPerm": "{e} **I do not have the `View Audit Log` permission.**",
+    "acceptedCreatorMonetizationTerms": "{executor} accepted creator monetization terms",
+    "addedTToTheServer": "{executor} added {t} to the server",
+    "addedABotT": "{executor} added a bot {t}",
+    "addedIntegrationT": "{executor} added integration {t}",
+    "bannedT": "{executor} banned {t}",
+    "bulkDeletedMessages": "{executor} bulk deleted messages",
+    "clearedVoiceChannelStatusForT": "{executor} cleared voice channel status for {t}",
+    "createdAnInvite": "{executor} created an invite",
+    "createdAutomodRuleT": "{executor} created automod rule {t}",
+    "createdChannelT": "{executor} created channel {t}",
+    "createdEmojiT": "{executor} created emoji {t}",
+    "createdEventT": "{executor} created event {t}",
+    "createdHomeSettings": "{executor} created home settings",
+    "createdOnboardingPrompt": "{executor} created onboarding prompt",
+    "createdOnboarding": "{executor} created onboarding",
+    "createdPermissionsForT": "{executor} created permissions for {t}",
+    "createdRoleT": "{executor} created role {t}",
+    "createdStickerT": "{executor} created sticker {t}",
+    "createdThreadT": "{executor} created thread {t}",
+    "createdWebhookT": "{executor} created webhook {t}",
+    "deletedAnInvite": "{executor} deleted an invite",
+    "deletedAutomodRuleT": "{executor} deleted automod rule {t}",
+    "deletedEmojiT": "{executor} deleted emoji {t}",
+    "deletedEventT": "{executor} deleted event {t}",
+    "deletedOnboardingPrompt": "{executor} deleted onboarding prompt",
+    "deletedPermissionsForT": "{executor} deleted permissions for {t}",
+    "deletedRoleT": "{executor} deleted role {t}",
+    "deletedStickerT": "{executor} deleted sticker {t}",
+    "deletedThreadT": "{executor} deleted thread {t}",
+    "deletedVoiceChannelStatus": "{executor} deleted voice channel status",
+    "deletedWebhookT": "{executor} deleted webhook {t}",
+    "disconnectedMembers": "{executor} disconnected members",
+    "endedAStage": "{executor} ended a stage",
+    "kickedT": "{executor} kicked {t}",
+    "movedMembers": "{executor} moved members",
+    "pinnedAMessage": "{executor} pinned a message",
+    "prunedMembers": "{executor} pruned members",
+    "removedT": "{executor} removed {t}",
+    "removedIntegrationT": "{executor} removed integration {t}",
+    "requestedCreatorMonetization": "{executor} requested creator monetization",
+    "setVoiceChannelStatusForT": "{executor} set voice channel status for {t}",
+    "startedAStage": "{executor} started a stage",
+    "unbannedT": "{executor} unbanned {t}",
+    "unpinnedAMessage": "{executor} unpinned a message",
+    "updatedT": "{executor} updated {t}",
+    "updatedAStage": "{executor} updated a stage",
+    "updatedAnInvite": "{executor} updated an invite",
+    "updatedAutomodRuleT": "{executor} updated automod rule {t}",
+    "updatedChannelT": "{executor} updated channel {t}",
+    "updatedCommandPermissions": "{executor} updated command permissions",
+    "updatedEmojiT": "{executor} updated emoji {t}",
+    "updatedEventT": "{executor} updated event {t}",
+    "updatedHomeSettings": "{executor} updated home settings",
+    "updatedIntegrationT": "{executor} updated integration {t}",
+    "updatedOnboardingPrompt": "{executor} updated onboarding prompt",
+    "updatedOnboarding": "{executor} updated onboarding",
+    "updatedPermissionsForT": "{executor} updated permissions for {t}",
+    "updatedRoleT": "{executor} updated role {t}",
+    "updatedRolesForT": "{executor} updated roles for {t}",
+    "updatedServerSettings": "{executor} updated server settings",
+    "updatedStickerT": "{executor} updated sticker {t}",
+    "updatedThreadT": "{executor} updated thread {t}",
+    "updatedVoiceChannelStatus": "{executor} updated voice channel status",
+    "updatedWebhookT": "{executor} updated webhook {t}",
+    "automodBlocked": "{executor}'s automod blocked a message",
+    "automodFlagged": "{executor}'s automod flagged a message",
+    "automodTimedOut": "{executor}'s automod timed out {t}"
+  },
+  "ign": {
+    "added": "**{e} Successfully added {channel} to the ignore channel list.**",
+    "removed": "**{e} Successfully removed {channel} from the ignore channel list.**",
+    "cleared": "**{e} Successfully cleared the ignore channel list.**",
+    "list": "**{e} Ignore channel list :**\n\n** {channels}**",
+    "empty": "**{e} There are no channels in the ignore channel list.**",
+    "already": "**{e} This channel is already in the ignore channel list.**",
+    "notIn": "**{e} This channel is not in the ignore channel list.**",
+    "needChannel": "**{e} Please provide a valid channel.**",
+    "needPerm": "-# **{e} You must have `Manage Channels` permissions to use this command.**"
+  },
+  "srv": {
+    "title": "**{e} {bot} Server List**",
+    "none": "**{e} No servers found.**",
+    "onlyUser": "**{e} Only {user} can use this button.**"
+  },
+  "brand": {
+    "onlyUser": "{e} Only {user} can use this!",
+    "fillOne": "{e} Please fill at least one field!",
+    "resetFail": "{e} Could not reset avatar/banner/bio: {message}\n",
+    "apiError": "{e} Error: {message}\n",
+    "canSet": "**You can set:**\n",
+    "applyFail": "Failed to apply changes: {message}",
+    "resetFail2": "Failed to reset: {message}",
+    "openFormLine": "Click the button below to customize the bot's server profile.\n\n"
+  },
+  "mut": {
+    "usage": "**Usage:**\n`{prefix}mutual <user ID or @mention>`\n\n**Example:**\n`{prefix}mutual @user`\n`{prefix}mutual 123456789012345678`"
+  },
+  "help": {
+    "notFound": "**{e} Command `{command}` not found.**",
+    "notYours": "**{e} You can't use this menu.**",
+    "intro": "**{bot}** is your ultimate multi-purpose companion, offering high-fidelity music from **YT Music**,**Spotify**,**Apple Music** and more. Featuring advanced **Moderation**, **Utility**, **Invites**, and more—all designed to elevate your server experience to the next level."
+  },
+  "flt": {
+    "noSong": "**{e} There is no song currently playing.**",
+    "current": "**{e} Current Filter** `:` `{value}`",
+    "notYours": "**{e} That's not your session run. Use `{prefix}filter` to create your own.**",
+    "placeholder": "Select a filter to apply",
+    "currentAlt": "**{e} Current Filter `:`** `{value}`"
+  },
+  "vcx": {
+    "need247Channel": "Bot is in 24/7 mode. Please join the bot's voice channel"
+  },
+  "radio": {
+    "title": "### {e} Live Radio Stations",
+    "body": "**{count} stations** available — pick one from the menu below and start listening instantly.\n\n**Popular:** {popular}\n\n-# **Tip:** You can also use `{prefix}radio <name>` to play directly.",
+    "selectPlaceholder": "Select a radio station...",
+    "liveStream": "Live stream",
+    "playing": "**{e} {emoji} Now playing: {name}**\n-# Live radio stream started",
+    "loadFailed": "**{e} Failed to load station: {name}**",
+    "invalidNumber": "**{e} Invalid station number.** Use a number between 0 and {max}.",
+    "notFound": "**{e} No station found matching \"{query}\".**",
+    "joinFirst": "**{e} Join a voice channel first!**"
+  },
+  "removedupes": {
+    "none": "**{e} No duplicate tracks found in the queue.**",
+    "done": "**{e} Removed {count} duplicate(s) — {remaining} tracks remaining.**"
+  },
+  "unshuffle": {
+    "noShuffle": "**{e} No shuffle to undo.** You need to shuffle the queue first.",
+    "done": "**{e} Restored the original queue order — {count} tracks.**"
+  },
+  "moveme": {
+    "botNotInVoice": "**{e} I'm not in any voice channel right now.**",
+    "alreadyHere": "**{e} You're already in <#{channel}>.**",
+    "channelFull": "**{e} <#{channel}> is full.**",
+    "moved": "**{e} Moved you to <#{channel}>.**",
+    "noPermission": "**{e} I don't have permission to move members. I need the **Move Members** permission.**"
+  },
+  "playlist": {
+    "usage": "**{e} Playlist Commands**\n`{prefix}playlist create <name>` — Create from current queue\n`{prefix}playlist play <name>` — Load & play\n`{prefix}playlist list` — Show all playlists\n`{prefix}playlist show <name>` — Show tracks\n`{prefix}playlist delete <name>` — Delete\n`{prefix}playlist addcurrent <name>` — Add current track\n`{prefix}playlist addqueue <name>` — Add entire queue",
+    "needName": "**{e} Please provide a playlist name.**",
+    "nameTooLong": "**{e} Playlist name must be {max} characters or less.**",
+    "alreadyExists": "**{e} A playlist named `{name}` already exists.**",
+    "maxReached": "**{e} You've reached the maximum of {max} playlists.**",
+    "created": "**{e} Created playlist `{name}` with {count} tracks.**",
+    "notFound": "**{e} No playlist found named `{name}`.**",
+    "empty": "**{e} Playlist `{name}` is empty.**",
+    "loading": "**{e} Loading playlist `{name}` ({count} tracks)...**",
+    "loaded": "**{e} Loaded {count} tracks from playlist `{name}`.**",
+    "noPlaylists": "**{e} You don't have any saved playlists yet.**",
+    "tracks": "tracks",
+    "listAll": "**{e} Your Playlists ({count})**\n{list}",
+    "details": "**{e} Playlist: {name}** ({count} tracks)\n{list}",
+    "deleted": "**{e} Deleted playlist `{name}`.**",
+    "trackAdded": "**{e} Added `{title}` to playlist `{name}`.**",
+    "queueAdded": "**{e} Added {count} tracks to playlist `{name}`.**"
+  },
+  "defaultvolume": {
+    "current": "**{e} Default volume for this server is `{volume}%`.**",
+    "invalid": "**{e} Please provide a valid volume between 1 and 150.**",
+    "set": "**{e} Default volume set to `{volume}%`.**"
+  },
+  "voteskip": {
+    "skippedFew": "**{e} Skipped [{title}]({uri})** (too few listeners for a vote)",
+    "started": "**{e} {user} wants to skip `{title}`**\nVotes: `{current}/{needed}` — click below to vote!",
+    "voteButton": "{current}/{needed} Skip",
+    "mustBeInVoice": "**{e} You need to be in the voice channel to vote.**",
+    "passed": "**{e} Vote passed! Skipped `{title}` ({current}/{needed} votes)**",
+    "failed": "**{e} Vote skip failed — not enough votes ({current}/{needed}).**"
+  },
+  "queuestatus": {
+    "title": "Player Status",
+    "nowPlaying": "Now Playing",
+    "by": "by",
+    "requestedBy": "requested by",
+    "volume": "Volume",
+    "loop": "Loop",
+    "autoplay": "Autoplay",
+    "state": "State",
+    "paused": "Paused",
+    "playing": "Playing",
+    "upNext": "Up Next",
+    "tracksLabel": "tracks",
+    "more": "more",
+    "queueEmpty": "Queue is empty — add songs to keep the music going!",
+    "loopOff": "Off",
+    "loopTrack": "Track",
+    "loopQueue": "Queue",
+    "radioMode": "Radio"
+  },
+  "musicsystem": {
+    "usage": "**{e} Music System Setup**\n`{prefix}musicsystem enable [#channel]` — Create/set music request channel\n`{prefix}musicsystem disable` — Disable music request channel\n`{prefix}musicsystem status` — Show current setup",
+    "notSetup": "**{e} No music request channel is set up.**\nUse `{prefix}musicsystem enable` to create one.",
+    "currentStatus": "**{e} Music request channel: <#{channel}>**",
+    "disabled": "**{e} Music request channel disabled.**",
+    "invalidChannel": "**{e} Please provide a valid text channel.**",
+    "channelName": "music-requests",
+    "channelTopic": "Type a song name or URL to play music via {bot}",
+    "createFailed": "**{e} Failed to create channel: {message}**",
+    "sendFailed": "**{e} Failed to send setup message: {message}**",
+    "enabled": "**{e} Music request channel set to <#{channel}>!**\nUsers can type song names or URLs there to play music.",
+    "needVoice": "**{e} You need to be in a voice channel to use this.**",
+    "sameVoice": "**{e} You need to be in the same voice channel as the bot.**",
+    "embed": {
+      "title": "### {e} Music Request Channel",
+      "body": "**{e} Type a song name or paste a URL below to play music.**\nUse the buttons to control playback."
+    }
+  },
+  "setdj": {
+    "usage": "**{e} DJ Role Setup**\n`{prefix}setdj set <@role>` — Set the DJ role\n`{prefix}setdj remove` — Remove the DJ role\n`{prefix}setdj status` — Show current DJ role",
+    "notSet": "**{e} No DJ role is configured.** All users can use DJ commands.",
+    "currentRole": "**{e} Current DJ role: <@&{role}>**",
+    "removed": "**{e} DJ role has been removed.** All users can now use DJ commands.",
+    "noRole": "**{e} Please mention a role or provide a role ID.**",
+    "invalidRole": "**{e} Could not find that role.**",
+    "set": "**{e} DJ role set to <@&{role}>!** Only users with this role (or ManageGuild) can use DJ commands."
+  },
+  "toggle": {
+    "usage": "**{e} Command Toggle**\n`{prefix}toggle disable <command>` — Disable a command\n`{prefix}toggle enable <command>` — Re-enable a command\n`{prefix}toggle list` — Show disabled commands",
+    "noneDisabled": "**{e} No commands are disabled on this server.**",
+    "list": "**{e} Disabled commands:** {commands}",
+    "noCommand": "**{e} Please specify a command name.**",
+    "protected": "**{e} The `{command}` command cannot be disabled.**",
+    "notFound": "**{e} Command `{command}` not found.**",
+    "alreadyDisabled": "**{e} `{command}` is already disabled.**",
+    "disabled": "**{e} `{command}` has been disabled on this server.**",
+    "alreadyEnabled": "**{e} `{command}` is not disabled.**",
+    "enabled": "**{e} `{command}` has been re-enabled on this server.**"
+  },
+  "welcome": {
+    "usage": "**{e} Welcome System**\n`{prefix}welcome enable` — Enable welcome messages\n`{prefix}welcome disable` — Disable welcome messages\n`{prefix}welcome channel <#channel>` — Set welcome channel\n`{prefix}welcome message <text>` — Set welcome message\n`{prefix}welcome goodbye <text>` — Set goodbye message\n`{prefix}welcome status` — Show current config\n`{prefix}welcome test` — Send a test message",
+    "status": "**{e} Welcome System**\n> **Status:** `{enabled}`\n> **Channel:** {channel}\n> **Welcome:** `{message}`\n> **Goodbye:** `{goodbye}`",
+    "enabled": "**{e} Welcome system enabled!**",
+    "disabled": "**{e} Welcome system disabled.**",
+    "noChannel": "**{e} Please mention a text channel.**",
+    "invalidChannel": "**{e} Please provide a valid text channel.**",
+    "channelSet": "**{e} Welcome channel set to <#{channel}>.**",
+    "messageSet": "**{e} Welcome message updated!**",
+    "goodbyeSet": "**{e} Goodbye message updated!**",
+    "testSent": "**{e} Test messages sent to <#{channel}>.**",
+    "notConfigured": "Not set",
+    "defaultMsg": "**Welcome to {server}, {user}!** You are member #{membercount}.",
+    "defaultBye": "**{username}** has left **{server}**. We now have {membercount} members.",
+    "variables": "**{e} Available variables:**\n`{user}` — Mention\n`{username}` — Username\n`{tag}` — Tag\n`{server}` — Server name\n`{membercount}` — Member count"
+  }
+}

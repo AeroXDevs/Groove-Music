@@ -66,8 +66,8 @@ module.exports = {
 
         const info = new TextDisplayBuilder()
             .setContent(
-                `Click the button below to customize the bot's server profile.\n\n` +
-                `**You can set:**\n` +
+                client.t(message.guild.id, "brand.openFormLine") +
+                client.t(message.guild.id, "brand.canSet") +
                 `• Avatar\n` +
                 `• Banner\n` +
                 `• Bio\n` +
@@ -94,7 +94,7 @@ module.exports = {
         collector.on('collect', async (interaction) => {
             if (interaction.user.id !== message.author.id) {
                 const errorDisplay = new TextDisplayBuilder()
-                    .setContent(`${client.emoji?.cross} Only ${message.author.username} can use this!`);
+                    .setContent(client.t(message.guild.id, "brand.onlyUser", { e: client.emoji?.cross, user: message.author.username }));
 
                 const errorContainer = new ContainerBuilder()
                     .addTextDisplayComponents(errorDisplay);
@@ -163,7 +163,7 @@ module.exports = {
 
                     if (!avatarUrl && !bannerUrl && !bio && !nickname) {
                         const errorDisplay = new TextDisplayBuilder()
-                            .setContent(`${client.emoji?.cross} Please fill at least one field!`);
+                            .setContent(client.t(message.guild.id, "brand.fillOne", { e: client.emoji?.cross }));
 
                         const errorContainer = new ContainerBuilder()
                             .addTextDisplayComponents(errorDisplay);
@@ -181,7 +181,7 @@ module.exports = {
                     const previewSeparator = new SeparatorBuilder();
 
                     let previewText = '**Changes to apply:**\n\n';
-                    if (nickname) previewText += `**Nickname:** ${nickname}\n`;
+                    if (nickname) previewText += `**${client.t(message.guild.id, "ui.label.nickname")}:** ${nickname}\n`;
                     if (bio) previewText += `**Bio:** ${bio}\n`;
                     if (avatarUrl) previewText += `**Avatar:** ${avatarUrl}\n`;
                     if (bannerUrl) previewText += `**Banner:** ${bannerUrl}\n`;
@@ -266,7 +266,7 @@ module.exports = {
                                         if (modalData.bannerUrl) successText += `${client.emoji?.check} Banner updated\n`;
                                         if (modalData.bio) successText += `${client.emoji?.check} Bio updated\n`;
                                     } catch (apiError) {
-                                        successText += `${client.emoji?.warn} Error: ${apiError.message}\n`;
+                                        successText += client.t(message.guild.id, "brand.apiError", { e: client.emoji?.warn, message: apiError.message });
                                     }
                                 }
 
@@ -299,7 +299,7 @@ module.exports = {
                                 const errorSeparator = new SeparatorBuilder();
 
                                 const errorDisplay = new TextDisplayBuilder()
-                                    .setContent(`Failed to apply changes: ${error.message}`);
+                                    .setContent(client.t(message.guild.id, "brand.applyFail", { message: error.message }));
 
                                 const errorContainer = new ContainerBuilder()
                                     .addTextDisplayComponents(errorHeader)
@@ -367,7 +367,7 @@ module.exports = {
                         resetText += `${client.emoji?.check} Banner reset to default\n`;
                         resetText += `${client.emoji?.check} Bio reset to default\n`;
                     } catch (err) {
-                        resetText += `${client.emoji?.warn} Could not reset avatar/banner/bio: ${err.message}\n`;
+                        resetText += client.t(message.guild.id, "brand.resetFail", { e: client.emoji?.warn, message: err.message });
                     }
 
                     const resetHeader = new TextDisplayBuilder()
@@ -398,7 +398,7 @@ module.exports = {
                     const errorSeparator = new SeparatorBuilder();
 
                     const errorDisplay = new TextDisplayBuilder()
-                        .setContent(`Failed to reset: ${error.message}`);
+                        .setContent(client.t(message.guild.id, "brand.resetFail2", { message: error.message }));
 
                     const errorContainer = new ContainerBuilder()
                         .addTextDisplayComponents(errorHeader)

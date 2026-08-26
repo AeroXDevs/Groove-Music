@@ -1,0 +1,19 @@
+[
+  { "name": "Radyo Fenomen", "url": "https://live.radyofenomen.com/fenomen/128/icecast.audio", "emoji": "🎧" },
+  { "name": "Power Türk", "url": "https://listen.powerapp.com.tr/powerturk/mpeg/icecast.audio", "emoji": "🎵" },
+  { "name": "Power FM", "url": "https://listen.powerapp.com.tr/powerfm/mpeg/icecast.audio", "emoji": "⚡" },
+  { "name": "Power Pop", "url": "https://listen.powerapp.com.tr/powerpop/mpeg/icecast.audio", "emoji": "🎤" },
+  { "name": "Power Love", "url": "https://listen.powerapp.com.tr/powerlove/mpeg/icecast.audio", "emoji": "💕" },
+  { "name": "Metro FM", "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/METRO_FM.mp3", "emoji": "🏙️" },
+  { "name": "Virgin Radio", "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/VIRGIN_RADIO.mp3", "emoji": "📻" },
+  { "name": "JoyTürk", "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/JOY_TURK.mp3", "emoji": "🎸" },
+  { "name": "Joy FM", "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/JOY_FM.mp3", "emoji": "😊" },
+  { "name": "Süper FM", "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/SUPER_FM.mp3", "emoji": "🌟" },
+  { "name": "Best FM", "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/BEST_FM.mp3", "emoji": "🏆" },
+  { "name": "Radyo Viva", "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/RADYO_VIVA.mp3", "emoji": "🎶" },
+  { "name": "SlowTürk", "url": "https://radyo.duhnet.tv/aac/slowturk", "emoji": "🎹" },
+  { "name": "Radyo D", "url": "https://25493.live.streamtheworld.com/RADYO_D.mp3", "emoji": "🔊" },
+  { "name": "Radyo Seymen", "url": "https://sunucu1.radyotelekom.com.tr/proxy/seymen?mp=/stream", "emoji": "🎻" },
+  { "name": "Radyo 45lik", "url": "https://stream.radyo45lik.com/45lik.mp3", "emoji": "💿" },
+  { "name": "Pal Nostalji", "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/PAL_NOSTALJI.mp3", "emoji": "📀" }
+]

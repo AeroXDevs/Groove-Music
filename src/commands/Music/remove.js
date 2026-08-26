@@ -64,7 +64,7 @@ module.exports = {
 
     if (!player.queue.current) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.cross} Play a song first!**`);
+        .setContent(client.t(message.guild.id, "music.playFirst", { e: client.emoji.cross }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -81,8 +81,7 @@ module.exports = {
       if (isNaN(position) || position < 0 || position >= player.queue.length) {
         const errorDisplay = new TextDisplayBuilder()
           .setContent(
-            `**${client.emoji.info} Invalid position** \`:\` \`${args[0]}\`\n` +
-            `**${client.emoji.info} Total songs in queue** \`:\` \`${player.queue.length}\``
+client.t(message.guild.id, "music.remove.invalidPos", { e: client.emoji.info, value: args[0], total: player.queue.length })
           );
 
         const container = new ContainerBuilder()
@@ -98,7 +97,7 @@ module.exports = {
       await player.queue.splice(position, 1);
 
       const successDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.check} Removed [${song.title}](${song.uri})**`);
+        .setContent(client.t(message.guild.id, "music.remove.removed", { e: client.emoji.check, title: song.title, uri: song.uri }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(successDisplay);
@@ -113,7 +112,7 @@ module.exports = {
 
     if (queue.length === 0) {
       const errorDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.info} The queue is empty.**`);
+        .setContent(client.t(message.guild.id, "music.queueEmpty", { e: client.emoji.info }));
 
       const container = new ContainerBuilder()
         .addTextDisplayComponents(errorDisplay);
@@ -134,7 +133,7 @@ module.exports = {
       const pageTracks = currentQueue.slice(start, end);
 
       const headerDisplay = new TextDisplayBuilder()
-        .setContent(`**${client.emoji.info} Remove Tracks**`);
+        .setContent(client.t(message.guild.id, "music.remove.title", { e: client.emoji.info }));
 
       const separator1 = new SeparatorBuilder();
 
@@ -171,7 +170,7 @@ module.exports = {
         const position = start + i;
         return {
           label: `${position}. ${track.title.substring(0, 90)}`,
-          description: `Duration: ${convertTime(track.length)}`,
+          description: client.t(message.guild.id, "music.remove.duration", { value: convertTime(track.length) }),
           value: `remove_${position}`
         };
       });
@@ -179,7 +178,7 @@ module.exports = {
       return new ActionRowBuilder().addComponents(
         new StringSelectMenuBuilder()
           .setCustomId('select_track')
-          .setPlaceholder('Select tracks to remove')
+          .setPlaceholder(client.t(message.guild.id, "music.remove.placeholder"))
           .setMinValues(1)
           .setMaxValues(Math.min(options.length, 10))
           .addOptions(options)
@@ -191,21 +190,21 @@ module.exports = {
       return new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setCustomId('clear_queue')
-          .setLabel('Clear Queue')
+          .setLabel(client.t(message.guild.id, "buttons.clearQueue"))
           .setStyle(ButtonStyle.Danger),
         new ButtonBuilder()
           .setCustomId('previous')
-          .setLabel('Previous')
+          .setLabel(client.t(message.guild.id, "buttons.previous"))
           .setStyle(ButtonStyle.Secondary)
           .setDisabled(currentTotalPages <= 1),
         new ButtonBuilder()
           .setCustomId('next')
-          .setLabel('Next')
+          .setLabel(client.t(message.guild.id, "buttons.next"))
           .setStyle(ButtonStyle.Secondary)
           .setDisabled(currentTotalPages <= 1),
         new ButtonBuilder()
           .setCustomId('close_session')
-          .setLabel('Close')
+          .setLabel(client.t(message.guild.id, "buttons.close"))
           .setStyle(ButtonStyle.Secondary)
       );
     };
@@ -226,7 +225,7 @@ module.exports = {
         if (i.user.id === message.author.id) return true;
 
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.cross} Only ${message.author.tag} can use this!**`);
+          .setContent(client.t(message.guild.id, "music.remove.onlyUser", { e: client.emoji.cross, user: message.author.tag }));
 
         const errorContainer = new ContainerBuilder()
           .addTextDisplayComponents(errorDisplay);
@@ -243,7 +242,7 @@ module.exports = {
     collector.on('collect', async (interaction) => {
       if (player.queue.length === 0 && interaction.customId !== 'clear_queue') {
         const errorDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} The queue is now empty.**`);
+          .setContent(client.t(message.guild.id, "music.remove.nowEmpty", { e: client.emoji.info }));
         const errorContainer = new ContainerBuilder().addTextDisplayComponents(errorDisplay);
         await interaction.reply({ components: [errorContainer], flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2 });
         collector.stop();
@@ -272,13 +271,13 @@ module.exports = {
 
         if (player.queue.length === 0) {
           const emptyDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.check} Removed ${removedTracks.length} track(s). The queue is now empty!**`);
+            .setContent(client.t(message.guild.id, "music.remove.doneEmpty", { e: client.emoji.check, count: removedTracks.length }));
           const emptyContainer = new ContainerBuilder().addTextDisplayComponents(emptyDisplay);
           await msg.edit({ components: [emptyContainer], flags: MessageFlags.IsComponentsV2 });
           collector.stop();
         } else {
           const successDisplay = new TextDisplayBuilder()
-            .setContent(`**${client.emoji.check} Removed ${removedTracks.length} track(s)**`);
+            .setContent(client.t(message.guild.id, "music.remove.done", { e: client.emoji.check, count: removedTracks.length }));
           const successContainer = new ContainerBuilder().addTextDisplayComponents(successDisplay);
 
           await msg.edit({
@@ -324,7 +323,7 @@ module.exports = {
         player.queue.clear();
 
         const successDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.check} Cleared ${queueSize} tracks from the queue**`);
+          .setContent(client.t(message.guild.id, "music.remove.cleared", { e: client.emoji.check, count: queueSize }));
 
         const successContainer = new ContainerBuilder()
           .addTextDisplayComponents(successDisplay);
@@ -345,7 +344,7 @@ module.exports = {
     collector.on('end', async (collected, reason) => {
       if (reason === 'idle' || reason === 'time') {
         const timeoutDisplay = new TextDisplayBuilder()
-          .setContent(`**${client.emoji.info} Session timed out. Use the command again if needed.**`);
+          .setContent(client.t(message.guild.id, "music.remove.timedOut", { e: client.emoji.info }));
         const timeoutContainer = new ContainerBuilder().addTextDisplayComponents(timeoutDisplay);
 
         await msg.edit({
