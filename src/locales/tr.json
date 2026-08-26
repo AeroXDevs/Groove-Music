@@ -28,7 +28,9 @@
     "commandError": "**{warn} Komut çalıştırılırken bir hata oluştu.**",
     "unexpectedError": "**{warn} Beklenmedik bir hata oluştu.**",
     "inputError": "**{warn} Girdiğin değer işlenemedi, tekrar dene.**",
-    "interactionError": "**{cross} Bu işlem sırasında bir hata oluştu.**"
+    "interactionError": "**{cross} Bu işlem sırasında bir hata oluştu.**",
+    "noDJ": "**{warn} Bu komutu kullanmak için DJ rolüne sahip olman gerekiyor.**",
+    "commandDisabled": "**{warn} `{command}` komutu bu sunucuda devre dışı bırakılmış.**"
   },
   "language": {
     "title": "### {info} Sunucu Dili",
@@ -812,6 +814,27 @@
       "description": "Sunucunun varsayılan ses seviyesini ayarla",
       "options": {
         "volume": "Varsayılan ses (1-150)"
+      }
+    },
+    "setdj": {
+      "description": "Müzik komutları için DJ rolünü ayarla veya kaldır",
+      "options": {
+        "action": "DJ rolünü ayarla, kaldır veya durumunu kontrol et",
+        "role": "DJ olarak ayarlanacak rol"
+      }
+    },
+    "toggle": {
+      "description": "Sunucu bazında komutları aç veya kapat",
+      "options": {
+        "action": "Komutları aç, kapat veya listele",
+        "command": "Açılıp kapatılacak komut adı"
+      }
+    },
+    "welcome": {
+      "description": "Hoş geldin ve güle güle mesajlarını yapılandır",
+      "options": {
+        "action": "Hoş geldin sistemini yapılandır",
+        "input": "Kanal etiketi veya özel mesaj metni"
       }
     }
   },
@@ -1783,5 +1806,42 @@
       "title": "### {e} Müzik İstek Kanalı",
       "body": "**{e} Müzik çalmak için aşağıya şarkı adı veya URL yaz.**\nÇalmayı kontrol etmek için butonları kullan."
     }
+  },
+  "setdj": {
+    "usage": "**{e} DJ Rolü Ayarları**\n`{prefix}setdj set <@rol>` — DJ rolünü ayarla\n`{prefix}setdj remove` — DJ rolünü kaldır\n`{prefix}setdj status` — Mevcut DJ rolünü göster",
+    "notSet": "**{e} DJ rolü yapılandırılmamış.** Tüm kullanıcılar DJ komutlarını kullanabilir.",
+    "currentRole": "**{e} Mevcut DJ rolü: <@&{role}>**",
+    "removed": "**{e} DJ rolü kaldırıldı.** Artık tüm kullanıcılar DJ komutlarını kullanabilir.",
+    "noRole": "**{e} Lütfen bir rol etiketle veya rol ID'si gir.**",
+    "invalidRole": "**{e} Bu rol bulunamadı.**",
+    "set": "**{e} DJ rolü <@&{role}> olarak ayarlandı!** Sadece bu role sahip olanlar (veya Sunucu Yönetimi yetkisi olanlar) DJ komutlarını kullanabilir."
+  },
+  "toggle": {
+    "usage": "**{e} Komut Açma/Kapama**\n`{prefix}toggle disable <komut>` — Bir komutu kapat\n`{prefix}toggle enable <komut>` — Bir komutu tekrar aç\n`{prefix}toggle list` — Kapatılmış komutları göster",
+    "noneDisabled": "**{e} Bu sunucuda kapatılmış komut yok.**",
+    "list": "**{e} Kapatılmış komutlar:** {commands}",
+    "noCommand": "**{e} Lütfen bir komut adı belirt.**",
+    "protected": "**{e} `{command}` komutu kapatılamaz.**",
+    "notFound": "**{e} `{command}` komutu bulunamadı.**",
+    "alreadyDisabled": "**{e} `{command}` zaten kapalı.**",
+    "disabled": "**{e} `{command}` bu sunucuda kapatıldı.**",
+    "alreadyEnabled": "**{e} `{command}` zaten açık.**",
+    "enabled": "**{e} `{command}` bu sunucuda tekrar açıldı.**"
+  },
+  "welcome": {
+    "usage": "**{e} Hoş Geldin Sistemi**\n`{prefix}welcome enable` — Hoş geldin mesajlarını aç\n`{prefix}welcome disable` — Hoş geldin mesajlarını kapat\n`{prefix}welcome channel <#kanal>` — Hoş geldin kanalını ayarla\n`{prefix}welcome message <metin>` — Hoş geldin mesajını ayarla\n`{prefix}welcome goodbye <metin>` — Güle güle mesajını ayarla\n`{prefix}welcome status` — Mevcut ayarları göster\n`{prefix}welcome test` — Test mesajı gönder",
+    "status": "**{e} Hoş Geldin Sistemi**\n> **Durum:** `{enabled}`\n> **Kanal:** {channel}\n> **Hoş Geldin:** `{message}`\n> **Güle Güle:** `{goodbye}`",
+    "enabled": "**{e} Hoş geldin sistemi açıldı!**",
+    "disabled": "**{e} Hoş geldin sistemi kapatıldı.**",
+    "noChannel": "**{e} Lütfen bir metin kanalı etiketle.**",
+    "invalidChannel": "**{e} Geçerli bir metin kanalı belirt.**",
+    "channelSet": "**{e} Hoş geldin kanalı <#{channel}> olarak ayarlandı.**",
+    "messageSet": "**{e} Hoş geldin mesajı güncellendi!**",
+    "goodbyeSet": "**{e} Güle güle mesajı güncellendi!**",
+    "testSent": "**{e} Test mesajları <#{channel}> kanalına gönderildi.**",
+    "notConfigured": "Ayarlanmamış",
+    "defaultMsg": "**{server} sunucusuna hoş geldin, {user}!** #{membercount}. üyesin.",
+    "defaultBye": "**{username}**, **{server}** sunucusundan ayrıldı. Artık {membercount} üyeyiz.",
+    "variables": "**{e} Kullanılabilir değişkenler:**\n`{user}` — Etiket\n`{username}` — Kullanıcı adı\n`{tag}` — Etiket (tag)\n`{server}` — Sunucu adı\n`{membercount}` — Üye sayısı"
   }
 }

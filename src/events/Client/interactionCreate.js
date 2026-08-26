@@ -174,6 +174,39 @@ module.exports = {
         }
       }
 
+      if (command.dj) {
+        const { hasDJPermission } = require("../../utils/djCheck");
+        if (!hasDJPermission(interaction.member, client)) {
+          const djDisplay = new TextDisplayBuilder()
+            .setContent(client.t(interaction.guildId, "core.noDJ", { warn: client.emoji.warn }));
+
+          const container = new ContainerBuilder()
+            .addTextDisplayComponents(djDisplay);
+
+          return interaction.reply({
+            components: [container],
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
+          }).catch(() => {});
+        }
+      }
+
+      const toggleData = client.db.toggles.get(interaction.guildId);
+      if (toggleData) {
+        const disabled = JSON.parse(toggleData.commands || "[]");
+        if (disabled.includes(command.name)) {
+          const toggleDisplay = new TextDisplayBuilder()
+            .setContent(client.t(interaction.guildId, "core.commandDisabled", { warn: client.emoji.warn, command: command.name }));
+
+          const container = new ContainerBuilder()
+            .addTextDisplayComponents(toggleDisplay);
+
+          return interaction.reply({
+            components: [container],
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
+          }).catch(() => {});
+        }
+      }
+
       try {
         const interactionWrapper = {
           guild: interaction.guild,

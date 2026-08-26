@@ -339,6 +339,39 @@ module.exports = {
       }).catch(() => null);
     }
 
+    if (command.dj) {
+      const { hasDJPermission } = require("../../utils/djCheck");
+      if (!hasDJPermission(message.member, client)) {
+        const djDisplay = new TextDisplayBuilder()
+          .setContent(client.t(message.guild.id, "core.noDJ", { warn: client.emoji.warn }));
+
+        const container = new ContainerBuilder()
+          .addTextDisplayComponents(djDisplay);
+
+        return message.channel.send({
+          components: [container],
+          flags: MessageFlags.IsComponentsV2
+        }).catch(() => null);
+      }
+    }
+
+    const toggleData = client.db.toggles.get(message.guild.id);
+    if (toggleData) {
+      const disabled = JSON.parse(toggleData.commands || "[]");
+      if (disabled.includes(command.name)) {
+        const toggleDisplay = new TextDisplayBuilder()
+          .setContent(client.t(message.guild.id, "core.commandDisabled", { warn: client.emoji.warn, command: command.name }));
+
+        const container = new ContainerBuilder()
+          .addTextDisplayComponents(toggleDisplay);
+
+        return message.channel.send({
+          components: [container],
+          flags: MessageFlags.IsComponentsV2
+        }).catch(() => null);
+      }
+    }
+
     try {
       await command.execute(message, args, client, prefix);
 

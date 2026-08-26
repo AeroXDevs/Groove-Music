@@ -28,7 +28,9 @@
     "commandError": "**{warn} An error occurred while executing this command!**",
     "unexpectedError": "**{warn} An unexpected error occurred.**",
     "inputError": "**{warn} There was an error processing your input. Please try again.**",
-    "interactionError": "**{cross} An error occurred while processing this interaction.**"
+    "interactionError": "**{cross} An error occurred while processing this interaction.**",
+    "noDJ": "**{warn} You need the DJ role to use this command.**",
+    "commandDisabled": "**{warn} The `{command}` command is disabled on this server.**"
   },
   "language": {
     "title": "### {info} Server Language",
@@ -812,6 +814,27 @@
       "description": "Set the default volume for this server",
       "options": {
         "volume": "Default volume (1-150)"
+      }
+    },
+    "setdj": {
+      "description": "Set or remove the DJ role for music commands",
+      "options": {
+        "action": "Set, remove, or check DJ role status",
+        "role": "The role to set as DJ"
+      }
+    },
+    "toggle": {
+      "description": "Enable or disable commands per server",
+      "options": {
+        "action": "Enable, disable, or list toggled commands",
+        "command": "The command name to toggle"
+      }
+    },
+    "welcome": {
+      "description": "Configure welcome and goodbye messages",
+      "options": {
+        "action": "Configure welcome system",
+        "input": "Channel mention or custom message text"
       }
     }
   },
@@ -1783,5 +1806,42 @@
       "title": "### {e} Music Request Channel",
       "body": "**{e} Type a song name or paste a URL below to play music.**\nUse the buttons to control playback."
     }
+  },
+  "setdj": {
+    "usage": "**{e} DJ Role Setup**\n`{prefix}setdj set <@role>` — Set the DJ role\n`{prefix}setdj remove` — Remove the DJ role\n`{prefix}setdj status` — Show current DJ role",
+    "notSet": "**{e} No DJ role is configured.** All users can use DJ commands.",
+    "currentRole": "**{e} Current DJ role: <@&{role}>**",
+    "removed": "**{e} DJ role has been removed.** All users can now use DJ commands.",
+    "noRole": "**{e} Please mention a role or provide a role ID.**",
+    "invalidRole": "**{e} Could not find that role.**",
+    "set": "**{e} DJ role set to <@&{role}>!** Only users with this role (or ManageGuild) can use DJ commands."
+  },
+  "toggle": {
+    "usage": "**{e} Command Toggle**\n`{prefix}toggle disable <command>` — Disable a command\n`{prefix}toggle enable <command>` — Re-enable a command\n`{prefix}toggle list` — Show disabled commands",
+    "noneDisabled": "**{e} No commands are disabled on this server.**",
+    "list": "**{e} Disabled commands:** {commands}",
+    "noCommand": "**{e} Please specify a command name.**",
+    "protected": "**{e} The `{command}` command cannot be disabled.**",
+    "notFound": "**{e} Command `{command}` not found.**",
+    "alreadyDisabled": "**{e} `{command}` is already disabled.**",
+    "disabled": "**{e} `{command}` has been disabled on this server.**",
+    "alreadyEnabled": "**{e} `{command}` is not disabled.**",
+    "enabled": "**{e} `{command}` has been re-enabled on this server.**"
+  },
+  "welcome": {
+    "usage": "**{e} Welcome System**\n`{prefix}welcome enable` — Enable welcome messages\n`{prefix}welcome disable` — Disable welcome messages\n`{prefix}welcome channel <#channel>` — Set welcome channel\n`{prefix}welcome message <text>` — Set welcome message\n`{prefix}welcome goodbye <text>` — Set goodbye message\n`{prefix}welcome status` — Show current config\n`{prefix}welcome test` — Send a test message",
+    "status": "**{e} Welcome System**\n> **Status:** `{enabled}`\n> **Channel:** {channel}\n> **Welcome:** `{message}`\n> **Goodbye:** `{goodbye}`",
+    "enabled": "**{e} Welcome system enabled!**",
+    "disabled": "**{e} Welcome system disabled.**",
+    "noChannel": "**{e} Please mention a text channel.**",
+    "invalidChannel": "**{e} Please provide a valid text channel.**",
+    "channelSet": "**{e} Welcome channel set to <#{channel}>.**",
+    "messageSet": "**{e} Welcome message updated!**",
+    "goodbyeSet": "**{e} Goodbye message updated!**",
+    "testSent": "**{e} Test messages sent to <#{channel}>.**",
+    "notConfigured": "Not set",
+    "defaultMsg": "**Welcome to {server}, {user}!** You are member #{membercount}.",
+    "defaultBye": "**{username}** has left **{server}**. We now have {membercount} members.",
+    "variables": "**{e} Available variables:**\n`{user}` — Mention\n`{username}` — Username\n`{tag}` — Tag\n`{server}` — Server name\n`{membercount}` — Member count"
   }
 }
