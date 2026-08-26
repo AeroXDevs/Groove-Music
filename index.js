@@ -22,6 +22,11 @@ module.exports = client;
 
 client.connect();
 
+const createAPIServer = require("./src/api/server");
+client.once("ready", () => {
+  createAPIServer(client);
+});
+
 client.Jsk = new Dokdo.Client(client, {
   aliases: ["dokdo", "dok", "jsk"],
   prefix: [''],
