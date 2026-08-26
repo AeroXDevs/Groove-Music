@@ -772,6 +772,47 @@
       "options": {
         "user": "Bilgisi alınacak kullanıcı"
       }
+    },
+    "voteskip": {
+      "description": "Şarkıyı atlamak için oylama başlat"
+    },
+    "queuestatus": {
+      "description": "Çalar ve sıra durumunu gösterir"
+    },
+    "musicsystem": {
+      "description": "Müzik istek kanalı kur",
+      "options": {
+        "action": "Aç, kapat veya durumu kontrol et",
+        "channel": "Kullanılacak kanal (belirtilmezse yenisi oluşturulur)"
+      }
+    },
+    "radio": {
+      "description": "Canlı Türk radyo istasyonlarını çalar",
+      "options": {
+        "station": "Radyo istasyonu adı veya numarası"
+      }
+    },
+    "removedupes": {
+      "description": "Sıradaki tekrar eden şarkıları siler"
+    },
+    "unshuffle": {
+      "description": "Karıştırmadan önceki sırayı geri yükler"
+    },
+    "moveme": {
+      "description": "Seni botun ses kanalına taşır"
+    },
+    "playlist": {
+      "description": "Playlist oluştur, yönet ve çal",
+      "options": {
+        "action": "Yapılacak işlem",
+        "name": "Playlist adı (en fazla 20 karakter)"
+      }
+    },
+    "defaultvolume": {
+      "description": "Sunucunun varsayılan ses seviyesini ayarla",
+      "options": {
+        "volume": "Varsayılan ses (1-150)"
+      }
     }
   },
   "buttons": {
@@ -1696,5 +1737,51 @@
     "current": "**{e} Bu sunucunun varsayılan ses seviyesi `%{volume}`.**",
     "invalid": "**{e} Lütfen 1 ile 150 arasında geçerli bir değer gir.**",
     "set": "**{e} Varsayılan ses seviyesi `%{volume}` olarak ayarlandı.**"
+  },
+  "voteskip": {
+    "skippedFew": "**{e} [{title}]({uri}) atlandı** (oy için yeterli dinleyici yok)",
+    "started": "**{e} {user} `{title}` şarkısını atlamak istiyor**\nOylar: `{current}/{needed}` — oy vermek için aşağıya tıkla!",
+    "voteButton": "{current}/{needed} Atla",
+    "mustBeInVoice": "**{e} Oy vermek için ses kanalında olman gerek.**",
+    "passed": "**{e} Oylama geçti! `{title}` atlandı ({current}/{needed} oy)**",
+    "failed": "**{e} Oylama başarısız — yeterli oy toplanamadı ({current}/{needed}).**"
+  },
+  "queuestatus": {
+    "title": "Çalar Durumu",
+    "nowPlaying": "Şu An Çalıyor",
+    "by": "sanatçı:",
+    "requestedBy": "isteyen:",
+    "volume": "Ses",
+    "loop": "Döngü",
+    "autoplay": "Otomatik Çalma",
+    "state": "Durum",
+    "paused": "Duraklatıldı",
+    "playing": "Çalıyor",
+    "upNext": "Sıradaki",
+    "tracksLabel": "şarkı",
+    "more": "daha",
+    "queueEmpty": "Sıra boş — müziğin devam etmesi için şarkı ekle!",
+    "loopOff": "Kapalı",
+    "loopTrack": "Şarkı",
+    "loopQueue": "Sıra",
+    "radioMode": "Radyo"
+  },
+  "musicsystem": {
+    "usage": "**{e} Müzik Sistemi Kurulumu**\n`{prefix}musicsystem enable [#kanal]` — Müzik istek kanalı oluştur/ayarla\n`{prefix}musicsystem disable` — Müzik istek kanalını kapat\n`{prefix}musicsystem status` — Mevcut durumu göster",
+    "notSetup": "**{e} Müzik istek kanalı henüz ayarlanmamış.**\nOluşturmak için `{prefix}musicsystem enable` yaz.",
+    "currentStatus": "**{e} Müzik istek kanalı: <#{channel}>**",
+    "disabled": "**{e} Müzik istek kanalı kapatıldı.**",
+    "invalidChannel": "**{e} Geçerli bir metin kanalı belirt.**",
+    "channelName": "müzik-istekleri",
+    "channelTopic": "{bot} ile müzik çalmak için şarkı adı veya URL yaz",
+    "createFailed": "**{e} Kanal oluşturulamadı: {message}**",
+    "sendFailed": "**{e} Kurulum mesajı gönderilemedi: {message}**",
+    "enabled": "**{e} Müzik istek kanalı <#{channel}> olarak ayarlandı!**\nKullanıcılar şarkı adı veya URL yazarak müzik çalabilir.",
+    "needVoice": "**{e} Bunu kullanmak için bir ses kanalında olman gerek.**",
+    "sameVoice": "**{e} Botla aynı ses kanalında olman gerek.**",
+    "embed": {
+      "title": "### {e} Müzik İstek Kanalı",
+      "body": "**{e} Müzik çalmak için aşağıya şarkı adı veya URL yaz.**\nÇalmayı kontrol etmek için butonları kullan."
+    }
   }
 }

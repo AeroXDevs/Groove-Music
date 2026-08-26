@@ -26,7 +26,95 @@ module.exports = {
       return;
     }
 
+    const setupData = client.db.setup.get(message.guild.id);
+    if (setupData && message.channel.id === setupData.channelId && message.content.trim()) {
+      message.delete().catch(() => {});
+      const query = message.content.trim();
+      const channel = message.member?.voice?.channel;
+      if (!channel) {
+        const display = new TextDisplayBuilder()
+          .setContent(client.t(message.guild.id, "musicsystem.needVoice", { e: client.emoji.warn }));
+        const reply = await message.channel.send({
+          components: [new ContainerBuilder().addTextDisplayComponents(display)],
+          flags: MessageFlags.IsComponentsV2
+        }).catch(() => null);
+        if (reply) setTimeout(() => reply.delete().catch(() => {}), 5000);
+        return;
+      }
 
+      let player = client.manager.players.get(message.guild.id);
+      if (!player) {
+        const { hasAvailableNodes } = require("../../utils/nodeUtils");
+        if (!hasAvailableNodes(client.manager)) {
+          const display = new TextDisplayBuilder()
+            .setContent(client.t(message.guild.id, "music.play.serverDown", { e: client.emoji.cross }));
+          const reply = await message.channel.send({
+            components: [new ContainerBuilder().addTextDisplayComponents(display)],
+            flags: MessageFlags.IsComponentsV2
+          }).catch(() => null);
+          if (reply) setTimeout(() => reply.delete().catch(() => {}), 5000);
+          return;
+        }
+        try {
+          const { getDefaultVolume } = require("../../utils/playerUtils");
+          player = await client.manager.createPlayer({
+            guildId: message.guild.id,
+            voiceId: channel.id,
+            textId: message.channel.id,
+            volume: getDefaultVolume(client, message.guild.id),
+            deaf: true,
+          });
+        } catch (err) {
+          const display = new TextDisplayBuilder()
+            .setContent(`**${client.emoji.cross} ${err.message}**`);
+          const reply = await message.channel.send({
+            components: [new ContainerBuilder().addTextDisplayComponents(display)],
+            flags: MessageFlags.IsComponentsV2
+          }).catch(() => null);
+          if (reply) setTimeout(() => reply.delete().catch(() => {}), 5000);
+          return;
+        }
+      }
+
+      try {
+        const result = await player.search(query, { requester: message.author });
+        if (!result?.tracks?.length) {
+          const display = new TextDisplayBuilder()
+            .setContent(client.t(message.guild.id, "music.play.noResults", { e: client.emoji.cross, query }));
+          const reply = await message.channel.send({
+            components: [new ContainerBuilder().addTextDisplayComponents(display)],
+            flags: MessageFlags.IsComponentsV2
+          }).catch(() => null);
+          if (reply) setTimeout(() => reply.delete().catch(() => {}), 5000);
+          return;
+        }
+
+        if (result.type === "PLAYLIST") {
+          for (const track of result.tracks) player.queue.add(track);
+          const display = new TextDisplayBuilder()
+            .setContent(client.t(message.guild.id, "music.play.queuedPlaylist", { e: client.emoji.check, count: result.tracks.length, playlist: result.playlistName || query }));
+          const reply = await message.channel.send({
+            components: [new ContainerBuilder().addTextDisplayComponents(display)],
+            flags: MessageFlags.IsComponentsV2
+          }).catch(() => null);
+          if (reply) setTimeout(() => reply.delete().catch(() => {}), 8000);
+        } else {
+          player.queue.add(result.tracks[0]);
+          const display = new TextDisplayBuilder()
+            .setContent(client.t(message.guild.id, "music.nowPlayingShort", { e: client.emoji.check, title: result.tracks[0].title }));
+          const reply = await message.channel.send({
+            components: [new ContainerBuilder().addTextDisplayComponents(display)],
+            flags: MessageFlags.IsComponentsV2
+          }).catch(() => null);
+          if (reply) setTimeout(() => reply.delete().catch(() => {}), 8000);
+        }
+
+        if (!player.playing && !player.paused) await player.play();
+      } catch (err) {
+        console.error("[MusicSystem] Search error:", err);
+      }
+      return;
+    }
 
     let prefix = client.prefix;
     const prefixData = client.db.prefixes.get(message.guild.id);

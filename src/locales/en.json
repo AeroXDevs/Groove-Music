@@ -772,6 +772,47 @@
       "options": {
         "user": "The user to get information about"
       }
+    },
+    "voteskip": {
+      "description": "Start a vote to skip the current song"
+    },
+    "queuestatus": {
+      "description": "Show detailed player and queue status"
+    },
+    "musicsystem": {
+      "description": "Set up a dedicated music request channel",
+      "options": {
+        "action": "Enable, disable, or check status",
+        "channel": "Channel to use (creates one if not specified)"
+      }
+    },
+    "radio": {
+      "description": "Play live Turkish radio stations",
+      "options": {
+        "station": "Radio station name or number"
+      }
+    },
+    "removedupes": {
+      "description": "Remove duplicate tracks from the queue"
+    },
+    "unshuffle": {
+      "description": "Restore the original queue order before shuffle"
+    },
+    "moveme": {
+      "description": "Move yourself to the bot's voice channel"
+    },
+    "playlist": {
+      "description": "Create, manage and play saved playlists",
+      "options": {
+        "action": "Action to perform",
+        "name": "Playlist name (max 20 characters)"
+      }
+    },
+    "defaultvolume": {
+      "description": "Set the default volume for this server",
+      "options": {
+        "volume": "Default volume (1-150)"
+      }
     }
   },
   "buttons": {
@@ -1696,5 +1737,51 @@
     "current": "**{e} Default volume for this server is `{volume}%`.**",
     "invalid": "**{e} Please provide a valid volume between 1 and 150.**",
     "set": "**{e} Default volume set to `{volume}%`.**"
+  },
+  "voteskip": {
+    "skippedFew": "**{e} Skipped [{title}]({uri})** (too few listeners for a vote)",
+    "started": "**{e} {user} wants to skip `{title}`**\nVotes: `{current}/{needed}` — click below to vote!",
+    "voteButton": "{current}/{needed} Skip",
+    "mustBeInVoice": "**{e} You need to be in the voice channel to vote.**",
+    "passed": "**{e} Vote passed! Skipped `{title}` ({current}/{needed} votes)**",
+    "failed": "**{e} Vote skip failed — not enough votes ({current}/{needed}).**"
+  },
+  "queuestatus": {
+    "title": "Player Status",
+    "nowPlaying": "Now Playing",
+    "by": "by",
+    "requestedBy": "requested by",
+    "volume": "Volume",
+    "loop": "Loop",
+    "autoplay": "Autoplay",
+    "state": "State",
+    "paused": "Paused",
+    "playing": "Playing",
+    "upNext": "Up Next",
+    "tracksLabel": "tracks",
+    "more": "more",
+    "queueEmpty": "Queue is empty — add songs to keep the music going!",
+    "loopOff": "Off",
+    "loopTrack": "Track",
+    "loopQueue": "Queue",
+    "radioMode": "Radio"
+  },
+  "musicsystem": {
+    "usage": "**{e} Music System Setup**\n`{prefix}musicsystem enable [#channel]` — Create/set music request channel\n`{prefix}musicsystem disable` — Disable music request channel\n`{prefix}musicsystem status` — Show current setup",
+    "notSetup": "**{e} No music request channel is set up.**\nUse `{prefix}musicsystem enable` to create one.",
+    "currentStatus": "**{e} Music request channel: <#{channel}>**",
+    "disabled": "**{e} Music request channel disabled.**",
+    "invalidChannel": "**{e} Please provide a valid text channel.**",
+    "channelName": "music-requests",
+    "channelTopic": "Type a song name or URL to play music via {bot}",
+    "createFailed": "**{e} Failed to create channel: {message}**",
+    "sendFailed": "**{e} Failed to send setup message: {message}**",
+    "enabled": "**{e} Music request channel set to <#{channel}>!**\nUsers can type song names or URLs there to play music.",
+    "needVoice": "**{e} You need to be in a voice channel to use this.**",
+    "sameVoice": "**{e} You need to be in the same voice channel as the bot.**",
+    "embed": {
+      "title": "### {e} Music Request Channel",
+      "body": "**{e} Type a song name or paste a URL below to play music.**\nUse the buttons to control playback."
+    }
   }
 }
